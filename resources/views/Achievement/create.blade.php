@@ -4,7 +4,7 @@
         Achievement Name: 
     </label>
     <div class='col-md-6'>
-        <input type='text' 'name' /> 
+        <input type='text' name='name' /> 
     </div>
     <label  class="col-md-4 control-label">
         URL Of Proof:
@@ -12,7 +12,7 @@
     <div class='col-md-6'>
         <input type='text' name='proofURL' />
     </div>
-    <div class='col-md-6'>
+    <div class='col-md-6' style='text-align:right;'>
         <input type='submit' value='Submit Approval' class="btn-primary"/>
     </div>
 </form>
