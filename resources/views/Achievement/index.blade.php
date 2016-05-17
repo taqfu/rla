@@ -6,9 +6,9 @@
 <div style='clear:both;'>
 @foreach ($achievements as $achievement)
     <div>
-        {{ $achievement->name }}
+        <a href="{{route('achievement.show', ['id'=> $achievement->id])}}">{{ $achievement->name }}</a>
         @if ($achievement->status==2)
-        <span style='color:red;'>
+        <span style='font-style:italic;'>
             (Pending Approval)
         </span>
         @endif

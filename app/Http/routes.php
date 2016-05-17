@@ -18,3 +18,5 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('achievement', 'AchievementController');
+Route::resource('proof', 'ProofController');
+Route::resource('vote', 'VoteController');
