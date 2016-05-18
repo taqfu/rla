@@ -1,21 +1,20 @@
 @extends('layouts.app')
 @section('content')
-@foreach($proofs as $proof)
+<table>
+@foreach($votes as $vote)
 <div>
-    @if ($proof->vote)
-        <div style='background-color:green;width:20px;height:20px;float:left;text-align:center;font-weight:bold;'>
-            @if ($proof->vote->vote_for)
-                &#10004;
-            @endif
-        </div>
-        <div style='background-color:red;width:20px;height:20px;float:left;text-align:center;font-weight:bold;'>
-            @if (!$proof->vote->vote_for)
-                &#10004;
-            @endif
-        </div>
-    @endif
-    <a href="{{$proof->url}}">{{$proof->achievement->name}}</a> ({{$proof->user->name}}) 
+    <tr><td>
+        @include ('Vote.show', ['voted_for'=>$vote->vote_for])
+    </td><td>
+        <a href="{{route('achievement.show', ['id'=>$vote->proof->achievement->id])}}">{{$vote->proof->achievement->name}}</a> 
+    </td><td>
+        <a href="{{$vote->proof->url}}">{{$vote->proof->url}}</a>
+    </td><td>
+        {{$vote->proof->user->name}} 
+    </td><td>
+        {{date('M d, Y h:i', strtotime($vote->created_at))}}
+    </td></tr>
 </div>
 @endforeach
-       
+</table>
 @endsection

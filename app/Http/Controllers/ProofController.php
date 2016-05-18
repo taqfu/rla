@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Proof;
+use App\Vote;
 
 use Auth;
 use View;
@@ -64,7 +65,14 @@ class ProofController extends Controller
      */
     public function show($id)
     {
-        //
+        return View::make('Proof.show', [
+            "proof"=>Proof::where('id', $id)->first(),
+            "votes"=>Vote::where('proof_id', $id)->get(),
+            "num_of_for_votes"=>count(Vote::where('proof_id', $id)->where('vote_for', true)->get()),
+            "num_of_against_votes"=>count(Vote::where('proof_id', $id)->where('vote_for', false)->get()),
+            "passing"=>Proof::passing_approval($id),
+        ]);   
+
     }
 
     /**

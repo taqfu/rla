@@ -38,6 +38,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ route('achievement.index') }}">Achievements</a></li>
+                    <li><a href="{{ route('vote.index') }}">Vote History</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

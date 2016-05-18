@@ -110,3 +110,5 @@ class VoteController extends Controller
         //
     }
 }
+
+

@@ -21,7 +21,7 @@ class AchievementController extends Controller
      */
     public function index()
     {
-        CheckAchievements();
+        checkProofs();
         return View::make('Achievement.index', [
             "achievements"=>Achievement::orderBy('name', 'asc')->get(),
         ]);
@@ -132,43 +132,30 @@ class AchievementController extends Controller
 }
 
 
-function CheckAchievements(){
+function checkProofs(){
     $max_time_to_vote = 604800;
     $max_time_to_not_vote = 86400;
-    $achievements_needing_to_be_checked = Achievement::where("status", 2)->orderBy("created_at", "asc")->get();    
-    foreach($achievements_needing_to_be_checked as $achievement){
-        $proof = Proof::where('status', 2)->where('achievement_id', $achievement->id)->first();
+    $proofs_needing_to_be_checked = Proof::where("status", 2)->orderBy("created_at", "asc")->get();    
+    foreach($proofs_needing_to_be_checked as $proof){
         $last_vote = Vote::where('proof_id', $proof->id)->orderBy('created_at', 'desc')->first();
+        //var_dump($proof->achievement_id, time()-strtotime($last_vote->created_at)-$max_time_to_not_vote, time()-strtotime($proof->created_at)-$max_time_to_vote);
         if (time()-strtotime($last_vote->created_at)>=$max_time_to_not_vote 
-          || time()-strtotime($achievement->created_at)>=$max_time_to_vote){
-            AchievementChecked($achievement->id);
+          || time()-strtotime($proof->created_at)>=$max_time_to_vote){
+            changeStatus($proof->id, Proof::passing_approval($proof->id));
         }
     }
 }
 
-function AchievementChecked($id){
-   if (count(Proof::where('achievement_id', $id)->where('status', 2)->get())>1){
-        //ERROR TOO MANY PROOFS
-        var_dump("TOO MANY");
-   }
-    $proof = Proof::where('achievement_id', $id)->where('status', 2)->first();
-    $votes_for = count(Vote::where('proof_id', $proof->id)->where('vote_for', true)->get());
-    $votes_against = count(Vote::where('proof_id', $proof->id)->where('vote_for', false)->get());
-    var_dump($votes_for, $votes_against);
-    if ($votes_for - $votes_against <= 0){
-        changeStatus($id, $proof->id, 0);
-    } else if ($votes_for - $votes_against > 0){
-        changeStatus($id, $proof->id, 1);
-    }
-}
 
-function changeStatus($achievement_id, $proof_id, $status){
-    $achievement = Achievement::find($achievement_id);
-    $achievement->status = $status; 
-    $achievement->save();
+function changeStatus($proof_id, $status){
     $proof = Proof::find($proof_id);
     $proof->status = $status;
     $proof->save();
+    $achievement = Achievement::find($proof->achievement_id);
+    if ($achievement->status==2){
+        $achievement->status = $status; 
+        $achievement->save();
+    }
 }
 
     

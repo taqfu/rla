@@ -1,5 +1,6 @@
 <?php
-
+use App\User;
+use App\Proof;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,7 +13,16 @@
 */
 
 Route::get('/', 'HomeController@index');
-
+Route::get('/user/{id}', ['as'=>'user.show', function($id){
+    if ((int)$id<1){
+        return View('User.fail');
+    
+    }
+    return View('User.show', [
+        "username"=>User::where('id', $id)->first()->name, 
+        "proofs"=>Proof::where('user_id', $id)->where('status', 1)->orderBy('created_at', 'desc')->get(),
+    ]);
+}]);
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
