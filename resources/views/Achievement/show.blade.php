@@ -1,6 +1,5 @@
 <?php 
     use \App\Achievement;
-    use \App\Vote; 
     use \App\Proof;
 ?>
 
@@ -9,7 +8,12 @@
 <h1 style='text-align:center;'>
     {{$main->name }} 
 </h1>
-@if (Auth::user() && Auth::user()->id!=$main->created_by && $main->status==1 && Achievement::can_user_submit_proof($main->id))
+@if ($main->status==0)
+<h1 style='color:red;text-aLign:center;'>Denied!</h1>
+@endif
+@if ((Auth::user() && Achievement::can_user_submit_proof($main->id))
+        && ((Auth::user()->id==$main->created_by && $main->status==0)
+        || (Auth::user()->id!=$main->created_by && $main->status==1)) )
     @include ('Proof.create', ['achievement_id'=>$main->id])
 @endif    
 <div> 
@@ -27,13 +31,15 @@
     <a href="{{route('user.show', ['id'=>$proof->user->name])}}">{{$proof->user->name}}</a> submitted <a href="{{route('proof.show', ['id'=>$proof->id])}}">proof</a> of completion on {{date('M d, Y H:i', strtotime($proof->created_at))}}. 
     (<a href="{{$proof->url}}">{{$proof->url}}</a>)  - 
     @if ($proof->status==0)
-    <span style='color:red;'>Denied</span><span style='font-style:italic;'>{{date('m/d/y', strtotime($proof->updated_at))}}</span>
+    <span style='color:red;'>Denied</span> 
+    <span style='font-style:italic;'>{{date('m/d/y', strtotime($proof->updated_at))}}</span>
     
     @elseif ($proof->status==1)
-    <span style='color:green;'>Approved </span> <span style='font-style:italic;'>{{date('m/d/y', strtotime($proof->updated_at))}}</span>
+    <span style='color:green;'>Approved </span> 
+    <span style='font-style:italic;'>{{date('m/d/y', strtotime($proof->updated_at))}}</span>
     @elseif ($proof->status==2)
     <span style='font-style:italic;'>
-        Pending Approval
+        Pending Approval - {!!Proof::min_time_to_vote($proof->id)!!} left to vote. {{Proof::max_time_to_vote($proof->id)}} max.
         <?php $is_it_passing = Proof::passing_approval($proof->id); ?>
         @if ($is_it_passing)
             (<span style='color:green;'>Passing</span>)
@@ -43,15 +49,7 @@
     </span>
     @endif
 </div>
-@if (Auth::user())
-    <?php $vote = Vote::where('proof_id', $proof->id)->where('user_id', Auth::user()->id)->first(); ?>
-    
-    @if ($vote==null && $proof->status==2)
-        @include ('Vote.create')
-    @elseif ($vote!=null)
-        @include ('Vote.show', ['voted_for'=>$vote->vote_for])
-    @endif
-@endif
+@include ('Vote.query', ['create_only'=>false])
 </div>
 @endforeach
 @endsection

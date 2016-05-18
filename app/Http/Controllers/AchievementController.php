@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 
+define('MIN_TIME_TO_POST', 60 * 10);
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -52,8 +52,11 @@ class AchievementController extends Controller
             'name' => 'required|unique:achievements|max:140',
             'proofURL' => 'required|max:255'
         ]);
+        $last_achievement = Achievement::where('created_by', Auth::user()->id)->orderBy('created_at', 'desc')->first();
+        
+        var_dump($last_achievement->created_at, time(), time()-strtotime($last_achievement->created_at), MIN_TIME_TO_POST);
+        /*
         $achievement = new Achievement;
-        var_dump("CHECK");
         $achievement->name = $request->name;
         $achievement->created_by = Auth::user()->id;
         $achievement->status = 2;
@@ -71,6 +74,7 @@ class AchievementController extends Controller
         $vote->vote_for = true;
         $vote->save();
         return back();        
+        */
     }
 
 
@@ -138,7 +142,7 @@ function checkProofs(){
     $proofs_needing_to_be_checked = Proof::where("status", 2)->orderBy("created_at", "asc")->get();    
     foreach($proofs_needing_to_be_checked as $proof){
         $last_vote = Vote::where('proof_id', $proof->id)->orderBy('created_at', 'desc')->first();
-        //var_dump($proof->achievement_id, time()-strtotime($last_vote->created_at)-$max_time_to_not_vote, time()-strtotime($proof->created_at)-$max_time_to_vote);
+        //var_dump($proof->achievement_id, time()-strtotime($last_vote->created_at), time()-strtotime($proof->created_at));
         if (time()-strtotime($last_vote->created_at)>=$max_time_to_not_vote 
           || time()-strtotime($proof->created_at)>=$max_time_to_vote){
             changeStatus($proof->id, Proof::passing_approval($proof->id));

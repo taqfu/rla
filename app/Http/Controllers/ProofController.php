@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Achievement;
 use App\Proof;
 use App\Vote;
 
@@ -47,13 +48,27 @@ class ProofController extends Controller
             'proofURL' => 'required|url|max:255',
             'achievementID' =>'required|integer',
         ]);
-        //CHECK IF PROOF IS ALREADY PENDING OR APPROVED FIRST
+        if (!Achievement::can_user_submit_proof($request->achievementID)){
+            return;
+        }
         $proof = new Proof;
         $proof->user_id = Auth::user()->id; 
         $proof->achievement_id = $request->achievementID;
         $proof->url = $request->proofURL;
         $proof->status = 2;
         $proof->save();
+        
+        $vote = new Vote;
+        $vote->user_id = Auth::user()->id;
+        $vote->achievement_id = $request->achievementID;
+        $vote->proof_id = $proof->id;
+        $vote->vote_for = true;
+        $vote->save();
+        $achievement = Achievement::find($request->achievementID);
+        if ($achievement->created_by == Auth::user()->id && $achievement->status==0){
+            $achievement->status=2;
+            $achievement->save();
+        }
     }
         
 
