@@ -14,13 +14,6 @@ class Achievement extends Model
         if ($num_of_approved_or_pending_proofs>0){
             return false;
         }
-/*
-        $achievement = Achievement::where('id', $id)->first();
-        if (Auth::user()->id == $achievement->created_by){
-            
-        } else {
-        }
-  */      
         return true;
     }
     public static function can_user_vote($id){
@@ -43,6 +36,19 @@ class Achievement extends Model
         } else if ($achievement->status==2){
                 $proof = Proof::where('achievement_id', $id)->where('status', 2)->first();
                 return Proof::can_user_vote($proof->id);
+        }
+        return false;
+    }
+    public static function has_user_completed_achievement($id){
+        if (Auth::guest()){
+            return false;
+        }
+        $num_of_proofs = count(Proof::where ('achievement_id', $id)->where('status', 1)->get());
+        if ($num_of_proofs>0){
+            if ($num_of_proofs>1){
+                //ERROR - user should not have more than one proof
+            }
+            return true;
         }
         return false;
     }

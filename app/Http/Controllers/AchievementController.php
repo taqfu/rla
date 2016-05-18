@@ -10,6 +10,7 @@ use App\Proof;
 use App\Vote;
 
 use Auth;
+use DB;
 use View;
 
 class AchievementController extends Controller
@@ -19,11 +20,11 @@ class AchievementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         checkProofs();
         return View::make('Achievement.index', [
-            "achievements"=>Achievement::orderBy('name', 'asc')->get(),
+            "achievements"=>Achievement::orderBy('name','asc')->get(),
         ]);
     }
 

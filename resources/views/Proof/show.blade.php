@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
 <h3>
-Proof #{{$proof->id}} submitted by 
+Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by 
 
 @if (Auth::user() && Auth::user()->id==$proof->user_id)
     you
@@ -10,10 +10,6 @@ Proof #{{$proof->id}} submitted by
 <a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->name}}</a> 
 @endif
  for <a href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}">{{$proof->achievement->name}}</a>
-</h3>
-<h3 style='margin-left:32px;margin-top:9px;'>
-    - <a href="{{$proof->url}}">{{$proof->url}}</a>
-
 </h3>
 <h4>
 @if ($proof->status==0)

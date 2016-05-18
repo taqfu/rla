@@ -1,0 +1,16 @@
+.approved{
+    color:black;
+}
+.complete, .complete_achievement{
+    font-weight:bold;
+    text-decoration:underline;
+}
+.denied{
+    color:red;
+}
+.filter{
+    margin-left:8px;
+}
+.pending{
+    color:grey;
+}
