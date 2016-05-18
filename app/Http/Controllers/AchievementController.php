@@ -51,11 +51,11 @@ class AchievementController extends Controller
         }
         $this->validate($request, [
             'name' => 'required|unique:achievements|max:140',
-            'proofURL' => 'required|max:255'
+            'proofURL' => 'required|url|max:255|unique:proofs,url'
         ]);
         $last_achievement = Achievement::where('created_by', Auth::user()->id)->orderBy('created_at', 'desc')->first();
-        
-        var_dump($last_achievement->created_at, time(), time()-strtotime($last_achievement->created_at), MIN_TIME_TO_POST);
+        if(time()-strtotime($last_achievement->created_at) < 999999999999999999999){//MIN_TIME_TO_POST){
+        }
         /*
         $achievement = new Achievement;
         $achievement->name = $request->name;

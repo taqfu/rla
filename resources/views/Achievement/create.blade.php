@@ -1,3 +1,6 @@
+    @foreach ($errors->all() as $error)
+        {{$error}}
+    @endforeach
 <form class='form-horizontal' method="POST" action="{{ route('achievement.store') }}">
     {{ csrf_field() }}
         <label>
