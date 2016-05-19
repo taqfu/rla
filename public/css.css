@@ -15,23 +15,21 @@ h1{
     margin-left:8px;
 }
 .no_vote{
-    background-color:red;
+    color:red;
 }
 
 .pending{
     color:grey;
 }
 
-.vote_status{
-    width:20px;
-    height:20px;
+.vote_status{ 
+    margin-left:8px;
     float:left;
-    text-align:center;
     font-weight:bold;
-    color:white;
+    font-style:italic;
 }
 
 .yes_vote{
-    background-color:green;
+    color:green;
 }
 
