@@ -88,7 +88,7 @@ class AchievementController extends Controller
     public function show($id)
     {
         $main = Achievement::where('id', $id)->first();
-        $proofs = Proof::where('achievement_id', $id)->orderBy('created_at', 'asc')->get();
+        $proofs = Proof::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
         if (Auth::user()){
             $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
         } else if (Auth::guest()){

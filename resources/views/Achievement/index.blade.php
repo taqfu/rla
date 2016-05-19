@@ -10,13 +10,17 @@
 <label for='denied' class='denied filter'>Denied </label>
 <input id='pending' type='checkbox'  class='filter'>
 <label for='pending' class='filter pending'>Pending </label>
+@if (Auth::user())
 <input id='complete' type='checkbox' class='filter'>
 <label for='complete' class='complete filter'>Complete </label>
 <input id='incomplete' type='checkbox' class='filter'>
 <label for='incomplete' class='filter incomplete'>Incomplete </label>
-
+@endif
 <div style='clear:both;'>
 @foreach ($achievements as $achievement)
+    @if (Auth::user())
+    <?php $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id); ?>
+    @endif
     <div class='
         @if ($achievement->status==1)
             approved_achievement
@@ -25,14 +29,22 @@
         @elseif ($achievement->status==2)
             pending_achievement
         @endif
-        
+        @if (Auth::user())
+            @if ($has_user_completed_achievement)
+                complete_achievement
+            @else
+                incomplete_achievement
+            @endif
+        @endif
     '>
         <a  class='
-        @if (Achievement::has_user_completed_achievement($achievement->id))
-            complete_achievement
-        @else
-            incomplete_achievement
-        @endif
+        @if(Auth::user())
+            @if ($has_user_completed_achievement)
+                complete
+            @else
+                incomplete
+            @endif
+        @endif 
         @if ($achievement->status==0)
             denied
         @elseif ($achievement->status==1)

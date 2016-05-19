@@ -45,7 +45,7 @@ class ProofController extends Controller
             return;
         }
         $this->validate($request, [
-            'proofURL' => 'required|url|max:255',
+            'proofURL' => 'required|url|max:255|unique:proofs,url',
             'achievementID' =>'required|integer',
         ]);
         if (!Achievement::can_user_submit_proof($request->achievementID)){
@@ -69,6 +69,7 @@ class ProofController extends Controller
             $achievement->status=2;
             $achievement->save();
         }
+        return back();
     }
         
 

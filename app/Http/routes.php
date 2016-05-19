@@ -12,7 +12,7 @@ use App\Proof;
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'AchievementController@index');
 Route::get('/user/{id}', ['as'=>'user.show', function($id){
     if ((int)$id<1){
         return View('User.fail');
@@ -25,7 +25,7 @@ Route::get('/user/{id}', ['as'=>'user.show', function($id){
 }]);
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'AchievementController@index');//'HomeController@index');
 
 Route::resource('achievement', 'AchievementController');
 Route::resource('proof', 'ProofController');

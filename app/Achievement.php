@@ -43,7 +43,7 @@ class Achievement extends Model
         if (Auth::guest()){
             return false;
         }
-        $num_of_proofs = count(Proof::where ('achievement_id', $id)->where('status', 1)->get());
+        $num_of_proofs = count(Proof::where ('achievement_id', $id)->where('status', 1)->where('user_id', Auth::user()->id)->get());
         if ($num_of_proofs>0){
             if ($num_of_proofs>1){
                 //ERROR - user should not have more than one proof

@@ -4,7 +4,7 @@ h1{
 .approved{
     color:black;
 }
-.complete, .complete_achievement{
+.complete{
     font-weight:bold;
     text-decoration:underline;
 }
@@ -14,6 +14,24 @@ h1{
 .filter{
     margin-left:8px;
 }
+.no_vote{
+    background-color:red;
+}
+
 .pending{
     color:grey;
 }
+
+.vote_status{
+    width:20px;
+    height:20px;
+    float:left;
+    text-align:center;
+    font-weight:bold;
+    color:white;
+}
+
+.yes_vote{
+    background-color:green;
+}
+
