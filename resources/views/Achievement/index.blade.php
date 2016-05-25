@@ -4,6 +4,7 @@
 @if (Auth::user())
     @include ('Achievement.create') 
 @endif
+<div style='margin-bottom:8px;'>
 <input id='approved' type='checkbox'  class='filter' />
 <label for='approved' class='approved filter'>Approved </label>
 <input id='denied' type='checkbox' class='filter' />
@@ -16,12 +17,14 @@
 <input id='incomplete' type='checkbox' class='filter'>
 <label for='incomplete' class='filter incomplete'>Incomplete </label>
 @endif
-<div style='clear:both;'>
+</div>
 @foreach ($achievements as $achievement)
     @if (Auth::user())
     <?php $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id); ?>
     @endif
-    <div class='
+    <div style='margin:12px;'>
+    &nbsp;
+    <div class='achievement 
         @if ($achievement->status==1)
             approved_achievement
         @elseif ($achievement->status==0)
@@ -54,14 +57,18 @@
         @endif
         '
         href="{{route('achievement.show', ['id'=> $achievement->id])}}">
-
-            {{ $achievement->name }}</a> - 
-        <a href="{{route('user.show', ['id'=>$achievement->created_by])}}">{{$achievement->user->name}}</a>
+            {{ $achievement->name }}</a>  
+        </div>
+            <div style='float:left;width:110px;text-align:center;margin-right:8px;'>
+        &nbsp;
         
         @if(Achievement::can_user_vote($achievement->id))
-            Vote Available!
+                Vote Available!
         @endif
+        </div>
+        <div style='float:left;clear:right;'>
+            <a href="{{route('user.show', ['id'=>$achievement->created_by])}}">{{$achievement->user->name}}</a>
+        </div>
     </div>
 @endforeach
-</div>
 @endsection

@@ -22,10 +22,14 @@ class AchievementController extends Controller
      */
     public function index(Request $request)
     {
-        checkProofs();
-        return View::make('Achievement.index', [
-            "achievements"=>Achievement::orderBy('name','asc')->get(),
-        ]);
+        if (Auth::user()){
+            checkProofs();
+            return View::make('Achievement.index', [
+                "achievements"=>Achievement::orderBy('name','asc')->get(),
+            ]);
+        } else {
+            return View::make('guest');
+        }
     }
 
     /**

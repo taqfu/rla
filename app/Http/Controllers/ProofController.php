@@ -68,7 +68,7 @@ class ProofController extends Controller
         $vote->vote_for = true;
         $vote->save();
         $achievement = Achievement::find($request->achievementID);
-        if ($achievement->created_by == Auth::user()->id && $achievement->status==0){
+        if ($achievement->status==0){
             $achievement->status=2;
             $achievement->save();
         }

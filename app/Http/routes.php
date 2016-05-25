@@ -45,7 +45,7 @@ Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', func
     ]);
 }]);
 
-Route::get('/', 'AchievementController@index');
+Route::get('/', ['as'=>'home', 'uses'=>'AchievementController@index']); 
 
 Route::get('/user/{id}', ['as'=>'user.show', 'uses'=>'UserController@showProfile']);
 
