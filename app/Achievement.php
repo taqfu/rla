@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 class Achievement extends Model
 {
-    public static function can_user_submit_proof($id){
+    public static function can_user_comment($id){
         if (Auth::guest()){
             return false;
         }
-        $num_of_approved_or_pending_proofs = count(Proof::where("achievement_id", $id)->where('user_id', Auth::user()->id)->where('status', '>', 0)->get());
-        if ($num_of_approved_or_pending_proofs>0){
+    }
+    public static function can_user_submit_proof($id){
+        if (Auth::guest()){
             return false;
         }
         return true;
@@ -38,6 +39,9 @@ class Achievement extends Model
                 return Proof::can_user_vote($proof->id);
         }
         return false;
+    }
+    public function comments(){
+        return $this->hasMany('\App\Comment');
     }
     public static function has_user_completed_achievement($id){
         if (Auth::guest()){

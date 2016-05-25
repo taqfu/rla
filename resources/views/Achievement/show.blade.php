@@ -5,25 +5,8 @@
 
 @extends('layouts.app')
 @section('content')
-<h1 class='
-    @if ($main->status==0)
-        denied
-    @elseif ($main->status==1)
-        approved
-    @elseif ($main->status==2)
-        pending
-    @endif       
-'>
-    {{$main->name }} 
-</h1>
-<div style='margin-bottom:16px;font-style:italic;'> 
-    Submitted: {{ date('m/d/y h:iA', strtotime($main->created_at))}} by <a href="{{route('user.show', ['id'=>$main->user->id])}}">{{$main->user->name}}</a>
-    @if ($main->status==2)
-        - <span class='pending'>(Pending Approval)</span>
-    @elseif ($main->status==0)
-        - <span class='denied'>(Denied)</span>
-    @endif
-</div>
+@include ('Achievement.menu', ['id'=>$main->id, 'active_item'=>'info'])
+@include ('Achievement.header')
 
 @if ((Auth::user() && Achievement::can_user_submit_proof($main->id))
         && ((Auth::user()->id==$main->created_by && $main->status==0)
@@ -60,8 +43,28 @@
             @endif
         </span>
         @endif
+        @if (Proof::can_user_comment($proof->id))
+            <button id='show_new_comment{{$proof->id}}' class='show_new_comment'>Comment</button>
+        @endif
     </div>
 @include ('Vote.query', ['create_only'=>false])
+@if ($proof->comments)
+    <input type='button' id='show_comments{{$proof->id}}' class='show_comments text_button' value='[ + ]' style='margin-left:16px;'/>
+@endif
 </div>
+@if (Proof::can_user_comment($proof->id))
+    @include ('Comment.create', ['table'=>'proof', 'table_id'=>$proof->id, 'show'=>false])
+    
+@endif
+@if (count($proof->comments)>0)
+<div style='padding-left:16px;'>
+    <input type='button' id='hide_comments{{$proof->id}}' class='hide_comments text_button' value='[ - ]' />
+    <div id='comments{{$proof->id}}'>
+        @foreach ($proof->comments as $comment)
+            @include ('Comment.show', ['comment'=>$comment])
+        @endforeach
+    </div>
+</div>
+@endif 
 @endforeach
 @endsection

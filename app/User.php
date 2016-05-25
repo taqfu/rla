@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -23,4 +24,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function does_user_have_unread_msgs(){
+        if (Auth::guest()){
+            return false;
+        }
+        $num_of_unread_msgs = count(Message::where('to_user_id', Auth::user()->id)->where('read', false)->get());
+        return $num_of_unread_msgs>0;
+
+    }
 }

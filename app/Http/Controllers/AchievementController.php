@@ -47,16 +47,17 @@ class AchievementController extends Controller
     public function store(Request $request)
     {
         if (Auth::guest()){
-            return;
+            return back()->withErrors('Please log in before doing this.');
         }
         $this->validate($request, [
             'name' => 'required|unique:achievements|max:140',
             'proofURL' => 'required|url|max:255|unique:proofs,url'
-        ]);
+        ], ['url'=>'Invalid URL. (Try copy and pasting instead.)']);
         $last_achievement = Achievement::where('created_by', Auth::user()->id)->orderBy('created_at', 'desc')->first();
-        if(time()-strtotime($last_achievement->created_at) < 999999999999999999999){//MIN_TIME_TO_POST){
+        if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < MIN_TIME_TO_POST){
+            $num_of_seconds = time()-strtotime($last_achievement->created_at); 
+            return back()->withErrors("You are doing this too often. Please wait $num_of_seconds seconds.")->withInput();
         }
-        /*
         $achievement = new Achievement;
         $achievement->name = $request->name;
         $achievement->created_by = Auth::user()->id;
@@ -75,7 +76,6 @@ class AchievementController extends Controller
         $vote->vote_for = true;
         $vote->save();
         return back();        
-        */
     }
 
 

@@ -6,10 +6,10 @@
         <label>
             Achievement Name: 
         </label>
-        <input type='text' name='name' /> 
+        <input type='text' name='name' value="{{old('name')}}"/> 
     <label style='margin-left:16px;'>
         URL Of Proof:
     </label>
-    <input type='text' name='proofURL' />
+    <input type='text' name='proofURL' value="{{old('proofURL')}}"/>
     <input type='submit' value='Submit Approval' style='margin-left:16px;'> 
 </form>

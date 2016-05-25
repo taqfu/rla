@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+define ('MIN_TIME_TO_MSG', 60);
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Achievement;
-use App\Proof;
-use App\Vote;
+
+use App\Message;
 
 use Auth;
-use View;
-class VoteController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,14 +20,7 @@ class VoteController extends Controller
      */
     public function index()
     {
-        if (Auth::guest()){
-            return View::make('Vote.guest');
-        } else if (Auth::user()){
-            return View::make('Vote.index', [
-                "proofs"=>Proof::get(),
-                "votes"=>Vote::where('user_id', Auth::user()->id)->get(),
-            ]);
-        }
+        //
     }
 
     /**
@@ -52,17 +45,20 @@ class VoteController extends Controller
             return back()->withErrors('Please log in before doing this.');
         }
         $this->validate($request, [
-            'proofID' => 'required|integer',
-            'achievementID' =>'required|integer',
-            'vote_for' => 'required|boolean|unique:votes,vote_for,NULL,id,user_id,'.Auth::user()->id.',proof_id,'.$request->proofID.',achievement_id,'.$request->achievementID,
+            'receiver' => 'required|integer|min:1',
+            'message' => 'required|string|max:21844'
         ]);
-        $vote = new Vote;
-        $vote->vote_for = $request->vote_for;
-        $vote->proof_id = $request->proofID;
-        $vote->achievement_id = $request->achievementID;
-        $vote->user_id = Auth::user()->id;
-        $vote->save();
-        return back();
+        $last_message = Message::where('from_user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
+        if(($last_message!=null && time()-strtotime($last_message->created_at) < MIN_TIME_TO_MSG)){
+            $num_of_seconds = time()-strtotime($last_message->created_at); 
+            return back()->withErrors("You are doing this too often. Please wait $num_of_seconds seconds.")->withInput();
+        }
+        $message = new Message;
+        $message->from_user_id = Auth::user()->id;
+        $message->to_user_id = $request->receiver;
+        $message->message = $request->message;
+        $message->save();
+        return back()->withErrors("Message sent!");
     }
 
     /**
@@ -96,7 +92,10 @@ class VoteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+            $message = Message::find($id);
+            $message->read = $request->read == 'true';
+            $message->save();
+            return back();
     }
 
     /**
@@ -110,5 +109,3 @@ class VoteController extends Controller
         //
     }
 }
-
-

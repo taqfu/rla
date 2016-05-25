@@ -1,8 +1,36 @@
+.show_comments{
+    display:none;
+}
 h1{
     text-align:center;
 }
+h4{
+    margin-top:32px;
+}
+table{
+    margin-top:16px;
+}
+td{
+    padding-left:8px;
+    padding-right:8px;
+}
 .approved{
     color:black;
+}
+.comment, .message{
+    width:400px;
+}
+form.comment{
+    margin-left:16px;
+}
+form.message{
+    margin-bottom:48px;
+}
+input.message{
+    float:right;
+}
+textarea.comment, textarea.message{
+    height:100px;
 }
 .complete{
     font-weight:bold;
@@ -14,6 +42,15 @@ h1{
 .filter{
     margin-left:8px;
 }
+.message{
+}
+
+.message_container{
+    background-color:grey;
+    margin:16px;
+    padding:4px;
+    padding-bottom:0px;
+}
 .no_vote{
     color:red;
 }
@@ -21,7 +58,21 @@ h1{
 .pending{
     color:grey;
 }
-
+.show_new_comment{
+    margin-left:8px;
+}
+.unread{
+    border:black 1px solid;
+    background-color:lightgrey;
+}
+.text_button { 
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     /*border is optional*/
+     cursor: pointer;
+}   
 .vote_status{ 
     margin-left:8px;
     float:left;

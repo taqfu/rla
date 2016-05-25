@@ -1,6 +1,8 @@
 <?php
-use App\User;
+use App\Achievement;
+use App\Message;
 use App\Proof;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,22 +13,59 @@ use App\Proof;
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', 'AchievementController@index');
-Route::get('/user/{id}', ['as'=>'user.show', function($id){
-    if ((int)$id<1){
-        return View('User.fail');
-    
+Route::auth();
+Route::get('/inbox', ['as'=>'inbox', function(){
+    if (Auth::guest()){
+        return View('Message.fail');
+    } else if (Auth::user()){
+        return View('Message.inbox', [
+            'messages'=>Message::where('to_user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
+        ]);
     }
-    return View('User.show', [
-        "username"=>User::where('id', $id)->first()->name, 
-        "proofs"=>Proof::where('user_id', $id)->where('status', 1)->orderBy('created_at', 'desc')->get(),
+}]);
+Route::get('/outbox', ['as'=>'outbox', function(){
+    if (Auth::guest()){
+        return View('Message.fail');
+    } else if (Auth::user()){
+        return View('Message.outbox', [
+            'messages'=>Message::where('from_user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
+        ]);
+    }
+}]);
+Route::get('/settings', ['as'=>'settings', function(){
+    if (Auth::guest()){
+        return View('Message.fail');
+    } else if (Auth::user()){
+        return View('User.settings');
+    }
+}]);
+Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', function($achievement_id){
+    return View('Achievement.discussion', [
+        'main'=>Achievement::where('id', $achievement_id)->first(),
     ]);
 }]);
-Route::auth();
+
+Route::get('/', 'AchievementController@index');
+
+Route::get('/user/{id}', ['as'=>'user.show', 'uses'=>'UserController@showProfile']);
+
+Route::get('/user/{id}/message', ['as'=>'new_message', function($id){
+    return View('Message.create', [
+        'profile'=> User::where('id', $id)->first(),
+    ]);
+
+}]);
 
 Route::get('/home', 'AchievementController@index');//'HomeController@index');
 
+
+Route::put('/settings/email', ['as'=>'settings.email', 'uses'=>'UserController@updateEmail']);
+Route::put('/settings/password', ['as'=>'settings.password', 'uses'=>'UserController@updatePassword']);
+Route::put('/settings/timezone', ['as'=>'settings.timezone', 'uses'=>'UserController@updateTimeZone']);
+
+
 Route::resource('achievement', 'AchievementController');
+Route::resource('comment', 'CommentController');
+Route::resource('message', 'MessageController');
 Route::resource('proof', 'ProofController');
 Route::resource('vote', 'VoteController');

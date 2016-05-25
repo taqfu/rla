@@ -20,7 +20,9 @@ class ProofController extends Controller
      */
     public function index()
     {
-        //
+        return View::make('Proof.index', [
+
+        ]);
     }
 
     /**
@@ -42,14 +44,15 @@ class ProofController extends Controller
     public function store(Request $request)
     {
         if (Auth::guest()){
-            return;
+            return back()->withErrors('Please log in before doing this.');
         }
         $this->validate($request, [
-            'proofURL' => 'required|url|max:255|unique:proofs,url',
+            'proofURL' => 'required|url|unique:proofs,url',
             'achievementID' =>'required|integer',
-        ]);
+        ], ['url'=>'Invalid URL. (Try copy and pasting instead.)']);
         if (!Achievement::can_user_submit_proof($request->achievementID)){
-            return;
+            $timestamp = date('m/d/y h:i:s');
+            return back()->withErrors("'ERROR: You cannot submit a proof for this achievement. $timestamp User ID:" . Auth::user()->id)->withInput();
         }
         $proof = new Proof;
         $proof->user_id = Auth::user()->id; 

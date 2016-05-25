@@ -1,17 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+define('MIN_TIME_TO_COMMENT', 30);
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Achievement;
-use App\Proof;
-use App\Vote;
-
+use App\Comment;
 use Auth;
-use View;
-class VoteController extends Controller
+
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,14 +17,7 @@ class VoteController extends Controller
      */
     public function index()
     {
-        if (Auth::guest()){
-            return View::make('Vote.guest');
-        } else if (Auth::user()){
-            return View::make('Vote.index', [
-                "proofs"=>Proof::get(),
-                "votes"=>Vote::where('user_id', Auth::user()->id)->get(),
-            ]);
-        }
+        //
     }
 
     /**
@@ -52,16 +42,27 @@ class VoteController extends Controller
             return back()->withErrors('Please log in before doing this.');
         }
         $this->validate($request, [
-            'proofID' => 'required|integer',
-            'achievementID' =>'required|integer',
-            'vote_for' => 'required|boolean|unique:votes,vote_for,NULL,id,user_id,'.Auth::user()->id.',proof_id,'.$request->proofID.',achievement_id,'.$request->achievementID,
+            'replyTo'=>'required|integer|min:0|max:0',
+            'table'=>'required|string',
+            'tableID'=>'required|integer|min:1',
+            'comment'=>'required|string|max:21844'
         ]);
-        $vote = new Vote;
-        $vote->vote_for = $request->vote_for;
-        $vote->proof_id = $request->proofID;
-        $vote->achievement_id = $request->achievementID;
-        $vote->user_id = Auth::user()->id;
-        $vote->save();
+        $last_comment = Comment::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
+        if(($last_comment!=null && time()-strtotime($last_comment->created_at) < MIN_TIME_TO_COMMENT)){
+            $num_of_seconds = MIN_TIME_TO_COMMENT - (time()-strtotime($last_comment->created_at)); 
+            return back()->withErrors("You are doing this too often. Please wait $num_of_seconds seconds.")->withInput();
+        }
+        $comment = new Comment;
+        $comment->user_id = Auth::user()->id;
+        $comment->comment = $request->comment;
+        if ($request->table=='achievement'){
+            $comment->achievement_id = $request->tableID;
+        }else if ($request->table=='proof'){
+            $comment->proof_id = $request->tableID;
+        } else if ($request->table=='vote'){
+            $comment->vote_id = $request->tableID;
+        }
+        $comment->save();
         return back();
     }
 
@@ -110,5 +111,3 @@ class VoteController extends Controller
         //
     }
 }
-
-

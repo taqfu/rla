@@ -1,4 +1,6 @@
-<?php use \App\Proof; ?>
+<?php 
+    use \App\Proof; 
+?>
 @extends('layouts.app')
 @section('content')
 <h3 style='margin-bottom:4px;'>
@@ -47,6 +49,25 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 @else
     against
 @endif
+@if (Proof::can_user_comment($proof->id))
+    <button id='show_new_comment{{$vote->id}}' class='show_new_comment'>Comment</button>
+@if ($vote->comments)
+    <input type='button' id='show_comments{{$vote->id}}' class='show_comments text_button' value='[ + ]' style='margin-left:16px;'/>
+@endif
 </div>
+@if (Proof::can_user_comment($proof->id))
+    @include ('Comment.create', ['table'=>'vote', 'table_id'=>$vote->id], 'show'=>false)
+@endif
+@endif
+@if (count($vote->comments)>0)
+<div style='padding-left:16px;'>
+    <input type='button' id='hide_comments{{$vote->id}}' class='hide_comments text_button' value='[ - ]' />
+    <div id='comments{{$vote->id}}'>
+        @foreach ($vote->comments as $comment)
+            @include ('Comment.show', ['comment'=>$comment])
+        @endforeach
+    </div>
+</div>
+@endif 
 @endforeach
 @endsection

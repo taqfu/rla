@@ -1,7 +1,12 @@
-
 @extends('layouts.app')
 @section('content')
-<h1 style='text-align:center;'>{{$username}}</h1>
+@if (Auth::user()->id == $profile->id)
+@include ('User.menu', ['active'=>'profile'])
+@endif
+<h1 style='text-align:center;'>{{$profile->name}}</h1>
+@if (Auth::user() && Auth::user()->id != $profile->id)
+   <a href="{{route('new_message', ['id'=>$profile->id])}}">Send Message</a> 
+@endif
 <h3>Completed Achievements</h3>
 <?php $old_date = 0; ?>
 @foreach ($proofs as $proof)
