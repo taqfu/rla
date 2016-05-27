@@ -1,9 +1,10 @@
 <?php //var_dump($voted_for); ?>
 <div class='vote_status'>
-    -
+    - You voted 
+
         @if ($voted_for)
-        You voted <span class='yes_vote'>in favor</span>.
+        <span class='yes_vote'>for</span>.
         @else
-        You voted <span class='no_vote'>against</span>.
+        <span class='no_vote'>against</span>.
         @endif
 </div>

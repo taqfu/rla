@@ -1,4 +1,3 @@
-
 $(document.body).ready(function () {
     $("input.filter").prop('checked', true);
     $(document).on("change", ".filter", function (event) {

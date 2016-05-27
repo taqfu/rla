@@ -9,8 +9,8 @@
 '>
     {{$main->name }} 
 </h1>
-<div style='margin-bottom:16px;font-style:italic;'> 
-    Submitted: {{ date('m/d/y h:iA', strtotime($main->created_at))}} by <a href="{{route('user.show', ['id'=>$main->user->id])}}">{{$main->user->name}}</a>
+<div id='header_info'>
+    Submitted: {{ date('m/d/y h:iA', strtotime($main->created_at))}} by <a href="{{route('user.show', ['id'=>$main->user->id])}}">{{$main->user->username}}</a>
     @if ($main->status==2)
         - <span class='pending'>(Pending Approval)</span>
     @elseif ($main->status==0)

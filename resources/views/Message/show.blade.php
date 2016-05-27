@@ -1,5 +1,5 @@
 <div class='message_container
-@if (!$message->read) 
+@if (!$message->read && $type=='in') 
     unread
 @endif
 '>
@@ -11,21 +11,21 @@
         @endif
         Sent: {{date('m/d/y g:i:s', strtotime($message->created_at))}}
     </div>
-        <div style='margin:8px;margin-bottom:4px;margin-top:4px;'>
+        <div class='message'>
         {{$message->message}}
         </div>
 @if ($type=='in')
     <a href="{{route('new_message', ['id'=>$message->sender->id])}}">Reply</a>
-    <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" style='display:inline;'>
+    <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" class='inline'>
     {{ csrf_field() }}
     {{ method_field('PUT') }}
     <input type='hidden' name='all_read' value='false' />
 @if ($message->read)
     <input type='hidden' name='read' value='false' />
-    <input type='submit' value='Mark as unread' class='text_button' style='color:blue;'>
+    <input type='submit' value='Mark as unread' class='text_button change_read_status'>
 @else
     <input type='hidden' name='read' value='true' />
-    <input type='submit' value='Mark as read' class='text_button' style='color:blue;'>
+    <input type='submit' value='Mark as read' class='text_button change_read_status'>
 @endif
     </form>
     </div>

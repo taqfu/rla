@@ -14,6 +14,9 @@ use App\User;
 |
 */
 Route::auth();
+Route::get('/feedback', ['as'=>'feedback', function(){
+    return View('feedback');
+}]);
 Route::get('/inbox', ['as'=>'inbox', function(){
     if (Auth::guest()){
         return View('Message.fail');

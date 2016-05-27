@@ -3,7 +3,6 @@
 @if (Auth::user()->id == $profile->id)
 @include ('User.menu', ['active'=>'profile'])
 @endif
-<h1 style='text-align:center;'>{{$profile->name}}</h1>
 @if (Auth::user() && Auth::user()->id != $profile->id)
    <a href="{{route('new_message', ['id'=>$profile->id])}}">Send Message</a> 
 @endif
@@ -18,7 +17,7 @@
     @endif
     -->
     
-<div style='margin-left:16px;'>
+<div class='margin-left'>
     <a  class='
         @if ($proof->achievement->status==0)
             denied

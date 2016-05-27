@@ -25,7 +25,8 @@ class AchievementController extends Controller
         if (Auth::user()){
             checkProofs();
             return View::make('Achievement.index', [
-                "achievements"=>Achievement::orderBy('name','asc')->get(),
+                "achievements"=>Achievement::orderBy('name','asc')->get(), //If you change orderBy, change it for next line
+                "last_achievement"=>Achievement::orderBy('name', 'desc')->first(),
             ]);
         } else {
             return View::make('guest');

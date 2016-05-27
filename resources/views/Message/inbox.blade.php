@@ -2,7 +2,6 @@
 @extends('layouts.app')
 @section('content')
 @include ('User.menu', ['active'=>'inbox'])
-<h1>Inbox</h1>
 <!--
 @if (count($messages)>0)
 <form method="POST" action="">

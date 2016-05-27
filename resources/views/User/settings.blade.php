@@ -2,39 +2,41 @@
 @extends('layouts.app')
 @section('content')
 @include ('User.menu', ['active'=>'settings'])
-<h1> Settings</h1>
 <h4>Password</h4>
 <form method="POST" action="{{route('settings.password')}}">
-<div>
-@if ($errors->get('old') || $errors->get('new') || $errors->get('confirm') || $errors->get('success'))
-    @foreach ($errors->get('confirm') as $error)
-        <div>{{$error}}</div>
-    @endforeach
-    @foreach ($errors->get('old') as $error)
-        <div>{{$error}}</div>
-    @endforeach
-    @foreach ($errors->get('new') as $error)
-        <div>{{$error}}</div>
-    @endforeach
-    @foreach ($errors->get('success') as $error)
-        <div>{{$error}}</div>
-    @endforeach
-@endif
-{{csrf_field()}}
-{{ method_field('PUT') }}
-</div>
     <div>
-    <label for='old_password'>Old Password:</label>
-    <input type='password' name='old' id='old_password' />
+    @if ($errors->get('old') || $errors->get('new') || $errors->get('confirm') || $errors->get('success'))
+        @foreach ($errors->get('confirm') as $error)
+            <div>{{$error}}</div>
+        @endforeach
+        @foreach ($errors->get('old') as $error)
+            <div>{{$error}}</div>
+        @endforeach
+        @foreach ($errors->get('new') as $error)
+            <div>{{$error}}</div>
+        @endforeach
+        @foreach ($errors->get('success') as $error)
+            <div>{{$error}}</div>
+        @endforeach
+    @endif
+    {{csrf_field()}}
+    {{ method_field('PUT') }}
     </div>
-    <div>
-    <label for='new_password'>New Password:</label>
-    <input type='password' name='new' id='new_password' />
-    </div>
-    <div>
-    <label for='new_password_confirm'>Confirm Password:</label>
-    <input type='password' name='new_confirmation' id='new_password_confirm' />
-    <input type='submit' value='Change Password'/>
+    <div id='change_password'>
+        <div class='inline'>
+        <label for='old_password'>Old Password:</label>
+        <input type='password' name='old' id='old_password' />
+        </div>
+        <div  class='inline'>
+        <label for='new_password'>New Password:</label>
+        <input type='password' name='new' id='new_password' />
+        </div>
+        <div class='inline'>
+        <label for='new_password_confirm'>Confirm Password:</label>
+        <input type='password' name='new_confirmation' id='new_password_confirm' />
+        </div>
+         
+        <input type='submit' value='Change Password'/>
     </div>
 </form>
 <h4>E-mail Address</h4>

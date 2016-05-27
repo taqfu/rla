@@ -2,7 +2,6 @@
 @extends('layouts.app')
 @section('content')
 @include ('User.menu', ['active'=>'outbox'])
-<h1>Outbox</h1>
 
 @forelse ($messages as $message)
     @include ('Message.show', ['type'=>'out', 'message'=>$message])

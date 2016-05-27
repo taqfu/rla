@@ -1,10 +1,10 @@
-<nav>
+<nav class='menu'>
     @if ($active_item=='info')
-        <span style='font-weight:bold;'>Information</span>
+        <strong>Info</strong>
         <a href="{{route('discussion', ['id'=>$id])}}">Discussion</a>
     @elseif ($active_item=='discussion')
-        <a href="{{route('achievement.show', ['id'=>$id])}}">Information</a>
-        <span style='font-weight:bold;'>Discussion</span>
+        <a href="{{route('achievement.show', ['id'=>$id])}}">Info</a>
+        <strong>Discussion</strong>
     @endif
         
 </nav>

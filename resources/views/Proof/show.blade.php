@@ -3,27 +3,39 @@
 ?>
 @extends('layouts.app')
 @section('content')
-<h3 style='margin-bottom:4px;'>
-Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by 
+<h1>
+    <a href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}" class='no_link 
+        @if ($proof->achievement->status==0)
+            denied
+        @elseif ($proof->achievement->status==1)
+            approved
+        @elseif ($proof->achievement->status==2)
+            pending
+        @endif
+    '>
+        {{$proof->achievement->name}}
+    </a>
 
+</h1>
+<div id='proof_statement'>
+Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by 
 @if (Auth::user() && Auth::user()->id==$proof->user_id)
     you
 @else
 <a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->name}}</a> 
 @endif
- for <a href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}">{{$proof->achievement->name}}</a>
-</h3>
-<div style='font-style:italic;margin-bottom:16px;margin-top:0px;'>
+.</div>
+<div id='proof_status'>
 @if ($proof->status==0)
-    <span style='color:red;'>Denied</span>
+    <span class='fail'>Denied</span>
 @elseif ($proof->status==1)
-    <span style='color:green;'>Approved</span>
+    <span class='pass'>Approved</span>
 @elseif ($proof->status==2)
     Pending Approval - 
     @if ($passing)
-        <span style='color:green;'>Passing</span>
+        <span class='pass'>Passing</span>
     @else
-        <span style='color:red;'>Failing </span>
+        <span class='fail'>Failing </span>
     @endif
 @endif
  - For ({{$num_of_for_votes}}) / Against ({{$num_of_against_votes}})
@@ -38,29 +50,29 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 @foreach ($votes as $vote)
     <?php $date = date('m/d/y', strtotime($vote->created_at)); ?>  
     @if ($date!=$old_date)
-        <div style='font-weight:bold;clear:both;'>{{$date}}</div>
+        <div><strong>{{$date}}</strong></div>
         <?php $old_date = $date; ?>
     @endif
-<div style='margin-left:16px;'>
-    <span style='font-style:italic;'>{{ date('H:i', strtotime($vote->created_at)) }}</span> - 
+<div class='margin-left'>
+    <i>{{ date('H:i', strtotime($vote->created_at)) }}</i> - 
     <a href="{{route('user.show', ['id'=>$vote->user->id])}}">{{$vote->user->name}}</a> voted 
 @if ($vote->vote_for)
-    for
+    for this proof.
 @else
-    against
+    against this proof.
 @endif
 @if (Proof::can_user_comment($proof->id))
-    <button id='show_new_comment{{$vote->id}}' class='show_new_comment'>Comment</button>
+    <button id='show_new_comment{{$vote->id}}' class='text_button show_new_comment'>[ Comment ]</button>
 @if ($vote->comments)
-    <input type='button' id='show_comments{{$vote->id}}' class='show_comments text_button' value='[ + ]' style='margin-left:16px;'/>
+    <input type='button' id='show_comments{{$vote->id}}' class='show_comments text_button margin-left' value='[ + ]' />
 @endif
 </div>
 @if (Proof::can_user_comment($proof->id))
-    @include ('Comment.create', ['table'=>'vote', 'table_id'=>$vote->id], 'show'=>false)
+    @include ('Comment.create', ['table'=>'vote', 'table_id'=>$vote->id, 'show'=>false])
 @endif
 @endif
 @if (count($vote->comments)>0)
-<div style='padding-left:16px;'>
+<div class='padding-left'>
     <input type='button' id='hide_comments{{$vote->id}}' class='hide_comments text_button' value='[ - ]' />
     <div id='comments{{$vote->id}}'>
         @foreach ($vote->comments as $comment)

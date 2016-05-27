@@ -5,7 +5,9 @@
 @if (Auth::user())
     @include ('Comment.create', ['table'=>'achievement', 'table_id'=>$main->id, 'show'=>true])
 @endif
+<div id='discussion_container'>
 @foreach ($main->comments as $comment)
     @include ('Comment.show', ['comment'=>$comment])
 @endforeach
+</div>
 @endsection
