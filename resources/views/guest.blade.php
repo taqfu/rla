@@ -4,10 +4,10 @@
     <h2>Real Life Achievements</h2>
 <div class='margin-left'>
     <p>
-    Achievements are goals that are set by game developers (or even other players) to encourage people to try different types of gameplay they may not have thought of. Beating a game non-volently is a common example. 
+	If you do something awesome and no one ever hears about it, was it really that great to begin with?
     </p>
-    <p>
-    Real life achievements are that same mentality applied to the real world. There have been many different implementations of real life achievements. (Most of them have video game themes or focus on the gamification.) This avoids that. This is simple and social. Do it. Prove it. 
+    <p>	
+
     </p>
 </div>
     <h4>Do It</h4>

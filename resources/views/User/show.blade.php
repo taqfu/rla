@@ -8,7 +8,7 @@
 @endif
 <h3>Completed Achievements</h3>
 <?php $old_date = 0; ?>
-@foreach ($proofs as $proof)
+@forelse ($proofs as $proof)
     <?php $date = date('m/d/y', strtotime($proof->created_at)) ?>
    <!-- 
     @if ($old_date!=$date)
@@ -29,5 +29,8 @@
     ' href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}">{{$proof->achievement->name}}</a>
     (<a href='{{$proof->url}}'>Proof</a>)  - <a href="{{route('user.show', ['id'=>$proof->achievement->user->id])}}">{{$proof->achievement->user->name}}</a>
 </div>
-@endforeach
+@empty
+You have not completed any achievements.
+
+@endforelse
 @endsection

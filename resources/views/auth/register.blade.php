@@ -2,7 +2,11 @@
 
 @section('content')
 <form  method="POST" action="{{ url('/register') }}">
+@foreach ($errors->all() as $error)
+    <div>{{$error}}</div>
+@endforeach
     {!! csrf_field() !!}
+    {!! app('captcha')->display(); !!}
     <div>
         <label for="username">Username</label>
         <div>

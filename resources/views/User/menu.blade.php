@@ -1,8 +1,8 @@
 <nav class='menu'>
     @if ($active=='profile')
-        <strong>{{Auth::user()->name}}</strong>
+        <strong>{{Auth::user()->username}}</strong>
     @else
-        <a href="{{route('user.show', ['id'=>Auth::user()->id])}}">{{Auth::user()->name}}</a>
+        <a href="{{route('user.show', ['id'=>Auth::user()->id])}}">{{Auth::user()->username}}</a>
     @endif
     @if ($active=='votes')
         <strong>Votes</strong>
