@@ -52,7 +52,6 @@ div.achievement{
     padding:16px;
     border:1px black dashed;
     border-bottom:none;
-    width:1000px;
 }
 form.achievement{
     margin-bottom:24px;
@@ -132,7 +131,6 @@ div.feedback{
 .last_achievement{
     padding:16px;
     border:1px black dashed;
-    width:1000px;
 }
 .margin-bottom{
     margin-bottom:8px;
