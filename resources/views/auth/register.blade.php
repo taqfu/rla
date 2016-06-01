@@ -16,6 +16,7 @@
             @endif
         </div>
     </div>
+<!--
     <div>
         <label for="email">E-Mail Address (optional)</label>
         <div>
@@ -25,6 +26,7 @@
             @endif
         </div>
     </div>
+-->
     <div>
         <label for="password">Password</label>
         <div>

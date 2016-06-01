@@ -39,6 +39,7 @@
         <input type='submit' value='Change Password'/>
     </div>
 </form>
+<!--
 <h4>E-mail Address</h4>
 <p>
     Your e-mail address is: 
@@ -91,4 +92,5 @@ var_dump($tzlist);
 </select>
 <input type='submit' value='Change Time Zone' />
 </form>
+-->
 @endsection

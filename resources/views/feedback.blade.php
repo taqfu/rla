@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
 <div class='center'>
-    Hey, so it's me, taqfu. Just let me know what you think could be better. Message me 
+    Hey, so it's me, <a href='http://taqfu.com'>taqfu</a>. Just let me know what you think could be better or if there are any issues. Message me 
 @if (Auth::user())
    <a href="{{route('new_message', ['id'=>1])}}">here</a>  or 
 @endif
