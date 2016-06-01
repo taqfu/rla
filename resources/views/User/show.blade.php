@@ -1,10 +1,12 @@
 @extends('layouts.app')
 @section('content')
-@if (Auth::user()->id == $profile->id)
-@include ('User.menu', ['active'=>'profile'])
-@endif
-@if (Auth::user() && Auth::user()->id != $profile->id)
-   <a href="{{route('new_message', ['id'=>$profile->id])}}">Send Message</a> 
+@if (Auth::user() && Auth::user()->id == $profile->id)
+	@include ('User.menu', ['active'=>'profile'])
+@elseif (Auth::user() && Auth::user()->id != $profile->id)
+	<h1>{{$profile->username}}</h1>
+   	<a href="{{route('new_message', ['id'=>$profile->id])}}">Send Message</a> 
+@else
+	<h1>{{$profile->username}}</h1>
 @endif
 <h3>Completed Achievements</h3>
 <?php $old_date = 0; ?>

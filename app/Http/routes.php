@@ -14,6 +14,9 @@ use App\User;
 |
 */
 Route::auth();
+Route::get('/about', ['as'=>'about', function(){
+    return View('guest');
+}]);
 Route::get('/feedback', ['as'=>'feedback', function(){
     return View('feedback');
 }]);
