@@ -159,6 +159,7 @@ form.message{
 }
 
 .message_container{
+    background-color:#eeeeee;
     border:1px black solid;
     margin:16px;
     padding:4px;
