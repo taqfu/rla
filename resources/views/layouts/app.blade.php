@@ -8,7 +8,6 @@
 
     <title>Do It! Prove It!</title>
 
-
     <link rel="stylesheet" href="http://doitproveit.com/css.css">
 </head>
 <body>

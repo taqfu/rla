@@ -6,6 +6,13 @@
 @section('content')
 @if (Auth::user())
     @include ('Achievement.create')
+@else
+<div id='guest_warning' class='center'>
+    <a href="{{url('/register')}}">Register</a>
+     or  
+    <a href="{{url('/login')}}">login</a>
+     to create new achievements!
+</div>
 @endif
 <div class='margin-bottom center margin-bottom' >
     <input id='approved' type='checkbox'  class='filter' />
@@ -83,4 +90,6 @@
         </div>
     <div>
 @endforeach
+</div>
+
 @endsection

@@ -29,6 +29,10 @@ td{
 #discussion_container{
     margin-top:48px;
 }
+#guest_warning{
+    text-decoration:underline;
+    padding:16px;
+}
 #header_info{
     margin-bottom:32px;
     font-style:italic;
