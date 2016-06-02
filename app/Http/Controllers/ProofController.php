@@ -47,7 +47,7 @@ class ProofController extends Controller
             return back()->withErrors('Please log in before doing this.');
         }
         $this->validate($request, [
-            'proofURL' => 'required|url|unique:proofs,url',
+            'proofURL' => 'required|url',
             'achievementID' =>'required|integer',
         ], ['url'=>'Invalid URL. (Try copy and pasting instead.)']);
         if (!Achievement::can_user_submit_proof($request->achievementID)){

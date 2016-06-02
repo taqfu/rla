@@ -6,7 +6,7 @@
         {{ csrf_field() }}
         <div>
             <label>Achievement Name:</label>
-            <input type='text' name='name' value="{{old('name')}}" maxlength='140'/> 
+            <input type='text' name='name' value="{{old('name')}}" maxlength='100'/> 
         </div>
         <div>
             <label>URL Of Proof:</label>

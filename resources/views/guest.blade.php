@@ -16,7 +16,7 @@
             <span class='bold'>Be specific.</span> If you lost weight, say how much. Be as specific as possible with the limited amount of characters that are available to you.
         </li>
         <li>
-            <span class='bold'>Keep it short.</span> You have 140 characters for your achievement title, so keep it as short as possible.
+            <span class='bold'>Keep it short.</span> You have 100 characters for your achievement title, so keep it as short as possible.
         </li>
     </ul>
     <h4>Prove It</h4>

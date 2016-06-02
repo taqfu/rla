@@ -57,8 +57,8 @@ class AchievementController extends Controller
             return back()->withErrors('Please log in before doing this.');
         }
         $this->validate($request, [
-            'name' => 'required|unique:achievements|max:140',
-            'proofURL' => 'required|url|max:255|unique:proofs,url'
+            'name' => 'required|unique:achievements|max:100',
+            'proofURL' => 'required|url|max:255',
         ], ['url'=>'Invalid URL. (Try copy and pasting instead.)']);
         $last_achievement = Achievement::where('created_by', Auth::user()->id)->orderBy('created_at', 'desc')->first();
         if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < MIN_TIME_TO_POST){
