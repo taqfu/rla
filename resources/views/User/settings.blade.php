@@ -35,17 +35,17 @@
         <label for='new_password_confirm'>Confirm Password:</label>
         <input type='password' name='new_confirmation' id='new_password_confirm' />
         </div>
-         
+
         <input type='submit' value='Change Password'/>
     </div>
 </form>
 <!--
 <h4>E-mail Address</h4>
 <p>
-    Your e-mail address is: 
+    Your e-mail address is:
     @if (empty(Auth::user()->email))
         None
-    @else 
+    @else
         {{Auth::user()->email}}
     @endif
 </p>
@@ -62,6 +62,7 @@
 <input type='email' name='email' />
 <input type='submit' value='Change E-mail' />
 </form>
+-->
 <h4>Tme Zone</h4>
 <p>
 Your time-zone is: {{Auth::user()->timezone}}
@@ -80,7 +81,7 @@ Your time-zone is: {{Auth::user()->timezone}}
 <?php
 $tzlist = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
 var_dump($tzlist);
-    
+
     foreach($tzlist as $tz){
         echo "<option ";
         if ($tz == Auth::user()->timezone){
@@ -92,5 +93,5 @@ var_dump($tzlist);
 </select>
 <input type='submit' value='Change Time Zone' />
 </form>
--->
+
 @endsection

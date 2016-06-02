@@ -1,10 +1,11 @@
-<?php 
-    use \App\Proof; 
+<?php
+    use \App\Proof;
+    use App\User;
 ?>
 @extends('layouts.app')
 @section('content')
 <h1>
-    <a href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}" class='no_link 
+    <a href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}" class='no_link
         @if ($proof->achievement->status==0)
             denied
         @elseif ($proof->achievement->status==1)
@@ -18,11 +19,11 @@
 
 </h1>
 <div id='proof_statement'>
-Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by 
+Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 @if (Auth::user() && Auth::user()->id==$proof->user_id)
     you
 @else
-<a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->name}}</a> 
+<a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->name}}</a>
 @endif
 .</div>
 <div id='proof_status'>
@@ -31,7 +32,7 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 @elseif ($proof->status==1)
     <span class='pass'>Approved</span>
 @elseif ($proof->status==2)
-    Pending Approval - 
+    Pending Approval -
     @if ($passing)
         <span class='pass'>Passing</span>
     @else
@@ -48,14 +49,26 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 </div>
 <?php $old_date = 0; ?>
 @foreach ($votes as $vote)
-    <?php $date = date('m/d/y', strtotime($vote->created_at)); ?>  
+    <?php
+    if (Auth::guest()){
+    $date = date('m/d/y', strtotime($vote->created_at));
+  } else if (Auth::user()){
+    $date = date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($vote->created_at)));
+  }
+    ?>
     @if ($date!=$old_date)
         <div><strong>{{$date}}</strong></div>
         <?php $old_date = $date; ?>
     @endif
 <div class='margin-left'>
-    <i>{{ date('H:i', strtotime($vote->created_at)) }}</i> - 
-    <a href="{{route('user.show', ['id'=>$vote->user->id])}}">{{$vote->user->name}}</a> voted 
+    <i>
+      @if (Auth::guest())
+      {{ date('H:i', strtotime($vote->created_at)) }}
+      @elseif (Auth::user())
+      {{ date('H:i', User::local_time(Auth::user()->timezone, strtotime($vote->created_at))) }}
+      @endif
+    </i> -
+    <a href="{{route('user.show', ['id'=>$vote->user->id])}}">{{$vote->user->name}}</a> voted
 @if ($vote->vote_for)
     for this proof.
 @else
@@ -80,6 +93,6 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
         @endforeach
     </div>
 </div>
-@endif 
+@endif
 @endforeach
 @endsection

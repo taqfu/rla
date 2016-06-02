@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'America/Los_Angeles',
+    'timezone' => 'GMT',
 
 
     /*

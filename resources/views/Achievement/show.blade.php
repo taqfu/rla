@@ -1,6 +1,7 @@
-<?php 
+<?php
     use \App\Achievement;
     use \App\Proof;
+    use \App\User;
 ?>
 
 @extends('layouts.app')
@@ -12,11 +13,17 @@
         && ((Auth::user()->id==$main->created_by && $main->status==0)
         || (Auth::user()->id!=$main->created_by && $main->status!=2)) )
     @include ('Proof.create', ['achievement_id'=>$main->id])
-@endif    
+@endif
 
 <?php $old_date = 0; ?>
 @foreach ($proofs as $proof)
-<?php $date = date('m/d/y', strtotime($proof->created_at)); ?>
+<?php
+if (Auth::guest()){
+  $date = date('m/d/y', strtotime($proof->created_at));
+} else if (Auth::user()){
+  $date = date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
+}
+?>
     @if ($date != $old_date)
         <h3 >{{$date}}</h3>
         <?php $old_date = $date; ?>
@@ -24,13 +31,26 @@
 <div class='margin-left'>
     <div>
         <a href="{{route('user.show', ['id'=>$proof->user->id])}}">{{$proof->user->username}}</a>
-        submitted <a href="{{route('proof.show', ['id'=>$proof->id])}}">proof</a> of completion. 
-        (<a href="{{$proof->url}}">{{$proof->url}}</a>)  - 
+        submitted <a href="{{route('proof.show', ['id'=>$proof->id])}}">proof</a> of completion.
+        (<a href="{{$proof->url}}">{{$proof->url}}</a>)  -
         @if ($proof->status==0)
-        <span class='fail'>Denied ({{date('m/d/y', strtotime($proof->updated_at))}})</span>
-        
+        <span class='fail'>Denied (
+        @if (Auth::guest())
+        {{date('m/d/y', strtotime($proof->updated_at))}}
+        @elseif (Auth::user())
+        {{date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->updated_at)))}}
+        @endif
+        )</span>
+
         @elseif ($proof->status==1)
-        <span class='pass'>Approved ({{date('m/d/y', strtotime($proof->updated_at))}})</span>
+        <span class='pass'>Approved (
+          @if (Auth::guest())
+          {{date('m/d/y', strtotime($proof->updated_at))}}
+          @elseif (Auth::user())
+          {{date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->updated_at)))}}
+          @endif
+
+          )</span>
         @elseif ($proof->status==2)
         <i>
             Pending Approval - {!!Proof::min_time_to_vote($proof->id)!!} left to vote. {{Proof::max_time_to_vote($proof->id)}} max.
@@ -53,7 +73,7 @@
 </div>
 @if (Proof::can_user_comment($proof->id))
     @include ('Comment.create', ['table'=>'proof', 'table_id'=>$proof->id, 'show'=>false])
-    
+
 @endif
 @if (count($proof->comments)>0)
 <div class='padding-left'>
@@ -64,6 +84,6 @@
         @endforeach
     </div>
 </div>
-@endif 
+@endif
 @endforeach
 @endsection

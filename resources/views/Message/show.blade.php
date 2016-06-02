@@ -1,5 +1,8 @@
+<?php
+  use App\User;
+ ?>
 <div class='message_container
-@if (!$message->read && $type=='in') 
+@if (!$message->read && $type=='in')
     unread
 @endif
 '>
@@ -9,7 +12,12 @@
         @elseif ($type=='out')
             To:<a href="{{route('user.show', ['id'=>$message->receiver->id])}}">{{$message->receiver->name}}</a>
         @endif
-        Sent: {{date('m/d/y g:i:s', strtotime($message->created_at))}}
+        Sent:
+        @if (Auth::guest())
+        {{date('m/d/y g:i:s', strtotime($message->created_at))}}
+        @elseif (Auth::user())
+        {{date('m/d/y g:i:s', User::local_time(Auth::user()->timezone, strtotime($message->created_at)))}}
+        @endif
     </div>
         <div class='message'>
         {{$message->message}}

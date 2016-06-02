@@ -1,3 +1,6 @@
+<?php
+use App\User;
+ ?>
 @extends('layouts.app')
 @section('content')
 @include ('User.menu', ['active'=>'votes'])
@@ -6,7 +9,7 @@
 	    <tr>
 	        <th>
 	            Timestamp
-	        </th>    
+	        </th>
 	        <th>
 	            Vote
 	        </th>
@@ -26,20 +29,28 @@
 	@foreach($votes as $vote)
 	    <tr><td>
 	        <div style='width:175px;'>
-	        {{date('M d, Y', strtotime($vote->created_at))}}
+            @if (Auth::guest())
+	          {{date('M d, Y', strtotime($vote->created_at))}}
+            @elseif (Auth::user())
+            {{date('M d, Y', User::local_time(Auth::user()->timezone, strtotime($vote->created_at)))}}
+            @endif
 	        </div>
 	        <div>
-	        {{date('g:i', strtotime($vote->created_at))}}
+          @if (Auth::guest())
+          {{date('g:i', strtotime($vote->created_at))}}
+          @elseif (Auth::user())
+          {{date('g:i', User::local_time(Auth::user()->timezone, strtotime($vote->created_at)))}}
+          @endif
 	        </div>
 	    </td><td style="color:{{$vote->vote_for ? 'green' : 'red'}};">
 	        {{ $vote->vote_for ? "for" : "against" }}
 	    </td><td>
-	        <a href="{{route('proof.show', ['id'=>$vote->proof->id])}}">Proof #{{$vote->proof->id}}</a> 
+	        <a href="{{route('proof.show', ['id'=>$vote->proof->id])}}">Proof #{{$vote->proof->id}}</a>
 	        <a href="{{$vote->proof->url}}">(submission)</a>
 	    </td><td>
 	        <a href="{{route('user.show', ['id'=>$vote->proof->user_id])}}">{{$vote->proof->user->name}}</a>
 	    </td><td>
-	        <a href="{{route('achievement.show', ['id'=>$vote->proof->achievement->id])}}">{{$vote->proof->achievement->name}}</a> 
+	        <a href="{{route('achievement.show', ['id'=>$vote->proof->achievement->id])}}">{{$vote->proof->achievement->name}}</a>
 	    </td><td>
 	        <a href="{{route('user.show', ['id'=>$vote->proof->achievement->user_id])}}">{{$vote->proof->achievement->user->name}}</a>
 	    </td></tr>

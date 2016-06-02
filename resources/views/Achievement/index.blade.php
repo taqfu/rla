@@ -1,8 +1,11 @@
-<?php use App\Achievement; ?>
+<?php
+  use App\Achievement;
+  use App\User;
+?>
 @extends('layouts.app')
 @section('content')
 @if (Auth::user())
-    @include ('Achievement.create') 
+    @include ('Achievement.create')
 @endif
 <div class='margin-bottom center margin-bottom' >
     <input id='approved' type='checkbox'  class='filter' />
@@ -24,13 +27,19 @@
     <?php $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id); ?>
     @endif
     <div class='inline'>
-        <div 
-          title="Created by {{$achievement->user->name}} on {{date('m/d/y g:i:s', strtotime($achievement->created_at))}}" 
-          class='            
+        <div
+          title="Created by {{$achievement->user->name}} on
+          @if (Auth::guest())
+          {{date('m/d/y g:i:s', strtotime($achievement->created_at))}}
+          @elseif (Auth::user())
+          {{ date('m/d/y g:i:s', User::local_time(Auth::user()->timezone, strtotime($achievement->created_at)))}}
+          @endif
+          "
+          class='
             @if ($achievement->id == $last_achievement->id)
                 last_achievement
             @else
-                achievement 
+                achievement
             @endif
             @if ($achievement->status==1)
                 approved_achievement
@@ -54,7 +63,7 @@
                 @else
                     incomplete
                 @endif
-            @endif 
+            @endif
             @if ($achievement->status==0)
                 denied
             @elseif ($achievement->status==1)
@@ -64,8 +73,8 @@
             @endif
             '
             href="{{route('achievement.show', ['id'=> $achievement->id])}}">
-                {{ $achievement->name }}</a>  
-            
+                {{ $achievement->name }}</a>
+
             @if(Achievement::can_user_vote($achievement->id))
             <span class='vote_available'>
             <a href="{{route('achievement.show', ['id'=> $achievement->id])}}">Vote Available!</a>
