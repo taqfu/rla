@@ -22,6 +22,10 @@ td{
     padding-left:8px;
     padding-right:8px;
 }
+#achievements_link{
+    text-align:center;
+    font-size:1.5em;
+}
 #change_password{
     text-align:right;
 }

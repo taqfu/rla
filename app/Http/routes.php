@@ -15,7 +15,7 @@ use App\User;
 */
 Route::auth();
 Route::get('/about', ['as'=>'about', function(){
-    return View('guest');
+    return View('about');
 }]);
 Route::get('/feedback', ['as'=>'feedback', function(){
     return View('feedback');
@@ -51,7 +51,13 @@ Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', func
     ]);
 }]);
 
-Route::get('/', ['as'=>'home', 'uses'=>'AchievementController@index']); 
+Route::get('/', ['as'=>'home', function (){
+    if (Auth::guest()){
+        return View('about');
+    } else if (Auth::user()){
+        return redirect()->action('AchievementController@index');
+    }
+}]); 
 
 Route::get('/user/{id}', ['as'=>'user.show', 'uses'=>'UserController@showProfile']);
 
