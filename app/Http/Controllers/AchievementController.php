@@ -82,7 +82,7 @@ class AchievementController extends Controller
         $vote->proof_id = $proof->id;
         $vote->vote_for = true;
         $vote->save();
-        return back();        
+        return redirect()->route('achievement.show', [$achievement->id]);
     }
 
 

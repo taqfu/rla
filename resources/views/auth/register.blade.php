@@ -6,7 +6,6 @@
     <div>{{$error}}</div>
 @endforeach
     {!! csrf_field() !!}
-    {!! app('captcha')->display(); !!}
     <div>
         <label for="username">Username</label>
         <div>
@@ -46,6 +45,7 @@
             @endif
         </div>
     </div>
+    {!! app('captcha')->display(); !!}
     <div>
         <div>
             <button type="submit">
