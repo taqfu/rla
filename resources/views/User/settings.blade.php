@@ -2,6 +2,7 @@
 @extends('layouts.app')
 @section('content')
 @include ('User.menu', ['active'=>'settings'])
+{{$_SERVER['SERVER_NAME']}}
 <h4>Password</h4>
 <form method="POST" action="{{route('settings.password')}}">
     <div>
@@ -22,7 +23,7 @@
     {{csrf_field()}}
     {{ method_field('PUT') }}
     </div>
-    <div id='change_password'>
+    <div id='change_password' class='inline'>
         <div class='inline'>
         <label for='old_password'>Old Password:</label>
         <input type='password' name='old' id='old_password' />

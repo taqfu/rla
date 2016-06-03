@@ -38,7 +38,7 @@ use App\User;
             pending
         @endif
     ' href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}">{{$proof->achievement->name}}</a>
-    (<a href='{{$proof->url}}'>Proof</a>)  - <a href="{{route('user.show', ['id'=>$proof->achievement->user->id])}}">{{$proof->achievement->user->name}}</a>
+    (<a href="{{route('proof.show', ['id'=>$proof->id])}}">Proof</a>)  - <a href="{{route('user.show', ['id'=>$proof->achievement->user->id])}}">{{$proof->achievement->user->name}}</a>
 </div>
 @empty
 You have not completed any achievements.

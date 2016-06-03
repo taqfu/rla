@@ -7,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Do It! Prove It!</title>
-
+    @if ($_SERVER['SERVER_NAME']=='taqfu.com')
+    <link rel="stylesheet" href="http://taqfu.com/rla-dev/rla/public/css.css">
+    @elseif ($_SERVER['SERVER_NAME']=='doitproveit.com')
     <link rel="stylesheet" href="http://doitproveit.com/css.css">
+    @endif
 </head>
 <body>
     <nav>
