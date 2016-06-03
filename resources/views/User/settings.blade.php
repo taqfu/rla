@@ -2,7 +2,6 @@
 @extends('layouts.app')
 @section('content')
 @include ('User.menu', ['active'=>'settings'])
-{{$_SERVER['SERVER_NAME']}}
 <h4>Password</h4>
 <form method="POST" action="{{route('settings.password')}}">
     <div>
