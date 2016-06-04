@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Achievement;
 use App\Comment;
+use App\Proof;
 use App\Timeline;
+use App\Vote;
 use Auth;
 
 class CommentController extends Controller
@@ -75,9 +77,28 @@ class CommentController extends Controller
                 $timeline->save();
             }
         }else if ($request->table=='proof'){
+            $proof = Proof::where('id', $request->tableID)->first();
+            $timeline = new Timeline;
+            $timeline->user_id = $proof->user_id;
+            $timeline->event = "new comment";
+            $timeline->comment_id = $comment->id;
+            $timeline->save();
+            
         } else if ($request->table=='vote'){
+            $vote = Vote::where('id', $request->tableID)->first();
+            $timeline = new Timeline;
+            $timeline->user_id = $vote->user_id;
+            $timeline->event = "new comment";
+            $timeline->comment_id = $comment->id;
+            $timeline->save();
+            $proof = Proof::where('id', $vote->proof_id)->first();
+            $timeline = new Timeline;
+            $timeline->user_id = $proof->user_id;
+            $timeline->event = "new proof vote comment";
+            $timeline->comment_id = $comment->id;
+            $timeline->save();
         }
-        //return back();
+        return back();
     }
 
     /**

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Achievement;
 use App\Proof;
+use App\Timeline;
 use App\Vote;
 
 use Auth;
@@ -155,10 +156,20 @@ function checkProofs(){
 
 function changeStatus($proof_id, $status){
     $proof = Proof::find($proof_id);
+    $timeline = new Timeline;
+    $timeline->user_id = $proof->user_id;
+    $timeline->event = "change proof status " . $proof->status . " to " . $status;
+    $timeline->proof_id = $proof->id;  
+    $timeline->save();
     $proof->status = $status;
     $proof->save();
     $achievement = Achievement::find($proof->achievement_id);
     if ($achievement->status==2){
+        $timeline = new Timeline;
+        $timeline->user_id = $achievement->user_id;
+        $timeline->event = "change achievement status " . $achievement->status . " to " . $status;
+        $timeline->achievement_id = $achievement->id;  
+        $timeline->save();
         $achievement->status = $status; 
         $achievement->save();
     }

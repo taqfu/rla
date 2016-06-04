@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Achievement;
 use App\Proof;
+use App\Timeline;
 use App\Vote;
 
 use Auth;
@@ -56,12 +57,23 @@ class VoteController extends Controller
             'achievementID' =>'required|integer',
             'vote_for' => 'required|boolean|unique:votes,vote_for,NULL,id,user_id,'.Auth::user()->id.',proof_id,'.$request->proofID.',achievement_id,'.$request->achievementID,
         ]);
+        $before = Proof::passing_approval($request->proofID);
         $vote = new Vote;
         $vote->vote_for = $request->vote_for;
         $vote->proof_id = $request->proofID;
         $vote->achievement_id = $request->achievementID;
         $vote->user_id = Auth::user()->id;
         $vote->save();
+        $after = Proof::passing_approval($request->proofID);
+        if ($before != $after){
+            $proof = Proof::where('id', $request->proofID)->first();
+            $timeline = new Timeline;
+            $timeline->user_id = $proof->user_id;
+            $caption = $after ? "approved" : "denied";
+            $timeline->event = "swing vote - " . $caption;
+            $timeline->vote_id = $vote->id;  
+            $timeline->save();
+        }
         return back();
     }
 

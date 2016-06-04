@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Achievement;
 use App\Proof;
+use App\Timeline;
 use App\Vote;
 
 use Auth;
@@ -71,6 +72,14 @@ class ProofController extends Controller
         if ($achievement->status==0){
             $achievement->status=2;
             $achievement->save();
+        }
+        $owners_of_achievement = Achievement::fetch_owners($request->achievementID);
+        foreach ($owners_of_achievement as $owner){
+            $timeline = new Timeline;
+            $timeline->user_id = $owner;
+            $timeline->event = "new proof";
+            $timeline->proof_id = $proof->id;  
+            $timeline->save();
         }
         return back();
     }
