@@ -7,15 +7,13 @@ $(document.body).ready(function () {
     });
     $(document).on("click", ".show_new_comment", function (event) {
         var id_num = event.target.id.substr(16, event.target.id.length-16);
-        console.log(id_num);
-        $("#show_new_comment" + id_num).hide();
-        $("#new_comment"+id_num).show();
+        $("#show_new_comment" + id_num).addClass('hidden');
+        $("#new_comment"+id_num).removeClass('hidden');
     });
     $(document).on("click", ".hide_new_comment", function (event) {
         var id_num = event.target.id.substr(16, event.target.id.length-16);
-       
-        $("#show_new_comment" + id_num).show();
-        $("#new_comment"+id_num).hide();
+        $("#show_new_comment" + id_num).removeClass('hidden');
+        $("#new_comment"+id_num).addClass('hidden');
     });
     $(document).on("click", ".show_comments", function (event) {
         var id_num = event.target.id.substr(13, event.target.id.length-13);
