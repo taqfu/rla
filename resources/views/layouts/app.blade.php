@@ -23,7 +23,7 @@
 <body>
     <nav id='app_nav'>
         &nbsp;
-        <div class='brand'>
+        <div class='brand left'>
             <a href="{{ url('/') }}" class='brand'>
                 Do It! Prove It!
             </a>

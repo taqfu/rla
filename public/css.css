@@ -22,12 +22,15 @@ td{
     padding-left:8px;
     padding-right:8px;
 }
+#achievement_filters label{
+}
 #achievements_link{
     text-align:center;
     font-size:1.5em;
 }
 #app_nav{
-    border-bottom:1px black dashed;
+    border-bottom:1px lightgrey dotted;
+    overflow:visible;
 }
 #change_password{
     text-align:right;
@@ -64,7 +67,7 @@ td{
 td.achievement{
     padding:16px;
     border:1px black dashed;
-    border-bottom:none;
+/*    border-bottom:none;*/
 }
 form.achievement{
     margin-bottom:24px;

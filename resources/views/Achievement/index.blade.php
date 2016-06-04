@@ -16,18 +16,21 @@
      to create new achievements!
 </div>
 @endif
-<div class='margin-bottom center margin-bottom' >
-    <input id='approved' type='checkbox'  class='filter' />
+<div id='achievement_filters' class='margin-bottom center margin-bottom' >
     <label for='approved' class='approved filter'>Approved </label>
-    <input id='denied' type='checkbox' class='filter' />
+    <input id='approved' type='checkbox'  class='filter' />
+
     <label for='denied' class='denied filter'>Denied </label>
-    <input id='pending' type='checkbox'  class='filter'>
+    <input id='denied' type='checkbox' class='filter' />
+    
     <label for='pending' class='filter pending'>Pending </label>
+    <input id='pending' type='checkbox'  class='filter'>
     @if (Auth::user())
-    <input id='complete' type='checkbox' class='filter'>
     <label for='complete' class='complete filter'>Complete </label>
-    <input id='incomplete' type='checkbox' class='filter'>
+    <input id='complete' type='checkbox' class='filter'>
+    
     <label for='incomplete' class='filter incomplete'>Incomplete </label>
+    <input id='incomplete' type='checkbox' class='filter'>
     @endif
 </div>
 <div class='center'>
@@ -44,12 +47,7 @@
           {{ date('m/d/y g:i:s', User::local_time(Auth::user()->timezone, strtotime($achievement->created_at)))}}
           @endif
           "
-          class='
-            @if ($achievement->id == $last_achievement->id)
-                last_achievement
-            @else
-                achievement //changed
-            @endif
+          class='achievement
             @if ($achievement->status==1)
                 approved_achievement
             @elseif ($achievement->status==0)
