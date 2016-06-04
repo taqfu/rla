@@ -143,9 +143,9 @@ function checkProofs(){
     $max_time_to_not_vote = 86400;
     $proofs_needing_to_be_checked = Proof::where("status", 2)->orderBy("created_at", "asc")->get();    
     foreach($proofs_needing_to_be_checked as $proof){
-        $last_vote = Vote::where('proof_id', $proof->id)->orderBy('created_at', 'desc')->first();
-        //var_dump($proof->achievement_id, time()-strtotime($last_vote->created_at), time()-strtotime($proof->created_at));
-        if (time()-strtotime($last_vote->created_at)>=$max_time_to_not_vote 
+        $last_no_vote = Vote::where('proof_id', $proof->id)->where('vote_for', false)->orderBy('created_at', 'desc')->first();
+        if (($last_no_vote==null && time()-strtotime($proof->created_at)>=$max_time_to_not_vote)
+          || ($last_no_vote!=null && time()-strtotime($last_no_vote->created_at)>=$max_time_to_not_vote)
           || time()-strtotime($proof->created_at)>=$max_time_to_vote){
             changeStatus($proof->id, Proof::passing_approval($proof->id));
         }

@@ -35,6 +35,12 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 @else
 <a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->username}}</a>
 @endif
+ on
+    @if (Auth::guest())
+    {{date('m/d/y h:i:s', strtotime($proof->created_at))}}
+    @elseif (Auth::user())
+    {{date('m/d/y h:i:s', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)))}}
+    @endif
 .</div>
 <div id='proof_status'>
 @if ($proof->status==0)

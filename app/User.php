@@ -32,8 +32,10 @@ class User extends Authenticatable
         $num_of_unread_msgs = count(Message::where('to_user_id', Auth::user()->id)->where('read', false)->get());
         return $num_of_unread_msgs>0;
     }
+
     public static function local_time($timezone, $timestamp){
       date_default_timezone_set($timezone);
+        
       return $timestamp + date("Z");
 
     }

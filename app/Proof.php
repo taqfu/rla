@@ -69,8 +69,11 @@ class Proof extends Model
     }
     public static function min_time_to_vote($id){
         $string = "";
-        $last_vote = Vote::where ("proof_id", $id)->orderBy('created_at', 'desc')->first();
-        $begin = new DateTime($last_vote->created_at);
+        $proof = Proof::where('id', $id)->first();
+        $last_no_vote = Vote::where ("proof_id", $id)->where('vote_for', false)->orderBy('created_at', 'desc')->first();
+        $begin = $last_no_vote!=null 
+          ? $begin = new DateTime($last_no_vote->created_at)
+          : $begin = new DateTime($proof->created_at);
         $end = clone $begin;
         $end->add(new DateInterval('P1D'));
         $now = new DateTime(date('y-m-d H:i:s'));
