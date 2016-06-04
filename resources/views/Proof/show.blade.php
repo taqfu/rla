@@ -3,6 +3,16 @@
     use App\User;
 ?>
 @extends('layouts.app')
+@section('title') 
+ -  @if (strlen($proof->achievement->name)>61)
+    {{substr($proof->achievement->name, 0, 61)}}...
+    @else
+    {{$proof->achievement->name}}
+    @endif
+@endsection
+@section('head')
+<link rel=”image_src” href=”{{$proof->url}}.png” />
+@endsection
 @section('content')
 <h1>
     <a href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}" class='no_link
@@ -69,20 +79,22 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
       @endif
     </i> -
     <a href="{{route('user.show', ['id'=>$vote->user->id])}}">{{$vote->user->username}}</a> voted
-@if ($vote->vote_for)
-    for this proof.
-@else
-    against this proof.
-@endif
+    @if ($vote->vote_for)
+        for this proof.
+    @else
+        against this proof.
+    @endif
 @if (Proof::can_user_comment($proof->id))
     <button id='show_new_comment{{$vote->id}}' class='text_button show_new_comment'>[ Comment ]</button>
-@if ($vote->comments)
-    <input type='button' id='show_comments{{$vote->id}}' class='show_comments text_button margin-left' value='[ + ]' />
-@endif
-</div>
-@if (Proof::can_user_comment($proof->id))
-    @include ('Comment.create', ['table'=>'vote', 'table_id'=>$vote->id, 'show'=>false])
-@endif
+    @if ($vote->comments)
+        <input type='button' id='show_comments{{$vote->id}}' class='show_comments text_button margin-left' value='[ + ]' />
+    @endif
+    </div>
+    @if (Proof::can_user_comment($proof->id))
+        @include ('Comment.create', ['table'=>'vote', 'table_id'=>$vote->id, 'show'=>false])
+    @endif
+@else
+    </div>
 @endif
 @if (count($vote->comments)>0)
 <div class='padding-left'>

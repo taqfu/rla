@@ -5,9 +5,18 @@
 ?>
 
 @extends('layouts.app')
+
+@section('title') 
+ -  @if (strlen($main->name)>61)
+    {{substr($main->name, 0, 61)}}...
+    @else
+    {{$main->name}}
+    @endif
+@endsection
+
+
 @section('content')
 @include ('Achievement.header')
-
 @include ('Achievement.menu', ['id'=>$main->id, 'active_item'=>'info'])
 @if ((Auth::user() && Achievement::can_user_submit_proof($main->id))
         && ((Auth::user()->id==$main->created_by && $main->status==0)
