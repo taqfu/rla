@@ -26,7 +26,9 @@ td{
     text-align:center;
     font-size:1.5em;
 }
-
+#app_nav{
+    border-bottom:1px black dashed;
+}
 #change_password{
     text-align:right;
 }
@@ -34,7 +36,6 @@ td{
     margin-top:48px;
 }
 #guest_warning{
-    text-decoration:underline;
     padding:16px;
 }
 #header_info{
@@ -44,6 +45,10 @@ td{
 #proof_statement{
     margin:8px;
     margin-bottom:4px;
+}
+#public_message p{
+    text-align:center;
+    font-size:1.25em;
 }
 #proof_status{
     font-style:italic;
@@ -139,6 +144,10 @@ div.feedback{
 .last_achievement{
     padding:16px;
     border:1px black dashed;
+}
+.left {
+
+float:left;
 }
 .margin-bottom{
     margin-bottom:8px;

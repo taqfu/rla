@@ -23,20 +23,19 @@
     {{ method_field('PUT') }}
     </div>
     <div id='change_password' class='inline'>
-        <div class='inline'>
+        <div class='inline right clear'>
         <label for='old_password'>Old Password:</label>
         <input type='password' name='old' id='old_password' />
         </div>
-        <div  class='inline'>
+        <div  class='inline right clear'>
         <label for='new_password'>New Password:</label>
         <input type='password' name='new' id='new_password' />
         </div>
-        <div class='inline'>
+        <div class='inline clear right'>
         <label for='new_password_confirm'>Confirm Password:</label>
         <input type='password' name='new_confirmation' id='new_password_confirm' />
         </div>
-
-        <input type='submit' value='Change Password'/>
+        <input type='submit' value='Change Password' class='inline clear right'/>
     </div>
 </form>
 <!--

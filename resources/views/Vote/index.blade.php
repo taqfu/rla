@@ -48,11 +48,11 @@ use App\User;
 	        <a href="{{route('proof.show', ['id'=>$vote->proof->id])}}">Proof #{{$vote->proof->id}}</a>
 	        <a href="{{$vote->proof->url}}">(submission)</a>
 	    </td><td>
-	        <a href="{{route('user.show', ['id'=>$vote->proof->user_id])}}">{{$vote->proof->user->name}}</a>
+	        <a href="{{route('user.show', ['id'=>$vote->proof->user_id])}}">{{$vote->proof->user->username}}</a>
 	    </td><td>
 	        <a href="{{route('achievement.show', ['id'=>$vote->proof->achievement->id])}}">{{$vote->proof->achievement->name}}</a>
 	    </td><td>
-	        <a href="{{route('user.show', ['id'=>$vote->proof->achievement->user_id])}}">{{$vote->proof->achievement->user->name}}</a>
+	        <a href="{{route('user.show', ['id'=>$vote->proof->achievement->user_id])}}">{{$vote->proof->achievement->user->username}}</a>
 	    </td></tr>
 	@endforeach
 	</table>
