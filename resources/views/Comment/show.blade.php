@@ -6,7 +6,7 @@
         {{$comment->comment}}
     </div>
     <div>
-        <a href="{{route('user.show', ['id'=>$comment->user->id])}}">{{$comment->user->name}}</a>
+        <a href="{{route('user.show', ['id'=>$comment->user->id])}}">{{$comment->user->username}}</a>
         -
         @if (Auth::guest())
         {{date('D m/d/y h:i:s', strtotime($comment->created_at))}}

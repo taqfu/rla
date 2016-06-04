@@ -23,7 +23,7 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 @if (Auth::user() && Auth::user()->id==$proof->user_id)
     you
 @else
-<a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->name}}</a>
+<a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->username}}</a>
 @endif
 .</div>
 <div id='proof_status'>
@@ -68,7 +68,7 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
       {{ date('H:i', User::local_time(Auth::user()->timezone, strtotime($vote->created_at))) }}
       @endif
     </i> -
-    <a href="{{route('user.show', ['id'=>$vote->user->id])}}">{{$vote->user->name}}</a> voted
+    <a href="{{route('user.show', ['id'=>$vote->user->id])}}">{{$vote->user->username}}</a> voted
 @if ($vote->vote_for)
     for this proof.
 @else
