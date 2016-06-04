@@ -5,7 +5,9 @@ define('MIN_TIME_TO_COMMENT', 30);
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Achievement;
 use App\Comment;
+use App\Timeline;
 use Auth;
 
 class CommentController extends Controller
@@ -63,7 +65,19 @@ class CommentController extends Controller
             $comment->vote_id = $request->tableID;
         }
         $comment->save();
-        return back();
+        if ($request->table=='achievement'){
+            $owners_of_achievement = Achievement::fetch_owners($request->tableID);
+            foreach ($owners_of_achievement as $owner){
+                $timeline = new Timeline;
+                $timeline->user_id = $owner;
+                $timeline->event = "new comment";
+                $timeline->comment_id = $comment->id;  
+                $timeline->save();
+            }
+        }else if ($request->table=='proof'){
+        } else if ($request->table=='vote'){
+        }
+        //return back();
     }
 
     /**

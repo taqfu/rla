@@ -68,7 +68,7 @@ Route::get('/user/{id}/message', ['as'=>'new_message', function($id){
 
 }]);
 
-Route::get('/home', 'AchievementController@index');//'HomeController@index');
+Route::get('/home', 'HomeController@index');
 
 
 Route::put('/settings/email', ['as'=>'settings.email', 'uses'=>'UserController@updateEmail']);

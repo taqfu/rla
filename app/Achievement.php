@@ -43,6 +43,14 @@ class Achievement extends Model
     public function comments(){
         return $this->hasMany('\App\Comment');
     }
+    public static function fetch_owners($id){
+        $owners = array();
+        $proofs = Proof :: where ('achievement_id', $id)->where('status', 1)->get();
+        foreach ($proofs as $proof){
+            $owners [] = $proof->user_id;
+        }
+        return $owners;
+    }
     public static function has_user_completed_achievement($id){
         if (Auth::guest()){
             return false;
