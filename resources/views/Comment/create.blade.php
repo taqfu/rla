@@ -5,7 +5,6 @@
     @endforeach
 @endif
 </div>
-new_comment{{$table_id}}
     <form method="POST" action="{{route('comment.store')}}" id='new_comment{{$table_id}}' class='comment 
 @if (!$show)
 hidden
