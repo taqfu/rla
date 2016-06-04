@@ -18,7 +18,7 @@
 
         <div>
             <label for="password">Password</label>
-<!--            <a href="{{ url('/password/reset') }}">(Reset)</a>-->
+-            <a href="{{ url('/password/reset') }}">(Reset)</a>
             <div>
                 <input type="password" name="password" id="password">
                 @if ($errors->has('password'))
