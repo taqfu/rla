@@ -29,13 +29,13 @@
     @endif
 </div>
 <div class='center'>
+<table class='inline'>
 @foreach ($achievements as $achievement)
     @if (Auth::user())
     <?php $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id); ?>
     @endif
-    <div class='inline'>
-        <div
-          title="Created by {{$achievement->user->name}} on
+        <tr> <td
+          title="Created by {{$achievement->user->username}} on
           @if (Auth::guest())
           {{date('m/d/y g:i:s', strtotime($achievement->created_at))}}
           @elseif (Auth::user())
@@ -46,7 +46,7 @@
             @if ($achievement->id == $last_achievement->id)
                 last_achievement
             @else
-                achievement
+                achievement //changed
             @endif
             @if ($achievement->status==1)
                 approved_achievement
@@ -87,9 +87,8 @@
             <a href="{{route('achievement.show', ['id'=> $achievement->id])}}">Vote Available!</a>
             </span>
             @endif
-        </div>
-    <div>
+    </td></tr>
 @endforeach
+</table>
 </div>
-
 @endsection

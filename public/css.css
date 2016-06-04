@@ -26,6 +26,7 @@ td{
     text-align:center;
     font-size:1.5em;
 }
+
 #change_password{
     text-align:right;
 }
@@ -55,7 +56,7 @@ td{
     text-decoration:none;
     margin-left:4px;
 }
-div.achievement{
+td.achievement{
     padding:16px;
     border:1px black dashed;
     border-bottom:none;

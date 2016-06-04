@@ -53,7 +53,7 @@ Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', func
 
 Route::get('/', ['as'=>'home', function (){
     if (Auth::guest()){
-        return View('about');
+        return View('public');
     } else if (Auth::user()){
         return redirect()->action('AchievementController@index');
     }
