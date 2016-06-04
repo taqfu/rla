@@ -2,6 +2,9 @@
 use App\User;
  ?>
 @extends('layouts.app')
+@section('title')
+ - Vote History
+@endsection
 @section('content')
 @include ('User.menu', ['active'=>'votes'])
 @if (count($votes)>0)

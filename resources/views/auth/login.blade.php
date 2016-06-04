@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section ('title')
+ - Login
+@endsection
 @section('content')
 <div>
     <form method="POST" action="{{ url('/login') }}" style='display:inline-block;'>

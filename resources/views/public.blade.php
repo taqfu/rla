@@ -1,5 +1,8 @@
 
 @extends ('layouts.app')
+@section('title')
+ - Real Life Achievements 
+@endsection
 @section ('content')
 <div id='public_message' class='margin-left'>
     <p class='center'>How many times have you thought to yourself...    </p>

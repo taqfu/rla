@@ -2,6 +2,9 @@
 use App\User;
 ?>
 @extends('layouts.app')
+@section('title')
+ - {{$profile->username}}
+@endsection
 @section('content')
 @if (Auth::user() && Auth::user()->id == $profile->id)
 	@include ('User.menu', ['active'=>'profile'])

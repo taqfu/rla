@@ -1,5 +1,8 @@
 
 @extends('layouts.app')
+@section('title')
+ - Feedback
+@endsection
 @section('content')
 <div class='center'>
 <p>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+ - Register
+@endsection
 @section('content')
 <form  method="POST" action="{{ url('/register') }}">
 @foreach ($errors->all() as $error)

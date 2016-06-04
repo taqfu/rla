@@ -3,6 +3,8 @@
   use App\User;
 ?>
 @extends('layouts.app')
+@section('title')
+@endsection
 @section('content')
 @if (Auth::user())
     @include ('Achievement.create')

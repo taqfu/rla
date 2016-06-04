@@ -1,4 +1,7 @@
 @extends ('layouts.app')
+@section ('title')
+ - About 
+@endsection
 @section ('content')
     
     <h4>Do It</h4>

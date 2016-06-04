@@ -1,5 +1,8 @@
 
 @extends('layouts.app')
+@section('title')
+ - Outbox
+@endsection
 @section('content')
 @include ('User.menu', ['active'=>'outbox'])
 

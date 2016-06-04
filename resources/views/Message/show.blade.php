@@ -8,9 +8,9 @@
 '>
     <div>
         @if ($type=='in')
-            From:<a href="{{route('user.show', ['id'=>$message->sender->id])}}">{{$message->sender->name}}</a>
+            From:<a href="{{route('user.show', ['id'=>$message->sender->id])}}">{{$message->sender->username}}</a>
         @elseif ($type=='out')
-            To:<a href="{{route('user.show', ['id'=>$message->receiver->id])}}">{{$message->receiver->name}}</a>
+            To:<a href="{{route('user.show', ['id'=>$message->receiver->id])}}">{{$message->receiver->username}}</a>
         @endif
         Sent:
         @if (Auth::guest())
