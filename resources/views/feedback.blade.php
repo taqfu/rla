@@ -10,7 +10,7 @@
 @if (Auth::user())
    <a href="{{route('new_message', ['id'=>1])}}">here</a>  or 
 @endif
-<a href="mailto::taqfu@gmail.com">here.</a>
+<a href="mailto::taqfu@doitproveit.com">here.</a>
 </p>
 <p>
     You can also comment on our subreddit <a href='https://www.reddit.com/r/doitproveit/'>here</a>.
