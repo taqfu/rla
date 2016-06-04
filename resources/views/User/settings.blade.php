@@ -41,7 +41,6 @@
         <input type='submit' value='Change Password' class='inline clear right'/>
     </div>
 </form>
-<!--
 <h4>E-mail Address</h4>
 <p>
     Your e-mail address is:
@@ -64,7 +63,6 @@
 <input type='email' name='email' />
 <input type='submit' value='Change E-mail' />
 </form>
--->
 <h4>Tme Zone</h4>
 <p>
 Your time-zone is: {{Auth::user()->timezone}}
