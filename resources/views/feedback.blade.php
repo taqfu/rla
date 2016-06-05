@@ -13,7 +13,7 @@
 <a href="mailto::taqfu@doitproveit.com">here.</a>
 </p>
 <p>
-    You can also comment on our subreddit <a href='https://www.reddit.com/r/doitproveit/'>here</a>.
+    You can also comment on Reddit at <a href='https://www.reddit.com/r/doitproveit/'>/r/doitproveit</a>, tweet us on our <a href="http://twitter.com/taqfu">Twitter</a>, like us on our <a href="http://www.facebook.com/Do-It-Prove-It-265125053841485">Facebook</a> or do whatever it is that people do on our <a href="https://plus.google.com/u/0/b/111000706342354560427/111000706342354560427/about">Google Plus</a>.
 </p>
 </div>
 

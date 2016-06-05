@@ -5,11 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name='description' content='Real Life Achievement Site'>
+    <meta name='keywords' content='real life achievement, real world achievement, achievement unlocked'>
     
     <title>Do It! Prove It!@yield('title')</title>
+    <link rel='publisher' href='https://plus.google.com/u/0/b/111000706342354560427/111000706342354560427/about'>
     @if ($_SERVER['SERVER_NAME']=='taqfu.com')
     <link rel="stylesheet" href="http://taqfu.com/rla-dev/rla/public/css.css">
-    @elseif ($_SERVER['SERVER_NAME']=='doitproveit.com')
+    @elseif ($_SERVER['SERVER_NAME']=='doitproveit.com' || $_SERVER['SERVER_NAME']=='www.doitproveit.com')
     <link rel="stylesheet" href="http://doitproveit.com/css.css">
     @endif
 <!-- Latest compiled and minified CSS -->
