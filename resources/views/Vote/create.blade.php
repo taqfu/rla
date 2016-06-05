@@ -1,4 +1,4 @@
-<div style='margin-left:8px;float:left;'>
+<div class='margin-left right'>
     <form method="POST" action="{{route('vote.store')}}" style='float:left;'>
         {{ csrf_field() }}
         <input type='hidden' name='vote_for' value="1" />

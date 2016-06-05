@@ -37,12 +37,13 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 @endif
  on
     @if (Auth::guest())
-    {{date('m/d/y h:i:s', strtotime($proof->created_at))}}
+    {{date('m/d/y h:i:s', strtotime($proof->created_at))}}.
     @elseif (Auth::user())
-    {{date('m/d/y h:i:s', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)))}}
+    {{date('m/d/y h:i:s', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)))}}.
     @endif
 .</div>
-<div id='proof_status'>
+<div id='proof_status' class='inline'>
+&nbsp;
 @if ($proof->status==0)
     <span class='fail'>Denied</span>
 @elseif ($proof->status==1)
@@ -59,8 +60,6 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 @if ($proof->status==2)
 - {!!Proof::min_time_to_vote($proof->id)!!} left to vote. {{Proof::max_time_to_vote($proof->id)}} max.
 @endif
-</div>
-<div>
 @include ('Vote.query', ['create_only'=>true])
 </div>
 <?php $old_date = 0; ?>
@@ -76,7 +75,7 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
         <div><strong>{{$date}}</strong></div>
         <?php $old_date = $date; ?>
     @endif
-<div class='margin-left'>
+<div class='margin-left inline'>
     <i>
       @if (Auth::guest())
       {{ date('H:i', strtotime($vote->created_at)) }}
@@ -95,15 +94,15 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
     @if ($vote->comments)
         <input type='button' id='show_comments{{$vote->id}}' class='show_comments text_button margin-left' value='[ + ]' />
     @endif
-    </div>
+</div>
     @if (Proof::can_user_comment($proof->id))
         @include ('Comment.create', ['table'=>'vote', 'table_id'=>$vote->id, 'show'=>false])
     @endif
 @else
-    </div>
+</div>
 @endif
 @if (count($vote->comments)>0)
-<div class='padding-left'>
+<div class='padding-left inline'>
     <input type='button' id='hide_comments{{$vote->id}}' class='hide_comments text_button' value='[ - ]' />
     <div id='comments{{$vote->id}}'>
         @foreach ($vote->comments as $comment)

@@ -84,6 +84,12 @@ form.achievement{
     text-align:right;
     display:inline-block;
 }
+.achievement_proof{
+    padding:16px;
+    border:1px grey dashed;
+    width:75%;
+    margin-top:16px;
+}
 .achievement-user{
     float:left;
     clear:right;
@@ -116,7 +122,7 @@ a.brand{
 div.comment{
     margin-left:32px;
     background-color:lightgrey;
-    width:800px;
+    width:75%;
     padding:4px;
     padding-bottom:2px;
     border:1px solid black;

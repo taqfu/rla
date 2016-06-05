@@ -37,8 +37,8 @@ if (Auth::guest()){
         <h3 >{{$date}}</h3>
         <?php $old_date = $date; ?>
     @endif
-<div class='margin-left'>
-    <div>
+<div class='achievement_proof margin-left inline'>
+    <div class='inline'>
         <a href="{{route('user.show', ['id'=>$proof->user->id])}}">{{$proof->user->username}}</a>
         submitted <a href="{{route('proof.show', ['id'=>$proof->id])}}">proof</a> of completion.
         (<a href="{{$proof->url}}">{{$proof->url}}</a>)  -
@@ -79,7 +79,6 @@ if (Auth::guest()){
 @if ($proof->comments)
     <input type='button' id='show_comments{{$proof->id}}' class='show_comments text_button margin-left' value='[ + ]' />
 @endif
-</div>
 @if (Proof::can_user_comment($proof->id))
     @include ('Comment.create', ['table'=>'proof', 'table_id'=>$proof->id, 'show'=>false])
 
@@ -94,5 +93,6 @@ if (Auth::guest()){
     </div>
 </div>
 @endif
+</div>
 @endforeach
 @endsection
