@@ -18,6 +18,7 @@
 @section('content')
 @include ('Achievement.header')
 @include ('Achievement.menu', ['id'=>$main->id, 'active_item'=>'info'])
+
 @if ((Auth::user() && Achievement::can_user_submit_proof($main->id))
         && ((Auth::user()->id==$main->created_by && $main->status==0)
         || (Auth::user()->id!=$main->created_by && $main->status!=2)) )
