@@ -25,8 +25,43 @@
     @endif
     @if ($timeline_item->event=="new comment" || $timeline_item->event=="new proof vote comment")
         @include ("Timeline.comment")
-    @else
-    {{$timeline_item->event}}
+    @elseif ($timeline_item->event=='new proof')
+        <div class='margin-left'>
+            <a href="{{route('user.show', ['id'=>$timeline_item->proof->user_id])}}">{{$timeline_item->proof->user->username}}</a>
+              submitted a new proof for your achievement 
+              <a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}#proof{{$timeline_item->proof_id}}">"{{$timeline_item->proof->achievement->name}}"</a>.
+        </div>
+    @elseif (substr($timeline_item->event,0, 10)=="swing vote")
+        <div class='margin-left'>
+        {{$timeline_item->vote->user->username}} voted 
+        @if ($timeline_item->vote->vote_for)
+            for 
+        @else
+            against
+        @endif
+        <a href="{{route('proof.show', ['id'=>$timeline_item->vote->proof_id])}}">your proof</a>
+        for <a href="{{route('achievement.show', ['id'=>$timeline_item->vote->achievement_id])}}">"{{$timeline_item->vote->achievement->name}}"</a>. 
+
+         
+        @if ($timeline_item->event=='swing vote - approved')
+          <span class='pass'><u>It is now passing.</u></span>
+        @elseif ($timeline_item->event=='swing vote - denied')
+          <span class='fail'><u>It is now failing.</u></span>
+        @endif
+        </div>
+    @elseif (substr($timeline_item->event, 0, 19 )=="change proof status")
+        <div class='margin-left'>
+        <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">Your proof</a> has been 
+        {{$timeline_item->event}}
+        @if (substr($timeline_item->event, -1, 1) == "1")
+          approved 
+        @elseif (substr($timeline_item->event, -1, 1) == "0")
+          denied
+        @endif
+        .
+        </div>
+    @else 
+    <?php var_dump($timeline_item->event); ?>
     @endif
 @endforeach
 </div>

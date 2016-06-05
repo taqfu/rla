@@ -158,7 +158,7 @@ function changeStatus($proof_id, $status){
     $proof = Proof::find($proof_id);
     $timeline = new Timeline;
     $timeline->user_id = $proof->user_id;
-    $timeline->event = "change proof status " . $proof->status . " to " . $status;
+    $timeline->event = "change proof status " . $proof->status . " to " . (int)$status;
     $timeline->proof_id = $proof->id;  
     $timeline->save();
     $proof->status = $status;
@@ -167,7 +167,7 @@ function changeStatus($proof_id, $status){
     if ($achievement->status==2){
         $timeline = new Timeline;
         $timeline->user_id = $achievement->user_id;
-        $timeline->event = "change achievement status " . $achievement->status . " to " . $status;
+        $timeline->event = "change achievement status " . $achievement->status . " to " . (int)$status;
         $timeline->achievement_id = $achievement->id;  
         $timeline->save();
         $achievement->status = $status; 
