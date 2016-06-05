@@ -2,31 +2,22 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
+<div id='homepage'>
 <?php $old_date = 0; $old_time =0; ?>
 @forelse ($timeline_items as $timeline_item)
     <?php 
 
     if (Auth::guest()){
-    $date = date('m/d/y', strtotime($timeline->created_at));
-    $time = date('H:i', strtotime($timeline_item->created_at));
+    $timestamp = date('m/d/y g:i:s', strtotime($timeline->created_at));
   } else if (Auth::user()){
-    $date = date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)));
-    $time = date('H:i', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at))); 
+    $timestamp = date('m/d/y g:i:s', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)));
   }
     ?>
-    @if ($date!=$old_date)
-        <h2>{{$date}}</h2>
-    <?php $old_date = $date; ?>
-    @endif
-    @if ($time!=$old_time)
-    <div>{{$time}}</div>
-    <?php $old_time = $time; ?>
-    @endif
     @if ($timeline_item->event=="new comment" || $timeline_item->event=="new proof vote comment")
         @include ("Timeline.comment")
     @elseif ($timeline_item->event=='new proof')
-        <div class='margin-left'>
+        <div class='margin-left2'>
+            {{ $timestamp }} - 
             @if ($timeline_item->proof->user_id==Auth::user()->id)
                 You
             @else
@@ -36,7 +27,8 @@
               <a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}#proof{{$timeline_item->proof_id}}">"{{$timeline_item->proof->achievement->name}}"</a>.
         </div>
     @elseif (substr($timeline_item->event,0, 10)=="swing vote")
-        <div class='margin-left'>
+        <div class='margin-left2'>
+            {{ $timestamp }} - 
         {{$timeline_item->vote->user->username}} voted 
         @if ($timeline_item->vote->vote_for)
             for 
@@ -55,7 +47,8 @@
         .
         </div>
     @elseif (substr($timeline_item->event, 0, 19 )=="change proof status")
-        <div class='margin-left'>
+        <div class='margin-left2'>
+            {{ $timestamp }} - 
         <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">Your proof</a> for 
         <a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}">"{{$timeline_item->proof->achievement->name}}"</a> has been 
         @if (substr($timeline_item->event, -1, 1) == "1")
@@ -66,8 +59,22 @@
         .
         </div>
     @elseif ($timeline_item->event=="new achievement")
-        <div class='margin-left'>
+        <div class='margin-left2'>
+            {{ $timestamp }} - 
             You created a new achievement. (<a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">{{$timeline_item->achievement->name}}</a>)
+        </div>
+    @elseif (substr($timeline_item->event, 0, 25)=="change achievement status")
+        <div class='margin-left2'>
+            {{ $timestamp }} - 
+            The achievement you created 
+            <a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">{{$timeline_item->achievement->name}}</a>
+            @if (substring($timeline_item->event, -1, 1)=="0")
+                has failed approval.
+            @elseif (substring($timeline_item->event, -1, 1)=="1")
+                is now approved.
+            @elseif (substring($timeline_item->event, -1, 1)=="2")
+                is currently under approval.
+            @endif
         </div>
     @else 
     <?php var_dump($timeline_item->event); ?>

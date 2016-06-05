@@ -1,4 +1,5 @@
-<div class='margin-left'>
+<div class='margin-left2'>
+{{ $timestamp}} - 
 <a href="{{route('user.show', ['id'=>$timeline_item->user->id])}}">{{$timeline_item->user->username}}</a> posted the following comment "<i>{{$timeline_item->comment->comment}}</i>"
 @if ($timeline_item->comment->achievement_id>0)
  on your achievement discussion page for <a href="{{route('discussion', ['id'=>$timeline_item->comment->achievement_id])}}">"{{$timeline_item->comment->achievement->name}}"</a>.

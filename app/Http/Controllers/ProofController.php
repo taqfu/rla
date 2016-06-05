@@ -76,6 +76,11 @@ class ProofController extends Controller
         if ($achievement->status==0){
             $achievement->status=2;
             $achievement->save();
+            $timeline = new Timeline;
+            $timeline->user_id = $achievement->user_id;
+            $timeline->event = "change achievement status " . $achievement->status . " to 2";
+            $timeline->achievement_id = $achievement->id;  
+            $timeline->save();
         }
         $owners_of_achievement = Achievement::fetch_owners($request->achievementID);
         foreach ($owners_of_achievement as $owner){

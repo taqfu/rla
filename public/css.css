@@ -46,6 +46,9 @@ td{
     margin-bottom:32px;
     font-style:italic;
 }
+#homepage h4{
+    margin-bottom:2px;
+}
 #page_listing{
     margin-left:32px;
 }
@@ -197,6 +200,9 @@ form.message{
 }
 .no_link{
     text-decoration:none;
+}
+.no_margin{
+    margin:0px;
 }
 .no_vote{
     color:red;
