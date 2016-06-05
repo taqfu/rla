@@ -61,7 +61,11 @@ class ProofController extends Controller
         $proof->url = $request->proofURL;
         $proof->status = 2;
         $proof->save();
-        
+        $timeline = new Timeline;
+        $timeline->user_id = Auth::user()->id;
+        $timeline->event = "new proof";
+        $timeline->proof_id = $proof->id;
+        $timeline->save();   
         $vote = new Vote;
         $vote->user_id = Auth::user()->id;
         $vote->achievement_id = $request->achievementID;

@@ -21,14 +21,20 @@
 @yield('head')
 </head>
 <body>
-    <nav id='app_nav'>
+    <nav id='app_nav' class='center'>
         &nbsp;
         <div class='brand left'>
             <a href="{{ url('/') }}" class='brand'>
                 Do It! Prove It!
             </a>
         </div>
-        <div class='right'>
+        <div id='page_listing' class='inline'>
+            <a href="{{url('/')}}">Home</a>
+            <a href="{{route('achievement.index')}}">Achievements</a>
+            <a href="{{route('feedback')}}">Feedback</a>
+	        <a href="{{route('about')}}">About</a>
+        </div>
+        <div id='user_menu' class='right'>
                 @if (Auth::guest())
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('/register') }}">Register</a>
@@ -44,10 +50,6 @@
                 @endif
         </div>
         
-        <div class='right feedback'>
-	    <a href="{{route('about')}}">About</a>
-            <a href="{{route('feedback')}}">Feedback</a>
-        </div>
     </nav>
 
     @yield('content')

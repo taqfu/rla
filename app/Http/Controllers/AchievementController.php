@@ -57,7 +57,7 @@ class AchievementController extends Controller
         ], ['url'=>'Invalid URL. (Try copy and pasting instead.)']);
         $last_achievement = Achievement::where('created_by', Auth::user()->id)->orderBy('created_at', 'desc')->first();
         if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < MIN_TIME_TO_POST){
-            $num_of_seconds = time()-strtotime($last_achievement->created_at); 
+            $num_of_seconds = MIN_TIME_TO_POST - (time()-strtotime($last_achievement->created_at)); 
             return back()->withErrors("You are doing this too often. Please wait $num_of_seconds seconds.")->withInput();
         }
         $achievement = new Achievement;
@@ -65,6 +65,11 @@ class AchievementController extends Controller
         $achievement->created_by = Auth::user()->id;
         $achievement->status = 2;
         $achievement->save();
+        $timeline = new Timeline;
+        $timeline->user_id = Auth::user()->id; 
+        $timeline->event = "new achievement";
+        $timeline->achievement_id = $achievement->id;
+        $timeline->save();
         $proof = new Proof;
         $proof->user_id = Auth::user()->id;
         $proof->achievement_id = $achievement->id;

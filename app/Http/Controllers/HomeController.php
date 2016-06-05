@@ -27,8 +27,5 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', [
-            "timeline_items"=>Timeline::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
-        ]);
     }
 }

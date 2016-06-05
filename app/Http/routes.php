@@ -2,6 +2,7 @@
 use App\Achievement;
 use App\Message;
 use App\Proof;
+use App\Timeline;
 use App\User;
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +56,9 @@ Route::get('/', ['as'=>'home', function (){
     if (Auth::guest()){
         return View('public');
     } else if (Auth::user()){
-        return redirect()->action('AchievementController@index');
+        return View('home', [
+            "timeline_items"=>Timeline::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
+        ]);
     }
 }]); 
 
@@ -67,9 +70,6 @@ Route::get('/user/{id}/message', ['as'=>'new_message', function($id){
     ]);
 
 }]);
-
-Route::get('/home', 'HomeController@index');
-
 
 Route::put('/settings/email', ['as'=>'settings.email', 'uses'=>'UserController@updateEmail']);
 Route::put('/settings/password', ['as'=>'settings.password', 'uses'=>'UserController@updatePassword']);

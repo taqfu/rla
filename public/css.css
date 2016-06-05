@@ -13,6 +13,7 @@ h4{
 nav{
     padding:16px;
     margin-bottom:16px;
+    font-size:1.25em;
 }
 table{
     margin-top:16px;
@@ -44,6 +45,12 @@ td{
 #header_info{
     margin-bottom:32px;
     font-style:italic;
+}
+#page_listing{
+    margin-left:32px;
+}
+#page_listing a, #user_menu a{
+    margin:4px;
 }
 #proof_statement{
     margin:8px;
