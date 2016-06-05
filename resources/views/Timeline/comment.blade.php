@@ -1,11 +1,17 @@
 <div class='margin-left2'>
 {{ $timestamp}} - 
-<a href="{{route('user.show', ['id'=>$timeline_item->user->id])}}">{{$timeline_item->user->username}}</a> posted the following comment "<i>{{$timeline_item->comment->comment}}</i>"
+@if ($timeline_item->user_id==Auth::user()->id)
+You
+@else
+<a href="{{route('user.show', ['id'=>$timeline_item->user_id])}}">{{$timeline_item->user->username}}</a>
+@endif
+ posted the following comment "<i>{{$timeline_item->comment->comment}}</i>"
 @if ($timeline_item->comment->achievement_id>0)
- on your achievement discussion page for <a href="{{route('discussion', ['id'=>$timeline_item->comment->achievement_id])}}">"{{$timeline_item->comment->achievement->name}}"</a>.
+ on <a href="{{route('discussion', ['id'=>$timeline_item->comment->achievement_id])}}">your achievement discussion page</a>
+ for <a href="{{route('achievement.show', ['id'=>$timeline_item->comment->achievement_id])}}">"{{$timeline_item->comment->achievement->name}}"</a>.
 @elseif ($timeline_item->comment->proof_id>0)
     @if ($timeline_item->event=="new comment")
-         on your proof for 
+         on <a href="{{route('proof.show', ['id'=>$timeline_item->comment->proof_id])}}">your proof</a> for 
         <a href="{{route('achievement.show', ['id'=>$timeline_item->comment->proof_id])}}#proof{{$timeline_item->comment->proof->achievement_id}}">"{{$timeline_item->comment->proof->achievement->name}}"</a>.
     @elseif ($timeline_item->event=="new proof vote comment")
         on a vote for <a href="{{route('proof.show', ['id'=>$timeline_item->comment->vote->proof_id])}}">your proof</a> for <a href="{{route('achievement.show', ['id'=>$timeline_item->comment->vote->achievement_id])}}">"{{$timeline_item->comment->vote->achievement->name}}"</a>.
@@ -21,8 +27,14 @@
             <a href="{{route('user.show', ['id'=>$timeline_item->comment->vote->user_id])}}">{{$timeline_item->comment->vote->user->username}}'s</a>
         @endif
     @endif
-    vote for <a href="{{route('proof.show', ['id'=>$timeline_item->comment->vote->proof_id])}}">your proof</a> for 
-<a href="{{route('achievement.show', ['id'=>$timeline_item->comment->vote->achievement_id])}}#proof{{$timeline_item->comment->vote->proof_id}}">"{{$timeline_item->comment->vote->achievement->name}}"</a>.
+    vote for     
+    @if ($timeline_item->comment->vote->user_id==Auth::user()->id)
+      <a href="{{route('proof.show', ['id'=>$timeline_item->comment->vote->proof_id])}}">your proof</a>    
+    @else
+      the <a href="{{route('proof.show', ['id'=>$timeline_item->comment->vote->proof_id])}}">proof</a>
+    @endif
+     for 
+     <a href="{{route('achievement.show', ['id'=>$timeline_item->comment->vote->achievement_id])}}#proof{{$timeline_item->comment->vote->proof_id}}">"{{$timeline_item->comment->vote->achievement->name}}"</a>.
 
 @endif
 </div>

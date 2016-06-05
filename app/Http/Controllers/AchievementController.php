@@ -162,7 +162,7 @@ function checkProofs(){
 function changeStatus($proof_id, $status){
     $proof = Proof::find($proof_id);
     $owners_of_achievement = Achievement::fetch_owners($proof->achievement_id);
-    @foreach ($owners_of_achievement as $owner){
+    foreach ($owners_of_achievement as $owner){
         $timeline = new Timeline;
         $timeline->user_id = $proof->owner;
         $timeline->event = "change proof status " . $proof->status . " to " . (int)$status;

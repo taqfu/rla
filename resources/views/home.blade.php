@@ -8,10 +8,9 @@
     <?php 
 
     if (Auth::guest()){
-    $timestamp = date('m/d/y g:i:s', strtotime($timeline->created_at));
+    $timestamp = date('m/d/y H:i:s e', strtotime($timeline->created_at));
   } else if (Auth::user()){
-    $timestamp = date('m/d/y g:i:s', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)));
-    var_dump($timestamp, $timeline_item->created_at);
+    $timestamp = date('m/d/y H:i:s', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)));
   }
     ?>
     @if ($timeline_item->event=="new comment" || $timeline_item->event=="new proof vote comment")
@@ -24,7 +23,7 @@
             @else
                 <a href="{{route('user.show', ['id'=>$timeline_item->proof->user_id])}}">{{$timeline_item->proof->user->username}}</a>
             @endif
-              submitted a new proof for your achievement
+              submitted a <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">new proof</a> for your achievement
               <a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}#proof{{$timeline_item->proof_id}}">"{{$timeline_item->proof->achievement->name}}"</a>.
         </div>
     @elseif (substr($timeline_item->event,0, 10)=="swing vote")
