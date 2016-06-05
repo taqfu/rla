@@ -42,7 +42,7 @@
                                                          
                         <a href="{{ route('user.show', ['id'=>Auth::user()->id])}}">{{ Auth::user()->username }}</a>
                         @if (User::does_user_have_unread_msgs())
-                            <a href="{{ route('inbox')}}">Inbox(!)</a>
+                            <a href="{{ route('inbox')}}" class='unread'>Inbox(!)</a>
                         @else
                             <a href="{{ route('inbox')}}">Inbox</a>
                         @endif

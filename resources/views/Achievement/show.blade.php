@@ -38,6 +38,7 @@ if (Auth::guest()){
         <h3 >{{$date}}</h3>
         <?php $old_date = $date; ?>
     @endif
+<a name='proof{{$proof->id}}'></a>
 <div class='achievement_proof margin-left inline'>
     <div class='inline'>
         <a href="{{route('user.show', ['id'=>$proof->user->id])}}">{{$proof->user->username}}</a>

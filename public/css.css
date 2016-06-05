@@ -225,7 +225,10 @@ form.message{
 .show_new_comment{
     margin-left:8px;
 }
-.unread{
+a.unread{
+    color:coral;
+}
+div.unread{
     border:2px black solid;
     background-color:lightgrey;
 }
