@@ -58,7 +58,21 @@ class AchievementController extends Controller
         $last_achievement = Achievement::where('created_by', Auth::user()->id)->orderBy('created_at', 'desc')->first();
         if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < MIN_TIME_TO_POST){
             $num_of_seconds = MIN_TIME_TO_POST - (time()-strtotime($last_achievement->created_at)); 
-            return back()->withErrors("You are doing this too often. Please wait $num_of_seconds seconds.")->withInput();
+            $num_of_minutes = floor($num_of_seconds/60);
+            $num_of_seconds = $num_of_seconds % 60;
+            $error_msg = "You are doing this too often. Please wait ";
+            if ($num_of_minutes>0){
+                $error_msg = $error_msg . $num_of_minutes . " minutes";
+            }
+            if ($num_of_minutes>0 && $num_of_seconds>0){
+                $error_msg = $error_msg . " and ";
+            }
+            if ($num_of_seconds>0){
+                $error_msg = $error_msg . $num_of_seconds . " seconds";
+            }
+            $error_msg = $error_msg . " before trying again.";
+            return back()->withErrors($error_msg)->withInput();
+
         }
         $achievement = new Achievement;
         $achievement->name = $request->name;

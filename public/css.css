@@ -253,9 +253,7 @@ span.vote_available{
     font-weight:bold; 
 }
 .vote_status{ 
-    margin-left:8px;
-    display:inline;
-    font-weight:bold;
+    clear:both;
     font-style:italic;
     
 }

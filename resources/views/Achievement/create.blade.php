@@ -1,8 +1,12 @@
+<div class='center fail'>
+    @foreach ($errors->all() as $error)
+    <div>
+        {{$error}}
+    </div>
+    @endforeach
+</div>
 <div class='center'>
     <form method="POST" action="{{ route('achievement.store') }}" class='achievement'>
-        @foreach ($errors->all() as $error)
-            {{$error}}
-        @endforeach
         {{ csrf_field() }}
         <div>
             <label>Achievement Name:</label>
