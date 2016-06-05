@@ -9,7 +9,9 @@ class Vote extends Model
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-        
+    public function achievement(){
+        return $this->belongsTo('\App\Achievement');
+    }        
     public function comments(){
         return $this->hasMany('\App\Comment');
     }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
+use App\Timeline;
+
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -24,6 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home', [
+            "timeline_items"=>Timeline::where('user_id', Auth::user()->id)->get(),
+        ]);
     }
 }
