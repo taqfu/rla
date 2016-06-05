@@ -35,8 +35,9 @@ class User extends Authenticatable
 
     public static function local_time($timezone, $timestamp){
       date_default_timezone_set($timezone);
-        
-      return $timestamp + date("Z");
+      $timezone = date("Z");
+      date_default_timezone_set(Config::get('app.timezone'));
+      return $timestamp + $timezone;
 
     }
 }
