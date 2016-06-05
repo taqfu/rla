@@ -161,11 +161,14 @@ function checkProofs(){
 
 function changeStatus($proof_id, $status){
     $proof = Proof::find($proof_id);
-    $timeline = new Timeline;
-    $timeline->user_id = $proof->user_id;
-    $timeline->event = "change proof status " . $proof->status . " to " . (int)$status;
-    $timeline->proof_id = $proof->id;  
-    $timeline->save();
+    $owners_of_achievement = Achievement::fetch_owners($proof->achievement_id);
+    @foreach ($owners_of_achievement as $owner){
+        $timeline = new Timeline;
+        $timeline->user_id = $proof->owner;
+        $timeline->event = "change proof status " . $proof->status . " to " . (int)$status;
+        $timeline->proof_id = $proof->id;  
+        $timeline->save();
+    }
     $proof->status = $status;
     $proof->save();
     $achievement = Achievement::find($proof->achievement_id);

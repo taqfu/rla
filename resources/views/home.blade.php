@@ -11,6 +11,7 @@
     $timestamp = date('m/d/y g:i:s', strtotime($timeline->created_at));
   } else if (Auth::user()){
     $timestamp = date('m/d/y g:i:s', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)));
+    var_dump($timestamp, $timeline_item->created_at);
   }
     ?>
     @if ($timeline_item->event=="new comment" || $timeline_item->event=="new proof vote comment")
