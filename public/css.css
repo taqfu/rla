@@ -243,6 +243,9 @@ div.unread{
      /*border is optional*/
      cursor: pointer;
 }   
+div.timeline {
+    margin-bottom:8px;
+}
 a.vote_available{
     color:black;
 }  

@@ -47,24 +47,7 @@ class Proof extends Model
         $end->add(new DateInterval('P1W'));
         $now = new DateTime(date('y-m-d H:i:s'));
         $interval = $now->diff($end);
-        $end_date = $end->format('y-m-d H:i:s');
-        
-        if ($interval->d>0){
-            $caption = $interval->d>1 ? " days" : " day";
-            return $interval->d . $caption;
-        }
-        if ($interval->h>0){
-            $caption = $interval->h>1 ? " hours" : " hour";
-            return $interval->h .  $caption;
-
-        }
-        if ($interval->i>0){
-            $caption = $interval->i>1 ? " minutes" : " minute";
-            return $interval->i .  $caption;
-
-        }
-        $caption = $interval->s>1 ? " seconds" : " second";
-        return $interval->s .  $caption;
+        return format_interval($interval);
         
     }
     public static function min_time_to_vote($id){
@@ -78,24 +61,7 @@ class Proof extends Model
         $end->add(new DateInterval('P1D'));
         $now = new DateTime(date('y-m-d H:i:s'));
         $interval = $now->diff($end);
-        if ($interval->d>0){
-            $caption = $interval->d>1 ? " days" : " day";
-            return $interval->d . $caption;
-        }
-        if ($interval->h>0){
-            $caption = $interval->h>1 ? " hours" : " hour";
-            return $interval->h .  $caption;
-
-        }
-        if ($interval->i>0){
-            $caption = $interval->i>1 ? " minutes" : " minute";
-            return $interval->i .  $caption;
-
-        }
-        $caption = $interval->s>1 ? " seconds" : " second";
-        return $interval->s .  $caption;
-
-        
+        return format_interval($interval);
     }
     public static function passing_approval($id){
             $votes_for = count(Vote::where('proof_id', $id)->where('vote_for', true)->get());
