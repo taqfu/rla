@@ -17,6 +17,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
+
+        'Illuminate\Auth\Events\Attempting' => [
+             'App\Listeners\LogAuthenticationAttempt',
+        ],
     ];
 
     /**
