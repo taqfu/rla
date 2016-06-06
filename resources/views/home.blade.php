@@ -5,19 +5,19 @@
 <div id='homepage'>
 <?php $old_date = 0; $old_time =0; ?>
 @forelse ($timeline_items as $timeline_item)
-    <?php 
+    <?php
 
     if (Auth::guest()){
-    $timestamp = date('m/d/y H:i:s e', strtotime($timeline->created_at));
+    $timestamp = date('m/d/y h:i:sA e', strtotime($timeline->created_at));
   } else if (Auth::user()){
-    $timestamp = date('m/d/y H:i:s', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)));
+    $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)));
   }
     ?>
     @if ($timeline_item->event=="new comment" || $timeline_item->event=="new proof vote comment")
         @include ("Timeline.comment")
     @elseif ($timeline_item->event=='new proof')
         <div class='margin-left2'>
-            {{ $timestamp }} - 
+            {{ $timestamp }} -
             @if ($timeline_item->proof->user_id==Auth::user()->id)
                 You
             @else
@@ -28,17 +28,17 @@
         </div>
     @elseif (substr($timeline_item->event,0, 10)=="swing vote")
         <div class='margin-left2'>
-            {{ $timestamp }} - 
-        {{$timeline_item->vote->user->username}} voted 
+            {{ $timestamp }} -
+        {{$timeline_item->vote->user->username}} voted
         @if ($timeline_item->vote->vote_for)
-            for 
+            for
         @else
             against
         @endif
         <a href="{{route('proof.show', ['id'=>$timeline_item->vote->proof_id])}}">your proof</a>
-        for <a href="{{route('achievement.show', ['id'=>$timeline_item->vote->achievement_id])}}">"{{$timeline_item->vote->achievement->name}}"</a>. 
+        for <a href="{{route('achievement.show', ['id'=>$timeline_item->vote->achievement_id])}}">"{{$timeline_item->vote->achievement->name}}"</a>.
 
-        It is now  
+        It is now
         @if ($timeline_item->event=='swing vote - approved')
           passing
         @elseif ($timeline_item->event=='swing vote - denied')
@@ -48,11 +48,11 @@
         </div>
     @elseif (substr($timeline_item->event, 0, 19 )=="change proof status")
         <div class='margin-left2'>
-            {{ $timestamp }} - 
-        <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">Your proof</a> for 
-        <a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}">"{{$timeline_item->proof->achievement->name}}"</a> has been 
+            {{ $timestamp }} -
+        <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">Your proof</a> for
+        <a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}">"{{$timeline_item->proof->achievement->name}}"</a> has been
         @if (substr($timeline_item->event, -1, 1) == "1")
-          approved 
+          approved
         @elseif (substr($timeline_item->event, -1, 1) == "0")
           denied
         @endif
@@ -60,13 +60,13 @@
         </div>
     @elseif ($timeline_item->event=="new achievement")
         <div class='margin-left2'>
-            {{ $timestamp }} - 
+            {{ $timestamp }} -
             You created a new achievement. (<a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">{{$timeline_item->achievement->name}}</a>)
         </div>
     @elseif (substr($timeline_item->event, 0, 25)=="change achievement status")
         <div class='margin-left2'>
-            {{ $timestamp }} - 
-            The achievement you created 
+            {{ $timestamp }} -
+            The achievement you created
             <a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">{{$timeline_item->achievement->name}}</a>
             @if (substring($timeline_item->event, -1, 1)=="0")
                 has failed approval.
@@ -76,12 +76,12 @@
                 is currently under approval.
             @endif
         </div>
-    @else 
+    @else
     <?php var_dump($timeline_item->event); ?>
     @endif
 @empty
 <div class='center'>
-Your timeline is empty. You need to create new achievements, comment or submit proof to existing achievements in order to fill your timeline. 
+Your timeline is empty. You need to create new achievements, comment or submit proof to existing achievements in order to fill your timeline.
 </div>
 @endforelse
 </div>

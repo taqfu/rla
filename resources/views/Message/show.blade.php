@@ -14,9 +14,9 @@
         @endif
         Sent:
         @if (Auth::guest())
-        {{date('m/d/y g:i:s', strtotime($message->created_at))}}
+        {{date('m/d/y h:i:sA e', strtotime($message->created_at))}}
         @elseif (Auth::user())
-        {{date('m/d/y g:i:s', User::local_time(Auth::user()->timezone, strtotime($message->created_at)))}}
+        {{date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($message->created_at)))}}
         @endif
     </div>
         <div class='message'>

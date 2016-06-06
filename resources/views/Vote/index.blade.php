@@ -40,9 +40,9 @@ use App\User;
 	        </div>
 	        <div>
           @if (Auth::guest())
-          {{date('g:i', strtotime($vote->created_at))}}
+          {{date('h:i:sA e', strtotime($vote->created_at))}}
           @elseif (Auth::user())
-          {{date('g:i', User::local_time(Auth::user()->timezone, strtotime($vote->created_at)))}}
+          {{date('h:i:sA', User::local_time(Auth::user()->timezone, strtotime($vote->created_at)))}}
           @endif
 	        </div>
 	    </td><td style="color:{{$vote->vote_for ? 'green' : 'red'}};">

@@ -3,7 +3,7 @@
     use App\User;
 ?>
 @extends('layouts.app')
-@section('title') 
+@section('title')
  -  @if (strlen($proof->achievement->name)>61)
     {{substr($proof->achievement->name, 0, 61)}}...
     @else
@@ -37,7 +37,7 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 @endif
  on
     @if (Auth::guest())
-    {{date('m/d/y h:i:s', strtotime($proof->created_at))}}.
+    {{date('m/d/y h:i:s e', strtotime($proof->created_at))}}.
     @elseif (Auth::user())
     {{date('m/d/y h:i:s', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)))}}.
     @endif
@@ -78,9 +78,9 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 <div class='margin-left inline'>
     <i>
       @if (Auth::guest())
-      {{ date('H:i', strtotime($vote->created_at)) }}
+      {{ date('h:i:sA e', strtotime($vote->created_at)) }}
       @elseif (Auth::user())
-      {{ date('H:i', User::local_time(Auth::user()->timezone, strtotime($vote->created_at))) }}
+      {{ date('h:i:sA', User::local_time(Auth::user()->timezone, strtotime($vote->created_at))) }}
       @endif
     </i> -
     <a href="{{route('user.show', ['id'=>$vote->user->id])}}">{{$vote->user->username}}</a> voted

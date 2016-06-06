@@ -11,7 +11,7 @@
 @else
 <div id='guest_warning' class='center'>
     <a href="{{url('/register')}}">Register</a>
-     or  
+     or
     <a href="{{url('/login')}}">login</a>
      to create new achievements!
 </div>
@@ -22,13 +22,13 @@
 
     <label for='denied' class='denied filter'>Denied </label>
     <input id='denied' type='checkbox' class='filter' />
-    
+
     <label for='pending' class='filter pending'>Pending </label>
     <input id='pending' type='checkbox'  class='filter'>
     @if (Auth::user())
     <label for='complete' class='complete filter'>Complete </label>
     <input id='complete' type='checkbox' class='filter'>
-    
+
     <label for='incomplete' class='filter incomplete'>Incomplete </label>
     <input id='incomplete' type='checkbox' class='filter'>
     @endif
@@ -42,9 +42,9 @@
         <tr> <td
           title="Created by {{$achievement->user->username}} on
           @if (Auth::guest())
-          {{date('m/d/y g:i:s', strtotime($achievement->created_at))}}
+          {{date('m/d/y h:i:sA e', strtotime($achievement->created_at))}}
           @elseif (Auth::user())
-          {{ date('m/d/y g:i:s', User::local_time(Auth::user()->timezone, strtotime($achievement->created_at)))}}
+          {{ date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($achievement->created_at)))}}
           @endif
           "
           class='achievement

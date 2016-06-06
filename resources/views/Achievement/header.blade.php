@@ -15,9 +15,9 @@
 <div id='header_info'>
     Submitted:
     @if (Auth::guest())
-    {{ date('m/d/y h:iA', strtotime($main->created_at))}}
+    {{ date('m/d/y h:i:sA e', strtotime($main->created_at))}}
     @elseif (Auth::user())
-    {{ date('m/d/y h:iA', User::local_time(Auth::user()->timezone, strtotime($main->created_at)))}}
+    {{ date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($main->created_at)))}}
     @endif
     by <a href="{{route('user.show', ['id'=>$main->user->id])}}">{{$main->user->username}}</a>
     @if ($main->status==2)

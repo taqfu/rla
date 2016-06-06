@@ -6,7 +6,7 @@
 
 @extends('layouts.app')
 
-@section('title') 
+@section('title')
  -  @if (strlen($main->name)>61)
     {{substr($main->name, 0, 61)}}...
     @else
@@ -30,10 +30,10 @@
 <?php
 if (Auth::guest()){
   $date = date('m/d/y', strtotime($proof->created_at));
-  $timestamp = date('m/d/y H:i:se', strtotime($proof->created_at));
+  $timestamp = date('m/d/y h:i:sA e', strtotime($proof->created_at));
 } else if (Auth::user()){
   $date = date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
-  $timestamp = date('H:i:s', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
+  $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
 }
 ?>
     @if ($date != $old_date)
@@ -42,7 +42,7 @@ if (Auth::guest()){
     @endif
 <a name='proof{{$proof->id}}'></a>
 <div class='achievement_proof margin-left inline'>
-    <div class='proof_timestamp'><strong>{{$timestamp}}</strong></div> 
+    <div class='proof_timestamp'><strong>{{$timestamp}}</strong></div>
     <div class='inline margin-left'><a href="{{route('user.show', ['id'=>$proof->user->id])}}">{{$proof->user->username}}</a>
         submitted <a href="{{route('proof.show', ['id'=>$proof->id])}}">proof</a> of completion.
         (<a href="{{$proof->url}}">{{$proof->url}}</a>)  -
