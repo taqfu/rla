@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 
-define('MIN_TIME_TO_POST', 60 * 10);
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -56,8 +55,8 @@ class AchievementController extends Controller
             'proofURL' => 'required|url|max:255',
         ], ['url'=>'Invalid URL. (Try copy and pasting instead.)']);
         $last_achievement = Achievement::where('created_by', Auth::user()->id)->orderBy('created_at', 'desc')->first();
-        if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < MIN_TIME_TO_POST){
-            $num_of_seconds = MIN_TIME_TO_POST - (time()-strtotime($last_achievement->created_at)); 
+        if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < Config::get('rla.min_time_to_post')){
+            $num_of_seconds = Config::get('rla.min_time_to_post') - (time()-strtotime($last_achievement->created_at)); 
             $num_of_minutes = floor($num_of_seconds/60);
             $num_of_seconds = $num_of_seconds % 60;
             $error_msg = "You are doing this too often. Please wait ";
