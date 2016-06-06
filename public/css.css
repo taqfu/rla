@@ -77,6 +77,7 @@ td{
 td.achievement{
     padding:16px;
     border:1px black dashed;
+    background-color:#f2f2f2;
 /*    border-bottom:none;*/
 }
 form.achievement{
@@ -94,10 +95,10 @@ form.achievement{
     float:left;
     clear:right;
 }
-.approved{
+a.approved{
     color:black;
+    font-weight:bold;
 }
-
 div.brand{
     float:left;
     font-size:1.5em;
@@ -132,9 +133,6 @@ div.comment{
 form.comment{
     margin:48px;
 }
-input.message{
-    float:right;
-}
 textarea.comment, textarea.message{
     height:100px;
     
@@ -142,6 +140,8 @@ textarea.comment, textarea.message{
 .complete{
     font-weight:bold;
     text-decoration:underline;
+}
+td.complete_achievement{
 }
 .denied{
     color:red;
@@ -196,6 +196,9 @@ form.message{
     text-align:center;
     margin:auto;
     margin-top:64px;
+}
+input.message{
+    float:right;
 }
 
 .message_container{

@@ -5,6 +5,7 @@ namespace App\Listeners;
 use Illuminate\Auth\Events\Attempting;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Auth;
 use DB;
 use Request;
 class LogAuthenticationAttempt
@@ -27,6 +28,7 @@ class LogAuthenticationAttempt
      */
     public function handle(Attempting $event)
     {
-        DB::insert('insert into logins(created_at, updated_at, login, ip, success) values (now(), now(), ?, ?, ?)', [$event->credentials['username'], Request::ip(), $event->login]);
+        DB::insert('insert into logins(created_at, updated_at, login, ip, success) values (now(), now(), ?, ?, ?)', 
+          [$event->credentials['username'], Request::ip(), Auth::check()]);
     }
 }
