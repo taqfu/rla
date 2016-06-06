@@ -1,9 +1,9 @@
 <div class='timeline margin-left'>
     <span title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</span> - 
-    @if ($timeline_item->user_id==Auth::user()->id)
+    @if ($timeline_item->comment->user_id==Auth::user()->id)
     You
     @else
-    <a href="{{route('user.show', ['id'=>$timeline_item->user_id])}}">{{$timeline_item->user->username}}</a>
+    <a href="{{route('user.show', ['id'=>$timeline_item->comment->user_id])}}">{{$timeline_item->comment->user->username}}</a>
     @endif
      posted the following comment "<i>{{$timeline_item->comment->comment}}</i>"
     @if ($timeline_item->comment->achievement_id>0)
@@ -21,17 +21,21 @@
         @if ($timeline_item->comment->vote->user_id==Auth::user()->id)
             your 
         @else
-            @if (substr($string, -1, 1)=="s")
+            @if (substr($timeline_item->comment->user->username, -1, 1)=="s")
                 <a href="{{route('user.show', ['id'=>$timeline_item->comment->vote->user_id])}}">{{$timeline_item->comment->vote->user->username}}'</a>
             @else
                 <a href="{{route('user.show', ['id'=>$timeline_item->comment->vote->user_id])}}">{{$timeline_item->comment->vote->user->username}}'s</a>
             @endif
         @endif
         vote for     
-        @if ($timeline_item->comment->vote->user_id==Auth::user()->id)
+        @if ($timeline_item->comment->vote->proof->user_id==Auth::user()->id)
           <a href="{{route('proof.show', ['id'=>$timeline_item->comment->vote->proof_id])}}">your proof</a>    
         @else
-          the <a href="{{route('proof.show', ['id'=>$timeline_item->comment->vote->proof_id])}}">proof</a>
+            @if (substr($timeline_item->comment->vote->proof->user->username, -1, 1)=="s")
+            <a href="{{route('proof.show', ['id'=>$timeline_item->comment->vote->proof_id])}}">{{$timeline_item->comment->vote->proof->user->username}}' proof</a>
+            @else
+            <a href="{{route('proof.show', ['id'=>$timeline_item->comment->vote->proof_id])}}">{{$timeline_item->comment->vote->proof->user->username}}'s proof</a>
+            @endif
         @endif
          for 
          <a href="{{route('achievement.show', ['id'=>$timeline_item->comment->vote->achievement_id])}}#proof{{$timeline_item->comment->vote->proof_id}}">"{{$timeline_item->comment->vote->achievement->name}}"</a>.

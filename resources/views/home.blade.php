@@ -50,7 +50,16 @@
     @elseif (substr($timeline_item->event, 0, 19 )=="change proof status")
         <div class='timeline margin-left'>
             <span title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</span> - 
-            <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">Your proof</a> for
+            @if ($timeline_item->proof->user_id==Auth::user()->id)
+            <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">Your proof</a>
+            @else
+                @if (substr($timeline_item->proof->user->username, -1, 1)=="s")
+                <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">{{$timeline_item->proof->user->username}}' proof</a>
+                @else
+                <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">{{$timeline_item->proof->user->username}}'s proof</a>
+                @endif 
+            @endif
+             for
             <a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}">"{{$timeline_item->proof->achievement->name}}"</a> has been
             @if (substr($timeline_item->event, -1, 1) == "1")
               approved

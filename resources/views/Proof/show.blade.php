@@ -75,7 +75,7 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
         <div><strong>{{$date}}</strong></div>
         <?php $old_date = $date; ?>
     @endif
-<div class='margin-left inline'>
+<div class='proof_votes margin-left'>
     <i>
       @if (Auth::guest())
       {{ date('h:i:sA e', strtotime($vote->created_at)) }}
@@ -102,7 +102,7 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 </div>
 @endif
 @if (count($vote->comments)>0)
-<div class='padding-left inline'>
+<div class='proof_vote_comments padding-left inline'>
     <input type='button' id='hide_comments{{$vote->id}}' class='hide_comments text_button' value='[ - ]' />
     <div id='comments{{$vote->id}}'>
         @foreach ($vote->comments as $comment)

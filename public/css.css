@@ -120,6 +120,7 @@ a.brand{
     width:400px;
 }
 div.comment{
+    clear:both;
     margin-left:32px;
     background-color:lightgrey;
     width:75%;
@@ -221,6 +222,11 @@ form.message{
 }
 .pending{
     color:grey;
+}
+.proof_votes{
+    margin-top:16px;
+}
+.proof_vote_comments{
 }
 .show_new_comment{
     margin-left:8px;

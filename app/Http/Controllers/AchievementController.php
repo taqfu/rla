@@ -25,7 +25,7 @@ class AchievementController extends Controller
     {
             checkProofs();
             return View::make('Achievement.index', [
-                "achievements"=>Achievement::orderBy('name','asc')->get(), //If you change orderBy, change it for next line
+              "achievements"=>Achievement::orderBy('name','asc')->get(), //If you change orderBy, change it for next line
                 "last_achievement"=>Achievement::orderBy('name', 'desc')->first(),
             ]);
     }
@@ -175,16 +175,16 @@ function checkProofs(){
 
 function changeStatus($proof_id, $status){
     $proof = Proof::find($proof_id);
+    $proof->status = $status;
+    $proof->save();
     $owners_of_achievement = Achievement::fetch_owners($proof->achievement_id);
     foreach ($owners_of_achievement as $owner){
         $timeline = new Timeline;
-        $timeline->user_id = $proof->owner;
+        $timeline->user_id = $owner;
         $timeline->event = "change proof status " . $proof->status . " to " . (int)$status;
         $timeline->proof_id = $proof->id;  
         $timeline->save();
     }
-    $proof->status = $status;
-    $proof->save();
     $achievement = Achievement::find($proof->achievement_id);
     if ($achievement->status==2){
         $timeline = new Timeline;
