@@ -10,6 +10,7 @@ use App\Timeline;
 use App\Vote;
 
 use Auth;
+use Config;
 use DB;
 use View;
 

@@ -10,7 +10,7 @@ use App\Proof;
 use App\Timeline;
 use App\Vote;
 use Auth;
-
+use Config;
 class CommentController extends Controller
 {
     /**

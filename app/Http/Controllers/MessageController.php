@@ -10,6 +10,8 @@ use App\Http\Requests;
 use App\Message;
 
 use Auth;
+use Config;
+
 class MessageController extends Controller
 {
     /**
