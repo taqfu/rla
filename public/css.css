@@ -50,7 +50,11 @@ td{
     text-align:center;
 }
 .timeline_container{
-    border:1px black solid;width:75%;margin:auto;margin-bottom:16px;padding:8px;
+    border:1px lightgrey dotted;
+    width:75%;
+    margin:auto;
+    margin-bottom:16px;
+    padding:8px;
 }
 #homepage h4{
     margin-bottom:2px;
