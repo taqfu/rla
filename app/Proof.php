@@ -64,13 +64,14 @@ class Proof extends Model
         return format_interval($interval);
     }
     public static function passing_approval($id){
-            $votes_for = count(Vote::where('proof_id', $id)->where('vote_for', true)->get());
-            $votes_against = count(Vote::where('proof_id', $id)->where('vote_for', false)->get());
-            if ($votes_for - $votes_against <= 0){
-                return false;
-            } else if ($votes_for - $votes_against > 0){
-                return true;
-            }
+        $votes_for = count(Vote::where('proof_id', $id)->where('vote_for', true)->get());
+        $votes_against = count(Vote::where('proof_id', $id)->where('vote_for', false)->get());
+        if ($votes_for - $votes_against <= 0){
+            return false;
+        } else if ($votes_for - $votes_against > 0){
+            return true;
+        }
+        return false;
     }
     public function user(){
         return $this->belongsTo("\App\User");
