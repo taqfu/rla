@@ -13,23 +13,27 @@
     $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)));
   }
     ?>
-    <div>
+    <div class='timeline_container'>
     @if ($timeline_item->event=="new comment" || $timeline_item->event=="new proof vote comment")
         @include ("Timeline.comment")
     @elseif ($timeline_item->event=='new proof')
-        <div class='timeline margin-left'>
-            <span title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</span> - 
+        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
+        <div class='notification margin-left'> 
+            <p>
             @if ($timeline_item->proof->user_id==Auth::user()->id)
                 You
             @else
                 <a href="{{route('user.show', ['id'=>$timeline_item->proof->user_id])}}">{{$timeline_item->proof->user->username}}</a>
             @endif
-              submitted a <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">new proof</a> for your achievement
-              <a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}#proof{{$timeline_item->proof_id}}">"{{$timeline_item->proof->achievement->name}}"</a>.
+              submitted a <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">new proof</a> for your achievement.
+            </p>
+            <p>
+                (<a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}#proof{{$timeline_item->proof_id}}">{{$timeline_item->proof->achievement->name}}</a>)
+            </p>
         </div>
     @elseif (substr($timeline_item->event,0, 10)=="swing vote")
-        <div class='timeline margin-left'>
-            <span title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</span> - 
+        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div> 
+        <div class='notification margin-left'>
             {{$timeline_item->vote->user->username}} voted
             @if ($timeline_item->vote->vote_for)
                 for
@@ -48,8 +52,8 @@
             .
         </div>
     @elseif (substr($timeline_item->event, 0, 19 )=="change proof status")
-        <div class='timeline margin-left'>
-            <span title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</span> - 
+        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
+        <div class='notification margin-left'>
             @if ($timeline_item->proof->user_id==Auth::user()->id)
             <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">Your proof</a>
             @else
@@ -69,15 +73,20 @@
             .
         </div>
     @elseif ($timeline_item->event=="new achievement")
-        <div class='timeline margin-left'>
-            <span title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</span> - 
-            You created a new achievement. (<a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">{{$timeline_item->achievement->name}}</a>)
+        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
+        <div class='notification margin-left'>
+            <p>
+            You created a new achievement. 
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}" 
               data-text="I just created a new achievement! '{{substr($timeline_item->achievement->name, 0, 32)}}'
               @if (strlen($timeline_item->achievement->name)>32)
               ...
               @endif'" 
               data-via="doit_proveit">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </p>
+            <p>
+                (<a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">{{$timeline_item->achievement->name}}</a>)
+            </p>
         </div>
     @elseif (substr($timeline_item->event, 0, 25)=="change achievement status")
         <div class='margin-left'>

@@ -1,11 +1,17 @@
-<div class='timeline margin-left'>
-    <span title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</span> - 
+<div class='timeline'>
+    <div title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div> 
+    <div class='notification margin-left'>
     @if ($timeline_item->comment->user_id==Auth::user()->id)
     You
     @else
     <a href="{{route('user.show', ['id'=>$timeline_item->comment->user_id])}}">{{$timeline_item->comment->user->username}}</a>
     @endif
-     posted the following comment "<i>{{$timeline_item->comment->comment}}</i>"
+     posted the following comment:
+    </div>
+    <div class='timeline_comment margin-left2'>
+        "<i>{{$timeline_item->comment->comment}}</i>"
+    </div>
+    <div class='notification margin-left'>
     @if ($timeline_item->comment->achievement_id>0)
      on <a href="{{route('discussion', ['id'=>$timeline_item->comment->achievement_id])}}">your achievement discussion page</a>
      for <a href="{{route('achievement.show', ['id'=>$timeline_item->comment->achievement_id])}}">"{{$timeline_item->comment->achievement->name}}"</a>.
@@ -41,4 +47,5 @@
          <a href="{{route('achievement.show', ['id'=>$timeline_item->comment->vote->achievement_id])}}#proof{{$timeline_item->comment->vote->proof_id}}">"{{$timeline_item->comment->vote->achievement->name}}"</a>.
     
     @endif
+    </div>
 </div>

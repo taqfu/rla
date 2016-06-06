@@ -9,6 +9,8 @@
     <meta name='keywords' content='real life achievement, real world achievement, achievement unlocked'>
     
     <title>Do It! Prove It!@yield('title')</title>
+    <link rel="shortcut icon" href="http://doitproveit.com/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://doitproveit.com/favicon.ico" type="image/x-icon">
     <link rel='publisher' href='https://plus.google.com/u/0/b/111000706342354560427/111000706342354560427/about'>
     @if ($_SERVER['SERVER_NAME']=='taqfu.com')
     <link rel="stylesheet" href="http://taqfu.com/rla-dev/rla/public/css.css">
