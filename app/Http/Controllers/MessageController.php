@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-define ('MIN_TIME_TO_MSG', 60);
 
 use Illuminate\Http\Request;
 
@@ -49,8 +48,8 @@ class MessageController extends Controller
             'message' => 'required|string|max:21844'
         ]);
         $last_message = Message::where('from_user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
-        if(($last_message!=null && time()-strtotime($last_message->created_at) < MIN_TIME_TO_MSG)){
-            $num_of_seconds = time()-strtotime($last_message->created_at); 
+        if(($last_message!=null && time()-strtotime($last_message->created_at) < Config::get('rla.min_time_to_msg'))){
+            $num_of_seconds = Config::get('rla.min_time_to_msg') - (time()-strtotime($last_message->created_at)); 
             return back()->withErrors("You are doing this too often. Please wait $num_of_seconds seconds.")->withInput();
         }
         $message = new Message;

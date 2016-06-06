@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-define('MIN_TIME_TO_COMMENT', 30);
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -52,8 +51,8 @@ class CommentController extends Controller
             'comment'=>'required|string|max:21844'
         ]);
         $last_comment = Comment::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
-        if(($last_comment!=null && time()-strtotime($last_comment->created_at) < MIN_TIME_TO_COMMENT)){
-            $num_of_seconds = MIN_TIME_TO_COMMENT - (time()-strtotime($last_comment->created_at)); 
+        if(($last_comment!=null && time()-strtotime($last_comment->created_at) < Config::get('rla.min_time_to_comment'))){
+            $num_of_seconds = Config::get('rla.min_time_to_comment') - (time()-strtotime($last_comment->created_at));
             return back()->withErrors("You are doing this too often. Please wait $num_of_seconds seconds.")->withInput();
         }
         $comment = new Comment;
@@ -73,7 +72,7 @@ class CommentController extends Controller
                 $timeline = new Timeline;
                 $timeline->user_id = $owner;
                 $timeline->event = "new comment";
-                $timeline->comment_id = $comment->id;  
+                $timeline->comment_id = $comment->id;
                 $timeline->save();
             }
         }else if ($request->table=='proof'){
@@ -83,7 +82,7 @@ class CommentController extends Controller
             $timeline->event = "new comment";
             $timeline->comment_id = $comment->id;
             $timeline->save();
-            
+
         } else if ($request->table=='vote'){
             $vote = Vote::where('id', $request->tableID)->first();
             $proof = Proof::where('id', $vote->proof_id)->first();
