@@ -73,12 +73,12 @@ class ProofController extends Controller
         $vote->vote_for = true;
         $vote->save();
         $achievement = Achievement::find($request->achievementID);
-        if ($achievement->status==0){
+        if ($achievement->status==0 || $achievement->status==3){
             $achievement->status=2;
             $achievement->save();
             $timeline = new Timeline;
-            $timeline->user_id = $achievement->user_id;
-            $timeline->event = "change achievement status " . $achievement->status . " to 2";
+            $timeline->user_id = $achievement->created_by;
+            $timeline->event = "change achievement status to 2";
             $timeline->achievement_id = $achievement->id;  
             $timeline->save();
         }

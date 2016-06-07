@@ -72,7 +72,7 @@
             @endif
             .
         </div>
-    @elseif ($timeline_item->event=="new achievement")
+    @elseif (substr($timeline_item->event, 0, 15)=="new achievement")
         <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
         <div class='notification margin-left'>
             <p>
@@ -84,20 +84,23 @@
               @endif'" 
               data-via="doit_proveit">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
             </p>
+            @if($timeline_item->event=="new achievement no proof")
+                <p>(Unfortunately, you provided no proof, so its inactive.)</p>
+            @endif
             <p>
                 (<a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">{{$timeline_item->achievement->name}}</a>)
             </p>
         </div>
     @elseif (substr($timeline_item->event, 0, 25)=="change achievement status")
-        <div class='margin-left'>
-            <span title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</span> - 
+        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>  
+        <div class='notification margin-left'>
             The achievement you created
             <a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">{{$timeline_item->achievement->name}}</a>
-            @if (substring($timeline_item->event, -1, 1)=="0")
+            @if (substr($timeline_item->event, -1, 1)=="0")
                 has failed approval.
-            @elseif (substring($timeline_item->event, -1, 1)=="1")
+            @elseif (substr($timeline_item->event, -1, 1)=="1")
                 is now approved.
-            @elseif (substring($timeline_item->event, -1, 1)=="2")
+            @elseif (substr($timeline_item->event, -1, 1)=="2")
                 is currently under approval.
             @endif
         </div>

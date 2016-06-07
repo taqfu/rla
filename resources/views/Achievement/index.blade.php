@@ -54,6 +54,8 @@
                 denied_achievement
             @elseif ($achievement->status==2)
                 pending_achievement
+            @elseif ($achievement->status==3)
+                inactive_achievement
             @endif
             @if (Auth::user())
                 @if ($has_user_completed_achievement)
@@ -77,6 +79,8 @@
                 approved
             @elseif ($achievement->status==2)
                 pending
+            @elseif ($achievement->status==3)
+                inactive
             @endif
             '
             href="{{route('achievement.show', ['id'=> $achievement->id])}}">

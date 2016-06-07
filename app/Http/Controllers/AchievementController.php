@@ -53,7 +53,7 @@ class AchievementController extends Controller
         }
         $this->validate($request, [
             'name' => 'required|unique:achievements|max:100',
-            'proofURL' => 'required|url|max:255',
+            'proofURL' => 'url|max:255',
         ], ['url'=>'Invalid URL. (Try copy and pasting instead.)']);
         $last_achievement = Achievement::where('created_by', Auth::user()->id)->orderBy('created_at', 'desc')->first();
         if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < Config::get('rla.min_time_to_post')){
@@ -76,25 +76,29 @@ class AchievementController extends Controller
         $achievement = new Achievement;
         $achievement->name = $request->name;
         $achievement->created_by = Auth::user()->id;
-        $achievement->status = 2;
+        $achievement->status = strlen($request->proofURL)>0 ? 2 : 3;
         $achievement->save();
+
         $timeline = new Timeline;
         $timeline->user_id = Auth::user()->id; 
-        $timeline->event = "new achievement";
+        $timeline->event = strlen($request->proofURL)>0 ? "new achievement" : "new achievement no proof";
         $timeline->achievement_id = $achievement->id;
         $timeline->save();
-        $proof = new Proof;
-        $proof->user_id = Auth::user()->id;
-        $proof->achievement_id = $achievement->id;
-        $proof->url = $request->proofURL;
-        $proof->status = 2;
-        $proof->save();
-        $vote = new Vote;
-        $vote->user_id = Auth::user()->id;
-        $vote->achievement_id = $achievement->id;
-        $vote->proof_id = $proof->id;
-        $vote->vote_for = true;
-        $vote->save();
+        
+        if (strlen($request->proofURL)>0){
+            $proof = new Proof;
+            $proof->user_id = Auth::user()->id;
+            $proof->achievement_id = $achievement->id;
+            $proof->url = $request->proofURL;
+            $proof->status = 2;
+            $proof->save();
+            $vote = new Vote;
+            $vote->user_id = Auth::user()->id;
+            $vote->achievement_id = $achievement->id;
+            $vote->proof_id = $proof->id;
+            $vote->vote_for = true;
+            $vote->save();
+        }
         return redirect()->route('achievement.show', [$achievement->id]);
     }
 

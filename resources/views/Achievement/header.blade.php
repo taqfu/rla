@@ -8,6 +8,8 @@
         approved
     @elseif ($main->status==2)
         pending
+    @elseif ($main->status==3)
+        inactive
     @endif
 '>
     {{$main->name }}
@@ -24,5 +26,7 @@
         - <span class='pending'>(Pending Approval)</span>
     @elseif ($main->status==0)
         - <span class='denied'>(Denied)</span>
+    @elseif ($main->status==3)
+        - Inactive(requires proof)
     @endif
 </div>
