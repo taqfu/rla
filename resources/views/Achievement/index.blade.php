@@ -89,7 +89,7 @@
             href="{{route('achievement.show', ['id'=> $achievement->id])}}">
                 {{ $achievement->name }}</a>
 
-            @if(Achievement::can_user_vote($achievement->id))
+            @if(Achievement::can_user_vote_on_proof($achievement->id))
             <span class='vote_available'>
             <a href="{{route('achievement.show', ['id'=> $achievement->id])}}">Vote Available!</a>
             </span>

@@ -22,7 +22,7 @@ class Achievement extends Model
         }
         return true;
     }
-    public static function can_user_vote($id){
+    public static function can_user_vote_on_proof($id){
         if (Auth::guest()){
             return false;
         }
@@ -34,11 +34,11 @@ class Achievement extends Model
                     if (Proof::can_user_vote($proof->id)){
                         return true;
                     }
-                }                
+                }
                 if($num_of_proofs>1){
                     //ERROR - the user has more than one approved ad per achievement.
                 }
-            } 
+            }
         } else if ($achievement->status==2){
                 $proof = Proof::where('achievement_id', $id)->where('status', 2)->first();
                 return Proof::can_user_vote($proof->id);
