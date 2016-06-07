@@ -23,7 +23,20 @@ td{
     padding-left:8px;
     padding-right:8px;
 }
-#achievement_filters label{
+#achievement_filters div{
+    display:inline;
+    margin:8px;
+    padding:8px;
+    border:1px black dotted;
+}
+#achievement_filters div.complete{
+    background-color:black;
+    color:white;
+    border:1px white dotted;
+}
+#achievement_filters div.inactive{
+    background-color:lightgrey;
+    font-style:italic;
 }
 #achievements_link{
     text-align:center;
@@ -48,13 +61,6 @@ td{
 }
 #homepage{
     text-align:center;
-}
-.timeline_container{
-    border:1px lightgrey dotted;
-    width:75%;
-    margin:auto;
-    margin-bottom:16px;
-    padding:8px;
 }
 #homepage h4{
     margin-bottom:2px;
@@ -87,8 +93,6 @@ td{
 td.achievement{
     padding:16px;
     border:1px black dashed;
-    background-color:#f2f2f2;
-/*    border-bottom:none;*/
 }
 form.achievement{
     margin-bottom:24px;
@@ -105,9 +109,12 @@ form.achievement{
     float:left;
     clear:right;
 }
-a.approved{
+a.approved:not(.complete){
     color:black;
     font-weight:bold;
+}
+a.approved.complete{
+    color:white;
 }
 div.brand{
     float:left;
@@ -147,11 +154,9 @@ textarea.comment, textarea.message{
     height:100px;
     
 }
-.complete{
-    font-weight:bold;
-    text-decoration:underline;
-}
 td.complete_achievement{
+    background-color:black;
+    border:1px white dashed; 
 }
 .denied{
     color:red;
@@ -167,6 +172,12 @@ div.feedback{
 }
 .hidden{
     display:none;
+}
+.inactive{
+    color:black;
+}
+.inactive_achievement{
+    background-color:lightgrey;
 }
 .inline{
     display:inline-block;
@@ -271,6 +282,13 @@ div.timeline {
 .timeline_comment{
     color:#a5a5a5;
     font-style:italic;
+}
+.timeline_container{
+    border:1px lightgrey dotted;
+    width:75%;
+    margin:auto;
+    margin-bottom:16px;
+    padding:8px;
 }
 a.vote_available{
     color:black;

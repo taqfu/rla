@@ -13,7 +13,7 @@
             <input type='text' name='name' value="{{old('name')}}" maxlength='100'/> 
         </div>
         <div>
-            <label>URL Of Proof:</label>
+            <label>URL Of Proof(optional):</label>
             <input type='url' name='proofURL' value="{{old('proofURL')}}" maxlength='256'/>
         </div>
         <div>

@@ -95,7 +95,7 @@
         <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>  
         <div class='notification margin-left'>
             The achievement you created
-            <a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">{{$timeline_item->achievement->name}}</a>
+            <a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">"{{$timeline_item->achievement->name}}"</a>            
             @if (substr($timeline_item->event, -1, 1)=="0")
                 has failed approval.
             @elseif (substr($timeline_item->event, -1, 1)=="1")
