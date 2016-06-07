@@ -33,6 +33,11 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
+            // emails.exception is the template of your email
+            // it will have access to the $error that we are passing below
+            Mail::send('emails.exception', [], function ($m) {
+                $m->to('taqfu0@gmail.com', 'Do It! Prove It! Bug Reporting')->subject('Error');
+            });
         parent::report($e);
     }
 

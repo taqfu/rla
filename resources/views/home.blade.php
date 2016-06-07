@@ -3,15 +3,24 @@
 
 @section('content')
 <div id='homepage'>
-<?php $old_date = 0; $old_time =0; ?>
+<?php 
+
+$old_date = 0; 
+$old_time =0; 
+/*
+            Mail::send('emails.exception', [], function ($m) {
+                $m->to('taqfu0@gmail.com', 'Do It! Prove It! Bug Reporting')->subject('Error');
+            });
+*/
+adsfasdfa
+?>
 @forelse ($timeline_items as $timeline_item)
     <?php
-
     if (Auth::guest()){
     $timestamp = date('m/d/y h:i:sA e', strtotime($timeline->created_at));
-  } else if (Auth::user()){
-    $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)));
-  }
+    } else if (Auth::user()){
+      $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)));
+    }
     ?>
     <div class='timeline_container'>
     @if ($timeline_item->event=="new comment" || $timeline_item->event=="new proof vote comment")
