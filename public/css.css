@@ -97,8 +97,13 @@ td{
     margin-left:4px;
 }
 td.achievement{
-    padding:16px;
     border:1px black dashed;
+}
+td.achievement a div{
+    padding:16px;
+    display:block;
+    height:100%;
+    width:100%;
 }
 form.achievement{
     margin-bottom:24px;
@@ -169,6 +174,11 @@ td.complete_achievement{
 }
 .bold{
     font-weight:bold;
+}
+.fail{
+    color:red;
+}
+.fb-share-button{
 }
 div.feedback{
     margin-right:8px;   
@@ -296,6 +306,9 @@ div.timeline {
     margin-bottom:16px;
     padding:8px;
 }
+.twitter-share-button{
+    vertical-align:middle;
+}    
 a.vote_available{
     color:black;
 }  
@@ -309,9 +322,6 @@ span.vote_available{
     clear:both;
     font-style:italic;
     
-}
-.fail{
-    color:red;
 }
 .yes_vote, .pass{
     color:green;
