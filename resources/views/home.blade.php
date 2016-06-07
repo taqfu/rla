@@ -77,6 +77,7 @@
         <div class='notification margin-left'>
             <p>
             You created a new achievement. 
+            <div class="fb-share-button" data-href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}" data-layout="button" data-mobile-iframe="true"></div>            
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}" 
               data-text="I just created a new achievement! '{{substr($timeline_item->achievement->name, 0, 32)}}'
               @if (strlen($timeline_item->achievement->name)>32)

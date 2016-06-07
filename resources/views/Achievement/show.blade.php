@@ -14,7 +14,10 @@
     @endif
 @endsection
 
-
+@section('head')
+<meta property="og:title" content="title" />
+<meta property="og:description" content="description" />
+@endsection
 @section('content')
 @include ('Achievement.header')
 @include ('Achievement.menu', ['id'=>$main->id, 'active_item'=>'info'])
