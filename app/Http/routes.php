@@ -49,9 +49,16 @@ Route::get('/settings', ['as'=>'settings', function(){
 }]);
 Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', function($achievement_id){
     $main = Achievement::where('id', $achievement_id)->first();
+    if (Auth::guest()){
+        $following=0;
+    } else if (Auth::user()){
+        $following=count(Follow::where('user_id', Auth::user()->id)
+          ->where('achievement_id', $achievement_id)
+          ->get())>0;
+    }
     return View('Achievement.discussion', [
         'main'=>$main,
-        "following"=>count(Follow::where('user_id', Auth::user()->id)->where('achievement_id', $main->id)->get())>0,
+        "following"=>$following,
     ]);
 }]);
 

@@ -117,7 +117,13 @@ class AchievementController extends Controller
      */
     public function show($id)
     {
-        $main = Achievement::where('id', $id)->first();
+        if (Auth::guest()){
+            $following =0;
+        } else if (Auth::user()){
+            $following=count(Follow::where('user_id', Auth::user()->id)
+              ->where('achievement_id', $id)
+              ->get())>0;
+        }
         $proofs = Proof::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
         if (Auth::user()){
             $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
@@ -125,10 +131,10 @@ class AchievementController extends Controller
             $votes = null;
         }
         return View::make('Achievement.show', [
-            "main"=>$main,
+            "main"=>Achievement::where('id', $id)->first(),
             "proofs"=>$proofs,
             "votes"=>$votes,
-            "following"=>count(Follow::where('user_id', Auth::user()->id)->where('achievement_id', $main->id)->get())>0,
+            "following"=>$following,
         ]);
     }
 

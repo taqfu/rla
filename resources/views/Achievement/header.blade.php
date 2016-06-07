@@ -59,7 +59,6 @@
               @endif
             >
             Following</label>
-            <input type='submit' />
         </form>
     </div>
     @endif
