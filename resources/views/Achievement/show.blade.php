@@ -16,7 +16,7 @@
 
 @section('head')
 <meta property="og:title" content="{{$main->name}}" />
-<meta property="og:description" content="Achievemented completed!" />
+<meta property="og:description" content="Real Life Achievement Profile" />
 @endsection
 @section('content')
 @include ('Achievement.header')

@@ -71,12 +71,26 @@
               denied
             @endif
             .
+            
+            @if (substr($timeline_item->event, -1, 1) == "1")
+            <p>
+            <div class="fb-share-button" data-href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}" data-layout="button" data-mobile-iframe="true"></div>            
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}" 
+              data-text="I just completed an achievement! '{{substr($timeline_item->proof->achievement->name, 0, 32)}}'
+              @if (strlen($timeline_item->proof->achievement->name)>32)
+              ...
+              @endif'" 
+              data-via="doit_proveit">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </p>
+            @endif
         </div>
     @elseif (substr($timeline_item->event, 0, 15)=="new achievement")
         <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
         <div class='notification margin-left'>
             <p>
             You created a new achievement. 
+            </p>
+            <p>
             <div class="fb-share-button" data-href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}" data-layout="button" data-mobile-iframe="true"></div>            
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}" 
               data-text="I just created a new achievement! '{{substr($timeline_item->achievement->name, 0, 32)}}'
@@ -84,6 +98,7 @@
               ...
               @endif'" 
               data-via="doit_proveit">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
             </p>
             @if($timeline_item->event=="new achievement no proof")
                 <p>(Unfortunately, you provided no proof, so its inactive.)</p>

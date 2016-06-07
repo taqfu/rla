@@ -11,7 +11,22 @@
     @endif
 @endsection
 @section('head')
-<link rel=”image_src” href=”{{$proof->url}}.png” />
+<meta property="og:description" content="
+  @if (substr($proof->user->name, -1, 1)=='s')
+    {{$proof->user->name}}'
+  @else
+    {{$proof->user->name}}'s
+  @endif  
+    proof for completing '{{$proof->achievement->name}}' - 
+
+  @if ($proof->status==0)
+    Denied!
+  @elseif ($proof->status==1)
+    Approved
+  @elseif ($proof->status==2)
+    Pending Approval
+  @endif
+" />
 @endsection
 @section('content')
 <h1>
