@@ -1,5 +1,6 @@
 <?php
 use App\Achievement;
+use App\Follow;
 use App\Message;
 use App\Proof;
 use App\Timeline;
@@ -47,8 +48,10 @@ Route::get('/settings', ['as'=>'settings', function(){
     }
 }]);
 Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', function($achievement_id){
+    $main = Achievement::where('id', $achievement_id)->first();
     return View('Achievement.discussion', [
-        'main'=>Achievement::where('id', $achievement_id)->first(),
+        'main'=>$main,
+        "following"=>count(Follow::where('user_id', Auth::user()->id)->where('achievement_id', $main->id)->get())>0,
     ]);
 }]);
 

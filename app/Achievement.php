@@ -48,6 +48,14 @@ class Achievement extends Model
     public function comments(){
         return $this->hasMany('\App\Comment');
     }
+    public static function fetch_followers($id){
+        $followers = array();
+        $follows  = Follow :: where ('achievement_id', $id)->get();
+        foreach ($follows as $follow){
+            $followers [] = $follow->user_id;
+        }
+        return $followers;
+    }
     public static function fetch_owners($id){
         $owners = array();
         $proofs = Proof :: where ('achievement_id', $id)->where('status', 1)->get();

@@ -32,12 +32,33 @@
     @if (Auth::user())
     <div id='follow_menu' class='right'>
         <form method="POST" action="{{route('follow.update', ['id'=>$main->id])}}">
+            @foreach ($errors->all() as $error)
+                {{$error}} 
+            @endforeach
             {{csrf_field()}}
             {{method_field('PUT')}}
-            <input type='radio' name='following' value="0">
-            <label>Not Following</label>
-            <input type='radio' name='following' value="1">
-            <label class=''>Following</label>
+            <input type='radio' id='unfollow' name='following' value="0" 
+              @if (!$following)
+                checked
+              @endif
+            >
+            <label for='unfollow'
+              @if (!$following)
+              class='active'
+              @endif
+            >
+            Not Following</label>
+            <input type='radio' id='follow' name='following' value="1"
+              @if ($following)
+                checked
+              @endif
+            >
+            <label for='follow' 
+              @if ($following)
+              class='active'
+              @endif
+            >
+            Following</label>
             <input type='submit' />
         </form>
     </div>

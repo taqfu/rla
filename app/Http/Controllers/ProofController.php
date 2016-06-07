@@ -61,6 +61,12 @@ class ProofController extends Controller
         $proof->url = $request->proofURL;
         $proof->status = 2;
         $proof->save();
+        if (count(Follow::where('achievement_id', $request->achievement->id)->where('user_id', Auth::user()->id)->get())==0){
+            $follow = new Follow;
+            $follow->achievement_id = $request->achievement_id;
+            $follow->user_id = Auth::user()->id;
+            $follow->save();
+        }
         $timeline = new Timeline;
         $timeline->user_id = Auth::user()->id;
         $timeline->event = "new proof";

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Achievement;
+use App\Follow;
 use App\Proof;
 use App\Timeline;
 use App\Vote;
@@ -26,7 +27,7 @@ class AchievementController extends Controller
             checkProofs();
             return View::make('Achievement.index', [
               "achievements"=>Achievement::orderBy('name','asc')->get(), //If you change orderBy, change it for next line
-                "last_achievement"=>Achievement::orderBy('name', 'desc')->first(),
+              "last_achievement"=>Achievement::orderBy('name', 'desc')->first(),
             ]);
     }
 
@@ -79,6 +80,11 @@ class AchievementController extends Controller
         $achievement->status = strlen($request->proofURL)>0 ? 2 : 3;
         $achievement->save();
 
+        $follow = new Follow;
+        $follow->user_id = Auth::user()->id;
+        $follow->achievement_id = $achievement->id;
+        $follow->save();
+
         $timeline = new Timeline;
         $timeline->user_id = Auth::user()->id; 
         $timeline->event = strlen($request->proofURL)>0 ? "new achievement" : "new achievement no proof";
@@ -122,6 +128,7 @@ class AchievementController extends Controller
             "main"=>$main,
             "proofs"=>$proofs,
             "votes"=>$votes,
+            "following"=>count(Follow::where('user_id', Auth::user()->id)->where('achievement_id', $main->id)->get())>0,
         ]);
     }
 
@@ -189,9 +196,10 @@ function changeStatus($proof_id, $status){
         $timeline->save();
     }
     $achievement = Achievement::find($proof->achievement_id);
+
     if ($achievement->status==2){
         $timeline = new Timeline;
-        $timeline->user_id = $achievement->user_id;
+        $timeline->user_id = $achievement->created_by;
         $timeline->event = "change achievement status " . $achievement->status . " to " . (int)$status;
         $timeline->achievement_id = $achievement->id;  
         $timeline->save();

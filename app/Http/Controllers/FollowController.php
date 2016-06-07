@@ -75,10 +75,38 @@ class FollowController extends Controller
             return back()->withErrors("You need to be logged into to do this.");
         }
         $this->validate($request, [
-            'following' => 'boolean',
-            'not_following' => 'boolean',
+            'following' => 'required|boolean',
         ]);
-        var_dump($request->following, " ", $request->not_following);
+        $num_of_follows = count(Follow::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get());
+        if ($num_of_follows>1){
+            //ERROR - following too many
+            return back()->withErrors("You have too many follows.");
+        }
+        var_dump((boolean)$request->following);
+
+        if ((boolean)$request->following){
+            if ($num_of_follows>0){
+                // ERROR - should not be able to follow when it's already following.
+                return back()->withErrors("You can't follow. You're already following.");
+            } else {
+                $follow = new Follow;
+                $follow->user_id = Auth::user()->id;
+                $follow->achievement_id = $id;
+                $follow->save();
+            }
+        } else {
+            if ($num_of_follows>0){
+                $follows = Follow::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
+                foreach ($follows as $follow){
+                    $follow->delete();
+                }
+            } else {
+                // ERROR - unfollowing when it's not following.
+                return back()->withErrors("You can't unfollow. You've already unfollowed.");
+                
+            }
+        }
+        return back();
     }
 
     /**
