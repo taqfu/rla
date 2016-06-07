@@ -18,25 +18,25 @@
 @endif
 <div id='achievement_filters' class='margin-bottom center margin-bottom' >
     <div class='approved'>
-    <label for='approved' class='approved filter'>Approved </label>
-    <input id='approved' type='checkbox'  class='filter' />
+        <label for='approved' class='approved filter'>Approved </label>
+        <input id='approved' type='checkbox'  class='filter' />
     </div>
     <div class='denied'>
-    <label for='denied' class='denied filter'>Denied </label>
-    <input id='denied' type='checkbox' class='filter' />
+        <label for='denied' class='denied filter'>Denied </label>
+        <input id='denied' type='checkbox' class='filter' />
     </div>
     <div class='pending'>
-    <label for='pending' class='filter pending'>Pending </label>
-    <input id='pending' type='checkbox'  class='filter'>
+        <label for='pending' class='filter pending'>Pending </label>
+        <input id='pending' type='checkbox'  class='filter'>
+    </div>
+    <div class='inactive'>
+        <label for='inactive' class='filter inactive'>Inactive </label>
+        <input id='inactive' type='checkbox' class='filter'>
     </div>
     @if (Auth::user())
     <div class='complete'>
-    <label for='complete' class='complete filter'>Complete </label>
-    <input id='complete' type='checkbox' class='filter'>
-    </div>
-    <div class='inactive'>
-    <label for='inactive' class='filter inactive'>Inactive </label>
-    <input id='inactive' type='checkbox' class='filter'>
+        <label for='complete' class='complete filter'>Complete </label>
+        <input id='complete' type='checkbox' class='filter'>
     </div>
     @endif
 </div>
