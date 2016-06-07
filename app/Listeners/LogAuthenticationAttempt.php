@@ -28,7 +28,7 @@ class LogAuthenticationAttempt
      */
     public function handle(Attempting $event)
     {
-        DB::insert('insert into logins(created_at, updated_at, login, ip, success) values (now(), now(), ?, ?, ?)', 
-          [$event->credentials['username'], Request::ip(), Auth::check()]);
+        DB::insert('insert into logins(created_at, updated_at, login, ip) values (now(), now(), ?, ?)', 
+          [$event->credentials['username'], Request::ip()]);
     }
 }

@@ -72,7 +72,6 @@ class AchievementController extends Controller
             }
             $error_msg = $error_msg . " before trying again.";
             return back()->withErrors($error_msg)->withInput();
-
         }
         $achievement = new Achievement;
         $achievement->name = $request->name;
