@@ -52,6 +52,12 @@ td{
 #discussion_container{
     margin-top:48px;
 }
+#follow_menu label{
+    margin-right:16px;
+}
+#follow_menu label.active{
+    text-decoration:underline;
+}
 #guest_warning{
     padding:16px;
 }

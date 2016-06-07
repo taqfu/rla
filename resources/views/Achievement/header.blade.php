@@ -29,4 +29,17 @@
     @elseif ($main->status==3)
         - Inactive(requires proof)
     @endif
+    @if (Auth::user())
+    <div id='follow_menu' class='right'>
+        <form method="POST" action="{{route('follow.update', ['id'=>$main->id])}}">
+            {{csrf_field()}}
+            {{method_field('PUT')}}
+            <input type='radio' name='following' value="0">
+            <label>Not Following</label>
+            <input type='radio' name='following' value="1">
+            <label class=''>Following</label>
+            <input type='submit' />
+        </form>
+    </div>
+    @endif
 </div>
