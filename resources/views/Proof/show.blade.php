@@ -43,12 +43,15 @@
     </a>
 
 </h1>
+<h2>
+    Proof #{{$proof->id}}
+</h2>
 <div id='proof_statement'>
 Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 @if (Auth::user() && Auth::user()->id==$proof->user_id)
-    you
+ you
 @else
-<a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->username}}</a>
+ <a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->username}}</a>
 @endif
  on
     @if (Auth::guest())
@@ -56,7 +59,7 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
     @elseif (Auth::user())
     {{date('m/d/y h:i:s', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)))}}.
     @endif
-.</div>
+</div>
 <div id='proof_status' class='inline'>
 &nbsp;
 @if ($proof->status==0)
