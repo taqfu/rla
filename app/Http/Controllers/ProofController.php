@@ -33,7 +33,7 @@ class ProofController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -56,7 +56,7 @@ class ProofController extends Controller
             return back()->withErrors("'ERROR: You cannot submit a proof for this achievement. $timestamp User ID:" . Auth::user()->id)->withInput();
         }
         $proof = new Proof;
-        $proof->user_id = Auth::user()->id; 
+        $proof->user_id = Auth::user()->id;
         $proof->achievement_id = $request->achievementID;
         $proof->url = $request->proofURL;
         $proof->status = 2;
@@ -71,7 +71,7 @@ class ProofController extends Controller
         $timeline->user_id = Auth::user()->id;
         $timeline->event = "new proof";
         $timeline->proof_id = $proof->id;
-        $timeline->save();   
+        $timeline->save();
         $vote = new Vote;
         $vote->user_id = Auth::user()->id;
         $vote->achievement_id = $request->achievementID;
@@ -85,20 +85,20 @@ class ProofController extends Controller
             $timeline = new Timeline;
             $timeline->user_id = $achievement->created_by;
             $timeline->event = "change achievement status to 2";
-            $timeline->achievement_id = $achievement->id;  
+            $timeline->achievement_id = $achievement->id;
             $timeline->save();
         }
-        $owners_of_achievement = Achievement::fetch_owners($request->achievementID);
-        foreach ($owners_of_achievement as $owner){
+        $followers_of_achievement = Achievement::fetch_followers($request->achievementID);
+        foreach ($followers_of_achievement as $follower){
             $timeline = new Timeline;
-            $timeline->user_id = $owner;
+            $timeline->user_id = $follower;
             $timeline->event = "new proof";
-            $timeline->proof_id = $proof->id;  
+            $timeline->proof_id = $proof->id;
             $timeline->save();
         }
         return back();
     }
-        
+
 
     /**
      * Display the specified resource.
@@ -114,7 +114,7 @@ class ProofController extends Controller
             "num_of_for_votes"=>count(Vote::where('proof_id', $id)->where('vote_for', true)->get()),
             "num_of_against_votes"=>count(Vote::where('proof_id', $id)->where('vote_for', false)->get()),
             "passing"=>Proof::passing_approval($id),
-        ]);   
+        ]);
 
     }
 

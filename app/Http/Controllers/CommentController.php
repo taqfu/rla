@@ -67,10 +67,10 @@ class CommentController extends Controller
         }
         $comment->save();
         if ($request->table=='achievement'){
-            $owners_of_achievement = Achievement::fetch_owners($request->tableID);
-            foreach ($owners_of_achievement as $owner){
+            $followers_of_achievement = Achievement::fetch_followers($request->tableID);
+            foreach ($followers_of_achievement as $follower){
                 $timeline = new Timeline;
-                $timeline->user_id = $owner;
+                $timeline->user_id = $follower;
                 $timeline->event = "new comment";
                 $timeline->comment_id = $comment->id;
                 $timeline->save();

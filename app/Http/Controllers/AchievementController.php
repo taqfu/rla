@@ -58,7 +58,7 @@ class AchievementController extends Controller
         ], ['url'=>'Invalid URL. (Try copy and pasting instead.)']);
         $last_achievement = Achievement::where('created_by', Auth::user()->id)->orderBy('created_at', 'desc')->first();
         if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < Config::get('rla.min_time_to_post')){
-            $num_of_seconds = Config::get('rla.min_time_to_post') - (time()-strtotime($last_achievement->created_at)); 
+            $num_of_seconds = Config::get('rla.min_time_to_post') - (time()-strtotime($last_achievement->created_at));
             $num_of_minutes = floor($num_of_seconds/60);
             $num_of_seconds = $num_of_seconds % 60;
             $error_msg = "You are doing this too often. Please wait ";
@@ -86,11 +86,11 @@ class AchievementController extends Controller
         $follow->save();
 
         $timeline = new Timeline;
-        $timeline->user_id = Auth::user()->id; 
+        $timeline->user_id = Auth::user()->id;
         $timeline->event = strlen($request->proofURL)>0 ? "new achievement" : "new achievement no proof";
         $timeline->achievement_id = $achievement->id;
         $timeline->save();
-        
+
         if (strlen($request->proofURL)>0){
             $proof = new Proof;
             $proof->user_id = Auth::user()->id;
@@ -177,7 +177,7 @@ class AchievementController extends Controller
 function checkProofs(){
     $max_time_to_vote = 604800;
     $max_time_to_not_vote = 86400;
-    $proofs_needing_to_be_checked = Proof::where("status", 2)->orderBy("created_at", "asc")->get();    
+    $proofs_needing_to_be_checked = Proof::where("status", 2)->orderBy("created_at", "asc")->get();
     foreach($proofs_needing_to_be_checked as $proof){
         $last_no_vote = Vote::where('proof_id', $proof->id)->where('vote_for', false)->orderBy('created_at', 'desc')->first();
         if (($last_no_vote==null && time()-strtotime($proof->created_at)>=$max_time_to_not_vote)
@@ -193,12 +193,12 @@ function changeStatus($proof_id, $status){
     $proof = Proof::find($proof_id);
     $proof->status = $status;
     $proof->save();
-    $owners_of_achievement = Achievement::fetch_owners($proof->achievement_id);
-    foreach ($owners_of_achievement as $owner){
+    $followers_of_achievement = Achievement::fetch_followers($proof->achievement_id);
+    foreach ($followers_of_achievement as $follower){
         $timeline = new Timeline;
-        $timeline->user_id = $owner;
+        $timeline->user_id = $follower;
         $timeline->event = "change proof status " . $proof->status . " to " . (int)$status;
-        $timeline->proof_id = $proof->id;  
+        $timeline->proof_id = $proof->id;
         $timeline->save();
     }
     $achievement = Achievement::find($proof->achievement_id);
@@ -207,11 +207,9 @@ function changeStatus($proof_id, $status){
         $timeline = new Timeline;
         $timeline->user_id = $achievement->created_by;
         $timeline->event = "change achievement status " . $achievement->status . " to " . (int)$status;
-        $timeline->achievement_id = $achievement->id;  
+        $timeline->achievement_id = $achievement->id;
         $timeline->save();
-        $achievement->status = $status; 
+        $achievement->status = $status;
         $achievement->save();
     }
 }
-
-    

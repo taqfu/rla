@@ -67,13 +67,13 @@ class VoteController extends Controller
         $after = Proof::passing_approval($request->proofID);
         if ($before != $after){
             $proof = Proof::where('id', $request->proofID)->first();
-            $owners_of_achievement = Achievement::fetch_owners($proof->id);
-            foreach ($owners_of_achievement as $owner){
+            $followers_of_achievement = Achievement::fetch_followers($proof->id);
+            foreach ($followers_of_achievement as $follower){
                 $timeline = new Timeline;
-                $timeline->user_id = $owner;
+                $timeline->user_id = $follower;
                 $caption = $after ? "approved" : "denied";
                 $timeline->event = "swing vote - " . $caption;
-                $timeline->vote_id = $vote->id;  
+                $timeline->vote_id = $vote->id;
                 $timeline->save();
             }
         }
@@ -125,5 +125,3 @@ class VoteController extends Controller
         //
     }
 }
-
-
