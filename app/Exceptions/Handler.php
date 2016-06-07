@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Exceptions;
-
+use Auth;
 use Exception;
+use Mail;
+use Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -35,7 +37,12 @@ class Handler extends ExceptionHandler
     {
             // emails.exception is the template of your email
             // it will have access to the $error that we are passing below
-            Mail::send('emails.exception', [], function ($m) {
+            if (Auth::guest()){
+                $user = "guest";
+            } else if (Auth::user()){
+                $user = Auth::user()->username;
+            } 
+            Mail::send('emails.exception', ['error' => $e, 'user'=>$user, "ip"=>Request::ip()], function ($m) {
                 $m->to('taqfu0@gmail.com', 'Do It! Prove It! Bug Reporting')->subject('Error');
             });
         parent::report($e);
@@ -50,6 +57,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        return parent::render($request, $e);
+        if ($e instanceof \ErrorException && !env('APP_DEBUG')) {
+            return response()->view('errors.500', [], 500);
+        } else {
+            return parent::render($request, $e);
+        }
     }
 }

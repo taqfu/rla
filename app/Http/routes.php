@@ -16,6 +16,7 @@ use App\User;
 |
 */
 Route::auth();
+
 Route::get('/about', ['as'=>'about', function(){
     return View('about');
 }]);

@@ -7,12 +7,6 @@
 
 $old_date = 0; 
 $old_time =0; 
-/*
-            Mail::send('emails.exception', [], function ($m) {
-                $m->to('taqfu0@gmail.com', 'Do It! Prove It! Bug Reporting')->subject('Error');
-            });
-*/
-adsfasdfa
 ?>
 @forelse ($timeline_items as $timeline_item)
     <?php
