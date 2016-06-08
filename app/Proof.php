@@ -37,6 +37,43 @@ class Proof extends Model
         return true;
         
     }
+    public static function changeStatus($id, $status){
+        $proof = Proof::find($id);
+        $proof->status = $status;
+        $proof->save();
+        $followers_of_achievement = Achievement::fetch_followers($proof->achievement_id);
+        foreach ($followers_of_achievement as $follower){
+            $timeline = new Timeline;
+            $timeline->user_id = $follower;
+            $timeline->event = "change proof status " . $proof->status . " to " . (int)$status;
+            $timeline->id = $proof->id;
+            $timeline->save();
+        }
+        $achievement = Achievement::find($proof->achievement_id);
+    
+        if ($achievement->status==2){
+            $timeline = new Timeline;
+            $timeline->user_id = $achievement->created_by;
+            $timeline->event = "change achievement status " . $achievement->status . " to " . (int)$status;
+            $timeline->achievement_id = $achievement->id;
+            $timeline->save();
+            $achievement->status = $status;
+            $achievement->save();
+        }
+    }
+    public static function check(){
+        $max_time_to_vote = 604800;
+        $max_time_to_not_vote = 86400;
+        $proofs_needing_to_be_checked = Proof::where("status", 2)->orderBy("created_at", "asc")->get();
+        foreach($proofs_needing_to_be_checked as $proof){
+            $last_no_vote = Vote::where('proof_id', $proof->id)->where('vote_for', false)->orderBy('created_at', 'desc')->first();
+            if (($last_no_vote==null && time()-strtotime($proof->created_at)>=$max_time_to_not_vote)
+              || ($last_no_vote!=null && time()-strtotime($last_no_vote->created_at)>=$max_time_to_not_vote)
+              || time()-strtotime($proof->created_at)>=$max_time_to_vote){
+                Proof::changeStatus($proof->id, Proof::passing_approval($proof->id));
+            }
+        }
+    }
     public function comments(){
         return $this->hasMany('\App\Comment');
     }
