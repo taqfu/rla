@@ -5,6 +5,7 @@ use Auth;
 use Exception;
 use Mail;
 use Request;
+use URL;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -42,7 +43,7 @@ class Handler extends ExceptionHandler
             } else if (Auth::user()){
                 $user = Auth::user()->username;
             } 
-            Mail::send('emails.exception', ['error' => $e, 'user'=>$user, "ip"=>Request::ip()], function ($m) {
+            Mail::send('emails.exception', ['error' => $e, 'user'=>$user, "ip"=>Request::ip(), "url"=>Request::url(), "prev"=>URL::previous() ], function ($m) {
                 $m->to('taqfu0@gmail.com', 'Do It! Prove It! Bug Reporting')->subject('Error');
             });
         parent::report($e);

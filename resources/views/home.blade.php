@@ -4,7 +4,6 @@
 @section('content')
 <div id='homepage'>
 <?php 
-
 $old_date = 0; 
 $old_time =0; 
 ?>
