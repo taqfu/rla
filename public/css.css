@@ -111,15 +111,29 @@ form.achievement{
     display:inline-block;
 }
 .achievement-unlocked-container{
-    width:50%;
-    padding:32px;
+    width:35%;
+    margin:auto;
     background-color:grey;
     border:1px black solid;
     border-radius:64px;
+    padding:8px;
+    
 }
-.caption{
+.achievement-unlocked-container .title{
     display:inline;
     float:right;
+    text-align:center;
+    font-size:2em;
+    margin-right:16px;
+}
+.achievement-unlocked-container .description{
+    display:inline;
+}
+.achievement-unlocked-icon-container{
+    background-color:black;
+    border-radius:50%;
+    width:75px;
+    height:75px;
 }
 .achievement_proof{
     padding:16px;

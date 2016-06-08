@@ -7,7 +7,13 @@
 <h2>Real Life Achievements</h2>
 <!--
 <div class='achievement-unlocked-container'>
-    <div class='caption'>Achievement Unlocked</div>
+    <div class='inline' style='background-color:blue;'>
+        <div class='achievement-unlocked-icon-container'>
+            <img src="{{url('/')}}/logo-42.png" >
+        </div>
+    </div>
+    <div class='title'>Achievement Unlocked</div>
+    <div class='description'>You found a real life achievements site!</div>
 </div>
 -->
 <div id='public_message' class='margin-left'>
