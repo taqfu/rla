@@ -55,7 +55,7 @@ class AchievementController extends Controller
             'name' => 'required|unique:achievements|max:100',
             'proofURL' => 'url|max:255',
         ], ['url'=>'Invalid URL. (Try copy and pasting instead.)']);
-        $last_achievement = Achievement::where('created_by', Auth::user()->id)->orderBy('created_at', 'desc')->first();
+        $last_achievement = Achievement::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
         if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < Config::get('rla.min_time_to_post')){
             $num_of_seconds = Config::get('rla.min_time_to_post') - (time()-strtotime($last_achievement->created_at));
             $num_of_minutes = floor($num_of_seconds/60);
@@ -75,7 +75,7 @@ class AchievementController extends Controller
         }
         $achievement = new Achievement;
         $achievement->name = $request->name;
-        $achievement->created_by = Auth::user()->id;
+        $achievement->user_id = Auth::user()->id;
         $achievement->status = strlen($request->proofURL)>0 ? 2 : 3;
         $achievement->save();
 
@@ -171,7 +171,3 @@ class AchievementController extends Controller
         //
     }
 }
-
-
-
-

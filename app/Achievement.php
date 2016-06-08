@@ -78,7 +78,7 @@ class Achievement extends Model
         return false;
     }
     public function user(){
-        return $this->belongsTo("\App\User", 'created_by');
+        return $this->belongsTo("\App\User", 'user_id');
     }
     public function proofs(){
         return $this->hasMany("\App\Proof");

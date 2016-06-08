@@ -83,7 +83,7 @@ class ProofController extends Controller
             $achievement->status=2;
             $achievement->save();
             $timeline = new Timeline;
-            $timeline->user_id = $achievement->created_by;
+            $timeline->user_id = $achievement->user_id;
             $timeline->event = "change achievement status to 2";
             $timeline->achievement_id = $achievement->id;
             $timeline->save();

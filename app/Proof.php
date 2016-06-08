@@ -18,7 +18,7 @@ class Proof extends Model
         $proof = Proof::where('id', $id)->first();
         $achievement = Achievement::where('id', $proof->achievement->id)->first();
         $num_of_approved_proofs = count(Proof::where('user_id', Auth::user()->id)->where('status', 1)->get());
-        if ($proof->user_id == Auth::user()->id || $achievement->created_by==$proof->user_id || $num_of_approved_proofs>0){
+        if ($proof->user_id == Auth::user()->id || $achievement->user_id==$proof->user_id || $num_of_approved_proofs>0){
             return true;
         }
         return false;
@@ -35,7 +35,7 @@ class Proof extends Model
             return false;
         }
         return true;
-        
+
     }
     public static function changeStatus($id, $status){
         $proof = Proof::find($id);
@@ -50,10 +50,10 @@ class Proof extends Model
             $timeline->save();
         }
         $achievement = Achievement::find($proof->achievement_id);
-    
+
         if ($achievement->status==2){
             $timeline = new Timeline;
-            $timeline->user_id = $achievement->created_by;
+            $timeline->user_id = $achievement->user_id;
             $timeline->event = "change achievement status " . $achievement->status . " to " . (int)$status;
             $timeline->achievement_id = $achievement->id;
             $timeline->save();
@@ -85,13 +85,13 @@ class Proof extends Model
         $now = new DateTime(date('y-m-d H:i:s'));
         $interval = $now->diff($end);
         return format_interval($interval);
-        
+
     }
     public static function min_time_to_vote($id){
         $string = "";
         $proof = Proof::where('id', $id)->first();
         $last_no_vote = Vote::where ("proof_id", $id)->where('vote_for', false)->orderBy('created_at', 'desc')->first();
-        $begin = $last_no_vote!=null 
+        $begin = $last_no_vote!=null
           ? $begin = new DateTime($last_no_vote->created_at)
           : $begin = new DateTime($proof->created_at);
         $end = clone $begin;
