@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name='description' content='Real Life Achievement Site'>
+    <meta name='description' content='Welcome to your resume of awesome! Do It! Prove It! is a real life achievements site dedicated to tracking and sharing your accomplishments. Show the world how awesome you are.'>
     <meta name='keywords' content='real life achievement, real world achievement, achievement unlocked'>
     
     <title>Do It! Prove It!@yield('title')</title>
@@ -41,13 +41,10 @@
                 Do It! Prove It!
             </a>
         </div>
-        <div id='page_listing' class='inline'>
-            <a href="{{url('/')}}">Home</a>
+        <div id='page_listing'>
             <a href="{{route('achievement.index')}}">Achievements</a>
-            <a href="{{route('feedback')}}">Feedback</a>
-	        <a href="{{route('about')}}">About</a>
         </div>
-        <div id='user_menu' class='right'>
+        <div id='user_menu'>
                 @if (Auth::guest())
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('/register') }}">Register</a>
@@ -66,7 +63,12 @@
     </nav>
 
     @yield('content')
-
+    <footer>
+        <div>
+	        <a href="{{route('about')}}">About Us</a>
+            <a href="{{route('feedback')}}">Feedback</a>
+        </div>
+    </footer>
     <!-- JavaScripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
@@ -86,5 +88,6 @@
   ga('send', 'pageview');
 
 </script>
+
 </body>
 </html>

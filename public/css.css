@@ -1,9 +1,27 @@
+@media only screen AND (max-width:736px){
+    .mobileHidden {
+        display:none;
+    }
+    #page_listing{
+        margin-bottom:32px;
+    }
+    #user_menu{
+    }
+}
 .show_comments{
     display:none;
 }
 body{
     margin:0px;
 }
+footer div{
+    color:grey;
+    text-align:center;
+}
+footer div a {
+    margin:8px;
+}
+    
 h1, h2{
     text-align:center;
 }
@@ -72,8 +90,10 @@ td{
     margin-bottom:2px;
 }
 #page_listing{
+    display:inline;
     margin-left:32px;
 }
+    
 #page_listing a, #user_menu a{
     margin:4px;
 }
@@ -96,6 +116,9 @@ td{
     text-decoration:none;
     margin-left:4px;
 }
+#user_menu{
+    float:right;
+}
 td.achievement{
     border:1px black dashed;
 }
@@ -113,27 +136,39 @@ form.achievement{
 .achievement-unlocked-container{
     width:35%;
     margin:auto;
+    margin-bottom:32px;
     background-color:grey;
     border:1px black solid;
     border-radius:64px;
     padding:8px;
     
 }
-.achievement-unlocked-container .title{
+.achievement-unlocked-text-container{
     display:inline;
     float:right;
-    text-align:center;
-    font-size:2em;
-    margin-right:16px;
 }
-.achievement-unlocked-container .description{
-    display:inline;
+
+.achievement-unlocked-text-container .title{
+    margin-right:64px;
+    font-size:2em;
+}
+.achievement-unlocked-text-container .description{ /*58 characters max*/
+    margin-top:8px;
+    font-style:italic;
 }
 .achievement-unlocked-icon-container{
     background-color:black;
     border-radius:50%;
     width:75px;
     height:75px;
+    position:relative;
+}
+.achievement-unlocked-icon-container img{
+    position:absolute;
+    top:0;
+    bottom:0;
+    margin:auto;
+    margin-left:20%;
 }
 .achievement_proof{
     padding:16px;
