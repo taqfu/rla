@@ -8,6 +8,17 @@ $(document.body).ready(function () {
           ? $("."+event.target.id+"_achievement").show() 
           : $("."+event.target.id+"_achievement").hide();
     });
+    $(document).on('focusin', "#create_proof_url", function(event){
+        if ($("#create_proof_url").val()=="Paste URL here."){
+            $("#create_proof_url").val("");
+            $("#create_proof_url").css("color", "black");
+        }    });
+    $(document).on('focusout', "#create_proof_url", function(event){
+        if ($("#create_proof_url").val()==""){
+            $("#create_proof_url").val("Paste URL here.");
+            $("#create_proof_url").css("color", "lightgrey");
+        }
+    });
     $(document).on("click", ".hide_comments", function (event) {
         var id_num = event.target.id.substr(13, event.target.id.length-13);
         $("#show_comments" + id_num).show();

@@ -41,10 +41,8 @@
                 Do It! Prove It!
             </a>
         </div>
-        <div id='page_listing'>
-            <a href="{{route('achievement.index')}}">Achievements</a>
-        </div>
         <div id='user_menu'>
+            <a href="{{route('achievement.index')}}">Achievements</a>
                 @if (Auth::guest())
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('/register') }}">Register</a>
@@ -61,14 +59,17 @@
         </div>
         
     </nav>
-
+    <div id='content'>
     @yield('content')
+    </div>
+    <div>
     <footer>
         <div>
 	        <a href="{{route('about')}}">About Us</a>
             <a href="{{route('feedback')}}">Feedback</a>
         </div>
     </footer>
+    </div>
     <!-- JavaScripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->

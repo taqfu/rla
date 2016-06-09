@@ -11,14 +11,26 @@
 .show_comments{
     display:none;
 }
+html{
+    height:100%;
+}
 body{
+    min-height:100%;
     margin:0px;
+    position:relative;
+}
+footer{
+    width:100%;
+    position:absolute;
+    bottom:0;
+    height:32px;
+    text-align:center;
 }
 footer div{
     color:grey;
-    text-align:center;
 }
 footer div a {
+    color:black;
     margin:8px;
 }
     
@@ -67,6 +79,12 @@ td{
 #change_password{
     text-align:right;
 }
+#content{
+    padding-bottom:32px;
+}
+#create_proof_url{
+    color:lightgrey;
+}
 #discussion_container{
     margin-top:48px;
 }
@@ -91,12 +109,9 @@ td{
 }
 #page_listing{
     display:inline;
-    margin-left:32px;
+    margin-right:96px;
 }
     
-#page_listing a, #user_menu a{
-    margin:4px;
-}
 #proof_statement{
     margin:8px;
     margin-bottom:4px;
