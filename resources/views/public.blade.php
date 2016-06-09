@@ -25,10 +25,8 @@
     <p>
         Welcome to your resume of awesome!
     </p>
-<!--
-    <p id='achievements_link'>
+    <h2 id='achievements_link'>
         <a href="{{route('achievement.index')}}"> Check out the achievements available!</a></p>
-    </p>
--->
+    </h2>
 </div>
 @endsection
