@@ -1,4 +1,7 @@
-<?php use app\User; ?>
+<?php 
+    use App\Achievement;
+    use App\User; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +67,13 @@
     </div>
     <div>
     <footer>
-        <div>
+        <div class='left margin-left'>  
+            {{count(Achievement::get())}} Achievements
+        </div>
+        <div class='right margin-right'>
+            {{count(User::get())}} Users
+        </div>
+        <div id='center-footer'>
 	        <a href="{{route('about')}}">About Us</a>
             <a href="{{route('changes')}}">Changelist</a>
             <a href="{{route('feedback')}}">Feedback</a>

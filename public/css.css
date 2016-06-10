@@ -26,9 +26,6 @@ footer{
     height:32px;
     text-align:center;
 }
-footer div{
-    color:grey;
-}
 footer div a {
     color:black;
     margin:8px;
@@ -75,6 +72,13 @@ td{
 #app_nav{
     border-bottom:1px lightgrey dotted;
     overflow:visible;
+}
+#center-footer{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }
 #change_password{
     text-align:right;
@@ -214,6 +218,9 @@ a.brand{
 .center{
     text-align:center;
 }
+.center-margin{
+    margin:auto;
+}
 .clear{
     clear:both;
 }
@@ -291,6 +298,9 @@ float:left;
 }
 .margin-left2{
     margin-left:32px;
+}
+.margin-right{
+    margin-right:16px;
 }
 nav.menu{
     font-size:1.25em;

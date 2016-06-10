@@ -55,6 +55,12 @@ class ProofController extends Controller
             $timestamp = date('m/d/y h:i:s');
             return back()->withErrors("'ERROR: You cannot submit a proof for this achievement. $timestamp User ID:" . Auth::user()->id)->withInput();
         }
+        
+        $achievement = Achievement::find($request->achievementID);
+        if ($achievement->status==0 || $achievement->status>2){
+            $achievement->status=2;
+            $achievement->save();
+        }
         $proof = new Proof;
         $proof->user_id = Auth::user()->id;
         $proof->achievement_id = $request->achievementID;
