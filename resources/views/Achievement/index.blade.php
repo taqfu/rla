@@ -46,7 +46,30 @@
     @if (Auth::user())
     <?php $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id); ?>
     @endif
-        <tr> <td
+        <tr>
+        @if (Auth::user())
+        <?php $can_user_vote = Achievement::can_user_vote($achievement->id); ?>
+        <td class='achievement' style='padding:8px;font-size:1.5em;'>
+            @if ($can_user_vote)        
+            <form method="POST" action="{{route('AchievementVote.store')}}" style='display:inline;'>
+            {{csrf_field()}}
+            <input type='hidden' name='achievementID' value='{{$achievement->id}}' />
+            <input type='hidden' name='voteUp' value="1" />
+            <input type='submit' value='&uarr;' class='text_button' />
+            </form>
+            @endif
+            {{$achievement->tally}}
+            @if ($can_user_vote)
+            <form method="POST" action="{{route('AchievementVote.store')}}" style='display:inline;'>
+            {{csrf_field()}}
+            <input type='hidden' name='achievementID' value='{{$achievement->id}}' />
+            <input type='hidden' name='voteUp' value="0" />
+            <input type='submit' value='&darr;' class='text_button' />
+            </form>
+            @endif
+        </td>
+        @endif
+        <td
           title="Created by {{$achievement->user->username}} on
           @if (Auth::guest())
           {{date('m/d/y h:i:sA e', strtotime($achievement->created_at))}}

@@ -15,12 +15,23 @@ class Achievement extends Model
         if (Auth::guest()){
             return false;
         }
-        $num_of_pending_proofs = count(Proof::where('user_id', Auth::user()->id)->where('status', 2)->where('achievement_id', $id)->get());
-        if ($num_of_pending_proofs>0){
+        $num_of_pending_proofs_by_user = count(Proof::where('user_id', Auth::user()->id)->where('status', 2)->where('achievement_id', $id)->get());
+        $total_num_of_pending_proofs = count(Proof::where('status', 2)->where('achievement_id', $id)->get());
+        $achievement = Achievement::where('id', $id)->first();
+        if ($num_of_pending_proofs_by_user>0){
             return false;
-            //ERROR if more than 1
+            //ERROR - if more than 1
+        }
+        if ($achievement->status!=1){
+            return $total_num_of_pending_proofs==0;
         }
         return true;
+    }
+    public static function can_user_vote($id){
+        if (Auth::guest()){
+            return false;
+        }
+        return  count(AchievementVote::where('user_id', Auth::user()->id)->where('achievement_id', $id)->get())==0;
     }
     public static function can_user_vote_on_proof($id){
         if (Auth::guest()){
