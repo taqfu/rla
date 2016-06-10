@@ -1,12 +1,18 @@
 $(document.body).ready(function () {
-    $("input.filter").prop('checked', true);
+    $("input.filter:not(.inactive-filter)").prop('checked', true);
     $(document).on("change", "#follow_menu input", function (event) {
         $("#follow_menu form").submit();
     });
     $(document).on("change", ".filter", function (event) {
-        $("#"+event.target.id).prop('checked') 
-          ? $("."+event.target.id+"_achievement").show() 
-          : $("."+event.target.id+"_achievement").hide();
+        if($("#"+event.target.id).prop('checked')){
+            $("."+event.target.id+"_achievement").show();
+            if ($("."+event.target.id+"_achievement").hasClass('hidden')){
+                console.log("ASDFASDFA");
+                $("."+event.target.id+"_achievement").removeClass('hidden');
+            }
+        } else {
+            $("."+event.target.id+"_achievement").hide();
+        }
     });
     $(document).on('focusin', "#create_proof_url", function(event){
         if ($("#create_proof_url").val()=="Paste URL here."){

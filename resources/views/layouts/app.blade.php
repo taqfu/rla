@@ -66,6 +66,7 @@
     <footer>
         <div>
 	        <a href="{{route('about')}}">About Us</a>
+            <a href="{{route('changes')}}">Changelist</a>
             <a href="{{route('feedback')}}">Feedback</a>
         </div>
     </footer>

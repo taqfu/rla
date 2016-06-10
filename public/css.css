@@ -53,7 +53,7 @@ td{
     padding-left:8px;
     padding-right:8px;
 }
-#achievement_filters div{
+#achievement_filters div div{
     display:inline;
     margin:8px;
     padding:8px;
@@ -240,9 +240,10 @@ textarea.comment, textarea.message{
     height:100px;
     
 }
-td.complete_achievement{
+tr.complete_achievement{
     background-color:black;
     border:1px white dashed; 
+    color:white;
 }
 .denied{
     color:red;

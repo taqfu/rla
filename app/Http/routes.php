@@ -20,6 +20,9 @@ Route::auth();
 Route::get('/about', ['as'=>'about', function(){
     return View('about');
 }]);
+Route::get('/changes', ['as'=>'changes', function(){
+    return View('changes');
+}]);
 Route::get('/feedback', ['as'=>'feedback', function(){
     return View('feedback');
 }]);

@@ -16,27 +16,34 @@
      to create new achievements!
 </div>
 @endif
-<div id='achievement_filters' class='margin-bottom center margin-bottom' >
-    <div class='approved'>
-        <label for='approved' class='approved filter'>Approved </label>
-        <input id='approved' type='checkbox'  class='filter' />
-    </div>
-    <div class='denied'>
-        <label for='denied' class='denied filter'>Denied </label>
-        <input id='denied' type='checkbox' class='filter' />
-    </div>
-    <div class='pending'>
-        <label for='pending' class='filter pending'>Pending </label>
-        <input id='pending' type='checkbox'  class='filter'>
-    </div>
-    <div class='inactive'>
-        <label for='inactive' class='filter inactive'>Inactive </label>
-        <input id='inactive' type='checkbox' class='filter'>
+<div id='achievement_filters' class='margin-bottom center' >
+    &nbsp;
+    <div class='clear' style='display:block;'>
+    Status:
+        <div class='approved'>
+            <label for='approved' class='approved filter'>Approved </label>
+            <input id='approved' type='checkbox'  class='filter' />
+        </div>
+        <div class='denied'>
+            <label for='denied' class='denied filter'>Denied </label>
+            <input id='denied' type='checkbox' class='filter inactive-filter' />
+        </div>
+        <div class='pending'>
+            <label for='pending' class='filter pending'>Pending </label>
+            <input id='pending' type='checkbox'  class='filter'>
+        </div>
+        <div class='inactive'>
+            <label for='inactive' class='filter inactive'>Inactive </label>
+            <input id='inactive' type='checkbox' class='filter inactive-filter'>
+        </div>
     </div>
     @if (Auth::user())
-    <div class='complete'>
-        <label for='complete' class='complete filter'>Complete </label>
-        <input id='complete' type='checkbox' class='filter'>
+    <div class='clear' style='display:block;margin-top:16px;'>
+        &nbsp;
+        <div class='complete'>
+            <label for='complete' class='complete filter'>Completed By You </label>
+            <input id='complete' type='checkbox' class='filter'>
+        </div>
     </div>
     @endif
 </div>
@@ -46,7 +53,25 @@
     @if (Auth::user())
     <?php $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id); ?>
     @endif
-        <tr>
+        <tr class="
+        @if ($achievement->status==0 || $achievement->status==3)
+            hidden
+        @endif
+            @if ($achievement->status==1)
+                approved_achievement
+            @elseif ($achievement->status==0)
+                denied_achievement
+            @elseif ($achievement->status==2)
+                pending_achievement
+            @elseif ($achievement->status==3)
+                inactive_achievement
+            @endif
+            @if (Auth::user())
+                @if ($has_user_completed_achievement)
+                    complete_achievement
+                @endif
+            @endif
+        ">
         @if (Auth::user())
         <?php $can_user_vote = Achievement::can_user_vote($achievement->id); ?>
         <td class='achievement' style='padding:8px;font-size:1.5em;'>
@@ -78,20 +103,6 @@
           @endif
           "
           class='achievement
-            @if ($achievement->status==1)
-                approved_achievement
-            @elseif ($achievement->status==0)
-                denied_achievement
-            @elseif ($achievement->status==2)
-                pending_achievement
-            @elseif ($achievement->status==3)
-                inactive_achievement
-            @endif
-            @if (Auth::user())
-                @if ($has_user_completed_achievement)
-                    complete_achievement
-                @endif
-            @endif
         '>
             <a  class='
             @if(Auth::user())
