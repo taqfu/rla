@@ -4,10 +4,10 @@ $(document.body).ready(function () {
         $("#follow_menu form").submit();
     });
     $(document).on("change", ".filter", function (event) {
+        console.log($("#"+event.target.id).prop('checked'));
         if($("#"+event.target.id).prop('checked')){
             $("."+event.target.id+"_achievement").show();
             if ($("."+event.target.id+"_achievement").hasClass('hidden')){
-                console.log("ASDFASDFA");
                 $("."+event.target.id+"_achievement").removeClass('hidden');
             }
         } else {

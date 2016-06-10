@@ -269,6 +269,13 @@ div.feedback{
 .filter{
     margin-left:8px;
 }
+.filter-tooltip{
+    font-weight:bold;
+}
+.filter-tooltip:hover{
+    text-decoration:underline;
+    cursor:pointer;
+}
 .hidden{
     display:none;
 }
