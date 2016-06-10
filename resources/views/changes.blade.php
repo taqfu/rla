@@ -7,6 +7,7 @@
 <h4>06/10/16</h4>
 <ul>
     <li>Hopefully made the filters a little clearer by changing the caption names and also adding a (?) tooltip to it.</li>
+    <li>Achievement score now visible to guests. Achievements listed by score in descending order.</li>
 </ul>
 <h4>06/09/16</h4>
 <ul>

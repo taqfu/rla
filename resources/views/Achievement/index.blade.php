@@ -92,9 +92,9 @@
                 @endif
             @endif
         ">
+        <td class='achievement' style='padding:8px;font-size:1.5em;'>
         @if (Auth::user())
         <?php $can_user_vote = Achievement::can_user_vote($achievement->id); ?>
-        <td class='achievement' style='padding:8px;font-size:1.5em;'>
             @if ($can_user_vote)        
             <form method="POST" action="{{route('AchievementVote.store')}}" style='display:inline;'>
             {{csrf_field()}}
@@ -112,8 +112,10 @@
             <input type='submit' value='&darr;' class='text_button' />
             </form>
             @endif
-        </td>
+        @else
+            {{$achievement->tally}}
         @endif
+        </td>
         <td
           title="Created by {{$achievement->user->username}} on
           @if (Auth::guest())

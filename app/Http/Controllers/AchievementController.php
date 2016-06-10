@@ -26,7 +26,7 @@ class AchievementController extends Controller
     {
             Proof::check();
             return View::make('Achievement.index', [
-              "achievements"=>Achievement::orderBy('name','asc')->get(),
+              "achievements"=>Achievement::orderBy('tally','desc')->orderBy('name','asc')->get(),
             ]);
     }
 
