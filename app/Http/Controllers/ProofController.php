@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Achievement;
+use App\Follow;
 use App\Proof;
 use App\Timeline;
 use App\Vote;
@@ -73,11 +74,6 @@ class ProofController extends Controller
             $follow->user_id = Auth::user()->id;
             $follow->save();
         }
-        $timeline = new Timeline;
-        $timeline->user_id = Auth::user()->id;
-        $timeline->event = "new proof";
-        $timeline->proof_id = $proof->id;
-        $timeline->save();
         $vote = new Vote;
         $vote->user_id = Auth::user()->id;
         $vote->achievement_id = $request->achievementID;
