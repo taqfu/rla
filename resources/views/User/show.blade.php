@@ -10,9 +10,11 @@ use App\User;
 	@include ('User.menu', ['active'=>'profile'])
 @elseif (Auth::user() && Auth::user()->id != $profile->id)
 	<h1>{{$profile->username}}</h1>
-   	<a href="{{route('new_message', ['id'=>$profile->id])}}">Send Message</a>
+    <h3 class='margin-left'>{{$profile->score}} points</h3>
+   	<a  class='margin-left' href="{{route('new_message', ['id'=>$profile->id])}}">Send Message</a>
 @else
 	<h1>{{$profile->username}}</h1>
+    <h3 class='margin-left'>{{$profile->score}} points</h3>
 @endif
 <h3>Completed Achievements</h3>
 <?php $old_date = 0; ?>
