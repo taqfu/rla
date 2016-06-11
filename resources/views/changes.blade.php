@@ -4,6 +4,11 @@
 <p>
     <i>This is where you'll be able to see the changes I've made.</i> <a href="{{route('feedback')}}">Head here for any feedback.</a>
 </p>
+<h4>06/11/16</h4>
+<ul>
+    <li>Fixed a bug with submitting proof to already created achievements. Proof was submitting but the follows, votes and timeline were not being implemented.</li>
+    <li>Fixed footer not displaying properly in mobile.</li>
+</ul>
 <h4>06/10/16</h4>
 <ul>
     <li>Hopefully made the filters a little clearer by changing the caption names and also adding a (?) tooltip to it.</li>
