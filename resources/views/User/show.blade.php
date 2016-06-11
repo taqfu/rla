@@ -1,5 +1,6 @@
 <?php
 use App\User;
+    $point_caption = $profile->score!=1 ? "points" : "point";
 ?>
 @extends('layouts.app')
 @section('title')
@@ -10,11 +11,11 @@ use App\User;
 	@include ('User.menu', ['active'=>'profile'])
 @elseif (Auth::user() && Auth::user()->id != $profile->id)
 	<h1>{{$profile->username}}</h1>
-    <h3 class='margin-left'>{{$profile->score}} points</h3>
+    <h3 class='margin-left'>{{$profile->score}} {{$point_caption}}</h3>
    	<a  class='margin-left' href="{{route('new_message', ['id'=>$profile->id])}}">Send Message</a>
 @else
 	<h1>{{$profile->username}}</h1>
-    <h3 class='margin-left'>{{$profile->score}} points</h3>
+    <h3 class='margin-left'>{{$profile->score}} {{$point_caption}}</h3>
 @endif
 <h3>Completed Achievements</h3>
 <?php $old_date = 0; ?>

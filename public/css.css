@@ -50,8 +50,7 @@ td{
     padding-left:8px;
     padding-right:8px;
 }
-#achievement_filters div div{
-    display:inline;
+#achievement_filters div label{
     margin:8px;
     padding:8px;
     border:1px black dotted;
@@ -312,6 +311,9 @@ float:left;
 }
 .margin-right{
     margin-right:16px;
+}
+.margin-top{
+    margin-top:16px;
 }
 nav.menu{
     font-size:1.25em;

@@ -18,52 +18,44 @@
 @endif
 <div id='achievement_filters' class='margin-bottom center' >
     &nbsp;
-    <div class='clear' style='display:block;'>
-    Status:
-        <div class='approved'>
-            <label for='approved' class='approved filter'>Approved
-                <span class='filter-tooltip' data-toggle='tooltip'
-                  title='This achievement has been approved and multiple people can submit proof for it at the same time. Voting is only open to those that have already completed the achievement.'>
-                    (?)
-                </span>
-            </label>
+    <div class='clear'>
+        Status:
+        <label for='approved' class='approved filter'>Approved
+            <span class='filter-tooltip' data-toggle='tooltip'
+              title='This achievement has been approved and multiple people can submit proof for it at the same time. Voting is only open to those that have already completed the achievement.'>
+                (?)
+            </span>
             <input id='approved' type='checkbox'  class='filter' />
-        </div>
-        <div class='denied'>
-            <label for='denied' class='denied filter'>Denied
-                <span class='filter-tooltip' data-toggle='tooltip'
-                  title='This achievement has been denied approval. One person may submit approval at a time and anyone can vote for its approval.'>
-                    (?)
-                </span>
-            </label>
+        </label>
+        <label for='denied' class='denied filter'>Denied
+            <span class='filter-tooltip' data-toggle='tooltip'
+              title='This achievement has been denied approval. One person may submit approval at a time and anyone can vote for its approval.'>
+                (?)
+            </span>
             <input id='denied' type='checkbox' class='filter inactive-filter' />
-        </div>
-        <div class='pending'>
-            <label for='pending' class='filter pending'>Pending Approval
-                <span class='filter-tooltip' data-toggle='tooltip'
-                  title='This achievement is pending approval. Anyone may vote to determine whether it passes approval.'>
-                    (?)
-                </span>
-            </label>
+        </label>
+        <label for='pending' class='filter pending'>Pending Approval
+            <span class='filter-tooltip' data-toggle='tooltip'
+              title='This achievement is pending approval. Anyone may vote to determine whether it passes approval.'>
+                (?)
+            </span>
             <input id='pending' type='checkbox'  class='filter'>
-        </div>
-        <div class='inactive'>
-            <label for='inactive' class='filter inactive'>Unproven
-                <span class='filter-tooltip' data-toggle='tooltip'
-                  title='This achievement has no proofs submitted to it. Submit a proof for approval.'>
-                    (?)
-                </span>
-            </label>
+        </label>
+        <label for='inactive' class='filter inactive'>Unproven
+            <span class='filter-tooltip' data-toggle='tooltip'
+              title='This achievement has no proofs submitted to it. Submit a proof for approval.'>
+                (?)
+            </span>
             <input id='inactive' type='checkbox' class='filter inactive-filter'>
-        </div>
+        </label>
     </div>
     @if (Auth::user())
-    <div class='clear' style='display:block;margin-top:16px;'>
+    <div class='clear margin-top'>
         &nbsp;
-        <div class='complete'>
-            <label for='complete' class='complete filter'>Completed By You </label>
+        <label for='complete' class='complete filter'>
+            Completed By You             
             <input id='complete' type='checkbox' class='filter'>
-        </div>
+        </label>
     </div>
     @endif
 </div>

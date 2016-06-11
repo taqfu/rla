@@ -46,10 +46,21 @@ class Proof extends Model
                 $user = User::find($achievement->user_id); 
                 $user->score++;
                 $user->save();
+                $timeline = new Timeline;
+                $timeline->user_id = $achievement->user_id;
+                $timeline->event = "new points " . $achievement->user->score . " owned achievement complete";
+                $timeline->proof_id = $id;
+                $timeline->save();
             }
             $user = User::find($proof->user_id);
             $user->score = $user->score + $achievement->score;
             $user->save();
+            $timeline = new Timeline;
+            $timeline->user_id = $proof->user_id;
+            $timeline->event = "new points $achievement->score proof complete";
+            $timeline->proof_id = $id;
+            $timeline->save();
+            
         }   
         $proof->status = $status;
         $proof->save();

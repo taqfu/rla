@@ -27,7 +27,11 @@ $old_time =0;
             @else
                 <a href="{{route('user.show', ['id'=>$timeline_item->proof->user_id])}}">{{$timeline_item->proof->user->username}}</a>
             @endif
-              submitted a <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">new proof</a> for your achievement.
+              submitted a <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">new proof</a> for  
+            @if ($timeline_item->proof->achievement->user_id!=Auth::user()->id)
+                an achievement.
+            @else
+            @endif
             </p>
             <p>
                 (<a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}#proof{{$timeline_item->proof_id}}">{{$timeline_item->proof->achievement->name}}</a>)
@@ -122,8 +126,17 @@ $old_time =0;
                 is currently under approval.
             @endif
         </div>
+    @elseif (substr($timeline_item->event, 0, 10)=="new points")
+        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>  
+        <div class='notification margin-left'>
+        @if (substr($timeline_item->event, -26, 26) == "owned achievement complete") 
+            <a href="{{route('user.show', ['id'=>$timeline_item->proof->user_id])}}">{{$timeline_item->proof->user->username}}</a> completed the achievement you created. You gained a point! You now have {{substr($timeline_item->event, 12, (strlen($timeline_item->event)-26)-12}} points.
+        @elseif (substr($timeline_item->event, -14, 14)=="proof complete")
+            For completing this achievement, "{{$timeline_item->proof->achievement->name}}", you received  {{substr($timeline_item->event, 12, (strlen($timeline_item->event)-14)}} points.
+        @endif 
+        </div>
     @else
-    <?php var_dump($timeline_item->event); ?>
+     <?php // var_dump($timeline_item->event); ?>
     @endif
     </div>
 @empty
