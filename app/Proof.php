@@ -40,12 +40,17 @@ class Proof extends Model
     }
     public static function changeStatus($id, $status){
         $achievement = Achievement::find($proof->achievement_id);
+        $proof = Proof::find($id);
         if ($status){
-            $user = User::find($achievement->user_id); 
+            if ($proof->user_id!=$achievement->user_id){
+                $user = User::find($achievement->user_id); 
+                $user->score++;
+                $user->save();
+            }
+            $user = User::find($proof->user_id);
             $user->score = $user->score + $achievement->score;
             $user->save();
         }   
-        $proof = Proof::find($id);
         $proof->status = $status;
         $proof->save();
         $followers_of_achievement = Achievement::fetch_followers($proof->achievement_id);

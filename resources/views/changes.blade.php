@@ -9,6 +9,7 @@
     <li>Hopefully made the filters a little clearer by changing the caption names and also adding a (?) tooltip to it.</li>
     <li>Achievement score now visible to guests. Achievements listed by score in descending order.</li>
     <li>Achievement score is now added to user's score on completion. (This means negative scores will be deducted from your score.)</li>
+    <li>When someone completes your achievement, you receive a point.</li>
 </ul>
 <h4>06/09/16</h4>
 <ul>
