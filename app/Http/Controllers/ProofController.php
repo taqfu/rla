@@ -70,7 +70,7 @@ class ProofController extends Controller
         $proof->save();
         if (count(Follow::where('achievement_id', $request->achievementID)->where('user_id', Auth::user()->id)->get())==0){
             $follow = new Follow;
-            $follow->achievement_id = $request->achievement_id;
+            $follow->achievement_id = $request->achievementID;
             $follow->user_id = Auth::user()->id;
             $follow->save();
         }
