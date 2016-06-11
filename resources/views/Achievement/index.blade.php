@@ -21,8 +21,8 @@
     <div class='clear' style='display:block;'>
     Status:
         <div class='approved'>
-            <label for='approved' class='approved filter'>Approved  
-                <span class='filter-tooltip' data-toggle='tooltip' 
+            <label for='approved' class='approved filter'>Approved
+                <span class='filter-tooltip' data-toggle='tooltip'
                   title='This achievement has been approved and multiple people can submit proof for it at the same time. Voting is only open to those that have already completed the achievement.'>
                     (?)
                 </span>
@@ -30,8 +30,8 @@
             <input id='approved' type='checkbox'  class='filter' />
         </div>
         <div class='denied'>
-            <label for='denied' class='denied filter'>Denied                 
-                <span class='filter-tooltip' data-toggle='tooltip' 
+            <label for='denied' class='denied filter'>Denied
+                <span class='filter-tooltip' data-toggle='tooltip'
                   title='This achievement has been denied approval. One person may submit approval at a time and anyone can vote for its approval.'>
                     (?)
                 </span>
@@ -40,7 +40,7 @@
         </div>
         <div class='pending'>
             <label for='pending' class='filter pending'>Pending Approval
-                <span class='filter-tooltip' data-toggle='tooltip' 
+                <span class='filter-tooltip' data-toggle='tooltip'
                   title='This achievement is pending approval. Anyone may vote to determine whether it passes approval.'>
                     (?)
                 </span>
@@ -49,7 +49,7 @@
         </div>
         <div class='inactive'>
             <label for='inactive' class='filter inactive'>Unproven
-                <span class='filter-tooltip' data-toggle='tooltip' 
+                <span class='filter-tooltip' data-toggle='tooltip'
                   title='This achievement has no proofs submitted to it. Submit a proof for approval.'>
                     (?)
                 </span>
@@ -95,7 +95,7 @@
         <td class='achievement' style='padding:8px;font-size:1.5em;'>
         @if (Auth::user())
         <?php $can_user_vote = Achievement::can_user_vote($achievement->id); ?>
-            @if ($can_user_vote)        
+            @if ($can_user_vote)
             <form method="POST" action="{{route('AchievementVote.store')}}" style='display:inline;'>
             {{csrf_field()}}
             <input type='hidden' name='achievementID' value='{{$achievement->id}}' />
@@ -103,7 +103,7 @@
             <input type='submit' value='&uarr;' class='text_button' />
             </form>
             @endif
-            {{$achievement->tally}}
+            {{$achievement->score}}
             @if ($can_user_vote)
             <form method="POST" action="{{route('AchievementVote.store')}}" style='display:inline;'>
             {{csrf_field()}}
@@ -113,7 +113,7 @@
             </form>
             @endif
         @else
-            {{$achievement->tally}}
+            {{$achievement->score}}
         @endif
         </td>
         <td

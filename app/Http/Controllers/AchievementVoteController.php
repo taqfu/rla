@@ -39,7 +39,7 @@ class AchievementVoteController extends Controller
      */
     public function store(Request $request)
     {
-    
+
         if (Auth::guest()){
             return back()->withErrors('Please log in before doing this.');
         }
@@ -57,8 +57,8 @@ class AchievementVoteController extends Controller
         $achievement_vote->vote_up = $request->voteUp;
         $achievement_vote->save();
         $achievement = Achievement::find($request->achievementID);
-        (boolean)$request->voteUp ? $achievement->tally++ : $achievement->tally--;
-        $achievement->save();        
+        (boolean)$request->voteUp ? $achievement->score++ : $achievement->score--;
+        $achievement->save();
         // Not going to include votes as part of the timeline unless people request it.
         return back();
     }
