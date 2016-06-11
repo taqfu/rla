@@ -84,6 +84,9 @@ if (Auth::guest()){
                 (<span class='fail'>Failing</span>)
             @endif
         </i>
+            @if (Auth::user() && $proof->user_id == Auth::user()->id)
+                Cancel submission
+            @endif
         @endif
         @if (Proof::can_user_comment($proof->id))
             <button id='show_new_comment{{$proof->id}}' class='text_button show_new_comment'>[ Comment ]</button>

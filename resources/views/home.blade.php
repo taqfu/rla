@@ -9,11 +9,9 @@ $old_time =0;
 ?>
 @forelse ($timeline_items as $timeline_item)
     <?php
-    if (Auth::guest()){
-    $timestamp = date('m/d/y h:i:sA e', strtotime($timeline->created_at));
-    } else if (Auth::user()){
-      $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)));
-    }
+        $timestamp = Auth::user()
+          ? $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)))
+          : date('m/d/y h:i:sA e', strtotime($timeline->created_at));
     ?>
     <div class='timeline_container'>
     @if ($timeline_item->event=="new comment" || $timeline_item->event=="new proof vote comment")
@@ -129,14 +127,14 @@ $old_time =0;
     @elseif (substr($timeline_item->event, 0, 10)=="new points")
         <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>  
         <div class='notification margin-left'>
-        @if (substr($timeline_item->event, -26, 26) == "owned achievement complete") 
-            <a href="{{route('user.show', ['id'=>$timeline_item->proof->user_id])}}">{{$timeline_item->proof->user->username}}</a> completed the achievement you created. You gained a point! You now have {{substr($timeline_item->event, 12, (strlen($timeline_item->event)-26)-12}} points.
-        @elseif (substr($timeline_item->event, -14, 14)=="proof complete")
-            For completing this achievement, "{{$timeline_item->proof->achievement->name}}", you received  {{substr($timeline_item->event, 12, (strlen($timeline_item->event)-14)}} points.
+        @if (substr($timeline_item->event, -27) == "owned achievement complete") 
+            <a href="{{route('user.show', ['id'=>$timeline_item->proof->user_id])}}">{{$timeline_item->proof->user->username}}</a> completed the achievement you created. You gained a point! You now have {{substr($timeline_item->event, 12, (strlen($timeline_item->event)-26)-12)}} points.
+        @elseif (substr($timeline_item->event, -14)=="proof complete")
+            For completing this achievement, "{{$timeline_item->proof->achievement->name}}", you received  {{substr($timeline_item->event, 12, (strlen($timeline_item->event)-14))}} points.
         @endif 
         </div>
     @else
-     <?php // var_dump($timeline_item->event); ?>
+        ""
     @endif
     </div>
 @empty
