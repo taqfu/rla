@@ -1,6 +1,11 @@
 <?php 
     use App\Achievement;
     use App\User; 
+    if ($_SERVER['SERVER_NAME']=='taqfu.com'){
+        $root_url = "http://taqfu.com/rla-dev/rla/public";
+    } else if ($_SERVER['SERVER_NAME']=='doitproveit.com' || $_SERVER['SERVER_NAME']=='www.doitproveit.com'){
+        $root_url = "http://doitproveit.com";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,14 +17,25 @@
     <meta name='keywords' content='real life achievement, real world achievement, achievement unlocked'>
     
     <title>Do It! Prove It!@yield('title')</title>
-    <link rel="shortcut icon" href="http://doitproveit.com/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="http://doitproveit.com/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{$root_url}}/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{$root_url}}/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{$root_url}}/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{$root_url}}/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{$root_url}}/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{$root_url}}/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{$root_url}}/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{$root_url}}/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{$root_url}}/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{$root_url}}/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{$root_url}}/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{$root_url}}/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{$root_url}}/favicon-16x16.png">
+    <link rel="manifest" href="{{$root_url}}/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{$root_url}}/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <link rel='publisher' href='https://plus.google.com/u/0/b/111000706342354560427/111000706342354560427/about'>
-    @if ($_SERVER['SERVER_NAME']=='taqfu.com')
-    <link rel="stylesheet" href="http://taqfu.com/rla-dev/rla/public/css.css">
-    @elseif ($_SERVER['SERVER_NAME']=='doitproveit.com' || $_SERVER['SERVER_NAME']=='www.doitproveit.com')
-    <link rel="stylesheet" href="http://doitproveit.com/css.css">
-    @endif
+    <link rel="stylesheet" href="{{$root_url}}/css.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 

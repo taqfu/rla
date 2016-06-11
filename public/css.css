@@ -249,7 +249,7 @@ textarea.comment, textarea.message{
 }
 tr.complete_achievement{
     background-color:black;
-    border:1px white dashed; 
+    border-top:1px white solid; 
     color:white;
 }
 .denied{
