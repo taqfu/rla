@@ -39,8 +39,8 @@ class Proof extends Model
 
     }
     public static function changeStatus($id, $status){
-        $achievement = Achievement::find($proof->achievement_id);
         $proof = Proof::find($id);
+        $achievement = Achievement::find($proof->achievement_id);
         if ($status){
             if ($proof->user_id!=$achievement->user_id){
                 $user = User::find($achievement->user_id); 
@@ -58,7 +58,7 @@ class Proof extends Model
             $timeline = new Timeline;
             $timeline->user_id = $follower;
             $timeline->event = "change proof status " . $proof->status . " to " . (int)$status;
-            $timeline->id = $proof->id;
+            $timeline->proof_id = $proof->id;
             $timeline->save();
         }
 
