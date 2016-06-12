@@ -79,6 +79,9 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
 - {!!Proof::min_time_to_vote($proof->id)!!} left to vote. {{Proof::max_time_to_vote($proof->id)}} max.
 @endif
 @include ('Vote.query', ['create_only'=>true])
+@if (Auth::user() && $proof->user_id == Auth::user()->id)
+    @include ('Proof.destroy')
+@endif
 </div>
 <?php $old_date = 0; ?>
 @foreach ($votes as $vote)

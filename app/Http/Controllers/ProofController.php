@@ -151,6 +151,8 @@ class ProofController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $proof = Proof::find($id);
+        $proof->delete();
+        return redirect(route('achievement.index'));
     }
 }

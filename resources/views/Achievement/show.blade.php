@@ -85,7 +85,7 @@ if (Auth::guest()){
             @endif
         </i>
             @if (Auth::user() && $proof->user_id == Auth::user()->id)
-                Cancel submission
+                @include ('Proof.destroy')
             @endif
         @endif
         @if (Proof::can_user_comment($proof->id))

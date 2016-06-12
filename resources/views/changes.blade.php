@@ -8,6 +8,8 @@
 <ul>
     <li>Fixed a bug with submitting proof to already created achievements. Proof was submitting but the follows, votes and timeline were not being implemented.</li>
     <li>Fixed footer not displaying properly in mobile.</li>
+    <li>When user's points are updated, this information will be added to their timelines.</li>
+    <li>Proof submission can be cancelled if it is still pending approval.</li>
 </ul>
 <h4>06/10/16</h4>
 <ul>
