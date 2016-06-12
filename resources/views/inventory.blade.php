@@ -4,55 +4,29 @@
   use App\User;
 ?>
 @extends('layouts.app')
-@section('title')
+@section('title') 
+ - Your Achievements
 @endsection
 @section('content')
-@if (Auth::user())
-    @include ('Achievement.create')
-@else
-<div id='guest_warning' class='center'>
-    <a href="{{url('/register')}}">Register</a>
-     or
-    <a href="{{url('/login')}}">login</a>
-     to create new achievements!
-</div>
-@endif
 <div id='achievement_filters' class='margin-bottom center' >
     &nbsp;
     <div class='clear'>
-        Status:
-        <label for='approved' class='approved filter'>Approved
-            <span class='filter-tooltip' data-toggle='tooltip'
-              title='This achievement has been approved and multiple people can submit proof for it at the same time. Voting is only open to those that have already completed the achievement.'>
-                (?)
-            </span>
-            <input id='approved' type='checkbox'  class='filter' />
-        </label>
-        <label for='denied' class='denied filter'>Denied
-            <span class='filter-tooltip' data-toggle='tooltip'
-              title='This achievement has been denied approval. One person may submit approval at a time and anyone can vote for its approval.'>
-                (?)
-            </span>
-            <input id='denied' type='checkbox' class='filter inactive-filter' />
-        </label>
-        <label for='pending' class='filter pending'>Pending Approval
-            <span class='filter-tooltip' data-toggle='tooltip'
-              title='This achievement is pending approval. Anyone may vote to determine whether it passes approval.'>
-                (?)
-            </span>
-            <input id='pending' type='checkbox'  class='filter'>
-        </label>
-        <label for='inactive' class='filter inactive'>Unproven
-            <span class='filter-tooltip' data-toggle='tooltip'
-              title='This achievement has no proofs submitted to it. Submit a proof for approval.'>
-                (?)
-            </span>
-            <input id='inactive' type='checkbox' class='filter inactive-filter'>
-        </label>
+        <p class='approved'>Approved</p>
+        <p class='denied'>Denied in red.</p>
+        <p class='pending'>Pending Approval in grey</p>
+        <p class='inactive'>Unproven grey background</p>
     </div>
     <div class='margin-top'>
-        <p><span class='complete_achievement'>Completed achievements in black.</span></p> 
-        <p class='followed'>Followed achievements underlined.</p>
+        <label for='complete' class='filter complete'>
+            Completed  By You
+            <span class='filter-tooltip' data-toggle='tooltip' title="You've submitted proof for this achievement that has been approved!">(?)</span>
+            <input id='complete' type='checkbox' class='filter'>
+        </label>
+        <label for='followed' class='filter followed'>
+            Followed By You
+            <span class='filter-tooltip' data-toggle='tooltip' title="You're following this achievement and all updates will go to your homepage.">(?)</span>
+            <input id='followed' type='checkbox' class='filter' />
+        </label>
     </div>
 </div>
 <div class='center'>

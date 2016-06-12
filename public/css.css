@@ -250,10 +250,13 @@ textarea.comment, textarea.message{
     height:100px;
     
 }
-tr.complete_achievement{
+label.complete, tr.complete_achievement, span.complete_achievement{
     background-color:black;
     border-top:1px white solid; 
     color:white;
+}
+span.complete_achievement{
+    padding:8px;
 }
 .denied{
     color:red;
@@ -279,6 +282,9 @@ div.feedback{
     text-decoration:underline;
     cursor:pointer;
 }
+.followed{
+    text-decoration:underline;
+}
 .hidden{
     display:none;
 }
@@ -296,8 +302,7 @@ div.feedback{
     border:1px black dashed;
 }
 .left {
-
-float:left;
+    float:left;
 }
 .margin-bottom{
     margin-bottom:8px;

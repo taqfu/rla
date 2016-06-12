@@ -35,6 +35,15 @@ Route::get('/inbox', ['as'=>'inbox', function(){
         ]);
     }
 }]);
+Route::get('/inventory', ['as'=>'inventory', function(){
+    if (Auth::user()){
+        return View('inventory', [
+              "achievements"=>Achievement::orderBy('score','desc')->orderBy('name','asc')->get(),
+        ]);
+    } else {
+        return View('fail');
+    }
+}]);
 Route::get('/outbox', ['as'=>'outbox', function(){
     if (Auth::guest()){
         return View('Message.fail');
