@@ -49,7 +49,12 @@ use App\User;
     (<a href="{{route('proof.show', ['id'=>$proof->id])}}">Proof</a>)  - <a href="{{route('user.show', ['id'=>$proof->achievement->user->id])}}">{{$proof->achievement->user->username}}</a>
 </div>
 @empty
-You have not completed any achievements.
+    @if (Auth::user() && Auth::user()->id == $profile->id)
+        You
+    @else
+        They
+    @endif
+     have not completed any achievements.
 
 @endforelse
 @endsection
