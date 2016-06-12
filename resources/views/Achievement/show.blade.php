@@ -87,6 +87,15 @@ if (Auth::guest()){
             @if (Auth::user() && $proof->user_id == Auth::user()->id)
                 @include ('Proof.destroy')
             @endif
+        @elseif ($proof->status==4)
+        <i>
+            Canceled
+          @if (Auth::guest())
+          {{date('m/d/y', strtotime($proof->updated_at))}}
+          @elseif (Auth::user())
+          {{date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->updated_at)))}}
+          @endif
+        </i>
         @endif
         @if (Proof::can_user_comment($proof->id))
             <button id='show_new_comment{{$proof->id}}' class='text_button show_new_comment'>[ Comment ]</button>

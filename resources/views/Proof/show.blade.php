@@ -25,6 +25,8 @@
     Approved
   @elseif ($proof->status==2)
     Pending Approval
+  @elseif ($proof->status==4)
+    Canceled
   @endif
 " />
 @endsection
@@ -73,6 +75,8 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
     @else
         <span class='fail'>Failing </span>
     @endif
+@elseif ($proof->status==4)
+    Canceled
 @endif
  - For ({{$num_of_for_votes}}) / Against ({{$num_of_against_votes}})
 @if ($proof->status==2)

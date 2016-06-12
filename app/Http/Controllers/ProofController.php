@@ -151,8 +151,15 @@ class ProofController extends Controller
      */
     public function destroy($id)
     {
+        
         $proof = Proof::find($id);
-        $proof->delete();
-        return redirect(route('achievement.index'));
+        $proof->status = 4;
+        $proof->save();
+        $timeline = new Timeline;
+        $timeline->user_id = Auth::user()->id;
+        $timeline->proof_id = $id;
+        $timeline->event = "cancel proof";
+        $timeline->save();
+        return back();
     }
 }

@@ -133,8 +133,16 @@ $old_time =0;
             For completing this achievement, "{{$timeline_item->proof->achievement->name}}", you received  {{substr($timeline_item->event, 12, (strlen($timeline_item->event)-14))}} points.
         @endif 
         </div>
-    @else
-        ""
+    @elseif ($timeline_item->event == "cancel proof")
+    <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>  
+    <div class='notification margin-left'>
+        <p>
+            You canceled <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">your proof</a> for the following achievement:
+        </p>
+        <p>
+            (<a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}">{{$timeline_item->proof->achievement->name}}</a>)
+        </p>
+    </div>
     @endif
     </div>
 @empty
