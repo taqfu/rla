@@ -291,8 +291,11 @@ div.feedback{
 .inactive{
     color:black;
 }
-.inactive_achievement{
-    background-color:lightgrey;
+span.inactive{
+    padding:8px;
+}
+.inactive_achievement, span.inactive, label.inactive{
+     background-color:lightgrey;
 }
 .inline{
     display:inline-block;

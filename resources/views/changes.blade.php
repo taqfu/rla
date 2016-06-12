@@ -4,6 +4,10 @@
 <p>
     <i>This is where you'll be able to see the changes I've made.</i> <a href="{{route('feedback')}}">Head here for any feedback.</a>
 </p>
+<h4>06/12/16</h4>
+<ul>
+    <li>Inventory created. Users can manage now achievements that they are following or completed.</li>
+</ul>
 <h4>06/11/16</h4>
 <ul>
     <li>Fixed a bug with submitting proof to already created achievements. Proof was submitting but the follows, votes and timeline were not being implemented.</li>

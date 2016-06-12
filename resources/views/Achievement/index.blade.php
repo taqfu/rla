@@ -51,7 +51,7 @@
         </label>
     </div>
     <div class='margin-top'>
-        <p><span class='complete_achievement'>Completed achievements in black.</span></p> 
+        <p><span class='complete_achievement'>Completed achievements black background.</span></p> 
         <p class='followed'>Followed achievements underlined.</p>
     </div>
 </div>

@@ -67,9 +67,9 @@
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('/register') }}">Register</a>
                 @else
-                        <a href="{{ route('inventory') }}">Inventory</a>
                                                          
                         <a href="{{ route('user.show', ['id'=>Auth::user()->id])}}">{{ Auth::user()->username }}({{Auth::user()->score}})</a>
+                        <a href="{{ route('inventory') }}">Inventory</a>
                         @if (User::does_user_have_unread_msgs())
                             <a href="{{ route('inbox')}}" class='unread'>Inbox(!)</a>
                         @else

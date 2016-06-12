@@ -11,20 +11,20 @@
 <div id='achievement_filters' class='margin-bottom center' >
     &nbsp;
     <div class='clear'>
-        <p class='approved'>Approved</p>
+        <p class='approved'>Approved in black</p>
         <p class='denied'>Denied in red.</p>
         <p class='pending'>Pending Approval in grey</p>
-        <p class='inactive'>Unproven grey background</p>
+        <p class='inactive'><span class='inactive'>Unproven grey background</span></p>
     </div>
     <div class='margin-top'>
         <label for='complete' class='filter complete'>
             Completed  By You
-            <span class='filter-tooltip' data-toggle='tooltip' title="You've submitted proof for this achievement that has been approved!">(?)</span>
+            <span class='filter-tooltip' data-toggle='tooltip' title="You've submitted proof for this achievement and it has been approved!">(?)</span>
             <input id='complete' type='checkbox' class='filter'>
         </label>
         <label for='followed' class='filter followed'>
             Followed By You
-            <span class='filter-tooltip' data-toggle='tooltip' title="You're following this achievement and all updates will go to your homepage.">(?)</span>
+            <span class='filter-tooltip' data-toggle='tooltip' title="You're following this achievement. All updates will go to your homepage.">(?)</span>
             <input id='followed' type='checkbox' class='filter' />
         </label>
     </div>
@@ -39,7 +39,7 @@
     ?>
     @endif
         <tr class="
-        @if ($achievement->status==0 || $achievement->status==3 )
+        @if (!$is_user_following_achievement &&  !$has_user_completed_achievement )
             hidden
         @endif
             @if ($achievement->status==1)
