@@ -7,7 +7,7 @@
 <h4>06/13/16</h4>
 <ul>
     <li>User profiles have been extended to include completed achievements, followed achievements and when user signed up.</li>
-    <li>Achievement unlocked CSS icon removed from public front page due to compatiblity issue with lower resolutions.</li>
+    <li><del>Achievement unlocked CSS icon removed from public front page due to compatiblity issue with lower resolutions.</del>Resolved. (Still not on mobile.)</li>
     <li>Achievement listings can now be sorted by the user.</li>
 </ul>
 <h4>06/12/16</h4>

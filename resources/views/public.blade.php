@@ -4,7 +4,6 @@
  - Real Life Achievements 
 @endsection
 @section ('content')
-<!--
 <div class='achievement-unlocked-container mobileHidden '>
     <div class='inline'>
         <div class='achievement-unlocked-icon-container'>
@@ -16,7 +15,6 @@
         <div class='description'>You found a real life achievements site!</div>
     </div>
 </div>
--->
 <div id='public_message' class='margin-left'>
     <p class='center'>How many times have you thought to yourself...    </p>
      <p class='center'><B><i>"I wish there were video game achievements for real life!"</i></b></p>
