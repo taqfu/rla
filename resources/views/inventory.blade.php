@@ -10,12 +10,6 @@
 @section('content')
 <div id='achievement_filters' class='margin-bottom center' >
     &nbsp;
-    <div class='clear'>
-        <p class='approved'>Approved in black</p>
-        <p class='denied'>Denied in red.</p>
-        <p class='pending'>Pending Approval in grey</p>
-        <p class='inactive'><span class='inactive'>Unproven grey background</span></p>
-    </div>
     <div class='margin-top'>
         <label for='complete' class='filter complete'>
             Completed  By You
@@ -28,8 +22,14 @@
             <input id='followed' type='checkbox' class='filter' />
         </label>
     </div>
+    <div class='clear margin-top margin-bottom'>
+        <p class='approved'>Approved in black</p>
+        <p class='denied'>Denied in red.</p>
+        <p class='pending'>Pending Approval in grey</p>
+        <p class='inactive'><span class='inactive'>Unproven grey background</span></p>
+    </div>
 </div>
-<div class='center'>
+<div class='center margin-top2'>
 <table class='inline'>
 @foreach ($achievements as $achievement)
     @if (Auth::user())
