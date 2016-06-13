@@ -323,6 +323,9 @@ span.inactive{
 .margin-top{
     margin-top:16px;
 }
+.margin-top2{
+    margin-top:32px;
+}
 nav.menu{
     font-size:1.25em;
     padding:8px;
