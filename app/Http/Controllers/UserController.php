@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Achievement;
+use App\Follow;
 use App\Proof;
 use App\User;
 use Auth;
@@ -22,6 +24,8 @@ class UserController extends Controller
         return View::make('User.show', [
             "profile"=>User::where('id', $id)->first(), 
             "proofs"=>Proof::where('user_id', $id)->where('status', 1)->orderBy('created_at', 'desc')->get(),
+            "achievements"=>Achievement::where('user_id', $id)->get(),
+            "follows"=>Follow::where('user_id', $id)->get(),
         ]);
     }
     public function updateEmail(Request $request){

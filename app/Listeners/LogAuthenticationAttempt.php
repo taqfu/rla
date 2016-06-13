@@ -30,5 +30,6 @@ class LogAuthenticationAttempt
     {
         DB::insert('insert into logins(created_at, updated_at, login, ip) values (now(), now(), ?, ?)', 
           [$event->credentials['username'], Request::ip()]);
+    
     }
 }

@@ -416,6 +416,12 @@ div.timeline {
 .twitter-share-button{
     vertical-align:middle;
 }    
+.unproven{
+    background-color:lightgrey;
+}
+.user_profile_achievements a.achievement_link{
+    color:black;
+}
 a.vote_available{
     color:black;
 }  
