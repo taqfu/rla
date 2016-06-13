@@ -4,6 +4,11 @@
 <p>
     <i>This is where you'll be able to see the changes I've made.</i> <a href="{{route('feedback')}}">Head here for any feedback.</a>
 </p>
+<h4>06/13/16</h4>
+<ul>
+    <li>User profiles have been extended to include completed achievements, followed achievements and when user signed up.</li>
+    <li>Achievement unlocked CSS icon removed from public front page due to compatiblity issue with lower resolutions.</li>
+</ul>
 <h4>06/12/16</h4>
 <ul>
     <li>Inventory created. Users can manage now achievements that they are following or completed.</li>
