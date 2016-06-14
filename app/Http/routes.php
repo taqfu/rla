@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 use App\Achievement;
 use App\Follow;
 use App\Message;
@@ -35,10 +36,12 @@ Route::get('/inbox', ['as'=>'inbox', function(){
         ]);
     }
 }]);
-Route::get('/inventory', ['as'=>'inventory', function(){
+Route::get('/inventory', ['as'=>'inventory', function(Request $request){
     if (Auth::user()){
+        $achievements = Achievement::fetch_appropriate_sort_source($request->input('sort'));
         return View('inventory', [
-              "achievements"=>Achievement::orderBy('score','desc')->orderBy('name','asc')->get(),
+            "achievements"=>$achievements,
+            "sort"=>$request->input('sort'),
         ]);
     } else {
         return View('fail');

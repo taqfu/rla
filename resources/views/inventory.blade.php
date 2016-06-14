@@ -29,6 +29,7 @@
         <p class='inactive'><span class='inactive'>Unproven grey background</span></p>
     </div>
 </div>
+@include ('Achievement.sort', ['page_type'=>'inventory'])
 <div class='center margin-top2'>
 <table class='inline'>
 @foreach ($achievements as $achievement)

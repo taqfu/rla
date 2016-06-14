@@ -2,8 +2,13 @@
 
 @section('content')
 <p>
-    <i>This is where you'll be able to see the changes I've made.</i> <a href="{{route('feedback')}}">Head here for any feedback.</a>
+    <i>This is where you'll be able to see the changes I've made.</i> 
+    <a href="{{route('feedback')}}">Head here for any feedback.</a>
 </p>
+<h4>06/14/16</h4>
+<ul>
+    <li>Inventory achievements can also be sorted.</li>
+</ul>
 <h4>06/13/16</h4>
 <ul>
     <li>User profiles have been extended to include completed achievements, followed achievements and when user signed up.</li>

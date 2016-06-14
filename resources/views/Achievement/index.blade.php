@@ -55,7 +55,7 @@
         <p class='followed'>Followed achievements underlined.</p>
     </div>
 </div>
-@include  ('Achievement.sort')
+@include  ('Achievement.sort', ['page_type'=>'listing'])
 <div class='center'>
 <table class='inline'>
 @foreach ($achievements as $achievement)

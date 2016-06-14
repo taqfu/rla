@@ -75,6 +75,32 @@ class Achievement extends Model
         }
         return $owners;
     }
+    public static function fetch_appropriate_sort_source($sort){
+        switch($sort){
+            case "date asc":
+                return Achievement::orderBy('created_at','asc')->get();
+                break;
+            case "date desc":
+                return Achievement::orderBy('created_at','desc')->get();
+                break;
+            case "name asc":
+                return Achievement::orderBy('name','asc')->get();
+                break;
+            case "name desc":
+                return Achievement::orderBy('name','desc')->get();
+                break;        
+            case "points asc":
+                return Achievement::orderBy('score','asc')->orderBy('name', 'asc')->get();
+                break;
+            case "points desc":
+                return Achievement::orderBy('score','desc')->orderBy('name', 'asc')->get();
+                break;
+            default:
+                return Achievement::orderBy('score','desc')->orderBy('name', 'asc')->get();
+                break;
+        }
+
+    }
     public static function has_user_completed_achievement($id){
         if (Auth::guest()){
             return false;

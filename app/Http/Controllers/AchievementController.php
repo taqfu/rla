@@ -24,29 +24,7 @@ class AchievementController extends Controller
      */
     public function index(Request $request)
     {
-        switch($request->input('sort')){
-            case "date asc":
-                $achievements = Achievement::orderBy('created_at','asc')->get();
-                break;
-            case "date desc":
-                $achievements = Achievement::orderBy('created_at','desc')->get();
-                break;
-            case "name asc":
-                $achievements = Achievement::orderBy('name','asc')->get();
-                break;
-            case "name desc":
-                $achievements = Achievement::orderBy('name','desc')->get();
-                break;        
-            case "points asc":
-                $achievements = Achievement::orderBy('score','asc')->orderBy('name', 'asc')->get();
-                break;
-            case "points desc":
-                $achievements = Achievement::orderBy('score','desc')->orderBy('name', 'asc')->get();
-                break;
-            default:
-                $achievements = Achievement::orderBy('score','desc')->orderBy('name', 'asc')->get();
-                break;
-        }
+            $achievements = Achievement::fetch_appropriate_sort_source($request->input('sort'));
             Proof::check();
             return View::make('Achievement.index', [
               "achievements"=>$achievements,
