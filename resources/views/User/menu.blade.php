@@ -1,9 +1,15 @@
 <nav class='menu'>
     @if ($active=='profile')
-        <strong>{{Auth::user()->username}}</strong>
+        <strong>{{$profile->username}}</strong>
     @else
-        <a href="{{route('user.show', ['id'=>Auth::user()->id])}}">{{Auth::user()->username}}</a>
+        <a href="{{route('user.show', ['id'=>$profile->id])}}">{{$profile->username}}</a>
     @endif
+    @if ($active=='comments')
+        <strong>Comments</strong>
+    @else
+        <a href="{{route('user.comments', ['id'=>$profile->id])}}">Comments</a>
+    @endif
+@if(Auth::user() && $profile->id == Auth::user()->id)
     @if ($active=='votes')
         <strong>Votes</strong>
     @else
@@ -24,4 +30,5 @@
     @else
         <a href="{{route('settings')}}">Settings</a>
     @endif
+@endif
 </nav>

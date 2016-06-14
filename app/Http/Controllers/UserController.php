@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Achievement;
+use App\Comment;
 use App\Follow;
 use App\Proof;
 use App\User;
@@ -26,6 +27,12 @@ class UserController extends Controller
             "proofs"=>Proof::where('user_id', $id)->where('status', 1)->orderBy('created_at', 'desc')->get(),
             "achievements"=>Achievement::where('user_id', $id)->get(),
             "follows"=>Follow::where('user_id', $id)->get(),
+        ]);
+    }
+    public function showComments($id){
+        return View('User.comments', [
+          "profile"=>User::where('id', $id)->first(), 
+          "comments"=>Comment::where('user_id', $id)->get(),
         ]);
     }
     public function updateEmail(Request $request){

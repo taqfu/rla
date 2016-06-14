@@ -89,7 +89,7 @@ Route::get('/', ['as'=>'home', function (){
 }]); 
 
 Route::get('/user/{id}', ['as'=>'user.show', 'uses'=>'UserController@showProfile']);
-
+Route::get('/user/{id}/comments', ['as'=>'user.comments', 'uses'=>'UserController@showComments']);
 Route::get('/user/{id}/message', ['as'=>'new_message', function($id){
     return View('Message.create', [
         'profile'=> User::where('id', $id)->first(),
