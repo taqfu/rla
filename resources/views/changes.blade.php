@@ -5,6 +5,10 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     <a href="{{route('feedback')}}">Head here for any feedback.</a>
 </p>
+<h4>06/15/16</h4>
+<ul>
+    <li>Comments now visible in user's profile.</li>
+</ul>
 <h4>06/14/16</h4>
 <ul>
     <li>Inventory achievements can also be sorted.</li>

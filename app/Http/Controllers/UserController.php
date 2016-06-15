@@ -32,7 +32,7 @@ class UserController extends Controller
     public function showComments($id){
         return View('User.comments', [
           "profile"=>User::where('id', $id)->first(), 
-          "comments"=>Comment::where('user_id', $id)->get(),
+          "comments"=>Comment::where('user_id', $id)->orderBy('created_at', 'desc')->get(),
         ]);
     }
     public function updateEmail(Request $request){

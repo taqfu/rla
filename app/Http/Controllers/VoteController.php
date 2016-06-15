@@ -9,7 +9,7 @@ use App\Achievement;
 use App\Proof;
 use App\Timeline;
 use App\Vote;
-
+use App\User;
 use Auth;
 use View;
 class VoteController extends Controller
@@ -25,6 +25,7 @@ class VoteController extends Controller
             return View::make('Vote.guest');
         } else if (Auth::user()){
             return View::make('Vote.index', [
+                "profile"=>User::where('id', Auth::user()->id)->first(),
                 "proofs"=>Proof::get(),
                 "votes"=>Vote::where('user_id', Auth::user()->id)->get(),
             ]);

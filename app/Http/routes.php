@@ -32,6 +32,7 @@ Route::get('/inbox', ['as'=>'inbox', function(){
         return View('Message.fail');
     } else if (Auth::user()){
         return View('Message.inbox', [
+            'profile'=>User::where('id', Auth::user()->id)->first(),
             'messages'=>Message::where('to_user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
         ]);
     }
@@ -52,6 +53,7 @@ Route::get('/outbox', ['as'=>'outbox', function(){
         return View('Message.fail');
     } else if (Auth::user()){
         return View('Message.outbox', [
+            'profile'=>User::where('id', Auth::user()->id)->first(),
             'messages'=>Message::where('from_user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
         ]);
     }
@@ -60,7 +62,9 @@ Route::get('/settings', ['as'=>'settings', function(){
     if (Auth::guest()){
         return View('Message.fail');
     } else if (Auth::user()){
-        return View('User.settings');
+        return View('User.settings', [
+            'profile'=>User::where('id', Auth::user()->id)->first(),
+        ]);
     }
 }]);
 Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', function($achievement_id){

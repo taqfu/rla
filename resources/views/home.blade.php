@@ -11,7 +11,7 @@ $old_time =0;
     <?php
         $timestamp = Auth::user()
           ? $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)))
-          : date('m/d/y h:i:sA e', strtotime($timeline->created_at));
+          : date('m/d/y h:i:sA e', strtotime($timeline_item->created_at));
     ?>
     @if ($timeline_item->event=="new comment" || $timeline_item->event=="new proof vote comment")
     <div class='timeline_container'>
