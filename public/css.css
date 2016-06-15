@@ -89,6 +89,11 @@ td{
 #content{
     padding-bottom:32px;
 }
+#create_achievement{
+    width:90%;
+    font-size:2em;
+    color:lightgrey;
+}
 #create_proof_url{
     color:lightgrey;
 }

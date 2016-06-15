@@ -3,6 +3,25 @@ $(document.body).ready(function () {
     $(document).on("change", "#follow_menu input", function (event) {
         $("#follow_menu form").submit();
     });
+    $(document).on("focusin", "#create_achievement", function (event) {
+        $("#create_achievement").css('color', 'black');    
+        if ($("#create_achievement").val()=="Create or search achievements here."){
+            $("#create_achievement").val("");
+        }
+        
+    });
+    $(document).on("focusout", "#create_achievement", function (event) {
+        if ($("#create_achievement").val()==""){
+            $("#create_achievement").val("Create or search achievements here.");
+            $("#create_achievement").css('color', 'grey');    
+        }
+    });
+    $(document).on("keyup", "#create_achievement", function (event) {
+        $("#create_achievement").val('change');    
+        /* load up div */
+        
+    });
+
     $(document).on("change", ".filter", function (event) {
         console.log($("#"+event.target.id).prop('checked'));
         if($("#"+event.target.id).prop('checked')){

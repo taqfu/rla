@@ -6,6 +6,9 @@
     @endforeach
 </div>
 <div class='center'>
+    <input id='create_achievement' type='text'  name='name' value="{{old('name')==NULL ? "Create or search here." : old('name')}}" maxlength='100' />
+</div>
+<div class='center hidden'>
     <form method="POST" action="{{ route('achievement.store') }}" class='achievement'>
         {{ csrf_field() }}
         <div>
