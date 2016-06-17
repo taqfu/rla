@@ -68,6 +68,15 @@ td{
     text-align:center;
     font-size:1.5em;
 }
+#achievement_results div.link:hover{
+    background-color:lightgrey;
+}
+#achievement_results div.link a div{
+    padding:8px;
+    display:block;
+    height:100%;
+    width:100%;
+}
 #app_nav{
     border-bottom:1px lightgrey dotted;
     overflow:visible;
@@ -149,7 +158,7 @@ td{
 td.achievement{
     border:1px black dashed;
 }
-td.achievement a div{
+td.achievement a div {
     padding:16px;
     display:block;
     height:100%;

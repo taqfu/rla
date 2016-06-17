@@ -5,21 +5,42 @@ $(document.body).ready(function () {
     });
     $(document).on("focusin", "#create_achievement", function (event) {
         $("#create_achievement").css('color', 'black');    
-        if ($("#create_achievement").val()=="Create or search achievements here."){
+        if ($("#create_achievement").val()=="Create or search here."){
             $("#create_achievement").val("");
         }
         
     });
     $(document).on("focusout", "#create_achievement", function (event) {
-        if ($("#create_achievement").val()==""){
-            $("#create_achievement").val("Create or search achievements here.");
+        if ($("#create_achievement").val().trim()==""){
+            $("#create_achievement").val("Create or search here.");
             $("#create_achievement").css('color', 'grey');    
         }
     });
     $(document).on("keyup", "#create_achievement", function (event) {
-        $("#create_achievement").val('change');    
-        /* load up div */
-        
+        if (event.key=="Enter"){
+           console.log($("#default_result").is("input"), $("#default_result").is("form")); 
+            if($("#default_result").is("input")){
+                window.location.replace($("#default_result").val());
+            } else if ($("#default_result").is("form")){
+                $("#default_result").submit();
+            }
+        } else {
+            if ($("#create_achievement").val().length>2){
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },  
+                    method: "POST",
+                    url: "query",
+                    data:{searchQuery:$("#create_achievement").val()}
+                })  
+                    .done(function (result){
+                        $("#achievement_results").html(result);
+                    }); 
+            } else {
+                $("#achievement_results").html("");
+            }
+        }
     });
 
     $(document).on("change", ".filter", function (event) {

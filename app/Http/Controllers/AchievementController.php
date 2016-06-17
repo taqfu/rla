@@ -41,6 +41,16 @@ class AchievementController extends Controller
     {
         //
     }
+    public function query(Request $request){
+        return View::make('Achievement.query', [
+            "achievements"=>Achievement::where('name', 'LIKE', '%'.$request->searchQuery . '%')->orderBy('score', 'desc')->take(10)->get(),            
+            "achievementDoesNotExist"=>count(Achievement::where('name', $request->searchQuery)->get())==0,            
+            "searchQuery"=>$request->searchQuery,        
+        ]);
+
+
+
+    } 
 
     /**
      * Store a newly created resource in storage.
@@ -55,8 +65,7 @@ class AchievementController extends Controller
         }
         $this->validate($request, [
             'name' => 'required|unique:achievements|max:100',
-            'proofURL' => 'url|max:255',
-        ], ['url'=>'Invalid URL. (Try copy and pasting instead.)']);
+        ]);
         $last_achievement = Achievement::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
         if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < Config::get('rla.min_time_to_post')){
             $num_of_seconds = Config::get('rla.min_time_to_post') - (time()-strtotime($last_achievement->created_at));
@@ -78,7 +87,7 @@ class AchievementController extends Controller
         $achievement = new Achievement;
         $achievement->name = $request->name;
         $achievement->user_id = Auth::user()->id;
-        $achievement->status = strlen($request->proofURL)>0 ? 2 : 3;
+        $achievement->status = 3;
         $achievement->save();
 
         $follow = new Follow;
@@ -88,24 +97,10 @@ class AchievementController extends Controller
 
         $timeline = new Timeline;
         $timeline->user_id = Auth::user()->id;
-        $timeline->event = strlen($request->proofURL)>0 ? "new achievement" : "new achievement no proof";
+        $timeline->event = "new achievement";
         $timeline->achievement_id = $achievement->id;
         $timeline->save();
 
-        if (strlen($request->proofURL)>0){
-            $proof = new Proof;
-            $proof->user_id = Auth::user()->id;
-            $proof->achievement_id = $achievement->id;
-            $proof->url = $request->proofURL;
-            $proof->status = 2;
-            $proof->save();
-            $vote = new Vote;
-            $vote->user_id = Auth::user()->id;
-            $vote->achievement_id = $achievement->id;
-            $vote->proof_id = $proof->id;
-            $vote->vote_for = true;
-            $vote->save();
-        }
         return redirect()->route('achievement.show', [$achievement->id]);
     }
 

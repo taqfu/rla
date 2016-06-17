@@ -5,6 +5,10 @@
 ?>
 @extends('layouts.app')
 @section('title')
+    - Achievement Listing
+@endsection
+@section ('head')
+     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
 @if (Auth::user())

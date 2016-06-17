@@ -101,6 +101,7 @@ Route::get('/user/{id}/message', ['as'=>'new_message', function($id){
 
 }]);
 
+Route::post('/query', ['as'=>'query', 'uses'=>'AchievementController@query']);
 Route::put('/settings/email', ['as'=>'settings.email', 'uses'=>'UserController@updateEmail']);
 Route::put('/settings/password', ['as'=>'settings.password', 'uses'=>'UserController@updatePassword']);
 Route::put('/settings/timezone', ['as'=>'settings.timezone', 'uses'=>'UserController@updateTimeZone']);
