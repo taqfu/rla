@@ -5,6 +5,11 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     <a href="{{route('feedback')}}">Head here for any feedback.</a>
 </p>
+<h4>06/17/16</h4>
+<ul>
+    <li>Creating achievements has now been integrated into a single search/create text bar.</li>
+    <li>Going to a profile page for an achievement that has been deleted will now not cause an error. (Achievements that are deleted are mainly test achievements. We are not trying to avoid censorship.</li>
+</ul>
 <h4>06/15/16</h4>
 <ul>
     <li>Comments now visible in user's profile.</li>
