@@ -126,12 +126,17 @@ class AchievementController extends Controller
         } else if (Auth::guest()){
             $votes = null;
         }
-        return View::make('Achievement.show', [
-            "main"=>Achievement::where('id', $id)->first(),
-            "proofs"=>$proofs,
-            "votes"=>$votes,
-            "following"=>$following,
-        ]);
+        $achievement =Achievement::where('id', $id)->first(); 
+        if ($achievement==NULL){
+            return View::make('Achievement.fail');
+        } else if ($achievement!=NULL){
+            return View::make('Achievement.show', [
+                "main"=>$achievement,
+                "proofs"=>$proofs,
+                "votes"=>$votes,
+                "following"=>$following,
+            ]);
+        }
     }
 
     /**
