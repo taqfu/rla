@@ -16,11 +16,24 @@
 
 @section('head')
 <meta property="og:title" content="{{$main->name}}" />
-<meta property="og:description" content="Real Life Achievement Profile" />
+<meta property="og:description" content="Do It! Prove It! achievement profile for &quot;$main->name&quot; - Created by {{$main->user->username}} "/>
 @endsection
 @section('content')
-@include ('Achievement.header')
+<h1 class='
+    @if ($main->status==0)
+        denied
+    @elseif ($main->status==1)
+        approved
+    @elseif ($main->status==2)
+        pending
+    @elseif ($main->status==3)
+        inactive
+    @endif
+'>
+    {{$main->name }}
+</h1>
 @include ('Achievement.menu', ['id'=>$main->id, 'active_item'=>'info'])
+@include ('Achievement.header')
 <?php
 /*
     var_dump((Auth::user() && Achievement::can_user_submit_proof($main->id)),
@@ -40,14 +53,14 @@
 <?php
 if (Auth::guest()){
   $date = date('m/d/y', strtotime($proof->created_at));
-  $timestamp = date('m/d/y h:i:sA e', strtotime($proof->created_at));
+  $timestamp = date('h:i:sA e', strtotime($proof->created_at));
 } else if (Auth::user()){
   $date = date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
-  $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
+  $timestamp = date('h:i:sA', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
 }
 ?>
     @if ($date != $old_date)
-        <h3 >{{$date}}</h3>
+        <h3 class='margin-left'>{{$date}}</h3>
         <?php $old_date = $date; ?>
     @endif
 <a name='proof{{$proof->id}}'></a>

@@ -8,29 +8,9 @@
  - Your Achievements
 @endsection
 @section('content')
-<div id='achievement_filters' class='margin-bottom center' >
-    &nbsp;
-    <div class='margin-top'>
-        <label for='complete' class='filter complete'>
-            Completed  By You
-            <span class='filter-tooltip' data-toggle='tooltip' title="You've submitted proof for this achievement and it has been approved!">(?)</span>
-            <input id='complete' type='checkbox' class='filter'>
-        </label>
-        <label for='followed' class='filter followed'>
-            Followed By You
-            <span class='filter-tooltip' data-toggle='tooltip' title="You're following this achievement. All updates will go to your homepage.">(?)</span>
-            <input id='followed' type='checkbox' class='filter' />
-        </label>
-    </div>
-    <div class='clear margin-top margin-bottom'>
-        <p class='approved'>Approved in black</p>
-        <p class='denied'>Denied in red.</p>
-        <p class='pending'>Pending Approval in grey</p>
-        <p class='inactive'><span class='inactive'>Unproven grey background</span></p>
-    </div>
-</div>
+@include ('Achievement.filter', ['type'=>'inventory'])
 @include ('Achievement.sort', ['page_type'=>'inventory'])
-<div class='center margin-top2'>
+<div class='center'>
 <table class='inline'>
 @foreach ($achievements as $achievement)
     @if (Auth::user())

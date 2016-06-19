@@ -1,20 +1,7 @@
 <?php
   use App\User;
- ?>
-<h1 class='
-    @if ($main->status==0)
-        denied
-    @elseif ($main->status==1)
-        approved
-    @elseif ($main->status==2)
-        pending
-    @elseif ($main->status==3)
-        inactive
-    @endif
-'>
-    {{$main->name }}
-</h1>
-<div id='header_info'>
+?>
+<div id='header_info' class='margin-left'>
     Submitted:
     @if (Auth::guest())
     {{ date('m/d/y h:i:sA e', strtotime($main->created_at))}}

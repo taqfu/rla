@@ -25,7 +25,7 @@ footer{
     width:100%;
     position:absolute;
     bottom:0;
-    height:32px;
+    height:-32px;
     text-align:center;
 }
 footer div a {
@@ -39,7 +39,7 @@ h4{
     margin-top:32px;
 }
 nav{
-    margin-bottom:16px;
+    margin-bottom:8px;
     font-size:1.25em;
 }
 table{
@@ -50,22 +50,15 @@ td{
     padding-left:8px;
     padding-right:8px;
 }
-#achievement_filters div label{
-    margin:8px;
-    padding:8px;
+#achievement_listings{
+    text-align:center;
 }
-#achievement_filters div.complete{
-    background-color:black;
-    color:white;
-    border:1px white dotted;
-}
-#achievement_filters div.inactive{
-    background-color:lightgrey;
-    font-style:italic;
-}
+#achievement_listings table{
+    width:50%;
+}  
 #achievements_link{
     text-align:center;
-    font-size:1.5em;
+    font-size:1em;
 }
 #achievement_results div.link:hover{
     background-color:lightgrey;
@@ -79,7 +72,7 @@ td{
 #app_nav{
     font-family:"Courier New";
     padding:8px;  
-    background-color:lightgrey;
+    background-color:#f4f4f4;
     border-bottom:1px solid grey;
     overflow:visible;
 }
@@ -109,7 +102,6 @@ td{
     color:lightgrey;
 }
 #discussion_container{
-    margin-top:48px;
 }
 #follow_menu label{
     margin-right:16px;
@@ -141,7 +133,7 @@ td{
 }
 #public_message p{
     text-align:center;
-    font-size:1.25em;
+    
 }
 #public_page{
     width:100%;
@@ -161,8 +153,19 @@ td{
 }
 #user_menu{
 }
+#user_profile_menu{
+    font-size:1.25em;
+    padding:8px;
+    padding-left:16px;
+    border:1px grey dotted;
+    clear:both;
+    margin-top:16px;
+}
+#user_profile_menu span{
+    margin-right:8px;
+}
 td.achievement{
-    border:1px black dashed;
+    border:1px lightgrey dotted;
 }
 td.achievement a div {
     padding:16px;
@@ -175,15 +178,20 @@ form.achievement{
     text-align:right;
     display:inline-block;
 }
+td.achievement-score{
+    padding:8px;
+    font-size:1.5em;
+}
+td.achievement-caption{
+    width:90%;
+}
 .achievement-unlocked-container{
     width:40%;
     margin:auto;
-    margin-bottom:32px;
     background-color:lightgrey;
     border:1px black solid;
     border-radius:64px;
     padding:8px;
-    
 }
 .achievement-unlocked-text-container{
     display:inline;
@@ -214,21 +222,15 @@ form.achievement{
     margin-left:20%;
 }
 .achievement_proof{
-    padding:16px;
-    border:1px grey dashed;
     width:75%;
-    margin-top:16px;
 }
 .achievement-user{
     float:left;
     clear:right;
 }
 a.approved:not(.complete){
-    color:black;
-    font-weight:bold;
 }
 a.approved.complete{
-    color:white;
 }
 div.brand{
 }
@@ -252,9 +254,9 @@ a.brand{
 }
 div.comment{
     clear:both;
-    margin-left:32px;
+  
     background-color:lightgrey;
-    width:75%;
+    width:50%;
     padding:4px;
     padding-bottom:2px;
     border:1px solid black;
@@ -268,15 +270,11 @@ textarea.comment, textarea.message{
     
 }
 label.complete, tr.complete_achievement, span.complete_achievement{
-    background-color:black;
-    border-top:1px white solid; 
-    color:white;
 }
 span.complete_achievement{
     padding:8px;
 }
 .denied{
-    color:red;
 }
 .bold{
     font-weight:bold;
@@ -300,19 +298,16 @@ div.feedback{
     cursor:pointer;
 }
 .followed{
-    text-decoration:underline;
 }
 .hidden{
     display:none;
 }
 .inactive{
-    color:black;
 }
 span.inactive{
     padding:8px;
 }
 .inactive_achievement, span.inactive, label.inactive{
-     background-color:lightgrey;
 }
 .inline{
     display:inline-block;
@@ -326,9 +321,14 @@ span.inactive{
 }
 .margin-bottom{
     margin-bottom:8px;
-
 }
-.margin-left{
+.margin-bottom2{
+    margin-bottom:16px;
+}
+h3.margin-left{
+    margin-left:8px;
+}
+.margin-left:not(h3){
     margin-left:16px;
 }
 .margin-left2{
@@ -342,14 +342,6 @@ span.inactive{
 }
 .margin-top2{
     margin-top:32px;
-}
-nav.menu{
-    font-size:1.25em;
-    padding:8px;
-    padding-left:16px;
-    border:1px grey dotted;
-    clear:both;
-    margin-top:16px;
 }
 div.message{
     margin:8px;
@@ -391,7 +383,6 @@ input.message{
     padding-left:16px;
 }
 .pending{
-    color:grey;
 }
 .proof_votes{
     margin-top:16px;

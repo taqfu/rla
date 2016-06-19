@@ -3,7 +3,7 @@
  - Register
 @endsection
 @section('content')
-<form  method="POST" action="{{ url('/register') }}">
+<form  method="POST" action="{{ url('/register') }}" class='margin-left'>
 @foreach ($errors->all() as $error)
     <div>{{$error}}</div>
 @endforeach
@@ -45,7 +45,9 @@
             @endif
         </div>
     </div>
+    <div class='margin-top margin-bottom'>
     {!! app('captcha')->display(); !!}
+    </div>
     <div>
         <div>
             <button type="submit">

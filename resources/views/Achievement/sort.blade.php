@@ -5,9 +5,8 @@
         $route_name = 'inventory';
     }
 ?>
-<div class='center margin-top2'>
+<div class='center' >
     Sort By:
-
     @if (substr($sort, 0, 6)=="points")
     <strong>
         @if (substr($sort, -4)=="desc")

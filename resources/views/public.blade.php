@@ -5,7 +5,7 @@
 @endsection
 @section ('content')
 <div id='public_page'>
-    <div class='achievement-unlocked-container mobileHidden '>
+    <div class='achievement-unlocked-container mobileHidden'>
         <div class='inline'>
             <div class='achievement-unlocked-icon-container'>
                 <img src="{{url('/')}}/logo-42-2.png" >
@@ -16,7 +16,7 @@
             <div class='description'>You found a real life achievements site!</div>
         </div>
     </div>
-    <div id='public_message' >
+    <div id='public_message' class='margin-top2' >
         <p class='center'>How many times have you thought to yourself...    </p>
          <p class='center'><B><i>"I wish there were video game achievements for real life!"</i></b></p>
     
