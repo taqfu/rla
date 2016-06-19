@@ -1,3 +1,5 @@
+
+
 @media only screen AND (max-width:736px){
     .mobileHidden {
         display:none;
@@ -27,7 +29,6 @@ footer{
     text-align:center;
 }
 footer div a {
-    color:black;
     margin:8px;
 }
     
@@ -38,7 +39,6 @@ h4{
     margin-top:32px;
 }
 nav{
-    padding:16px;
     margin-bottom:16px;
     font-size:1.25em;
 }
@@ -53,7 +53,6 @@ td{
 #achievement_filters div label{
     margin:8px;
     padding:8px;
-    border:1px black dotted;
 }
 #achievement_filters div.complete{
     background-color:black;
@@ -78,7 +77,10 @@ td{
     width:100%;
 }
 #app_nav{
-    border-bottom:1px lightgrey dotted;
+    font-family:"Courier New";
+    padding:8px;  
+    background-color:lightgrey;
+    border-bottom:1px solid grey;
     overflow:visible;
 }
 #center-footer{
@@ -100,7 +102,7 @@ td{
 }
 #create_achievement{
     width:90%;
-    font-size:2em;
+    font-size:1.5em;
     color:lightgrey;
 }
 #create_proof_url{
@@ -141,6 +143,11 @@ td{
     text-align:center;
     font-size:1.25em;
 }
+#public_page{
+    width:100%;
+    position:absolute;
+    top:25%;
+}
 #proof_status{
     font-style:italic;
     margin:8px;
@@ -153,7 +160,6 @@ td{
     margin-left:4px;
 }
 #user_menu{
-    float:right;
 }
 td.achievement{
     border:1px black dashed;
@@ -193,7 +199,8 @@ form.achievement{
     font-style:italic;
 }
 .achievement-unlocked-icon-container{
-    background-color:black;
+    background-color:white;
+    border:1px black solid;
     border-radius:50%;
     width:75px;
     height:75px;
@@ -224,12 +231,8 @@ a.approved.complete{
     color:white;
 }
 div.brand{
-    float:left;
-    font-size:1.5em;
 }
 a.brand{
-    font-family:"Courier New";
-    color:grey;
     text-decoration:none;
 }
 .center{
@@ -431,7 +434,7 @@ div.timeline {
     padding:8px;
 }
 .twitter-share-button{
-    vertical-align:middle;
+    vertical-align:top;
 }    
 .unproven{
     background-color:lightgrey;

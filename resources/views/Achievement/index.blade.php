@@ -5,7 +5,7 @@
 ?>
 @extends('layouts.app')
 @section('title')
-    - Achievement Listing
+    - Achievements 
 @endsection
 @section ('head')
      <meta name="csrf-token" content="{{ csrf_token() }}">

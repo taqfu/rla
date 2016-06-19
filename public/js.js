@@ -1,22 +1,30 @@
+
 $(document.body).ready(function () {
+    var searchAndCreateAchievementTimer;
+    var doneTypingInterval=500;
+    var searchAndCreateInputTextCaption = "Create or search here.";
     $("input.filter:not(.inactive-filter)").prop('checked', true);
     $(document).on("change", "#follow_menu input", function (event) {
         $("#follow_menu form").submit();
     });
     $(document).on("focusin", "#create_achievement", function (event) {
         $("#create_achievement").css('color', 'black');    
-        if ($("#create_achievement").val()=="Create or search here."){
+        if ($("#create_achievement").val()==searchAndCreateInputTextCaption){
             $("#create_achievement").val("");
         }
         
     });
     $(document).on("focusout", "#create_achievement", function (event) {
         if ($("#create_achievement").val().trim()==""){
-            $("#create_achievement").val("Create or search here.");
+            $("#create_achievement").val(searchAndCreateInputTextCaption);
             $("#create_achievement").css('color', 'grey');    
         }
     });
+    $(document).on('keydown', "#create_achievement", function (event) {
+        clearTimeout(searchAndCreateAchievementTimer);
+    }); 
     $(document).on("keyup", "#create_achievement", function (event) {
+        clearTimeout(searchAndCreateAchievementTimer);
         if (event.key=="Enter"){
            console.log($("#default_result").is("input"), $("#default_result").is("form")); 
             if($("#default_result").is("input")){
@@ -25,24 +33,20 @@ $(document.body).ready(function () {
                 $("#default_result").submit();
             }
         } else {
-            if ($("#create_achievement").val().length>2){
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },  
-                    method: "POST",
-                    url: "query",
-                    data:{searchQuery:$("#create_achievement").val()}
-                })  
-                    .done(function (result){
-                        $("#achievement_results").html(result);
-                    }); 
-            } else {
-                $("#achievement_results").html("");
+            if ($("#create_achievement").val().length>0){
+                searchAndCreateAchievementTimer = setTimeout(doneTyping, doneTypingInterval);
             }
         }
     });
+/*
+    $(document).on("load", "#create_achievement"), function (event){
+        if ($("#create_achievement").val()!=searchAndCreateInputTextCaption){
+            $("#create_achievement").css("color", "black");
+            doneTyping();
+        }
+    }); 
 
+*/
     $(document).on("change", ".filter", function (event) {
         console.log($("#"+event.target.id).prop('checked'));
         if($("#"+event.target.id).prop('checked')){
@@ -88,3 +92,19 @@ $(document.body).ready(function () {
         $("#new_comment"+id_num).removeClass('hidden');
     });
 });
+
+
+function doneTyping(){
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },  
+        method: "POST",
+        url: "query",
+        data:{searchQuery:$("#create_achievement").val()}
+    })  
+        .done(function (result){
+            $("#achievement_results").html(result);
+        }); 
+
+}

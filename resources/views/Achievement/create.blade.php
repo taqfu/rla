@@ -1,3 +1,7 @@
+<?php 
+//$default_achievement_val = old('name')==NULL ? "Create or search here." : old('name')
+$default_achievement_val = "Create or search here.";    
+?>
 <div class='center fail'>
     @foreach ($errors->all() as $error)
     <div>
@@ -6,7 +10,7 @@
     @endforeach
 </div>
 <div class='center'>
-    <input id='create_achievement' type='text'  name='name' value="{{old('name')==NULL ? "Create or search here." : old('name')}}" maxlength='100' autocomplete="off" />
+    <input id='create_achievement' type='text'  name='name' value="{{$default_achievement_val}}" maxlength='100' autocomplete="off" />
     <div id='achievement_results'></div>
 </div>
 <div class='center hidden'>

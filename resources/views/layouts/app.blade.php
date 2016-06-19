@@ -36,12 +36,11 @@
     <meta name="theme-color" content="#ffffff">
     <link rel='publisher' href='https://plus.google.com/u/0/b/111000706342354560427/111000706342354560427/about'>
     <link rel="stylesheet" href="{{$root_url}}/css.css">
-<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{{$root_url}}/bootstrap.min.css">
+<!--
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
+-->
 @yield('head')
 </head>
 <body>
@@ -55,12 +54,12 @@
 }(document, 'script', 'facebook-jssdk'));</script>
     <nav id='app_nav' class='center'>
         &nbsp;
-        <div class='brand left'>
+        <div class='brand inline left'>
             <a href="{{ url('/') }}" class='brand'>
                 Do It! Prove It!
             </a>
         </div>
-        <div id='user_menu'>
+        <div id='user_menu' class='inline right' >
             <a href="{{route('achievement.index')}}">Achievements</a>
             -
                 @if (Auth::guest())
