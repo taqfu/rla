@@ -8,8 +8,8 @@ use App\User;
 @section('content')
 @include ('User.menu', ['active'=>'votes'])
 @if (count($votes)>0)
-	<table>
-	    <tr>
+	<table id='vote-results'>
+	    <tr class='header'>
 	        <th>
 	            Timestamp
 	        </th>
@@ -31,20 +31,7 @@ use App\User;
 	    </tr>
 	@foreach($votes as $vote)
 	    <tr><td>
-	        <div style='width:175px;'>
-            @if (Auth::guest())
-	          {{date('M d, Y', strtotime($vote->created_at))}}
-            @elseif (Auth::user())
-            {{date('M d, Y', User::local_time(Auth::user()->timezone, strtotime($vote->created_at)))}}
-            @endif
-	        </div>
-	        <div>
-          @if (Auth::guest())
-          {{date('h:i:sA e', strtotime($vote->created_at))}}
-          @elseif (Auth::user())
-          {{date('h:i:sA', User::local_time(Auth::user()->timezone, strtotime($vote->created_at)))}}
-          @endif
-	        </div>
+            {{interval($vote->created_at, "now")}} ago
 	    </td><td style="color:{{$vote->vote_for ? 'green' : 'red'}};">
 	        {{ $vote->vote_for ? "for" : "against" }}
 	    </td><td>
@@ -60,6 +47,8 @@ use App\User;
 	@endforeach
 	</table>
 @else
-You have not voted yet.
+<div class='margin-left'>
+    You have not voted yet.
+</div>
 @endif
 @endsection

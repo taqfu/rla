@@ -6,7 +6,7 @@
 
 @section('content')
     @include ('User.menu', ['active'=>'comments'])
-<div id='user-comments'>
+<div id='user-comments' class='margin-left'>
     @forelse($comments as $comment)
     <?php
         $timestamp = Auth::user()

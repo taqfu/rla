@@ -65,7 +65,7 @@ if (Auth::guest()){
     @endif
 <a name='proof{{$proof->id}}'></a>
 <div class='achievement-proof margin-left inline'>
-    <div class='proof_timestamp'><strong>{{$timestamp}}</strong></div>
+    <div class='proof-timestamp'>{{$timestamp}}</div>
     <div class='inline margin-left'><a href="{{route('user.show', ['id'=>$proof->user->id])}}">{{$proof->user->username}}</a>
         submitted <a href="{{route('proof.show', ['id'=>$proof->id])}}">proof</a> of completion.
         (<a href="{{$proof->url}}">{{$proof->url}}</a>)  -
@@ -93,7 +93,7 @@ if (Auth::guest()){
             <?php $is_it_passing = Proof::passing_approval($proof->id); ?>
             @if ($is_it_passing)
                 (<span class='pass'>Passing</span>)
-            @else
+            else
                 (<span class='fail'>Failing</span>)
             @endif
         </i>
@@ -125,7 +125,7 @@ if (Auth::guest()){
 @if (count($proof->comments)>0)
 <div class='padding-left'>
     <input type='button' id='hide_comments{{$proof->id}}' class='hide_comments text-button' value='[ - ]' />
-    <div id='comments{{$proof->id}}'>
+    <div id='comments{{$proof->id}}' class='margin-left2'>
         @foreach ($proof->comments as $comment)
             @include ('Comment.show', ['comment'=>$comment])
         @endforeach

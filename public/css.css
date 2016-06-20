@@ -43,6 +43,11 @@ table{
     margin-top:16px;
     text-align:center;
 }
+table tr th{
+    text-align:center;
+    padding-left:16px;
+    padding-right:16px;
+}   
 td{
     padding-left:8px;
     padding-right:8px;
@@ -152,6 +157,10 @@ tr.inactive-achievement, tr.denied-achievement{
 #user-profile-menu span{
     margin-right:8px;
 }
+#vote-results tr:not(.header){ 
+    background-color:#f4f4f4;
+    border:2px solid white;
+}
 tr.followed-achievement{
     border:3px black solid;
 }
@@ -245,13 +254,10 @@ a.brand{
     color:blue;
 }
 .comment, .message{
-    width:400px;
 }
 div.comment{
     clear:both;
-
-    background-color:lightgrey;
-    width:50%;
+    background-color:#f4f4f4;
     padding:4px;
     padding-bottom:2px;
     border:1px solid black;
@@ -365,6 +371,10 @@ input.message{
     padding-left:16px;
 }
 .pending{
+}
+.proof-timestamp{
+    font-weight:bold;
+    margin-top:4px;
 }
 .proof-votes{
     margin-top:16px;
