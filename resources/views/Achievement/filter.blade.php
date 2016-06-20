@@ -61,4 +61,5 @@
             <input id='followed' type='checkbox' name='followed' class='filter' />
         </label>
     </div>
+    @include ("Achievement.sort")
 </form>

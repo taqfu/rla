@@ -1,47 +1,65 @@
 <?php
-    if ($page_type=='listing'){
-        $route_name = 'achievement.index';
-    } else if ($page_type='inventory'){
-        $route_name = 'Achievement.inventory';
-    }
+$route_name = 'achievement.index';
+if (substr($sort, -4)=="desc"){
+    $inverse_order= "asc";
+    $inverse_arrow = "&darr;";
+} else if(substr($sort, -4)==" asc") {
+    $inverse_order= "desc";
+    $inverse_arrow = "&uarr;";
+} else {
+    $inverse_order = "asc";
+    $inverse_arrow = "&darr;";
+}
 ?>
 <div class='center margin-bottom' >
     Sort By:
     @if (substr($sort, 0, 6)=="points")
+    <button name='sort' type='submit' value="points {{$inverse_order}}">
     <strong>
-        @if (substr($sort, -4)=="desc")
-        <a href="{{route($route_name, ['sort'=>'points asc'])}}">By Points &darr;</a>
-        @elseif(substr($sort, -4)==" asc")
-        <a href="{{route($route_name, ['sort'=>'points desc'])}}">By Points &uarr;</a>
-        @endif
+                By Points {{$inverse_arrow}} 
     </strong>
-    <a href="{{route($route_name, ['sort'=>'name asc'])}}">By Name &darr;</a>
-    <a href="{{route($route_name, ['sort'=>'date asc'])}}">By Date &darr;</a>
+    </button>
+    <button name='sort' type='submit' value='name asc'>
+    By Name &darr;
+    </button>
+    <button name='sort' type='submit' value='date asc'>
+    By Date &darr;
+    </button>
     @elseif (substr($sort, 0, 4)=="name")
-    <a href="{{route($route_name, ['sort'=>'points desc'])}}">By Points &darr;</a>
+    <button name='sort' type='submit' value="points asc">
+    By Points &darr;
+    </button>
+    <button name='sort' type='submit' value="name {{$inverse_order}}">
     <strong>
-        @if (substr($sort, -4)=="desc")
-        <a href="{{route($route_name, ['sort'=>'name asc'])}}">By Name &uarr;</a>
-        @elseif(substr($sort, -4)==" asc")
-        <a href="{{route($route_name, ['sort'=>'name desc'])}}">By Name &darr;</a>
-        @endif
+    By Name {{$inverse_arrow}}
     </strong>
-    <a href="{{route($route_name, ['sort'=>'date asc'])}}">By Date &darr;</a>
+    </button>
+    <button name='sort' type='submit' value="date asc">
+    By Date &darr;
+    </button>
     @elseif (substr($sort, 0, 4)=="date")
-    <a href="{{route($route_name, ['sort'=>'points desc'])}}">By Points &darr;</a>
-    <a href="{{route($route_name, ['sort'=>'name asc'])}}">By Name &darr;</a>
+    <button name='sort' type='submit' value="points asc">
+    By Points &darr;
+    </button>
+    <button name='sort' type='submit' value="name asc">
+    By Name &darr;
+    </button>
+    <button name='sort' type='submit' value="date {{$inverse_order}}">
     <strong>
-        @if (substr($sort, -4)=="desc")
-        <a href="{{route($route_name, ['sort'=>'date asc'])}}">By Date &uarr;</a>
-        @elseif(substr($sort, -4)==" asc")
-        <a href="{{route($route_name, ['sort'=>'date desc'])}}">By Date &darr;</a>
-        @endif
+    By Date {{$inverse_arrow}}
     </strong>
+    </button>
     @else
-        <strong>
-            <a href="{{route($route_name, ['sort'=>'points asc'])}}">By Points &darr;</a>
-        </strong>
-        <a href="{{route($route_name, ['sort'=>'name asc'])}}">By Name &darr;</a>
-        <a href="{{route($route_name, ['sort'=>'date asc'])}}">By Date &darr;</a>
+    <button name='sort' type='submit' value="points {{$inverse_order}}">
+    <strong>
+    By Points {{$inverse_arrow}}
+    </strong>
+    </button>
+    <button name='sort' type='submit' value="name asc">
+    By Name &darr;
+    </button>
+    <button name='sort' type='submit' value="date asc">
+    By Date &darr;
+    </button>
     @endif
 </div>

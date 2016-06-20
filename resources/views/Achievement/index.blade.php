@@ -13,11 +13,10 @@
 @section('content')
 @if (Auth::user())
     @include ('Achievement.create')
-    @include ('Achievement.filter', ['type'=>'index'])
 @endif
 
 <div id='achievement-listings'>
-    @include  ('Achievement.sort', ['page_type'=>'listing'])
+    @include ('Achievement.filter', ['type'=>'index'])
     <table class='center-margin'>
     @foreach ($achievements as $achievement)
         @if (Auth::user())
@@ -101,7 +100,7 @@
                 href="{{route('achievement.show', ['id'=> $achievement->id])}}">
                     <div>
                         {{ $achievement->name }}
-                    @if ($has_user_completed_achievement)
+                    @if (Auth::user() && $has_user_completed_achievement)
                         &#10004;
                     @endif
                     </div>

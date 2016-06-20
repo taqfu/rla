@@ -51,7 +51,7 @@ tr.denied-achievement td a {
     color:red;
 }
 tr.pending-achievement{
-    background-color:grey;
+    background-color:#a9a9a9;
 }
 tr.inactive-achievement, tr.denied-achievement{
     background-color:lightgrey;
@@ -285,6 +285,7 @@ div.feedback{
 }
 .filter-tooltip{
     font-weight:bold;
+    cursor:pointer;
 }
 .hidden{
     display:none;

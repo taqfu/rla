@@ -55,6 +55,7 @@ $point_caption = $profile->score!=1 ? "points" : "point";
     </div>
     @empty
     <div class='margin-left'>
+            asdfasdf
         @if (Auth::user() && Auth::user()->id == $profile->id)
             You
         @else

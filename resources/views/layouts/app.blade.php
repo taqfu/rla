@@ -56,7 +56,7 @@
             </a>
         </div>
         <div id='user-menu' class='inline right' >
-            <a href="{{route('achievement.index')}}">Achievements</a>
+            <a href="{{route('achievement.index', Config::get('rla.default_filter'))}}">Achievements</a>
             -
                 @if (Auth::guest())
                     <a href="{{ url('/login') }}">Login</a>

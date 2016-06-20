@@ -24,7 +24,7 @@
             <i>Do It! Prove It!</i> is an up-and-coming community for tracking and sharing your accomplishments.    
         </p> 
         <h2 id='achievements-link'>
-            <a href="{{route('achievement.index')}}"> Check out the achievements available!</a></p>
+            <a href="{{route('achievement.index', Config::get('rla.default_filter') )}}"> Check out the achievements available!</a></p>
         </h2>
     </div>
 </div>

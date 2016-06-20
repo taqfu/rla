@@ -24,7 +24,6 @@ class AchievementController extends Controller
      */
     public function index(Request $request)
     {
-        $num_of_null_values=0;
         $status = [];
         $filters = ["status"=>[$request->denied, $request->approved,  $request->pending, $request->inactive]];
         foreach ($filters["status"] as $key=>$val){
@@ -32,6 +31,7 @@ class AchievementController extends Controller
                 $status[]=$key;
             }
         }
+        
         $achievements = Achievement::whereIn('status', $status)->get();
         $achievements = Achievement::sort($achievements, $request->Input('sort'));
         Proof::check();

@@ -5,6 +5,12 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     <a href="{{route('feedback')}}">Head here for any feedback.</a>
 </p>
+<h4>06/20/16</h4>
+<ul>
+    <li>Redesigned the site layout.</li>
+    <li>Redid sorting and filtering of achievements.</li>
+    <li>Removed Inventory.</li>
+</ul>
 <h4>06/17/16</h4>
 <ul>
     <li>Creating achievements has now been integrated into a single search/create text bar.</li>
