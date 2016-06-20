@@ -4,13 +4,10 @@
     .mobileHidden {
         display:none;
     }
-    #page_listing{
-        margin-bottom:32px;
-    }
-    #user_menu{
+    #user-menu{
     }
 }
-.show_comments{
+.show-comments{
     display:none;
 }
 html{
@@ -31,7 +28,7 @@ footer{
 footer div a {
     margin:8px;
 }
-    
+
 h1, h2{
     text-align:center;
 }
@@ -50,37 +47,37 @@ td{
     padding-left:8px;
     padding-right:8px;
 }
-tr.denied_achievement{
+tr.denied-achievement{
     background-color:red;
 }
-tr.pending_achievement{
+tr.pending-achievement{
     background-color:grey;
 }
-tr.inactive_achievement{
+tr.inactive-achievement{
     background-color:lightgrey;
 }
-#achievement_listings{
+#achievement-listings{
     text-align:center;
 }
-#achievement_listings table, #inventory table{
+#achievement-listings table, #inventory table{
     width:50%;
-}  
-#achievements_link{
+}
+#achievements-link{
     text-align:center;
     font-size:1em;
 }
-#achievement_results div.link:hover{
+#achievement-results div.link:hover{
     background-color:lightgrey;
 }
-#achievement_results div.link a div{
+#achievement-results div.link a div{
     padding:8px;
     display:block;
     height:100%;
     width:100%;
 }
-#app_nav{
+#app-nav{
     font-family:"Courier New";
-    padding:8px;  
+    padding:8px;
     background-color:#f4f4f4;
     border-bottom:1px solid grey;
     overflow:visible;
@@ -88,37 +85,27 @@ tr.inactive_achievement{
 #center-footer{
     clear:both;
     text-align:center;
-/*
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-*/
 }
-#change_password{
+#change-password{
     text-align:right;
 }
 #content{
     padding-bottom:32px;
 }
-#create_achievement{
+#create-achievement{
     width:90%;
     font-size:1.5em;
     color:lightgrey;
 }
-#create_proof_url{
+#create-proof-url{
     color:lightgrey;
 }
-#discussion_container{
-}
-#follow_menu label{
+
+#follow-menu label{
     margin-right:16px;
 }
-#guest_warning{
-    padding:16px;
-}
-#header_info{
+
+#header-info{
     margin-bottom:32px;
     font-style:italic;
 }
@@ -128,38 +115,33 @@ tr.inactive_achievement{
 #homepage h4{
     margin-bottom:2px;
 }
-#page_listing{
-    display:inline;
-    margin-right:96px;
-}
-    
-#proof_statement{
+#proof-statement{
     margin:8px;
     margin-bottom:4px;
 }
-#public_message p{
+#public-message p{
     text-align:center;
-    
+
 }
-#public_page{
+#public-page{
     width:100%;
     position:absolute;
     top:25%;
 }
-#proof_status{
+#proof-status{
     font-style:italic;
     margin:8px;
     margin-bottom:16px;
     margin-top:0px;
 }
-#message_receiver{
+#message-receiver{
     color:grey;
     text-decoration:none;
     margin-left:4px;
 }
-#user_menu{
+#user-menu{
 }
-#user_profile_menu{
+#user-profile-menu{
     font-size:1.25em;
     padding:8px;
     padding-left:16px;
@@ -167,16 +149,16 @@ tr.inactive_achievement{
     clear:both;
     margin-top:16px;
 }
-#user_profile_menu span{
+#user-profile-menu span{
     margin-right:8px;
 }
-tr.followed_achievement{
+tr.followed-achievement{
     border:3px black solid;
 }
-tr.complete_achievement{
-    background-color:black; 
+tr.completed-achievement{
+    background-color:black;
 }
-tr.complete_achievement td, tr.complete_achievement td a{
+tr.completed-achievement td, tr.completed-achievement td a{
     color:white;
 }
 td.achievement{
@@ -238,7 +220,7 @@ td.achievement-caption{
     margin:auto;
     margin-left:20%;
 }
-.achievement_proof{
+.achievement-proof{
     width:75%;
 }
 .achievement-user{
@@ -263,7 +245,7 @@ a.brand{
 .clear{
     clear:both;
 }
-.change_read_status{
+.change-read-status{
     color:blue;
 }
 .comment, .message{
@@ -271,7 +253,7 @@ a.brand{
 }
 div.comment{
     clear:both;
-  
+
     background-color:lightgrey;
     width:50%;
     padding:4px;
@@ -284,9 +266,9 @@ form.comment{
 }
 textarea.comment, textarea.message{
     height:100px;
-    
+
 }
-span.complete_achievement{
+span.completed-achievement{
     padding:8px;
 }
 .denied{
@@ -300,7 +282,7 @@ span.complete_achievement{
 .fb-share-button{
 }
 div.feedback{
-    margin-right:8px;   
+    margin-right:8px;
 }
 .filter{
     margin-left:8px;
@@ -316,15 +298,11 @@ div.feedback{
 span.inactive{
     padding:8px;
 }
-.inactive_achievement, span.inactive, label.inactive{
-}
+
 .inline{
     display:inline-block;
 }
-.last_achievement{
-    padding:16px;
-    border:1px black dashed;
-}
+
 .left {
     float:left;
 }
@@ -366,20 +344,18 @@ input.message{
     float:right;
 }
 
-.message_container{
+.message-container{
     background-color:#f4f4f4;
     border:1px black solid;
     margin:16px;
     padding:4px;
     padding-bottom:0px;
 }
-.no_link{
+.no-link{
     text-decoration:none;
 }
-.no_margin{
-    margin:0px;
-}
-.no_vote{
+
+.no-vote{
     color:red;
 }
 .notification p{
@@ -393,12 +369,11 @@ input.message{
 }
 .pending{
 }
-.proof_votes{
+.proof-votes{
     margin-top:16px;
 }
-.proof_vote_comments{
-}
-.show_new_comment{
+
+.show-new-comment{
     margin-left:8px;
 }
 a.unread{
@@ -411,22 +386,22 @@ div.unread{
 .right{
     float:right;
 }
-.text_button { 
+.text-button {
      background:none!important;
-     border:none; 
+     border:none;
      padding:0!important;
      font: inherit;
      /*border is optional*/
      cursor: pointer;
-}   
+}
 div.timeline {
     margin-bottom:8px;
 }
-.timeline_comment{
+.timeline-comment{
     color:#a5a5a5;
     font-style:italic;
 }
-.timeline_container{
+.timeline-container{
     border:1px #f0f0f0 dotted;
     width:75%;
     margin:auto;
@@ -435,27 +410,26 @@ div.timeline {
 }
 .twitter-share-button{
     vertical-align:top;
-}    
+}
 .unproven{
 }
-.user_profile_achievements a.achievement_link{
+.user-profile-achievements a.achievement-link{
     color:black;
 }
-a.vote_available{
+a.vote-available{
     color:black;
-}  
-span.vote_available{
+}
+span.vote-available{
     background-color:lightgrey;
     border-radius:25px;
     padding:4px;
-    font-weight:bold; 
+    font-weight:bold;
 }
-.vote_status{ 
+.vote-status{
     clear:both;
     font-style:italic;
-    
+
 }
-.yes_vote, .pass{
+.yes-vote, .pass{
     color:green;
 }
-

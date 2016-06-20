@@ -64,7 +64,7 @@ if (Auth::guest()){
         <?php $old_date = $date; ?>
     @endif
 <a name='proof{{$proof->id}}'></a>
-<div class='achievement_proof margin-left inline'>
+<div class='achievement-proof margin-left inline'>
     <div class='proof_timestamp'><strong>{{$timestamp}}</strong></div>
     <div class='inline margin-left'><a href="{{route('user.show', ['id'=>$proof->user->id])}}">{{$proof->user->username}}</a>
         submitted <a href="{{route('proof.show', ['id'=>$proof->id])}}">proof</a> of completion.
@@ -111,12 +111,12 @@ if (Auth::guest()){
         </i>
         @endif
         @if (Proof::can_user_comment($proof->id))
-            <button id='show_new_comment{{$proof->id}}' class='text_button show_new_comment'>[ Comment ]</button>
+            <button id='show-new-comment{{$proof->id}}' class='text-button show-new-comment'>[ Comment ]</button>
         @endif
     </div>
 @include ('Vote.query', ['create_only'=>false])
 @if ($proof->comments)
-    <input type='button' id='show_comments{{$proof->id}}' class='show_comments text_button margin-left' value='[ + ]' />
+    <input type='button' id='show-comments{{$proof->id}}' class='show-comments text-button margin-left' value='[ + ]' />
 @endif
 @if (Proof::can_user_comment($proof->id))
     @include ('Comment.create', ['table'=>'proof', 'table_id'=>$proof->id, 'show'=>false])
@@ -124,7 +124,7 @@ if (Auth::guest()){
 @endif
 @if (count($proof->comments)>0)
 <div class='padding-left'>
-    <input type='button' id='hide_comments{{$proof->id}}' class='hide_comments text_button' value='[ - ]' />
+    <input type='button' id='hide_comments{{$proof->id}}' class='hide_comments text-button' value='[ - ]' />
     <div id='comments{{$proof->id}}'>
         @foreach ($proof->comments as $comment)
             @include ('Comment.show', ['comment'=>$comment])

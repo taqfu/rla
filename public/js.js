@@ -3,26 +3,26 @@ $(document.body).ready(function () {
     var searchAndCreateAchievementTimer;
     var doneTypingInterval=500;
     var searchAndCreateInputTextCaption = "Create or search here.";
-    $(document).on("change", "#follow_menu input", function (event) {
-        $("#follow_menu form").submit();
+    $(document).on("change", "#follow-menu input", function (event) {
+        $("#follow-menu form").submit();
     });
-    $(document).on("focusin", "#create_achievement", function (event) {
-        $("#create_achievement").css('color', 'black');    
-        if ($("#create_achievement").val()==searchAndCreateInputTextCaption){
-            $("#create_achievement").val("");
+    $(document).on("focusin", "#create-achievement", function (event) {
+        $("#create-achievement").css('color', 'black');    
+        if ($("#create-achievement").val()==searchAndCreateInputTextCaption){
+            $("#create-achievement").val("");
         }
         
     });
-    $(document).on("focusout", "#create_achievement", function (event) {
-        if ($("#create_achievement").val().trim()==""){
-            $("#create_achievement").val(searchAndCreateInputTextCaption);
-            $("#create_achievement").css('color', 'grey');    
+    $(document).on("focusout", "#create-achievement", function (event) {
+        if ($("#create-achievement").val().trim()==""){
+            $("#create-achievement").val(searchAndCreateInputTextCaption);
+            $("#create-achievement").css('color', 'grey');    
         }
     });
-    $(document).on('keydown', "#create_achievement", function (event) {
+    $(document).on('keydown', "#create-achievement", function (event) {
         clearTimeout(searchAndCreateAchievementTimer);
     }); 
-    $(document).on("keyup", "#create_achievement", function (event) {
+    $(document).on("keyup", "#create-achievement", function (event) {
         clearTimeout(searchAndCreateAchievementTimer);
         if (event.key=="Enter"){
            console.log($("#default_result").is("input"), $("#default_result").is("form")); 
@@ -32,7 +32,7 @@ $(document.body).ready(function () {
                 $("#default_result").submit();
             }
         } else {
-            if ($("#create_achievement").val().length>0){
+            if ($("#create-achievement").val().length>0){
                 searchAndCreateAchievementTimer = setTimeout(doneTyping, doneTypingInterval);
             }
         }
@@ -48,37 +48,37 @@ $(document.body).ready(function () {
             $("."+event.target.id+"_achievement").hide();
         }
     });
-    $(document).on('focusin', "#create_proof_url", function(event){
-        if ($("#create_proof_url").val()=="Paste URL here."){
-            $("#create_proof_url").val("");
-            $("#create_proof_url").css("color", "black");
+    $(document).on('focusin', "#create-proof-url", function(event){
+        if ($("#create-proof-url").val()=="Paste URL here."){
+            $("#create-proof-url").val("");
+            $("#create-proof-url").css("color", "black");
         }    });
-    $(document).on('focusout', "#create_proof_url", function(event){
-        if ($("#create_proof_url").val()==""){
-            $("#create_proof_url").val("Paste URL here.");
-            $("#create_proof_url").css("color", "lightgrey");
+    $(document).on('focusout', "#create-proof-url", function(event){
+        if ($("#create-proof-url").val()==""){
+            $("#create-proof-url").val("Paste URL here.");
+            $("#create-proof-url").css("color", "lightgrey");
         }
     });
     $(document).on("click", ".hide_comments", function (event) {
         var id_num = event.target.id.substr(13, event.target.id.length-13);
-        $("#show_comments" + id_num).show();
+        $("#show-comments" + id_num).show();
         $("#hide_comments" + id_num).hide();
         $("#comments"+id_num).hide();
     });
     $(document).on("click", ".hide_new_comment", function (event) {
         var id_num = event.target.id.substr(16, event.target.id.length-16);
-        $("#show_new_comment" + id_num).removeClass('hidden');
+        $("#show-new-comment" + id_num).removeClass('hidden');
         $("#new_comment"+id_num).addClass('hidden');
     });
-    $(document).on("click", ".show_comments", function (event) {
+    $(document).on("click", ".show-comments", function (event) {
         var id_num = event.target.id.substr(13, event.target.id.length-13);
-        $("#show_comments" + id_num).hide();
+        $("#show-comments" + id_num).hide();
         $("#hide_comments" + id_num).show();
         $("#comments"+id_num).show();
     });
-    $(document).on("click", ".show_new_comment", function (event) {
+    $(document).on("click", ".show-new-comment", function (event) {
         var id_num = event.target.id.substr(16, event.target.id.length-16);
-        $("#show_new_comment" + id_num).addClass('hidden');
+        $("#show-new-comment" + id_num).addClass('hidden');
         $("#new_comment"+id_num).removeClass('hidden');
     });
 });
@@ -91,10 +91,10 @@ function doneTyping(){
         },  
         method: "POST",
         url: "query",
-        data:{searchQuery:$("#create_achievement").val()}
+        data:{searchQuery:$("#create-achievement").val()}
     })  
         .done(function (result){
-            $("#achievement_results").html(result);
+            $("#achievement-results").html(result);
         }); 
 
 }

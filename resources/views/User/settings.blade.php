@@ -25,7 +25,7 @@
     {{csrf_field()}}
     {{ method_field('PUT') }}
     </div>
-    <div id='change_password' class='inline'>
+    <div id='change-password' class='inline'>
         <div class='inline right clear'>
         <label for='old_password'>Old Password:</label>
         <input type='password' name='old' id='old_password' />

@@ -21,8 +21,8 @@ $point_caption = $profile->score!=1 ? "points" : "point";
       }
       ?>
     
-    <div class='margin-left user_profile_achievements'>
-        <a  class='achievement_link' href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}">{{$proof->achievement->name}}</a>
+    <div class='margin-left user-profile-achievements'>
+        <a  class='achievement-link' href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}">{{$proof->achievement->name}}</a>
         (<a href="{{route('proof.show', ['id'=>$proof->id])}}">Proof</a>)  - <a href="{{route('user.show', ['id'=>$proof->achievement->user->id])}}">{{$proof->achievement->user->username}}</a>
     </div>
     @empty
@@ -40,8 +40,8 @@ $point_caption = $profile->score!=1 ? "points" : "point";
     <h3>Created Achievements</h3>
     @forelse($achievements as $achievement)
     
-    <div class='margin-left user_profile_achievements'>
-        <a  class='achievement_link' href="{{route('achievement.show', ['id'=>$achievement->id])}}">{{$achievement->name}}</a>
+    <div class='margin-left user-profile-achievements'>
+        <a  class='achievement-link' href="{{route('achievement.show', ['id'=>$achievement->id])}}">{{$achievement->name}}</a>
         @if ($achievement->status==0)
             <span class='fail'>(Denied)</span>
         @elseif ($achievement->status==1)
@@ -66,8 +66,8 @@ $point_caption = $profile->score!=1 ? "points" : "point";
     
     <h3>Followed Achievements</h3>
     @forelse($follows as $follow)
-    <div class='margin-left user_profile_achievements'>
-        <a class='achievement_link' href="{{route('achievement.show', ['id'=>$follow->achievement->id])}}">{{$follow->achievement->name}}</a>
+    <div class='margin-left user-profile-achievements'>
+        <a class='achievement-link' href="{{route('achievement.show', ['id'=>$follow->achievement->id])}}">{{$follow->achievement->name}}</a>
         @if ($follow->achievement->status==0)
             <span class='fail'>(Denied)</span>
         @elseif ($follow->achievement->status==1)

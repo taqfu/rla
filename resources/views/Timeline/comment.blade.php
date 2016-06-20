@@ -8,7 +8,7 @@
     @endif
      posted the following comment:
     </div>
-    <div class='timeline_comment margin-left2'>
+    <div class='timeline-comment margin-left2'>
         "<i>{{$timeline_item->comment->comment}}</i>"
     </div>
     <div class='notification margin-left'>

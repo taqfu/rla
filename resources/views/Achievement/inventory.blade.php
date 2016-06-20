@@ -4,25 +4,18 @@
   use App\User;
 ?>
 @extends('layouts.app')
-@section('title')
-    - Achievements
-@endsection
-@section ('head')
-     <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('title') 
+ - Your Achievements
 @endsection
 @section('content')
-@if (Auth::user())
-    @include ('Achievement.create')
-    @include ('Achievement.filter', ['type'=>'index'])
-@endif
-
-<div id='achievement-listings'>
-    @include  ('Achievement.sort', ['page_type'=>'listing'])
+@include ('Achievement.filter', ['type'=>'inventory'])
+@include ('Achievement.sort', ['page_type'=>'inventory'])
+<div id='inventory' class='center'>
     <table class='center-margin'>
     @foreach ($achievements as $achievement)
         @if (Auth::user())
-        <?php
-        $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id);
+        <?php 
+        $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id); 
         $is_user_following_achievement = count(Follow::where('achievement_id', $achievement->id)->where('user_id', Auth::user()->id)->get())>0;
         ?>
         @endif
@@ -72,9 +65,9 @@
             <td
               title="Created by {{$achievement->user->username}} on
               @if (Auth::guest())
-              {{date(Config::get('timestamp') . ' e', strtotime($achievement->created_at))}}
+              {{date('m/d/y h:i:sA e', strtotime($achievement->created_at))}}
               @elseif (Auth::user())
-              {{ date(Config::get('timestamp'), User::local_time(Auth::user()->timezone, strtotime($achievement->created_at)))}}
+              {{ date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($achievement->created_at)))}}
               @endif
               "
               class='achievement achievement-caption
@@ -99,11 +92,8 @@
                 @endif
                 '
                 href="{{route('achievement.show', ['id'=> $achievement->id])}}">
-                    <div>
-                        {{ $achievement->name }}
-                    </div>
-                </a>
-
+                    <div>{{ $achievement->name }}</div></a>
+    
                 @if(Achievement::can_user_vote_on_proof($achievement->id))
                 <span class='vote-available'>
                 <a href="{{route('achievement.show', ['id'=> $achievement->id])}}">Vote Available!</a>

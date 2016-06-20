@@ -1,4 +1,4 @@
-<nav id='user_profile_menu'>
+<nav id='user-profile-menu'>
     <span>
     @if ($active=='profile')
         <strong>{{$profile->username}}</strong>

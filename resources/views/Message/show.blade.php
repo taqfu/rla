@@ -1,7 +1,7 @@
 <?php
   use App\User;
  ?>
-<div class='message_container
+<div class='message-container
 @if (!$message->read && $type=='in')
     unread
 @endif
@@ -30,10 +30,10 @@
     <input type='hidden' name='all_read' value='false' />
     @if ($message->read)
         <input type='hidden' name='read' value='false' />
-        <input type='submit' value='Mark as unread' class='text_button change_read_status'>
+        <input type='submit' value='Mark as unread' class='text-button change-read-status'>
     @else
         <input type='hidden' name='read' value='true' />
-        <input type='submit' value='Mark as read' class='text_button change_read_status'>
+        <input type='submit' value='Mark as read' class='text-button change-read-status'>
     @endif
     </form>
 @endif

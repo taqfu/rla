@@ -1,7 +1,7 @@
 <?php
   use App\User;
 ?>
-<div id='header_info' class='margin-left'>
+<div id='header-info' class='margin-left'>
     Submitted:
     @if (Auth::guest())
     {{ date('m/d/y h:i:sA e', strtotime($main->created_at))}}
@@ -17,7 +17,7 @@
         - Inactive(requires proof)
     @endif
     @if (Auth::user())
-    <div id='follow_menu' class='right'>
+    <div id='follow-menu' class='right'>
         <form method="POST" action="{{route('follow.update', ['id'=>$main->id])}}">
             @foreach ($errors->all() as $error)
                 {{$error}} 

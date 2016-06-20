@@ -48,14 +48,14 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=104833379942261";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-    <nav id='app_nav' class='center'>
+    <nav id='app-nav' class='center'>
         &nbsp;
         <div class='brand inline left'>
             <a href="{{ url('/') }}" class='brand'>
                 Do It! Prove It!
             </a>
         </div>
-        <div id='user_menu' class='inline right' >
+        <div id='user-menu' class='inline right' >
             <a href="{{route('achievement.index')}}">Achievements</a>
             -
                 @if (Auth::guest())

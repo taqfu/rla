@@ -10,6 +10,6 @@ $default_achievement_val = "Create or search here.";
     @endforeach
 </div>
 <div class='center margin-bottom'>
-    <input id='create_achievement' type='text'  name='name' value="{{$default_achievement_val}}" maxlength='100' autocomplete="off" />
-    <div id='achievement_results'></div>
+    <input id='create-achievement' type='text'  name='name' value="{{$default_achievement_val}}" maxlength='100' autocomplete="off" />
+    <div id='achievement-results'></div>
 </div>

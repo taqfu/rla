@@ -40,7 +40,7 @@ Route::get('/inbox', ['as'=>'inbox', function(){
 Route::get('/inventory', ['as'=>'inventory', function(Request $request){
     if (Auth::user()){
         $achievements = Achievement::fetch_appropriate_sort_source($request->input('sort'));
-        return View('inventory', [
+        return View('Achievement.inventory', [
             "achievements"=>$achievements,
             "sort"=>$request->input('sort'),
         ]);
@@ -86,11 +86,11 @@ Route::get('/', ['as'=>'home', function (){
     if (Auth::guest()){
         return View('public');
     } else if (Auth::user()){
-        return View('home', [
+        return View('Timeline.index', [
             "timeline_items"=>Timeline::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
         ]);
     }
-}]); 
+}]);
 
 Route::get('/user/{id}', ['as'=>'user.show', 'uses'=>'UserController@showProfile']);
 Route::get('/user/{id}/comments', ['as'=>'user.comments', 'uses'=>'UserController@showComments']);
