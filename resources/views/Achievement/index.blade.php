@@ -72,9 +72,9 @@
             <td
               title="Created by {{$achievement->user->username}} on
               @if (Auth::guest())
-              {{date(Config::get('timestamp') . ' e', strtotime($achievement->created_at))}}
+              {{date(Config::get('rla.timestamp_format') . ' e', strtotime($achievement->created_at))}}
               @elseif (Auth::user())
-              {{ date(Config::get('timestamp'), User::local_time(Auth::user()->timezone, strtotime($achievement->created_at)))}}
+              {{ date(Config::get('rla.timestamp_format'), User::local_time(Auth::user()->timezone, strtotime($achievement->created_at)))}}
               @endif
               "
               class='achievement achievement-caption
@@ -101,6 +101,9 @@
                 href="{{route('achievement.show', ['id'=> $achievement->id])}}">
                     <div>
                         {{ $achievement->name }}
+                    @if ($has_user_completed_achievement)
+                        &#10004;
+                    @endif
                     </div>
                 </a>
 

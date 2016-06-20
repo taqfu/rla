@@ -47,13 +47,13 @@ td{
     padding-left:8px;
     padding-right:8px;
 }
-tr.denied-achievement{
-    background-color:red;
+tr.denied-achievement td a {
+    color:red;
 }
 tr.pending-achievement{
     background-color:grey;
 }
-tr.inactive-achievement{
+tr.inactive-achievement, tr.denied-achievement{
     background-color:lightgrey;
 }
 #achievement-listings{
@@ -155,11 +155,7 @@ tr.inactive-achievement{
 tr.followed-achievement{
     border:3px black solid;
 }
-tr.completed-achievement{
-    background-color:black;
-}
-tr.completed-achievement td, tr.completed-achievement td a{
-    color:white;
+tr.completed-achievement td a{
 }
 td.achievement{
     border:1px black dotted;
@@ -182,7 +178,7 @@ td.achievement-score{
     padding:8px;
     width:64px;
 }
-td.achievement-caption{
+td.achievement-caption, td.achievement-caption a:hover{
 }
 .achievement-unlocked-container{
     width:40%;

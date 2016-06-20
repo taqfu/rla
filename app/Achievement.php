@@ -75,28 +75,28 @@ class Achievement extends Model
         }
         return $owners;
     }
-    public static function fetch_appropriate_sort_source($sort){
+    public static function sort($achievements, $sort){
         switch($sort){
             case "date asc":
-                return Achievement::orderBy('created_at','asc')->get();
+                return $achievements->sortBy('created_at');
                 break;
             case "date desc":
-                return Achievement::orderBy('created_at','desc')->get();
+                return $achievements->sortByDesc('created_at');
                 break;
             case "name asc":
-                return Achievement::orderBy('name','asc')->get();
+                return $achievements->sortBy('name');
                 break;
             case "name desc":
-                return Achievement::orderBy('name','desc')->get();
+                return $achievements->sortByDesc('name');
                 break;        
             case "points asc":
-                return Achievement::orderBy('score','asc')->orderBy('name', 'asc')->get();
+                return $achievements->sortBy('score');
                 break;
             case "points desc":
-                return Achievement::orderBy('score','desc')->orderBy('name', 'asc')->get();
+                return $achievements->sortByDesc('score');
                 break;
             default:
-                return Achievement::orderBy('score','desc')->orderBy('name', 'asc')->get();
+                return $achievements->sortByDesc('score');
                 break;
         }
 

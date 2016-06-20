@@ -38,15 +38,7 @@ $(document.body).ready(function () {
         }
     });
     $(document).on("change", ".filter", function (event) {
-        console.log($("#"+event.target.id).prop('checked'));
-        if($("#"+event.target.id).prop('checked')){
-            $("."+event.target.id+"_achievement").show();
-            if ($("."+event.target.id+"_achievement").hasClass('hidden')){
-                $("."+event.target.id+"_achievement").removeClass('hidden');
-            }
-        } else {
-            $("."+event.target.id+"_achievement").hide();
-        }
+        $("#achievement-filters").submit(); 
     });
     $(document).on('focusin', "#create-proof-url", function(event){
         if ($("#create-proof-url").val()=="Paste URL here."){

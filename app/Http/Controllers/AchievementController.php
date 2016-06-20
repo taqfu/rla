@@ -24,12 +24,22 @@ class AchievementController extends Controller
      */
     public function index(Request $request)
     {
-            $achievements = Achievement::fetch_appropriate_sort_source($request->input('sort'));
-            Proof::check();
-            return View::make('Achievement.index', [
-              "achievements"=>$achievements,
-              "sort"=>$request->input('sort'),
-            ]);
+        $num_of_null_values=0;
+        $status = [];
+        $filters = ["status"=>[$request->denied, $request->approved,  $request->pending, $request->inactive]];
+        foreach ($filters["status"] as $key=>$val){
+            if ($val=="on"){
+                $status[]=$key;
+            }
+        }
+        $achievements = Achievement::whereIn('status', $status)->get();
+        $achievements = Achievement::sort($achievements, $request->Input('sort'));
+        Proof::check();
+        return View::make('Achievement.index', [
+          "achievements"=>$achievements,
+          "sort"=>$request->input('sort'),
+          "filters"=>$filters,
+        ]);
     }
 
     /**
