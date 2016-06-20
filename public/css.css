@@ -85,7 +85,6 @@ tr.inactive-achievement, tr.denied-achievement{
     padding:8px;
     background-color:#f4f4f4;
     border-bottom:1px solid grey;
-    overflow:visible;
 }
 #center-footer{
     clear:both;
