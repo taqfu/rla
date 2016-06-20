@@ -16,9 +16,9 @@
     @include ('Achievement.filter', ['type'=>'index'])
 @endif
 
-<div id='achievement_listings' >
+<div id='achievement_listings'>
     @include  ('Achievement.sort', ['page_type'=>'listing'])
-    <table class='inline'>
+    <table class='center-margin'>
     @foreach ($achievements as $achievement)
         @if (Auth::user())
         <?php 
@@ -27,9 +27,6 @@
         ?>
         @endif
             <tr class="
-            @if ($achievement->status==0 || $achievement->status==3 )
-                hidden
-            @endif
                 @if ($achievement->status==1)
                     approved_achievement
                 @elseif ($achievement->status==0)
@@ -102,7 +99,10 @@
                 @endif
                 '
                 href="{{route('achievement.show', ['id'=> $achievement->id])}}">
-                    <div>{{ $achievement->name }}</div></a>
+                    <div>
+                        {{ $achievement->name }}
+                    </div>
+                </a>
     
                 @if(Achievement::can_user_vote_on_proof($achievement->id))
                 <span class='vote_available'>

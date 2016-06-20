@@ -5,7 +5,7 @@
         $route_name = 'inventory';
     }
 ?>
-<div class='center' >
+<div class='center margin-bottom' >
     Sort By:
     @if (substr($sort, 0, 6)=="points")
     <strong>
@@ -42,6 +42,6 @@
             <a href="{{route($route_name, ['sort'=>'points asc'])}}">By Points &darr;</a>
         </strong>
         <a href="{{route($route_name, ['sort'=>'name asc'])}}">By Name &darr;</a>
-        <a href="{{route($route_name, ['sort'=>'date asc'])}}">By Date &darr;<a/> 
+        <a href="{{route($route_name, ['sort'=>'date asc'])}}">By Date &darr;</a> 
     @endif
 </div>

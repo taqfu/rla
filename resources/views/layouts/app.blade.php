@@ -37,10 +37,6 @@
     <link rel='publisher' href='https://plus.google.com/u/0/b/111000706342354560427/111000706342354560427/about'>
     <link rel="stylesheet" href="{{$root_url}}/css.css">
     <link rel="stylesheet" href="{{$root_url}}/bootstrap.min.css">
-<!--
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
--->
 @yield('head')
 </head>
 <body>
@@ -68,7 +64,6 @@
                 @else
                                                          
                         <a href="{{ route('user.show', ['id'=>Auth::user()->id])}}">{{ Auth::user()->username }}({{Auth::user()->score}})</a>
-                        <a href="{{ route('inventory') }}">Inventory</a>
                         @if (User::does_user_have_unread_msgs())
                             <a href="{{ route('inbox')}}" class='unread'>Inbox(!)</a>
                         @else
@@ -101,11 +96,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    @if ($_SERVER['SERVER_NAME']=='taqfu.com')
-    <script src="http://taqfu.com/rla-dev/rla/public/js.js"></script>
-    @elseif ($_SERVER['SERVER_NAME']=='doitproveit.com')
-    <script src="http://doitproveit.com/js.js"></script>
-    @endif
+    <script src="{{$root_url}}/js.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

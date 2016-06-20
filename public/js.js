@@ -3,7 +3,6 @@ $(document.body).ready(function () {
     var searchAndCreateAchievementTimer;
     var doneTypingInterval=500;
     var searchAndCreateInputTextCaption = "Create or search here.";
-    $("input.filter:not(.inactive-filter)").prop('checked', true);
     $(document).on("change", "#follow_menu input", function (event) {
         $("#follow_menu form").submit();
     });
@@ -38,15 +37,6 @@ $(document.body).ready(function () {
             }
         }
     });
-/*
-    $(document).on("load", "#create_achievement"), function (event){
-        if ($("#create_achievement").val()!=searchAndCreateInputTextCaption){
-            $("#create_achievement").css("color", "black");
-            doneTyping();
-        }
-    }); 
-
-*/
     $(document).on("change", ".filter", function (event) {
         console.log($("#"+event.target.id).prop('checked'));
         if($("#"+event.target.id).prop('checked')){

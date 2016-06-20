@@ -50,10 +50,19 @@ td{
     padding-left:8px;
     padding-right:8px;
 }
+tr.denied_achievement{
+    background-color:red;
+}
+tr.pending_achievement{
+    background-color:grey;
+}
+tr.inactive_achievement{
+    background-color:lightgrey;
+}
 #achievement_listings{
     text-align:center;
 }
-#achievement_listings table{
+#achievement_listings table, #inventory table{
     width:50%;
 }  
 #achievements_link{
@@ -105,9 +114,6 @@ td{
 }
 #follow_menu label{
     margin-right:16px;
-}
-#follow_menu label.active{
-    text-decoration:underline;
 }
 #guest_warning{
     padding:16px;
@@ -164,8 +170,20 @@ td{
 #user_profile_menu span{
     margin-right:8px;
 }
+tr.followed_achievement{
+    border:3px black solid;
+}
+tr.complete_achievement{
+    background-color:black; 
+}
+tr.complete_achievement td, tr.complete_achievement td a{
+    color:white;
+}
 td.achievement{
-    border:1px lightgrey dotted;
+    border:1px black dotted;
+}
+td.achievement, td.achievement a{
+    color:black;
 }
 td.achievement a div {
     padding:16px;
@@ -180,10 +198,9 @@ form.achievement{
 }
 td.achievement-score{
     padding:8px;
-    font-size:1.5em;
+    width:64px;
 }
 td.achievement-caption{
-    width:90%;
 }
 .achievement-unlocked-container{
     width:40%;
@@ -269,8 +286,6 @@ textarea.comment, textarea.message{
     height:100px;
     
 }
-label.complete, tr.complete_achievement, span.complete_achievement{
-}
 span.complete_achievement{
     padding:8px;
 }
@@ -292,12 +307,6 @@ div.feedback{
 }
 .filter-tooltip{
     font-weight:bold;
-}
-.filter-tooltip:hover{
-    text-decoration:underline;
-    cursor:pointer;
-}
-.followed{
 }
 .hidden{
     display:none;
@@ -358,7 +367,7 @@ input.message{
 }
 
 .message_container{
-    background-color:#eeeeee;
+    background-color:#f4f4f4;
     border:1px black solid;
     margin:16px;
     padding:4px;
@@ -418,7 +427,7 @@ div.timeline {
     font-style:italic;
 }
 .timeline_container{
-    border:1px lightgrey dotted;
+    border:1px #f0f0f0 dotted;
     width:75%;
     margin:auto;
     margin-bottom:16px;
@@ -428,7 +437,6 @@ div.timeline {
     vertical-align:top;
 }    
 .unproven{
-    background-color:lightgrey;
 }
 .user_profile_achievements a.achievement_link{
     color:black;

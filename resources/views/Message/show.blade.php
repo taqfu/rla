@@ -19,24 +19,23 @@
         {{date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($message->created_at)))}}
         @endif
     </div>
-        <div class='message'>
+    <div class='message'>
         {{$message->message}}
-        </div>
+    </div>
 @if ($type=='in')
     <a href="{{route('new_message', ['id'=>$message->sender->id])}}">Reply</a>
     <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" class='inline'>
     {{ csrf_field() }}
     {{ method_field('PUT') }}
     <input type='hidden' name='all_read' value='false' />
-@if ($message->read)
-    <input type='hidden' name='read' value='false' />
-    <input type='submit' value='Mark as unread' class='text_button change_read_status'>
-@else
-    <input type='hidden' name='read' value='true' />
-    <input type='submit' value='Mark as read' class='text_button change_read_status'>
-@endif
+    @if ($message->read)
+        <input type='hidden' name='read' value='false' />
+        <input type='submit' value='Mark as unread' class='text_button change_read_status'>
+    @else
+        <input type='hidden' name='read' value='true' />
+        <input type='submit' value='Mark as read' class='text_button change_read_status'>
+    @endif
     </form>
-    </div>
 @endif
 
 
