@@ -2,7 +2,7 @@
     use App\Achievement;
     use App\User; 
     if ($_SERVER['SERVER_NAME']=='taqfu.com'){
-        $root_url = "http://taqfu.com/rla-dev/rla/public";
+        $root_url = "http://taqfu.com/dev-env/rla/public";
     } else if ($_SERVER['SERVER_NAME']=='doitproveit.com' || $_SERVER['SERVER_NAME']=='www.doitproveit.com'){
         $root_url = "http://doitproveit.com";
     }
@@ -17,6 +17,7 @@
     <meta name='keywords' content='real life achievement, real world achievement, achievement unlocked'>
     
     <title>Do It! Prove It!@yield('title')</title>
+
     <link rel="apple-touch-icon" sizes="57x57" href="{{$root_url}}/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="{{$root_url}}/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="{{$root_url}}/apple-icon-72x72.png">
@@ -35,42 +36,65 @@
     <meta name="msapplication-TileImage" content="{{$root_url}}/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link rel='publisher' href='https://plus.google.com/u/0/b/111000706342354560427/111000706342354560427/about'>
-    <link rel="stylesheet" href="{{$root_url}}/css.css">
+    <link rel="stylesheet" href="{{$root_url}}/new-css.css">
     <link rel="stylesheet" href="{{$root_url}}/bootstrap.min.css">
 @yield('head')
 </head>
 <body>
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=104833379942261";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-    <nav id='app-nav' class='center'>
+<script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=104833379942261";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+    <nav id='app-nav' class='navbar navbar-default'>
         &nbsp;
-        <div class='brand inline left'>
-            <a href="{{ url('/') }}" class='brand'>
-                Do It! Prove It!
-            </a>
-        </div>
-        <div id='user-menu' class='inline right' >
-            <a href="{{route('achievement.index', Config::get('rla.default_filter'))}}">Achievements</a>
-            -
-                @if (Auth::guest())
+        <div class='container-fluid'>
+            <div class='navbar-header'>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> 
+                </button>
+                <a class='navbar-brand' href="{{ url('/') }}" class='brand'>
+                    Do It! Prove It!
+                </a>
+            </div>
+            <div class='collapse navbar-collapse' id='myNavbar'>
+                <ul class='nav navbar-nav text-right'>
+                    <li>
+                        <a href="{{route('achievement.index', Config::get('rla.default_filter'))}}">Achievements</a>
+                    </li>
+                </ul>
+                <ul class='nav navbar-nav navbar-right text-right'>
+                    @if (Auth::guest())
+                    <li>
                     <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                @else
-                                                         
+                        </li>
+                    <li>
+                        <a href="{{ url('/register') }}">Register</a>
+                    </li>
+                    @else
+                    <li>                                      
                         <a href="{{ route('user.show', ['id'=>Auth::user()->id])}}">{{ Auth::user()->username }}({{Auth::user()->score}})</a>
+                    </li>
+                    <li>
                         @if (User::does_user_have_unread_msgs())
-                            <a href="{{ route('inbox')}}" class='unread'>Inbox(!)</a>
+                        <a href="{{ route('inbox')}}" class='unread'>Inbox(!)</a>
                         @else
-                            <a href="{{ route('inbox')}}">Inbox</a>
+                        <a href="{{ route('inbox')}}">Inbox</a>
                         @endif
-                            <a href="{{ url('/logout') }}">Logout</a>
-                @endif
+                    </li>
+                    <li>
+                        <a href="{{ url('/logout') }}">Logout</a>
+                    </li>
+                    @endif
+                </ul>
+            </div>
         </div>
         
     </nav>
@@ -78,19 +102,32 @@
     @yield('content')
     </div>
     <div>
-    <footer>
-        <div class='left margin-left'>  
-            {{count(Achievement::get())}} Achievements
-        </div>
-        <div class='right margin-right'>
-            {{count(User::get())}} Users
-        </div>
-        <div id='center-footer'>
-	        <a href="{{route('about')}}">About Us</a>
-            <a href="{{route('changes')}}">Changelist</a>
-            <a href="{{route('feedback')}}">Feedback</a>
-        </div>
-    </footer>
+        <footer>
+            <div class='container-fluid'>
+                <div class='row'>
+                    <div class='col-xs-6'>  
+                        {{count(Achievement::get())}} Achievements
+                    </div>
+                    <div class='col-xs-6 text-right'>
+                        {{count(User::get())}} Users
+                    </div>
+                </div>  
+            </div>
+            <div class='container-fluid'>
+                <div class='row'>
+                    
+                    <div class='col-xs-4 text-right'>
+	                    <a href="{{route('about')}}">About Us</a>
+                    </div>
+                    <div class='col-xs-4 text-center'>
+                        <a href="{{route('changes')}}">Changelist</a>
+                    </div>
+                    <div class='col-xs-4 text-left'>
+                        <a href="{{route('feedback')}}">Feedback</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
     <!-- JavaScripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

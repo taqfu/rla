@@ -1,18 +1,19 @@
-<form  method="GET" action="{{route('achievement.index')}}" id='achievement-filters' class='margin-bottom center' >
-    &nbsp;
-    <div>
-        Status:
+<form  method="GET" action="{{route('achievement.index')}}" id='achievement-filters' class='text-center' >
+    <h4>
+        Filter By
+    </h4>
+    <div class='container-flexible'>
         <label for='approved' class='approved filter'>Approved
             <span class='filter-tooltip' data-toggle='tooltip'
               title='This achievement has been approved and multiple people can submit proof for it at the same time. Voting is only open to those that have already completed the achievement.'>
                 (?)
             </span>
+            <input id='approved' type='checkbox'  name='approved' class='filter' 
+              @if($filters['status'][1]=="on")
+                  checked
+              @endif
+            />
         </label>
-        <input id='approved' type='checkbox'  name='approved' class='filter' 
-          @if($filters['status'][1]=="on")
-              checked
-          @endif
-        />
         
         <label for='denied' class='denied filter'>Denied
             <span class='filter-tooltip' data-toggle='tooltip'

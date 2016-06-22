@@ -2,25 +2,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div id='homepage'>
+<div id='timeline'>
 <?php 
 $old_date = 0; 
-$old_time =0; 
+$old_time = 0; 
 ?>
 @forelse ($timeline_items as $timeline_item)
+<div class='well text-center'>
     <?php
         $timestamp = Auth::user()
           ? $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($timeline_item->created_at)))
           : date('m/d/y h:i:sA e', strtotime($timeline_item->created_at));
     ?>
     @if ($timeline_item->event=="new comment" || $timeline_item->event=="new proof vote comment")
-    <div class='timeline-container'>
         @include ("Timeline.comment")
-    </div>
     @elseif ($timeline_item->event=='new proof')
-    <div class='timeline-container'>
-        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
-        <div class='notification margin-left'> 
+        <div title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
+        <div > 
             <p>
             @if ($timeline_item->proof->user_id==Auth::user()->id)
                 You
@@ -37,11 +35,9 @@ $old_time =0;
                 (<a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}#proof{{$timeline_item->proof_id}}">{{$timeline_item->proof->achievement->name}}</a>)
             </p>
         </div>
-    </div>
     @elseif (substr($timeline_item->event,0, 10)=="swing vote")
-    <div class='timeline-container'>
-        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div> 
-        <div class='notification margin-left'>
+        <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div> 
+        <div >
             {{$timeline_item->vote->user->username}} voted
             @if ($timeline_item->vote->vote_for)
                 for
@@ -59,11 +55,9 @@ $old_time =0;
             @endif
             .
         </div>
-    </div>
-    @elseif (substr($timeline_item->event, 0, 19 )=="change proof status" && $timeline_item->proof->status!=1)
-    <div class='timeline-container'>
-        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
-        <div class='notification margin-left'>
+    @elseif (substr($timeline_item->event, 0, 19 )=="change proof status" )
+        <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
+        <div >
             @if ($timeline_item->proof->user_id==Auth::user()->id)
             <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">Your proof</a>
             @else
@@ -82,14 +76,10 @@ $old_time =0;
             @endif
             .
             
-            @if (substr($timeline_item->event, -1, 1) == "1")
-            @endif
         </div>
-    </div>
     @elseif (substr($timeline_item->event, 0, 15)=="new achievement")
-    <div class='timeline-container'>
-        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
-        <div class='notification margin-left'>
+        <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
+        <div >
             <p>
             You created a new achievement. 
             </p>
@@ -100,11 +90,9 @@ $old_time =0;
                 (<a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">{{$timeline_item->achievement->name}}</a>)
             </p>
         </div>
-    </div>
     @elseif (substr($timeline_item->event, 0, 25)=="change achievement status")
-    <div class='timeline-container'>
-        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>  
-        <div class='notification margin-left'>
+        <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>  
+        <div >
             The achievement you created
             <a href="{{route('achievement.show', ['id'=>$timeline_item->achievement_id])}}">"{{$timeline_item->achievement->name}}"</a>            
             @if (substr($timeline_item->event, -1, 1)=="0")
@@ -115,11 +103,9 @@ $old_time =0;
                 is currently under approval.
             @endif
         </div>
-    </div>
     @elseif (substr($timeline_item->event, 0, 10)=="new points")
-    <div class='timeline-container'>
-        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>  
-        <div class='notification margin-left'>
+        <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>  
+        <div >
         @if (substr($timeline_item->event, -26) == "owned achievement complete") 
             <a href="{{route('user.show', ['id'=>$timeline_item->proof->user_id])}}">{{$timeline_item->proof->user->username}}</a> completed the achievement you created. 
 
@@ -136,11 +122,9 @@ $old_time =0;
             you received  {{substr($timeline_item->event, 10, (strlen($timeline_item->event)-(14+10)))}} points.
         @endif 
         </div>
-    </div>
     @elseif ($timeline_item->event == "cancel proof")
-    <div class='timeline-container'>
-        <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>  
-        <div class='notification margin-left'>
+        <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>  
+        <div >
             <p>
                 You canceled <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">your proof</a> for the following achievement:
             </p>
@@ -148,10 +132,12 @@ $old_time =0;
                 (<a href="{{route('achievement.show', ['id'=>$timeline_item->proof->achievement_id])}}">{{$timeline_item->proof->achievement->name}}</a>)
             </p>
         </div>
-    </div>
+    @else
+        {{$timeline_item->event}}
     @endif
+</div>
 @empty
-<div class='center'>
+<div class='text-center'>
 Your timeline is empty. You need to create new achievements, comment or submit proof to existing achievements in order to fill your timeline.
 </div>
 @endforelse

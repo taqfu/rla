@@ -3,7 +3,8 @@
  - Login
 @endsection
 @section('content')
-    <form method="POST" action="{{ url('/login') }}" class='inline margin-left'>
+    <div class='container'>
+    <form method="POST" action="{{ url('/login') }}" >
         {!! csrf_field() !!}
         <div>
             <label for="username">Username</label>
@@ -34,4 +35,5 @@
                     </label>
         </div>
     </form>
+    </div>
 @endsection

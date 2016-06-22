@@ -1,46 +1,46 @@
-<nav id='user-profile-menu'>
-    <span>
-    @if ($active=='profile')
-        <strong>{{$profile->username}}</strong>
-    @else
+<ul id='user-profile-menu' class='nav nav-tabs'>
+    <li class="
+      @if ($active=='profile')
+      active
+      @endif
+      ">
         <a href="{{route('user.show', ['id'=>$profile->id])}}">{{$profile->username}}</a>
-    @endif
-    </span>
-    <span>
-    @if ($active=='comments')
-        <strong>Comments</strong>
-    @else
+    </li>
+    <li class="
+      @if ($active=='comments')
+      active
+      @endif
+      ">
         <a href="{{route('user.comments', ['id'=>$profile->id])}}">Comments</a>
-    @endif
-    </span>
+    </li>
 @if(Auth::user() && $profile->id == Auth::user()->id)
-    <span>
-    @if ($active=='votes')
-        <strong>Votes</strong>
-    @else
+    <li class="
+      @if ($active=='votes')
+      active
+      @endif
+      ">
         <a href="{{route('vote.index')}}">Votes</a>
-    @endif
-    </span>
-    <span>
-    @if ($active=='inbox')
-        <strong>Inbox</strong>
-    @else
+    </li>
+    <li class="
+      @if ($active=='inbox')
+      active
+      @endif
+      ">
         <a href="{{route('inbox')}}">Inbox</a>
-    @endif
-    </span>
-    <span>
-    @if ($active=='outbox')
-        <strong>Outbox</strong>
-    @else
+    </li>
+    <li class="
+      @if ($active=='outbox')
+      active
+      @endif
+      ">
         <a href="{{route('outbox')}}">Outbox</a>
-    @endif
-    </span>
-    <span>
-    @if ($active=='settings')
-        <strong>Settings</strong>
-    @else
+    </li>
+    <li class="
+      @if ($active=='settings')
+      active
+      @endif
+      ">
         <a href="{{route('settings')}}">Settings</a>
-    @endif
-    </span>
+    </li>
 @endif
-</nav>
+</ul>

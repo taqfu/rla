@@ -1,13 +1,20 @@
 <?php
     use App\Comment;
 ?>
-<nav class='menu'>
-    @if ($active_item=='info')
-        <strong>Proofs</strong>
-        <a href="{{route('discussion', ['id'=>$id])}}">Discussion ({{count(Comment::where('achievement_id', $id)->get())}})</a>
-    @elseif ($active_item=='discussion')
+<ul class='nav nav-tabs'>
+    <li class='
+      @if ($active_item=='info')
+      active
+      @endif
+      '>
         <a href="{{route('achievement.show', ['id'=>$id])}}">Proofs</a>
-        <strong>Discussion</strong>
-    @endif
+    </li>
+    <li class='
+      @if ($active_item=='discussion')
+      active
+      @endif
+      '>
+          <a href="{{route('discussion', ['id'=>$id])}}">Discussion ({{count(Comment::where('achievement_id', $id)->get())}})</a>
+    </li>
         
-</nav>
+</ul>

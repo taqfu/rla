@@ -1,7 +1,9 @@
 <?php
+    use App\Achievement;
   use App\User;
 ?>
-<div id='header-info' class='margin-left'>
+<div id='achievement-header' class='clearfix'>
+    <div class='col-xs-6'>
     Submitted:
     @if (Auth::guest())
     {{ date('m/d/y h:i:sA e', strtotime($main->created_at))}}
@@ -16,8 +18,14 @@
     @elseif ($main->status==3)
         - Inactive(requires proof)
     @endif
+    @if ((Auth::user() && Achievement::can_user_submit_proof($main->id))
+            && ((Auth::user()->id==$main->user_id && $main->status==0)
+            || (Auth::user()->id!=$main->user_id && $main->status!=2) || $main->status==3) )
+        @include ('Proof.create', ['achievement_id'=>$main->id])
+    @endif
+    </div>
     @if (Auth::user())
-    <div id='follow-menu' class='right'>
+    <div id='follow-menu' class='col-xs-6 text-right'>
         <form method="POST" action="{{route('follow.update', ['id'=>$main->id])}}">
             @foreach ($errors->all() as $error)
                 {{$error}} 

@@ -7,8 +7,6 @@
 @include ('User.menu', ['active'=>'settings'])
 <div id='settings' class='margin-left'>
     <h4>Password</h4>
-    <form method="POST" action="{{route('settings.password')}}" class='margin-left'>
-        <div>
         @if ($errors->get('old') || $errors->get('new') || $errors->get('confirm') || $errors->get('success'))
             @foreach ($errors->get('confirm') as $error)
                 <div>{{$error}}</div>
@@ -23,76 +21,76 @@
                 <div>{{$error}}</div>
             @endforeach
         @endif
+    <form method="POST" action="{{route('settings.password')}}" class='clearfix'>
         {{csrf_field()}}
         {{ method_field('PUT') }}
-        </div>
-        <div id='change-password' class='inline'>
-            <div class='inline right clear'>
+        <div id='change-password' class='col-xs-3 clearfix'>
+            <div class='row pull-right'>
             <label for='old_password'>Old Password:</label>
             <input type='password' name='old' id='old_password' />
             </div>
-            <div  class='inline right clear'>
+            <div  class='row pull-right'>
             <label for='new_password'>New Password:</label>
             <input type='password' name='new' id='new_password' />
             </div>
-            <div class='inline clear right'>
+            <div class='row pull-right'>
             <label for='new_password_confirm'>Confirm Password:</label>
             <input type='password' name='new_confirmation' id='new_password_confirm' />
             </div>
-            <input type='submit' value='Change Password' class='inline clear right'/>
+            <input type='submit' value='Change Password' class='pull-right'/>
         </div>
     </form>
-    <h4>E-mail Address</h4>
+    <h4 class='clearfix'>E-mail Address</h4>
     <p class='margin-left'>
         Your e-mail address is:
         @if (empty(Auth::user()->email))
-            None
+        None
         @else
-            {{Auth::user()->email}}
+        {{Auth::user()->email}}
         @endif
     </p>
     <form method="POST" action="{{route('settings.email')}}" class='margin-left'>
-    <div>
-    @if ($errors->get('email'))
-        @foreach ($errors->get('email') as $error)
+        <div>
+        @if ($errors->get('email'))
+            @foreach ($errors->get('email') as $error)
             <div>{{$error}}</div>
-        @endforeach
-    @endif
-    </div>
-    {{csrf_field()}}
-    {{ method_field('PUT') }}
-    <input type='email' name='email' />
-    <input type='submit' value='Change E-mail' />
+            @endforeach
+        @endif
+        </div>
+        {{csrf_field()}}
+        {{ method_field('PUT') }}
+        <input type='email' name='email' />
+        <input type='submit' value='Change E-mail' />
     </form>
     <h4>Tme Zone</h4>
     <p class='margin-left'>
-    Your time-zone is: {{Auth::user()->timezone}}
+        Your time-zone is: {{Auth::user()->timezone}}
     </p>
     <form method="POST" action="{{route('settings.timezone')}}" class='margin-left'>
-    <div>
-    @if ($errors->get('timezone'))
-        @foreach ($errors->get('timezone') as $error)
+        <div>
+        @if ($errors->get('timezone'))
+            @foreach ($errors->get('timezone') as $error)
             <div>{{ $error }}</div>
-        @endforeach
-    @endif
-    </div>
-    {{ csrf_field() }}
-    {{ method_field('PUT') }}
-    <select name='timezone'>
-    <?php
-    $tzlist = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
-    var_dump($tzlist);
-    
-        foreach($tzlist as $tz){
-            echo "<option ";
-            if ($tz == Auth::user()->timezone){
-                echo "selected";
+            @endforeach
+        @endif
+        </div>
+        {{ csrf_field() }}
+        {{ method_field('PUT') }}
+        <select name='timezone'>
+        <?php
+        $tzlist = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
+        var_dump($tzlist);
+        
+            foreach($tzlist as $tz){
+                echo "<option ";
+                if ($tz == Auth::user()->timezone){
+                    echo "selected";
+                }
+                echo ">$tz</option>";
             }
-            echo ">$tz</option>";
-        }
-    ?>
-    </select>
-    <input type='submit' value='Change Time Zone' />
+        ?>
+        </select>
+        <input type='submit' value='Change Time Zone' />
     </form>
 </div>
 @endsection

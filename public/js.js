@@ -53,6 +53,7 @@ $(document.body).ready(function () {
     });
     $(document).on("click", ".hide_comments", function (event) {
         var id_num = event.target.id.substr(13, event.target.id.length-13);
+        $("#show-comments" + id_num).removeClass('hidden');
         $("#show-comments" + id_num).show();
         $("#hide_comments" + id_num).hide();
         $("#comments"+id_num).hide();

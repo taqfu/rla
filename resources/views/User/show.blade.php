@@ -1,17 +1,23 @@
 <?php
 use App\User;
-$point_caption = $profile->score!=1 ? "points" : "point";
 ?>
 @extends('layouts.app')
+
 @section('title')
- - {{$profile->username}} - Achievements
+ - {{$profile->username}}
+@if (substr($profile->username, -1)=="s")
+'
+@else
+'s
+@endif
+ achievements
 @endsection
+
 @section('content')
 @include ('User.menu', ['active'=>'profile'])
 @include ('User.header')
-<div class='margin-left'>
-    <h3>Completed Achievements</h3>
-    <?php $old_date = 0; ?>
+<h3>Completed Achievements</h3>
+<ul class='list-group'>
     @forelse ($proofs as $proof)
         <?php
         if (Auth::guest()){
@@ -20,27 +26,27 @@ $point_caption = $profile->score!=1 ? "points" : "point";
         $date = date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
       }
       ?>
-    
-    <div class='margin-left user-profile-achievements'>
+    <li class='list-group-item'>
         <a  class='achievement-link' href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}">{{$proof->achievement->name}}</a>
         (<a href="{{route('proof.show', ['id'=>$proof->id])}}">Proof</a>)  - <a href="{{route('user.show', ['id'=>$proof->achievement->user->id])}}">{{$proof->achievement->user->username}}</a>
-    </div>
+    </li>
     @empty
-    <div class='margin-left'>
+    <li class='list-group-item'>
         @if (Auth::user() && Auth::user()->id == $profile->id)
             You
         @else
             They
         @endif
          have not completed any achievements.
-    </div>
+    </li>
     @endforelse
-    
-    
-    <h3>Created Achievements</h3>
+</ul>
+<h3>
+    Created Achievements
+</h3>
+<ul class='list-group'>
     @forelse($achievements as $achievement)
-    
-    <div class='margin-left user-profile-achievements'>
+    <li class='list-group-item'>
         <a  class='achievement-link' href="{{route('achievement.show', ['id'=>$achievement->id])}}">{{$achievement->name}}</a>
         @if ($achievement->status==0)
             <span class='fail'>(Denied)</span>
@@ -52,22 +58,24 @@ $point_caption = $profile->score!=1 ? "points" : "point";
             <span class='unproven'>(Unproven)</span>
         @endif
           - <a href="{{route('user.show', ['id'=>$achievement->user_id])}}">{{$achievement->user->username}}</a>
-    </div>
+    </li>
     @empty
-    <div class='margin-left'>
-            asdfasdf
+    <li class='list-group-item'>
         @if (Auth::user() && Auth::user()->id == $profile->id)
             You
         @else
             They
         @endif
          have not created any achievements.
-    </div>    
+    </li>    
     @endforelse
-    
-    <h3>Followed Achievements</h3>
+</ul>
+<h3>
+    Followed Achievements
+</h3>
+<ul class='list-group'>
     @forelse($follows as $follow)
-    <div class='margin-left user-profile-achievements'>
+    <li class='list-group-item'>
         <a class='achievement-link' href="{{route('achievement.show', ['id'=>$follow->achievement->id])}}">{{$follow->achievement->name}}</a>
         @if ($follow->achievement->status==0)
             <span class='fail'>(Denied)</span>
@@ -79,16 +87,16 @@ $point_caption = $profile->score!=1 ? "points" : "point";
             <span >(Unproven)</span>
         @endif
           - <a href="{{route('user.show', ['id'=>$follow->achievement->user_id])}}">{{$follow->achievement->user->username}}</a>
-    </div>
+    </li>
     @empty
-    <div class='margin-left'>
+    <li class='list-group-item'>
         @if (Auth::user() && Auth::user()->id == $profile->id)
             You
         @else
             They
         @endif
          have not followed any achievements.
-    </div>    
+    </li>
     @endforelse
-</div>
+</ul>
 @endsection

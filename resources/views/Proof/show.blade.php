@@ -31,36 +31,24 @@
 " />
 @endsection
 @section('content')
-<h1>
-    <a href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}" class='no-link
-        @if ($proof->achievement->status==0)
-            denied
-        @elseif ($proof->achievement->status==1)
-            approved
-        @elseif ($proof->achievement->status==2)
-            pending
-        @endif
-    '>
+<h1 class='text-center'>
         {{$proof->achievement->name}}
-    </a>
-
 </h1>
-<h2>
-    Proof #{{$proof->id}}
-</h2>
+
+<div class='well'>
 <div id='proof-statement'>
-Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
-@if (Auth::user() && Auth::user()->id==$proof->user_id)
- you
-@else
- <a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->username}}</a>
-@endif
- on
-    @if (Auth::guest())
-    {{date('m/d/y h:i:s e', strtotime($proof->created_at))}}.
-    @elseif (Auth::user())
-    {{date('m/d/y h:i:s', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)))}}.
+    Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
+    @if (Auth::user() && Auth::user()->id==$proof->user_id)
+     you
+    @else
+     <a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->username}}</a>
     @endif
+     on
+        @if (Auth::guest())
+        {{date('m/d/y h:i:s e', strtotime($proof->created_at))}}.
+        @elseif (Auth::user())
+        {{date('m/d/y h:i:s', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)))}}.
+        @endif
 </div>
 <div id='proof-status' class='inline'>
 &nbsp;
@@ -87,6 +75,7 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
     @include ('Proof.destroy')
 @endif
 </div>
+</div>
 <?php $old_date = 0; ?>
 @foreach ($votes as $vote)
     <?php
@@ -100,7 +89,7 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
         <div><strong>{{$date}}</strong></div>
         <?php $old_date = $date; ?>
     @endif
-<div class='proof-votes margin-left'>
+<div class='proof-votes well'>
     <i>
       @if (Auth::guest())
       {{ date('h:i:sA e', strtotime($vote->created_at)) }}
@@ -115,20 +104,16 @@ Proof (<a href="{{$proof->url}}">{{$proof->url}}</a>) submitted by
         against this proof.
     @endif
 @if (Proof::can_user_comment($proof->id))
-    <button id='show-new-comment{{$vote->id}}' class='text-button show-new-comment'>[ Comment ]</button>
+    <button id='show-new-comment{{$vote->id}}' class='btn-link show-new-comment'>[ Comment ]</button>
     @if ($vote->comments)
-        <input type='button' id='show-comments{{$vote->id}}' class='show-comments text-button margin-left' value='[ + ]' />
+        <input type='button' id='show-comments{{$vote->id}}' class='show-comments btn-link margin-left' value='[ + ]' />
     @endif
-</div>
     @if (Proof::can_user_comment($proof->id))
         @include ('Comment.create', ['table'=>'vote', 'table_id'=>$vote->id, 'show'=>false])
     @endif
 @else
-</div>
-@endif
-@if (count($vote->comments)>0)
 <div class='proof-vote-comments padding-left inline'>
-    <input type='button' id='hide_comments{{$vote->id}}' class='hide_comments text-button' value='[ - ]' />
+    <input type='button' id='hide_comments{{$vote->id}}' class='hide_comments btn-link' value='[ - ]' />
     <div id='comments{{$vote->id}}'>
         @foreach ($vote->comments as $comment)
             @include ('Comment.show', ['comment'=>$comment])

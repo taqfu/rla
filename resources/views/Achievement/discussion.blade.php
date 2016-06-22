@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+<h1 class='text-center'>
+    {{$main->name }}
+</h1>
 @include ('Achievement.menu', ['id'=>$main->id, 'active_item'=>'discussion'])
 @include ('Achievement.header')
 @if (Auth::user())

@@ -6,8 +6,9 @@
 
 @section('content')
     @include ('User.menu', ['active'=>'comments'])
-<div id='user-comments' class='margin-left'>
+<div id='user-comments'>
     @forelse($comments as $comment)
+    <div class='well'>
     <?php
         $timestamp = Auth::user()
           ? $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($comment->created_at)))
@@ -29,11 +30,12 @@
         </a>
         @endif
         </div>
-        <div class='comment-content margin-bottom2 margin-left'>
+        <div class='comment-content' >
             {{$comment->comment}}
         </div>
+    </div>
     @empty
-        <div class='margin-left'>
+        <div class='container'>
         This person has not commented yet.
         </div>
     @endforelse

@@ -8,8 +8,8 @@ use App\User;
 @section('content')
 @include ('User.menu', ['active'=>'votes'])
 @if (count($votes)>0)
-	<table id='vote-results'>
-	    <tr class='header'>
+	<table id='user-votes' class='table'>
+	    <tr>
 	        <th>
 	            Timestamp
 	        </th>
@@ -32,7 +32,7 @@ use App\User;
 	@foreach($votes as $vote)
 	    <tr><td>
             {{interval($vote->created_at, "now")}} ago
-	    </td><td style="color:{{$vote->vote_for ? 'green' : 'red'}};">
+	    </td><td class="{{$vote->vote_for ? 'pass' : 'fail'}}">
 	        {{ $vote->vote_for ? "for" : "against" }}
 	    </td><td>
 	        <a href="{{route('proof.show', ['id'=>$vote->proof->id])}}">Proof #{{$vote->proof->id}}</a>

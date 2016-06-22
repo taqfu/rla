@@ -35,6 +35,9 @@ h1, h2{
 h4{
     margin-top:32px;
 }
+label{
+    margin-left:16px;
+}
 nav{
     margin-bottom:8px;
     font-size:1.25em;
@@ -61,12 +64,15 @@ tr.pending-achievement{
 tr.inactive-achievement, tr.denied-achievement{
     background-color:lightgrey;
 }
+#achievement-filters{
+}
 #achievement-listings{
     text-align:center;
 }
 #achievement-listings table, #inventory table{
-    width:50%;
+    width:90%;
 }
+
 #achievements-link{
     text-align:center;
     font-size:1em;
@@ -307,6 +313,9 @@ span.inactive{
 
 .left {
     float:left;
+}
+.margin0{
+    margin:0px;
 }
 .margin-bottom{
     margin-bottom:8px;
