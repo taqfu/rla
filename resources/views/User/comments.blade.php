@@ -11,11 +11,11 @@
     <div class='well'>
     <?php
         $timestamp = Auth::user()
-          ? $timestamp = date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($comment->created_at)))
-          : date('m/d/y h:i:sA e', strtotime($comment->created_at));
+          ? $timestamp = date(Config::get('rla.timestamp_format'), User::local_time(Auth::user()->timezone, strtotime($comment->created_at)))
+          : date(Config::get('rla.timestamp_format') . ' e', strtotime($comment->created_at));
     ?>
         <div>
-        <span  title='{{$timestamp}}'>{{interval($comment->created_at, "now")}} ago</span> - 
+        <span  title='{{$timestamp}}'>{{interval($comment->created_at, "now")}} ago</span> -
         @if ($comment->achievement_id>0)
         <a href="{{route('discussion', ['id'=>$comment->achievement_id])}}">
             "{{$comment->achievement->name}}" Discussion Page

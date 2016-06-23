@@ -6,9 +6,9 @@
     <div class='col-xs-7'>
     Submitted:
     @if (Auth::guest())
-    {{ date('m/d/y h:i:sA e', strtotime($main->created_at))}}
+    {{ date(Config::get('rla.timestamp_format') . ' e', strtotime($main->created_at))}}
     @elseif (Auth::user())
-    {{ date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($main->created_at)))}}
+    {{ date(Config::get('rla.timestamp_format'), User::local_time(Auth::user()->timezone, strtotime($main->created_at)))}}
     @endif
     by <a href="{{route('user.show', ['id'=>$main->user->id])}}">{{$main->user->username}}</a>
     @if ($main->status==2)
@@ -29,12 +29,12 @@
         <form method="POST" action="{{route('follow.update', ['id'=>$main->id])}}">
             @foreach ($errors->all() as $error)
             <div class='text-danger'>
-                {{$error}} 
+                {{$error}}
             </div>
             @endforeach
             {{csrf_field()}}
             {{method_field('PUT')}}
-            <input type='radio' id='unfollow' name='following' value="0" 
+            <input type='radio' id='unfollow' name='following' value="0"
               @if (!$following)
                 checked
               @endif
@@ -51,7 +51,7 @@
                 checked
               @endif
               >
-            <label for='follow' 
+            <label for='follow'
               @if ($following)
               class='text-info'
               @endif

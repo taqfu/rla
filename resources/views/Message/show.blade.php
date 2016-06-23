@@ -5,7 +5,7 @@
     <div class='panel
     @if (!$message->read && $type=='in')
         panel-primary
-    @else 
+    @else
         panel-default
     @endif
     '>
@@ -27,9 +27,9 @@
             @endif
             Sent:
             @if (Auth::guest())
-            {{date('m/d/y h:i:sA e', strtotime($message->created_at))}}
+            {{date(Config::get('rla.timestamp_format') . ' e', strtotime($message->created_at))}}
             @elseif (Auth::user())
-            {{date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($message->created_at)))}}
+            {{date(Config::get('rla.timestamp_format'), User::local_time(Auth::user()->timezone, strtotime($message->created_at)))}}
             @endif
         </div>
         <div class='panel-body bg-warning'>
@@ -52,7 +52,6 @@
         </form>
         </div>
     @endif
-    
-    
+
+
     </div>
-    

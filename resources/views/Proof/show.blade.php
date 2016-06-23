@@ -16,8 +16,8 @@
     {{$proof->user->name}}'
   @else
     {{$proof->user->name}}'s
-  @endif  
-    proof for completing '{{$proof->achievement->name}}' - 
+  @endif
+    proof for completing '{{$proof->achievement->name}}' -
 
   @if ($proof->status==0)
     Denied!
@@ -49,9 +49,9 @@
             {{date(Config::get('rla.timestamp_format'), User::local_time(Auth::user()->timezone, strtotime($proof->created_at)))}}
             @endif
         </strong>
-         - Proof 
+         - Proof
          submitted by
-        
+
         @if (Auth::user() && Auth::user()->id==$proof->user_id)
          you.
         @else
@@ -88,9 +88,9 @@
 @foreach ($votes as $vote)
     <?php
     if (Auth::guest()){
-    $date = date('m/d/y', strtotime($vote->created_at));
+    $date = date(Config::get('rla.date_format'), strtotime($vote->created_at));
   } else if (Auth::user()){
-    $date = date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($vote->created_at)));
+    $date = date(Config::get('rla.date_format'), User::local_time(Auth::user()->timezone, strtotime($vote->created_at)));
   }
     ?>
     @if ($date!=$old_date)
@@ -100,9 +100,9 @@
 <div class='proof-votes well'>
     <i>
       @if (Auth::guest())
-      {{ date('h:i:sA e', strtotime($vote->created_at)) }}
+      {{ date(Config::get('rla.time_format') . ' e', strtotime($vote->created_at)) }}
       @elseif (Auth::user())
-      {{ date('h:i:sA', User::local_time(Auth::user()->timezone, strtotime($vote->created_at))) }}
+      {{ date(Config::get('rla.time_format'), User::local_time(Auth::user()->timezone, strtotime($vote->created_at))) }}
       @endif
     </i> -
     <a href="{{route('user.show', ['id'=>$vote->user->id])}}">{{$vote->user->username}}</a> voted

@@ -30,11 +30,11 @@
 @foreach ($proofs as $proof)
     <?php
     if (Auth::guest()){
-      $date = date('m/d/y', strtotime($proof->created_at));
-      $timestamp = date('h:i:sA e', strtotime($proof->created_at));
+      $date = date(Config::get('rla.date_format'), strtotime($proof->created_at));
+      $timestamp = date(Config::get('rla.time_format') . ' e', strtotime($proof->created_at));
     } else if (Auth::user()){
-      $date = date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
-      $timestamp = date('h:i:sA', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
+      $date = date(Config::get('rla.date_format'), User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
+      $timestamp = date(Config::get('rla.time_format'), User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
     }
     ?>
     @if ($date != $old_date)
@@ -50,20 +50,20 @@
             @if ($proof->status==0)
             <span class='fail'>Denied (
             @if (Auth::guest())
-            {{date('m/d/y', strtotime($proof->updated_at))}}
+            {{date(Config::get('rla.date_format'), strtotime($proof->updated_at))}}
             @elseif (Auth::user())
-            {{date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->updated_at)))}}
+            {{date(Config::get('rla.date_format'), User::local_time(Auth::user()->timezone, strtotime($proof->updated_at)))}}
             @endif
             )</span>
-    
+
             @elseif ($proof->status==1)
             <span class='pass'>Approved (
               @if (Auth::guest())
-              {{date('m/d/y', strtotime($proof->updated_at))}}
+              {{date(Config::get('rla.date_format'), strtotime($proof->updated_at))}}
               @elseif (Auth::user())
-              {{date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->updated_at)))}}
+              {{date(Config::get('rla.date_format'), User::local_time(Auth::user()->timezone, strtotime($proof->updated_at)))}}
               @endif
-    
+
               )</span>
             @elseif ($proof->status==2)
             <i>
@@ -82,9 +82,9 @@
             <i>
                 Canceled
               @if (Auth::guest())
-              {{date('m/d/y', strtotime($proof->updated_at))}}
+              {{date(Config::get('rla.date_format'), strtotime($proof->updated_at))}}
               @elseif (Auth::user())
-              {{date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->updated_at)))}}
+              {{date(Config::get('rla.date_format'), User::local_time(Auth::user()->timezone, strtotime($proof->updated_at)))}}
               @endif
             </i>
             @endif
@@ -98,7 +98,7 @@
         </div>
     @if (Proof::can_user_comment($proof->id))
         @include ('Comment.create', ['table'=>'proof', 'table_id'=>$proof->id, 'show'=>false])
-    
+
     @endif
     @if (count($proof->comments)>0)
     <div class='achievement-proof-comments margin-left'>

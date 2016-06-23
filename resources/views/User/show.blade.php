@@ -21,9 +21,9 @@ use App\User;
     @forelse ($proofs as $proof)
         <?php
         if (Auth::guest()){
-        $date = date('m/d/y', strtotime($proof->created_at));
+        $date = date(Config::get('date_format'), strtotime($proof->created_at));
       } else if (Auth::user()){
-        $date = date('m/d/y', User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
+        $date = date(Config::get('date_format'), User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
       }
       ?>
     <li class='list-group-item'>
@@ -53,7 +53,7 @@ use App\User;
         @elseif ($achievement->status==1)
             <span class='pass'>(Approved)</span>
         @elseif ($achievement->status==2)
-            <span class='pending'>(Pending Approval)</span> 
+            <span class='pending'>(Pending Approval)</span>
         @elseif ($achievement->status==3)
             <span class='unproven'>(Unproven)</span>
         @endif
@@ -67,7 +67,7 @@ use App\User;
             They
         @endif
          have not created any achievements.
-    </li>    
+    </li>
     @endforelse
 </ul>
 <h3>
@@ -82,7 +82,7 @@ use App\User;
         @elseif ($follow->achievement->status==1)
             <span class='pass'>(Approved)</span>
         @elseif ($follow->achievement->status==2)
-            <span class='pending'>(Pending Approval)</span> 
+            <span class='pending'>(Pending Approval)</span>
         @elseif ($follow->achievement->status==3)
             <span >(Unproven)</span>
         @endif
