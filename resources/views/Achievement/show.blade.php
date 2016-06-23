@@ -93,7 +93,7 @@
                 <button id='show-new-comment{{$proof->id}}' class='show-new-comment btn-link'>[ Comment ]</button>
             @endif
     @if (count($proof->comments)>0)
-        <input type='button' id='show-comments{{$proof->id}}' class='show-comments hidden btn-link' value='[ + ]' />
+        <input type='button' id='show-comments{{$proof->id}}' class='show-comments hidden btn-link btn-lg' value='[ + ]' />
     @endif
         </div>
     @if (Proof::can_user_comment($proof->id))
@@ -102,7 +102,7 @@
     @endif
     @if (count($proof->comments)>0)
     <div class='achievement-proof-comments margin-left'>
-        <input type='button' id='hide_comments{{$proof->id}}' class='hide_comments btn-link' value='[ - ]' />
+        <input type='button' id='hide_comments{{$proof->id}}' class='hide_comments btn-link btn-lg' value='[ - ]' />
         <div id='comments{{$proof->id}}' class='margin-left'>
             @foreach ($proof->comments as $comment)
                 @include ('Comment.show', ['comment'=>$comment])

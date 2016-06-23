@@ -24,20 +24,34 @@
     <form method="POST" action="{{route('settings.password')}}" class='clearfix'>
         {{csrf_field()}}
         {{ method_field('PUT') }}
-        <div id='change-password' class='col-xs-3 clearfix'>
-            <div class='row pull-right'>
-            <label for='old_password'>Old Password:</label>
-            <input type='password' name='old' id='old_password' />
+        <div id='change-password' class='margin-left'>
+            <div class='form-group'>
+                <div>
+                    <label for='old_password'>Old Password:</label>
+                </div>
+                <div>
+                    <input type='password' name='old' id='old_password' />
+                </div>
             </div>
-            <div  class='row pull-right'>
-            <label for='new_password'>New Password:</label>
-            <input type='password' name='new' id='new_password' />
+            <div class='form-group'>
+                <div>
+                    <label for='new_password'>New Password:</label>
+                </div>
+                <div>
+                    <input type='password' name='new' id='new_password' />
+                </div>
             </div>
-            <div class='row pull-right'>
-            <label for='new_password_confirm'>Confirm Password:</label>
-            <input type='password' name='new_confirmation' id='new_password_confirm' />
+            <div class='form-group'>
+                <div>
+                    <label for='new_password_confirm'>Confirm Password:</label>
+                </div>
+                <div>
+                    <input type='password' name='new_confirmation' id='new_password_confirm' />
+                </div>
             </div>
-            <input type='submit' value='Change Password' class='pull-right'/>
+            <div>
+                <input type='submit' value='Change Password' />
+            </div>
         </div>
     </form>
     <h4 class='clearfix'>E-mail Address</h4>

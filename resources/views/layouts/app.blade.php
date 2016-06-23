@@ -13,31 +13,31 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name='description' content='Welcome to your resume of awesome! Do It! Prove It! is a real life achievements site dedicated to tracking and sharing your accomplishments. Show the world how awesome you are.'>
-    <meta name='keywords' content='real life achievement, real world achievement, achievement unlocked'>
-    
+    <meta name='description' content='Do It! Prove It! is a real life achievements site dedicated to tracking and sharing your accomplishments. Show the world your resume of awesome.'>
+    <meta name='keywords' content='real life achievements, bucket list, real world achievements, achievement unlocked'>
+
     <title>Do It! Prove It!@yield('title')</title>
 
-    <link rel="apple-touch-icon" sizes="57x57" href="{{$root_url}}/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{$root_url}}/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{$root_url}}/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{$root_url}}/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{$root_url}}/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{$root_url}}/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{$root_url}}/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{$root_url}}/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{$root_url}}/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{$root_url}}/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{$root_url}}/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{$root_url}}/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{$root_url}}/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{$root_url}}/img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{$root_url}}/img/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{$root_url}}/img/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{$root_url}}/img/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{$root_url}}/img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{$root_url}}/img/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{$root_url}}/img/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{$root_url}}/img/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{$root_url}}/img/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{$root_url}}/img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{$root_url}}/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{$root_url}}/img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{$root_url}}/img/favicon-16x16.png">
     <link rel="manifest" href="{{$root_url}}/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{{$root_url}}/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="{{$root_url}}/img/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link rel='publisher' href='https://plus.google.com/u/0/b/111000706342354560427/111000706342354560427/about'>
-    <link rel="stylesheet" href="{{$root_url}}/new-css.css">
-    <link rel="stylesheet" href="{{$root_url}}/bootstrap.min.css">
+    <link rel="stylesheet" href="{{$root_url}}/css/new-css.css">
+    <link rel="stylesheet" href="{{$root_url}}/css/bootstrap.min.css">
 @yield('head')
 </head>
 <body>
@@ -52,7 +52,6 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
     <nav id='app-nav' class='navbar navbar-default'>
-        &nbsp;
         <div class='container-fluid'>
             <div class='navbar-header'>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -130,10 +129,10 @@
         </footer>
     </div>
     <!-- JavaScripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="{{$root_url}}/js/jquery-2.2.4.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="{{$root_url}}/js.js"></script>
+    <script src="{{$root_url}}/js/bootstrap.min.js"></script>
+    <script src="{{$root_url}}/js/js.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

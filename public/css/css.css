@@ -1,0 +1,450 @@
+
+
+@media only screen AND (max-width:736px){
+    .mobileHidden {
+        display:none;
+    }
+    #user-menu{
+    }
+}
+.show-comments{
+    display:none;
+}
+html{
+    height:100%;
+}
+body{
+    min-height:100%;
+    margin:0px;
+    position:relative;
+}
+footer{
+    width:100%;
+    position:absolute;
+    bottom:0;
+    height:-32px;
+    text-align:center;
+}
+footer div a {
+    margin:8px;
+}
+
+h1, h2{
+    text-align:center;
+}
+h4{
+    margin-top:32px;
+}
+label{
+    margin-left:16px;
+}
+nav{
+    margin-bottom:8px;
+    font-size:1.25em;
+}
+table{
+    margin-top:16px;
+    text-align:center;
+}
+table tr th{
+    text-align:center;
+    padding-left:16px;
+    padding-right:16px;
+}   
+td{
+    padding-left:8px;
+    padding-right:8px;
+}
+tr.denied-achievement td a {
+    color:red;
+}
+tr.pending-achievement{
+    background-color:#a9a9a9;
+}
+tr.inactive-achievement, tr.denied-achievement{
+    background-color:lightgrey;
+}
+#achievement-filters{
+}
+#achievement-listings{
+    text-align:center;
+}
+#achievement-listings table, #inventory table{
+    width:90%;
+}
+
+#achievements-link{
+    text-align:center;
+    font-size:1em;
+}
+#achievement-results div.link:hover{
+    background-color:lightgrey;
+}
+#achievement-results div.link a div{
+    padding:8px;
+    display:block;
+    height:100%;
+    width:100%;
+}
+#app-nav{
+    font-family:"Courier New";
+    padding:8px;
+    background-color:#f4f4f4;
+    border-bottom:1px solid grey;
+}
+#center-footer{
+    clear:both;
+    text-align:center;
+}
+#change-password{
+    text-align:right;
+}
+#content{
+    padding-bottom:32px;
+}
+#create-achievement{
+    width:90%;
+    font-size:1.5em;
+    color:lightgrey;
+}
+#create-proof-url{
+    color:lightgrey;
+}
+
+#follow-menu label{
+    margin-right:16px;
+}
+
+#header-info{
+    margin-bottom:32px;
+    font-style:italic;
+}
+#homepage{
+    text-align:center;
+}
+#homepage h4{
+    margin-bottom:2px;
+}
+#proof-statement{
+    margin:8px;
+    margin-bottom:4px;
+}
+#public-message p{
+    text-align:center;
+
+}
+#public-page{
+    width:100%;
+    position:absolute;
+    top:25%;
+}
+#proof-status{
+    font-style:italic;
+    margin:8px;
+    margin-bottom:16px;
+    margin-top:0px;
+}
+#message-receiver{
+    color:grey;
+    text-decoration:none;
+    margin-left:4px;
+}
+#user-menu{
+}
+#user-profile-menu{
+    font-size:1.25em;
+    padding:8px;
+    padding-left:16px;
+    border:1px grey dotted;
+    clear:both;
+    margin-top:16px;
+}
+#user-profile-menu span{
+    margin-right:8px;
+}
+#vote-results tr:not(.header){ 
+    background-color:#f4f4f4;
+    border:2px solid white;
+}
+tr.followed-achievement{
+    border:3px black solid;
+}
+tr.completed-achievement td a{
+}
+td.achievement{
+    border:1px black dotted;
+}
+td.achievement, td.achievement a{
+    color:black;
+}
+td.achievement a div {
+    padding:16px;
+    display:block;
+    height:100%;
+    width:100%;
+}
+form.achievement{
+    margin-bottom:24px;
+    text-align:right;
+    display:inline-block;
+}
+td.achievement-score{
+    padding:8px;
+    width:64px;
+}
+td.achievement-caption, td.achievement-caption a:hover{
+}
+.achievement-unlocked-container{
+    width:40%;
+    margin:auto;
+    background-color:lightgrey;
+    border:1px black solid;
+    border-radius:64px;
+    padding:8px;
+}
+.achievement-unlocked-text-container{
+    display:inline;
+    float:right;
+}
+
+.achievement-unlocked-text-container .title{
+    margin-right:64px;
+    font-size:2em;
+}
+.achievement-unlocked-text-container .description{ /*58 characters max*/
+    margin-top:8px;
+    font-style:italic;
+}
+.achievement-unlocked-icon-container{
+    background-color:white;
+    border:1px black solid;
+    border-radius:50%;
+    width:75px;
+    height:75px;
+    position:relative;
+}
+.achievement-unlocked-icon-container img{
+    position:absolute;
+    top:0;
+    bottom:0;
+    margin:auto;
+    margin-left:20%;
+}
+.achievement-proof{
+    width:75%;
+}
+.achievement-user{
+    float:left;
+    clear:right;
+}
+a.approved:not(.complete){
+}
+a.approved.complete{
+}
+div.brand{
+}
+a.brand{
+    text-decoration:none;
+}
+.center{
+    text-align:center;
+}
+.center-margin{
+    margin:auto;
+}
+.clear{
+    clear:both;
+}
+.change-read-status{
+    color:blue;
+}
+.comment, .message{
+}
+div.comment{
+    clear:both;
+    background-color:#f4f4f4;
+    padding:4px;
+    padding-bottom:2px;
+    border:1px solid black;
+    margin-top:16px;
+}
+form.comment{
+    margin:48px;
+}
+textarea.comment, textarea.message{
+    height:100px;
+
+}
+span.completed-achievement{
+    padding:8px;
+}
+.denied{
+}
+.bold{
+    font-weight:bold;
+}
+.fail{
+    color:red;
+}
+.fb-share-button{
+}
+div.feedback{
+    margin-right:8px;
+}
+.filter{
+    margin-left:8px;
+}
+.filter-tooltip{
+    font-weight:bold;
+    cursor:pointer;
+}
+.hidden{
+    display:none;
+}
+.inactive{
+}
+span.inactive{
+    padding:8px;
+}
+
+.inline{
+    display:inline-block;
+}
+
+.left {
+    float:left;
+}
+.margin0{
+    margin:0px;
+}
+.margin-bottom{
+    margin-bottom:8px;
+}
+.margin-bottom2{
+    margin-bottom:16px;
+}
+h3.margin-left{
+    margin-left:8px;
+}
+.margin-left:not(h3){
+    margin-left:16px;
+}
+.margin-left2{
+    margin-left:32px;
+}
+.margin-right{
+    margin-right:16px;
+}
+.margin-top{
+    margin-top:16px;
+}
+.margin-top2{
+    margin-top:32px;
+}
+div.message{
+    margin:8px;
+    margin-bottom:4px;
+    margin-top:4px;
+}
+form.message{
+    text-align:center;
+    margin:auto;
+    margin-top:64px;
+}
+input.message{
+    float:right;
+}
+
+.message-container{
+    background-color:#f4f4f4;
+    border:1px black solid;
+    margin:16px;
+    padding:4px;
+    padding-bottom:0px;
+}
+.no-link{
+    text-decoration:none;
+}
+
+.no-vote{
+    color:red;
+}
+.notification p{
+    margin:0px;
+}
+.padding-bottom{
+    padding-bottom:4px;
+}
+.padding-left{
+    padding-left:16px;
+}
+.pending{
+}
+.proof-timestamp{
+    font-weight:bold;
+    margin-top:4px;
+}
+.proof-votes{
+    margin-top:16px;
+}
+
+.show-new-comment{
+    margin-left:8px;
+}
+a.unread{
+    color:coral;
+}
+div.unread{
+    border:2px black solid;
+    background-color:lightgrey;
+}
+.right{
+    float:right;
+}
+.text-button {
+     background:none!important;
+     border:none;
+     padding:0!important;
+     font: inherit;
+     /*border is optional*/
+     cursor: pointer;
+}
+div.timeline {
+    margin-bottom:8px;
+}
+.timeline-comment{
+    color:#a5a5a5;
+    font-style:italic;
+}
+.timeline-container{
+    border:1px #f0f0f0 dotted;
+    width:75%;
+    margin:auto;
+    margin-bottom:16px;
+    padding:8px;
+}
+.twitter-share-button{
+    vertical-align:top;
+}
+.unproven{
+}
+.user-profile-achievements a.achievement-link{
+    color:black;
+}
+a.vote-available{
+    color:black;
+}
+span.vote-available{
+    background-color:lightgrey;
+    border-radius:25px;
+    padding:4px;
+    font-weight:bold;
+}
+.vote-status{
+    clear:both;
+    font-style:italic;
+
+}
+.yes-vote, .pass{
+    color:green;
+}

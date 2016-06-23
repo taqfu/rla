@@ -2,9 +2,7 @@
   use App\User;
  ?>
 
-<div class='row'>
-    <div class='col-xs-1'></div>
-    <div class='panel col-xs-10 center-block
+    <div class='panel
     @if (!$message->read && $type=='in')
         panel-primary
     @else 
@@ -34,7 +32,7 @@
             {{date('m/d/y h:i:sA', User::local_time(Auth::user()->timezone, strtotime($message->created_at)))}}
             @endif
         </div>
-        <div class='panel-body'>
+        <div class='panel-body bg-warning'>
             {{$message->message}}
         </div>
     @if ($type=='in')
@@ -58,5 +56,3 @@
     
     </div>
     
-    <div class='col-xs-1'></div>
-</div>

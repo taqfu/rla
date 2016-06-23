@@ -3,7 +3,7 @@
   use App\User;
 ?>
 <div id='achievement-header' class='clearfix'>
-    <div class='col-xs-6'>
+    <div class='col-xs-7'>
     Submitted:
     @if (Auth::guest())
     {{ date('m/d/y h:i:sA e', strtotime($main->created_at))}}
@@ -25,10 +25,12 @@
     @endif
     </div>
     @if (Auth::user())
-    <div id='follow-menu' class='col-xs-6 text-right'>
+    <div id='follow-menu' class='col-xs-5 text-right form-group'>
         <form method="POST" action="{{route('follow.update', ['id'=>$main->id])}}">
             @foreach ($errors->all() as $error)
+            <div class='text-danger'>
                 {{$error}} 
+            </div>
             @endforeach
             {{csrf_field()}}
             {{method_field('PUT')}}
@@ -36,24 +38,26 @@
               @if (!$following)
                 checked
               @endif
-            >
+              >
             <label for='unfollow'
               @if (!$following)
-              class='active'
+              class='text-info'
               @endif
-            >
-            Not Following</label>
+              >
+                Not Following
+            </label>
             <input type='radio' id='follow' name='following' value="1"
               @if ($following)
                 checked
               @endif
-            >
+              >
             <label for='follow' 
               @if ($following)
-              class='active'
+              class='text-info'
               @endif
-            >
-            Following</label>
+              >
+                Following
+            </label>
         </form>
     </div>
     @endif

@@ -11,7 +11,7 @@ if (substr($sort, -4)=="desc"){
     $inverse_arrow = "&darr;";
 }
 ?>
-<div >
+<div class='margin-bottom'>
     <h4>
         Sort By
     </h4>

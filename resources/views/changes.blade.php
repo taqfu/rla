@@ -3,8 +3,12 @@
 @section('content')
 <p>
     <i>This is where you'll be able to see the changes I've made.</i> 
-    <a href="{{route('feedback')}}">Head here for any feedback.</a>
+    Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>06/22/16</h4>
+<ul>
+    <li>Redesigned site again. This time making a more responsive site by integrating Bootstrap. </li>
+</ul>
 <h4>06/20/16</h4>
 <ul>
     <li>Redesigned the site layout.</li>

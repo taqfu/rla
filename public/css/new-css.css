@@ -1,0 +1,60 @@
+
+html{
+    height:100%;
+}
+body{
+    min-height:100%;
+    position:relative;
+}
+footer{
+    width:100%;
+    position:absolute;
+    bottom:0;
+    height:-32px;
+}
+#content{
+    padding-bottom:32px;
+}
+#user-votes, #user-votes th{
+    text-align:center;
+}
+.achievement-proof-comments .comments, .proof-vote-comments{
+    border:1px solid lightgrey;
+}
+.achievement-unlocked-container{
+    background-color:lightgrey;
+    border:1px black solid;
+    border-radius:64px;
+    padding:8px;
+}
+.achievement-unlocked-text-container .title{
+    font-size:2em;
+}
+.achievement-unlocked-text-container .description{ /*58 characters max*/
+    font-style:italic;
+}
+.fail{
+    color:red;
+}
+label.filter{
+    padding-left:8px;
+    padding-right:8px;
+}
+label.filter input{
+    margin-left:4px;
+}
+.inline{
+    display:inline;
+}
+.margin-left{
+    margin-left:14px;
+}
+.margin-bottom{
+    margin-bottom:14px;
+}
+.pass{
+color:green;
+}
+.unread-user-link{
+    color:white;
+}

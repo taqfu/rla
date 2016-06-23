@@ -3,57 +3,57 @@
  - Register
 @endsection
 @section('content')
-<form  method="POST" action="{{ url('/register') }}" class='margin-left'>
-@foreach ($errors->all() as $error)
-    <div>{{$error}}</div>
-@endforeach
-    {!! csrf_field() !!}
-    <div>
-        <label for="username">Username</label>
-        <div>
-            <input type="text" name="username" value="{{ old('username') }}" id="username">
-            @if ($errors->has('username'))
-                <strong>{{ $errors->first('username') }}</strong>
-            @endif
+<div class='margin-left col-xs-6'>
+    <form  method="POST" action="{{ url('/register') }}" class='margin-left' role='form'>
+    @foreach ($errors->all() as $error)
+        <div class='text-danger'>{{$error}}</div>
+    @endforeach
+        {!! csrf_field() !!}
+        <div class='form-group'>
+            <label for="username">Username</label>
+            <div>
+                <input type="text" name="username" value="{{ old('username') }}" id="username" class='form-control'>
+                @if ($errors->has('username'))
+                <div class='text-danger'>{{ $errors->first('username') }}</div>
+                @endif
+            </div>
         </div>
-    </div>
-    <div>
-        <label for="email">E-Mail Address (optional)</label>
-        <div>
-            <input type="email" name="email" value="{{ old('email') }}" id="email">
-            @if ($errors->has('email'))
-                <strong>{{ $errors->first('email') }}</strong>
-            @endif
+        <div class='form-group'>
+            <label for="email">E-Mail Address (optional)</label>
+            <div>
+                <input type="email" name="email" value="{{ old('email') }}" id="email" class='form-control'>
+                @if ($errors->has('email'))
+                <div class='text-danger'>{{ $errors->first('email') }}</div>
+                @endif
+            </div>
         </div>
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <div>
-            <input type="password" name="password" id="password">
-            @if ($errors->has('password'))
-                <strong>{{ $errors->first('password') }}</strong>
-            @endif
+        <div class='form-group'>
+            <label for="password">Password</label>
+            <div>
+                <input type="password" name="password" id="password" class='form-control'>
+                @if ($errors->has('password'))
+                <div class='text-danger'>{{ $errors->first('password') }}</div>
+                @endif
+            </div>
         </div>
-    </div>
-
-    <div>
-        <label for="confirm">Confirm Password</label>
-        <div>
-            <input type="password" name="password_confirmation" id="confirm">
-            @if ($errors->has('password_confirmation'))
-                <strong>{{ $errors->first('password_confirmation') }}</strong>
-            @endif
+    
+        <div class='form-group'>
+            <label for="confirm">Confirm Password</label>
+            <div>
+                <input type="password" name="password_confirmation" id="confirm" class='form-control'>
+                @if ($errors->has('password_confirmation'))
+                <div class='text-danger'>{{ $errors->first('password_confirmation') }}</div>
+                @endif
+            </div>
         </div>
-    </div>
-    <div class='margin-top margin-bottom'>
-    {!! app('captcha')->display(); !!}
-    </div>
-    <div>
-        <div>
+        <div class='form-group'>
+        {!! app('captcha')->display(); !!}
+        </div>
+        <div class='form-group'>
             <button type="submit">
                 Register
             </button>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 @endsection
