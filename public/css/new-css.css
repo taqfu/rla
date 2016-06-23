@@ -52,6 +52,21 @@ label.filter input{
 .margin-bottom{
     margin-bottom:14px;
 }
+.margin-bottom-4{
+    margin-bottom:56px;
+}
+.margin-top{
+    margin-top:14px;
+}
+.margin-top-2{
+    margin-top:28px;
+}
+.margin-top-3{
+    margin-top:42px;
+}
+.margin-top-4{
+    margin-top:56px;
+}
 .pass{
 color:green;
 }

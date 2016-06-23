@@ -5,6 +5,11 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>06/23/16</h4>
+<ul>
+    <li>Fleshed out the landing page.</li>
+    <li>About Us is now Guidelines</li>
+</ul>
 <h4>06/22/16</h4>
 <ul>
     <li>Redesigned site again. This time making a more responsive site by integrating Bootstrap. </li>
