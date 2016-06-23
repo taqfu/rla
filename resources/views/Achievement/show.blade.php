@@ -42,9 +42,9 @@
         <?php $old_date = $date; ?>
     @endif
     <a name='proof{{$proof->id}}'></a>
-    <div class='achievement-proof well'>
+    <div class='achievement-proof well row'>
         <div class='proof-timestamp '>{{$timestamp}}</div>
-        <div class='inline margin-left'><a href="{{route('user.show', ['id'=>$proof->user->id])}}">{{$proof->user->username}}</a>
+        <div class='inline'><a href="{{route('user.show', ['id'=>$proof->user->id])}}">{{$proof->user->username}}</a>
             submitted <a href="{{route('proof.show', ['id'=>$proof->id])}}">proof</a> of completion.
             (<a href="{{$proof->url}}">{{$proof->url}}</a>)  -
             @if ($proof->status==0)
@@ -71,7 +71,7 @@
                 <?php $is_it_passing = Proof::passing_approval($proof->id); ?>
                 @if ($is_it_passing)
                     (<span class='pass'>Passing</span>)
-                else
+                @else
                     (<span class='fail'>Failing</span>)
                 @endif
             </i>
