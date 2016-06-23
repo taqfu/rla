@@ -33,6 +33,10 @@ footer{
 .achievement-unlocked-text-container .description{ /*58 characters max*/
     font-style:italic;
 }
+.align-middle{
+    vertical-align:middle;
+}
+
 .fail{
     color:red;
 }

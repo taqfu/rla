@@ -113,4 +113,5 @@ Route::resource('comment', 'CommentController');
 Route::resource('follow', 'FollowController');
 Route::resource('message', 'MessageController');
 Route::resource('proof', 'ProofController');
+Route::resource('timeline', 'TimelineController');
 Route::resource('vote', 'VoteController');
