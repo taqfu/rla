@@ -116,7 +116,7 @@
                 <div class='row'>
                     
                     <div class='col-xs-4 text-right'>
-	                    <a href="{{route('about')}}">Guidelines</a>
+	                    <a href="{{route('guidelines')}}">Guidelines</a>
                     </div>
                     <div class='col-xs-4 text-center'>
                         <a href="{{route('changes')}}">Changelist</a>

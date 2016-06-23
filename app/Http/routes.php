@@ -18,8 +18,8 @@ use App\User;
 */
 Route::auth();
 
-Route::get('/about', ['as'=>'about', function(){
-    return View('about');
+Route::get('/guidelines', ['as'=>'guidelines', function(){
+    return View('guidelines');
 }]);
 Route::get('/changes', ['as'=>'changes', function(){
     return View('changes');
