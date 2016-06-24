@@ -53,8 +53,8 @@ $(document.body).ready(function () {
     });
     $(document).on("click", ".hide_comments", function (event) {
         var id_num = event.target.id.substr(13, event.target.id.length-13);
-        $("#show-comments" + id_num).removeClass('hidden');
         $("#show-comments" + id_num).show();
+        $("#show-comments" + id_num).removeClass('hidden');
         $("#hide_comments" + id_num).hide();
         $("#comments"+id_num).hide();
     });
@@ -65,9 +65,11 @@ $(document.body).ready(function () {
     });
     $(document).on("click", ".show-comments", function (event) {
         var id_num = event.target.id.substr(13, event.target.id.length-13);
+        console.log("SHOW " + id_num);
         $("#show-comments" + id_num).hide();
         $("#hide_comments" + id_num).show();
         $("#comments"+id_num).show();
+        $("#comments" + id_num).removeClass('hidden');
     });
     $(document).on("click", ".show-new-comment", function (event) {
         var id_num = event.target.id.substr(16, event.target.id.length-16);
