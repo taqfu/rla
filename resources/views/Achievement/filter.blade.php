@@ -3,7 +3,6 @@
         Filter By
     </h4>
     <div class='container-flexible form-group'>
-       
         <label for='approved' class='approved filter '>Approved
             <span class='filter-tooltip' data-toggle='tooltip'
               title='This achievement has been approved and multiple people can submit proof for it at the same time. Voting is only open to those that have already completed the achievement.'>
@@ -49,6 +48,11 @@
               @endif
             />
         </label>
+<!--
+        <label for='all-filters' class='filter'>All
+            <input id='all-filters' type='checkbox' class='filter checkbox-inline'/>
+        </label>
+-->
     </div>
     <div class='hidden'>
         Show Only:
