@@ -28,12 +28,17 @@ class Proof extends Model
         if (Auth::guest()){
             return false;
         }
+        $proof = Proof::find($id);
+        $achievement = Achievement::find($proof->achievement_id);
         $num_of_votes = count(Vote::where ('proof_id', $id)->where('user_id', Auth::user()->id)->get());
         if ($num_of_votes>0){
             if ($num_of_votes>1){
                 //ERROR - user should not have more than one vote.
             }
             return false;
+        }
+        if ($achievement->status==1){
+            return Achievement::has_user_completed_achievement($achievement->id);
         }
         return true;
 
