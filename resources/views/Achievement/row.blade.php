@@ -51,7 +51,7 @@ if (Auth::user()){
         {{$achievement->score}}
     @endif
     </td>
-    <td
+    <td 
       title="Created by {{$achievement->user->username}} on
       @if (Auth::guest())
       {{date(Config::get('rla.timestamp_format') . ' e', strtotime($achievement->created_at))}}
@@ -59,9 +59,7 @@ if (Auth::user()){
       {{ date(Config::get('rla.timestamp_format'), User::local_time(Auth::user()->timezone, strtotime($achievement->created_at)))}}
       @endif
       "
-      class='achievement achievement-caption text-center col-xs-11 vertical-center
-
-    '>
+      class='achievement achievement-caption text-center col-xs-11'>
         <a  class='        
         @if(Auth::user())
             @if ($has_user_completed_achievement)

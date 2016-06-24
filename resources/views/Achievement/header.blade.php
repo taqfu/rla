@@ -2,27 +2,29 @@
     use App\Achievement;
   use App\User;
 ?>
-<div id='achievement-header' class='clearfix'>
-    <div class='col-xs-7'>
-    Submitted:
+<div id='achievement-header' class='clearfix margin-bottom'>
     @if (Auth::guest())
-    {{ date(Config::get('rla.timestamp_format') . ' e', strtotime($main->created_at))}}
+    <div>
+        Submitted:
+        {{ date(Config::get('rla.timestamp_format') . ' e', strtotime($main->created_at))}}
     @elseif (Auth::user())
-    {{ date(Config::get('rla.timestamp_format'), User::local_time(Auth::user()->timezone, strtotime($main->created_at)))}}
-    @endif
-    by <a href="{{route('user.show', ['id'=>$main->user->id])}}">{{$main->user->username}}</a>
-    @if ($main->status==2)
-        - <span class='pending'>(Pending Approval)</span>
-    @elseif ($main->status==0)
-        - <span class='denied'>(Denied)</span>
-    @elseif ($main->status==3)
-        - Inactive(requires proof)
-    @endif
-    @if ((Auth::user() && Achievement::can_user_submit_proof($main->id))
-            && ((Auth::user()->id==$main->user_id && $main->status==0)
-            || (Auth::user()->id!=$main->user_id && $main->status!=2) || $main->status==3) )
-        @include ('Proof.create', ['achievement_id'=>$main->id])
-    @endif
+    <div class='col-xs-7'>
+        Submitted:
+        {{ date(Config::get('rla.timestamp_format'), User::local_time(Auth::user()->timezone, strtotime($main->created_at)))}}
+        @endif
+        by <a href="{{route('user.show', ['id'=>$main->user->id])}}">{{$main->user->username}}</a>
+        @if ($main->status==2)
+            - <span class='pending'>(Pending Approval)</span>
+        @elseif ($main->status==0)
+            - <span class='denied'>(Denied)</span>
+        @elseif ($main->status==3)
+            - Inactive(requires proof)
+        @endif
+        @if ((Auth::user() && Achievement::can_user_submit_proof($main->id))
+                && ((Auth::user()->id==$main->user_id && $main->status==0)
+                || (Auth::user()->id!=$main->user_id && $main->status!=2) || $main->status==3) )
+            @include ('Proof.create', ['achievement_id'=>$main->id])
+        @endif
     </div>
     @if (Auth::user())
     <div id='follow-menu' class='col-xs-5 text-right form-group'>
