@@ -48,11 +48,14 @@
               @endif
             />
         </label>
-<!--
         <label for='all-filters' class='filter'>All
-            <input id='all-filters' type='checkbox' class='filter checkbox-inline'/>
+            <input id='all-filters' type='checkbox' class='checkbox-inline'
+            @if ($filters['status'][0]=="on" && $filters['status'][1]=="on" && 
+              $filters['status'][2]=="on" && $filters['status'][3]=="on")
+            checked
+            @endif
+            />
         </label>
--->
     </div>
     <div class='hidden'>
         Show Only:

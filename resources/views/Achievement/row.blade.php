@@ -59,7 +59,7 @@ if (Auth::user()){
       {{ date(Config::get('rla.timestamp_format'), User::local_time(Auth::user()->timezone, strtotime($achievement->created_at)))}}
       @endif
       "
-      class='achievement achievement-caption text-center col-xs-11'>
+      class='achievement achievement-caption text-center col-xs-11 align-middle'>
         <a  class='        
         @if(Auth::user())
             @if ($has_user_completed_achievement)
