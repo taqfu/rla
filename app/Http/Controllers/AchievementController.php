@@ -148,8 +148,47 @@ class AchievementController extends Controller
             ]);
         }
     }
-    public function showProofs($id)
+    public function showProofs(Request $request, $id)
     {
+        switch ($request->input('sort')){
+            case "created_at asc":
+                $column="created_at";
+                $direction="asc";
+                break;
+            case "created_at desc":
+                $column="created_at";
+                $direction="desc";
+                break;
+            case "id asc":
+                $column="id";
+                $direction="asc";
+                break;
+            case "id desc":
+                $column="id";
+                $direction="desc";
+                break;
+            case "url asc":
+                $column="url";
+                $direction="asc";
+                break;
+            case "url desc":
+                $column="url";
+                $direction="desc";
+                break;
+            case "status asc":
+                $column="status";
+                $direction="asc";
+                break;
+            case "status desc":
+                $column="status";
+                $direction="desc";
+                break;
+            default:
+                $column="created_at";
+                $direction="desc";
+                break;
+        }
+        $proofs = Proof::where('achievement_id', $id)->orderBy($column, $direction)->get();
         if (Auth::guest()){
             $following =0;
         } else if (Auth::user()){
@@ -157,7 +196,6 @@ class AchievementController extends Controller
               ->where('achievement_id', $id)
               ->get())>0;
         }
-        $proofs = Proof::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
         if (Auth::user()){
             $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
         } else if (Auth::guest()){
@@ -172,6 +210,7 @@ class AchievementController extends Controller
                 "proofs"=>$proofs,
                 "votes"=>$votes,
                 "following"=>$following,
+                "sort"=>$request->input('sort'),
             ]);
         }
     }
