@@ -11,6 +11,9 @@ footer{
     bottom:0;
     height:-32px;
 }
+table, table th{
+    text-align:center;
+}
 #content{
     padding-bottom:32px;
 }

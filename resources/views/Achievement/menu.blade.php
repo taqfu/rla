@@ -7,7 +7,14 @@
       active
       @endif
       '>
-        <a href="{{route('achievement.show', ['id'=>$id])}}">Proofs</a>
+        <a href="{{route('achievement.show', ['id'=>$id])}}">Info</a>
+    </li>
+    <li class='
+      @if ($active_item=='proofs')
+      active
+      @endif
+      '>
+        <a href="{{route('achievement.showProofs', ['id'=>$id])}}">Proofs</a> 
     </li>
     <li class='
       @if ($active_item=='discussion')

@@ -148,6 +148,34 @@ class AchievementController extends Controller
             ]);
         }
     }
+    public function showProofs($id)
+    {
+        if (Auth::guest()){
+            $following =0;
+        } else if (Auth::user()){
+            $following=count(Follow::where('user_id', Auth::user()->id)
+              ->where('achievement_id', $id)
+              ->get())>0;
+        }
+        $proofs = Proof::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
+        if (Auth::user()){
+            $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
+        } else if (Auth::guest()){
+            $votes = null;
+        }
+        $achievement =Achievement::where('id', $id)->first(); 
+        if ($achievement==NULL){
+            return View::make('Achievement.fail');
+        } else if ($achievement!=NULL){
+            return View::make('Achievement.proofs', [
+                "main"=>$achievement,
+                "proofs"=>$proofs,
+                "votes"=>$votes,
+                "following"=>$following,
+            ]);
+        }
+    }
+    
 
     /**
      * Show the form for editing the specified resource.

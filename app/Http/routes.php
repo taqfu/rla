@@ -17,7 +17,7 @@ use App\User;
 |
 */
 Route::auth();
-
+Route::get('/achievement/{id}/proofs', ['as'=>'achievement.showProofs', 'uses'=>'AchievementController@showProofs']);
 Route::get('/guidelines', ['as'=>'guidelines', function(){
     return View('guidelines');
 }]);
