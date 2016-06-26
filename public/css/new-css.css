@@ -36,10 +36,9 @@ footer{
     font-style:italic;
 }
 .align-middle{
-   vertical-align:middle;
-t
-
-
+  display : flex;
+  align-items : center;
+}
 
 .fail{
     color:red;

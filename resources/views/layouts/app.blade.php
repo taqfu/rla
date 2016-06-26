@@ -59,14 +59,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>
-                <a class='navbar-brand' href="{{ url('/') }}" class='brand'>
+                <a class='navbar-brand' href="{{ url('/') }}" >
                     Do It! Prove It!
                 </a>
             </div>
             <div class='collapse navbar-collapse' id='myNavbar'>
                 <ul class='nav navbar-nav text-right'>
                     <li>
-                        <a href="{{route('achievement.index', Config::get('rla.default_filter'))}}">Achievements</a>
+                        <a href="{{route('achievement.index', Config::get('rla.default_filter'))}}">
+                            Achievements
+                        </a>
                     </li>
                 </ul>
                 <ul class='nav navbar-nav navbar-right text-right'>
@@ -83,13 +85,17 @@
                     </li>
                     <li>
                         @if (User::does_user_have_unread_msgs())
-                        <a href="{{ route('inbox')}}" class='unread'>Inbox(!)</a>
+                        <a href="{{ route('inbox')}}" style='color:red;'>
                         @else
-                        <a href="{{ route('inbox')}}">Inbox</a>
+                        <a href="{{ route('inbox')}}">
                         @endif
+                            <span class='glyphicon glyphicon-envelope'></span>
+                        </a>
                     </li>
                     <li>
-                        <a href="{{ url('/logout') }}">Logout</a>
+                        <a href="{{ url('/logout') }}">
+                            Logout
+                        </a>
                     </li>
                     @endif
                 </ul>
