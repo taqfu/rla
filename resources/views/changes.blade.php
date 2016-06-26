@@ -5,6 +5,12 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>06/26/16</h4>
+<ul>
+    <li>Added a proofs table to achievement profile page.</li>
+    <li>Replaced "Inbox" with corresponding glyphicon. (<a href="http://glyphicons.com/">Glyphicons are awesome.</a>)
+    </li>
+</ul>
 <h4>06/24/16</h4>
 <ul>
     <li>Redesigned the proof page. Cleaner design now.</li>
