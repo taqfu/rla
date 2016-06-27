@@ -3,12 +3,15 @@ $route_name = 'achievement.index';
 if (substr($sort, -4)=="desc"){
     $inverse_order= "asc";
     $inverse_arrow = "&darr;";
+    $arrow="&uarr;";
 } else if(substr($sort, -4)==" asc") {
     $inverse_order= "desc";
     $inverse_arrow = "&uarr;";
+    $arrow="&darr;";
 } else {
     $inverse_order = "asc";
     $inverse_arrow = "&darr;";
+    $arrow="&uarr;";
 }
 ?>
 <div class='margin-bottom'>
@@ -34,7 +37,7 @@ if (substr($sort, -4)=="desc"){
         </button>
         <button name='sort' type='submit' value="name {{$inverse_order}}" class='btn-link'>
             <strong>
-                By Name {{$inverse_arrow}}
+                By Name {{$arrow}}
             </strong>
         </button>
         <button name='sort' type='submit' value="date asc" class='btn-link'>
