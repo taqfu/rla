@@ -71,7 +71,7 @@ class Proof extends Model
         $proof->save();
         $followers_of_achievement = Achievement::fetch_followers($proof->achievement_id);
         foreach ($followers_of_achievement as $follower){
-            if ($follower->user_id!=$proof->user_id){
+            if ($follower!=$proof->user_id){
                 $timeline = new Timeline;
                 $timeline->user_id = $follower;
                 $timeline->event = "change proof status " . $proof->status . " to " . (int)$status;

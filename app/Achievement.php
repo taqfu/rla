@@ -27,7 +27,7 @@ class Achievement extends Model
         }
         return true;
     }
-    public static function can_user_vote($id){
+    public static function can_user_vote_achievement_up_or_down($id){
         if (Auth::guest()){
             return false;
         }
@@ -59,6 +59,9 @@ class Achievement extends Model
     public function comments(){
         return $this->hasMany('\App\Comment');
     }
+    public function denied_proofs(){
+        return $this->hasMany("\App\Proof")->where('status', 0);
+    }
     public static function fetch_followers($id){
         $followers = array();
         $follows  = Follow :: where ('achievement_id', $id)->get();
@@ -88,7 +91,7 @@ class Achievement extends Model
                 break;
             case "name desc":
                 return $achievements->sortByDesc('name');
-                break;        
+                break;
             case "points asc":
                 return $achievements->sortBy('score');
                 break;
@@ -114,11 +117,11 @@ class Achievement extends Model
         }
         return false;
     }
-    public function user(){
-        return $this->belongsTo("\App\User", 'user_id');
-    }
     public function proofs(){
         return $this->hasMany("\App\Proof");
+    }
+    public function user(){
+        return $this->belongsTo("\App\User", 'user_id');
     }
     //
 }
