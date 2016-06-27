@@ -110,6 +110,8 @@ class ProofController extends Controller
      */
     public function show($id)
     {
+        $proof_exists = count(Proof::find($id))>0;
+        if ($proof_exists){
         return View::make('Proof.show', [
             "proof"=>Proof::where('id', $id)->first(),
             "votes"=>Vote::where('proof_id', $id)->get(),
@@ -117,7 +119,9 @@ class ProofController extends Controller
             "num_of_against_votes"=>count(Vote::where('proof_id', $id)->where('vote_for', false)->get()),
             "passing"=>Proof::passing_approval($id),
         ]);
-
+        } else {
+        return View::make('Proof.fail');
+        }
     }
 
     /**
