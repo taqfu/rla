@@ -4,7 +4,7 @@ use App\Follow;
 use App\User;
 if (Auth::user()){
     $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id);
-    $is_user_following_achievement = 
+    $is_user_following_achievement =
       count(Follow::where('achievement_id', $achievement->id)->where('user_id', Auth::user()->id)->get())>0;
 }
 ?>
@@ -29,17 +29,17 @@ if (Auth::user()){
   ">
     <td class='achievement achievement-score text-center col-xs-1'>
     @if (Auth::user())
-    <?php $can_user_vote = Achievement::can_user_vote($achievement->id); ?>
-        @if ($can_user_vote)
+    <?php $can_user_vote = Achievement::can_user_vote_achievement_up_or_down($achievement->id); ?>
+        @if (can_user_vote_achievement_up_or_down)
         <form method="POST" action="{{route('AchievementVote.store')}}" role='form' class='inline' >
                 {{csrf_field()}}
                 <input type='hidden' name='achievementID' value='{{$achievement->id}}' />
                 <input type='hidden' name='voteUp' value="1" />
-                <button type='submit' class='btn-link'>&uarr;</button> 
+                <button type='submit' class='btn-link'>&uarr;</button>
         </form>
         @endif
         {{$achievement->score}}
-        @if ($can_user_vote)
+        @if (can_user_vote_achievement_up_or_down)
         <form method="POST" action="{{route('AchievementVote.store')}}" class='inline' >
             {{csrf_field()}}
             <input type='hidden' name='achievementID' value='{{$achievement->id}}' />
@@ -51,7 +51,7 @@ if (Auth::user()){
         {{$achievement->score}}
     @endif
     </td>
-    <td 
+    <td
       title="Created by {{$achievement->user->username}} on
       @if (Auth::guest())
       {{date(Config::get('rla.timestamp_format') . ' e', strtotime($achievement->created_at))}}
@@ -60,7 +60,7 @@ if (Auth::user()){
       @endif
       "
       class='achievement achievement-caption text-center col-xs-11 align-middle'>
-        <a  class='        
+        <a  class='
         @if(Auth::user())
             @if ($has_user_completed_achievement)
                 complete

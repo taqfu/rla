@@ -27,7 +27,7 @@ class Achievement extends Model
         }
         return true;
     }
-    public static function can_user_vote($id){
+    public static function can_user_vote_achievement_up_or_down($id){
         if (Auth::guest()){
             return false;
         }
@@ -88,7 +88,7 @@ class Achievement extends Model
                 break;
             case "name desc":
                 return $achievements->sortByDesc('name');
-                break;        
+                break;
             case "points asc":
                 return $achievements->sortBy('score');
                 break;
