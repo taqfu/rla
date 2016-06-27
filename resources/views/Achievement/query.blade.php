@@ -26,7 +26,7 @@
 <form  method="POST" action="{{route('achievement.store')}}">
     {{csrf_field()}}
     <input type='hidden' name='name' value='{{$searchQuery}}' />
-    <input type='submit' value="Create Achievement &quot;{{$searchQuery}}&quot;" class='btn-block'/>
+    <input type='submit' value="Create Achievement &quot;{{$searchQuery}}&quot;" class='btn-block '/>
 </form>
 @endif
 @if (count($achievements)==1)

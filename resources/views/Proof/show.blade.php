@@ -37,7 +37,7 @@
 
 <div class='panel panel-default text-center'>
     <div class='panel-body'>
-        <a href="{{$proof->url}}">{{$proof->url}}</a>
+        <a target='_blank' href="{{$proof->url}}">{{$proof->url}}</a>
     </div>
 </div>
 <h4 class='margin-left text-muted'>

@@ -71,16 +71,16 @@
                         </a>
                     </li>
                 </ul>
-                <ul class='nav navbar-nav navbar-right text-right'>
+                <ul class='user-menu nav navbar-nav navbar-right text-right'>
                     @if (Auth::guest())
                     <li>
                     <a href="{{ url('/login') }}">Login</a>
-                        </li>
+                    </li>
                     <li>
                         <a href="{{ url('/register') }}">Register</a>
                     </li>
                     @else
-                    <li>                                      
+                    <li class='username'>                                      
                         <a href="{{ route('user.show', ['id'=>Auth::user()->id])}}">{{ Auth::user()->username }}({{Auth::user()->score}})</a>
                     </li>
                     <li>

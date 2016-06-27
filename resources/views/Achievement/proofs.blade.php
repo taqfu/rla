@@ -127,7 +127,7 @@
         <a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->username}}</a>
     </td>
     <td>
-        <A href="{{$proof->url}}">{{$proof->url}}</a>
+        <A target='_blank' href="{{$proof->url}}">{{$proof->url}}</a>
     </td>
     <td>
         @if ($proof->status==0)

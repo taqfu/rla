@@ -10,7 +10,7 @@ if (Auth::user()){
 ?>
 <tr class="
   @if ($achievement->status==1)
-      approved_achievement
+      approved-achievement
   @elseif ($achievement->status==0)
       denied-achievement
   @elseif ($achievement->status==2)

@@ -2,6 +2,7 @@
   use App\User;
  ?>
 
+<div class='container'>
     <div class='panel
     @if (!$message->read && $type=='in')
         panel-primary
@@ -55,3 +56,4 @@
 
 
     </div>
+</div>
