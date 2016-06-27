@@ -54,10 +54,12 @@
     <div class='margin-left'>
         <strong>
             {{count($main->proofs)}} proofs submitted. 
+                @if (count($main->proofs)>0)
                 <i>
                     ({{round(((count($main->proofs) -
                       count($main->denied_proofs))/count($main->proofs)), 2)*100}}% Approval)
                 </i>
+                @endif
         </strong>
     </div>
     @if (Auth::user())
