@@ -22,11 +22,14 @@ class UserController extends Controller
           return View('User.fail');
     
         }
+        $proofs = Proof::join('achievements', 'achievement_id', '=', 'achievements.id')->where('proofs.user_id', $id)->orderBy('achievements.name', 'asc')->get();
+        $follows = Follow::join ('achievements', 'achievement_id', '=', 'achievements.id')->where('follows.user_id', $id)->orderBy('achievements.name','asc')->get();
+    
         return View::make('User.show', [
+            "proofs"=>$proofs,
             "profile"=>User::where('id', $id)->first(), 
-            "proofs"=>Proof::where('user_id', $id)->where('status', 1)->orderBy('created_at', 'desc')->get(),
-            "achievements"=>Achievement::where('user_id', $id)->get(),
-            "follows"=>Follow::where('user_id', $id)->get(),
+            "achievements"=>Achievement::where('user_id', $id)->orderBy('name', 'asc')->get(),
+            "follows"=>$follows,
         ]);
     }
     public function showComments($id){
