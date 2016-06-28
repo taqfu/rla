@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 class Achievement extends Model
 {
+    public function approved_proofs(){
+        return $this->hasMany("\App\Proof")->where('status', 1);
+    }
     public static function can_user_comment($id){
         if (Auth::guest()){
             return false;

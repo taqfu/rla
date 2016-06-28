@@ -1,10 +1,10 @@
-<div class='container'>
+<div class='container margin-top'>
 @if ($errors->any())
     @foreach ($errors->all() as $error)
         <div>{{$error}}</div>
     @endforeach
 @endif
-    <form method="POST" role='form' action="{{route('comment.store')}}" id='new_comment{{$table_id}}' class='margin-left comment 
+    <form method="POST" role='form' action="{{route('comment.store')}}" id='new_comment{{$table_id}}' class='margin-left comment
       @if (!$show)
       hidden
       @endif

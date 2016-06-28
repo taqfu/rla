@@ -84,10 +84,10 @@
     <div class='margin-left'>
         <strong>
             {{count($main->proofs)}} proofs submitted. 
-                @if (count($main->proofs)>0)
+                @if (count($main->approved_proofs)>0)
                 <i>
-                    ({{round(((count($main->proofs) -
-                      count($main->denied_proofs))/count($main->proofs)), 2)*100}}% Approval)
+                    ({{round(((count($main->approved_proofs) -
+                      count($main->denied_proofs))/count($main->approved_proofs)), 2)*100}}% Approval)
                 </i>
                 @endif
         </strong>

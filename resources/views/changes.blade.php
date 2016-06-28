@@ -7,6 +7,7 @@
 </p>
 <h4>06/28/16</h4>
 <ul>
+    <li>You can now claim to have completed achievements without proof. </li>
     <li>Following is now subscribing and it's just one button.</li>
 </ul>
 <h4>06/27/16</h4>
