@@ -8,6 +8,7 @@
 <h4>06/27/16</h4>
 <ul>
     <li>Added information to achievement header</li>
+    <li>Fixed bug where canceling proof would leave achievements permanently pending approval.</li>
 </ul>
 <h4>06/26/16</h4>
 <ul>
