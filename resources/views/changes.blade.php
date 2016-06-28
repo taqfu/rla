@@ -5,6 +5,10 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>06/28/16</h4>
+<ul>
+    <li>Following is now subscribing and it's just one button.</li>
+</ul>
 <h4>06/27/16</h4>
 <ul>
     <li>Added information to achievement header</li>
