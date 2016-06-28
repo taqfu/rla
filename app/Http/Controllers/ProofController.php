@@ -164,6 +164,11 @@ class ProofController extends Controller
         $timeline->proof_id = $id;
         $timeline->event = "cancel proof";
         $timeline->save();
+        $achievement = Achievement::find($proof->achievement_id);
+        if ($achievement->status==2){
+            $achievement->status=4;
+        }
+        $achievement->save();
         return back();
     }
 }

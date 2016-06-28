@@ -26,6 +26,9 @@ table, table th{
 .achievement-proof-comments .comments, .proof-vote-comments{
     border:1px solid lightgrey;
 }
+td.achievement-score button{
+    color:black;
+}
 .achievement-unlocked-container{
     background-color:lightgrey;
     border:1px black solid;
@@ -45,7 +48,7 @@ table, table th{
 tr.approved-achievement a{
     color:black;
 }
-tr.denied-achievement a{
+tr.denied-achievement a, tr.denied-achievement a{
     color:red;
 }
 .fail{

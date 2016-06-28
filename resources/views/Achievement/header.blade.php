@@ -49,6 +49,13 @@
         <i>
              - be the first one to submit proof!
         </i>
+        @elseif ($main->status==4)
+        <span class='fail'><strong>
+            Canceled
+        </strong></span>
+        <i>
+             - proof was canceled. submit your proof today!
+        </i>
         @endif 
     </div>
     <div class='margin-left'>

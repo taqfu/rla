@@ -17,7 +17,9 @@ if (Auth::user()){
       pending-achievement
   @elseif ($achievement->status==3)
       inactive-achievement
-  @endif
+  @elseif ($achievement->status==4)
+      canceled-achievement
+  @endif  
   @if (Auth::user())
       @if ($has_user_completed_achievement)
           completed-achievement

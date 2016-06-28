@@ -25,7 +25,7 @@ class AchievementController extends Controller
     public function index(Request $request)
     {
         $status = [];
-        $filters = ["status"=>[$request->denied, $request->approved,  $request->pending, $request->inactive]];
+        $filters = ["status"=>[$request->denied, $request->approved,  $request->pending, $request->canceled, $request->inactive]];
         foreach ($filters["status"] as $key=>$val){
             if ($val=="on"){
                 $status[]=$key;

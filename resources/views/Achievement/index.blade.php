@@ -22,7 +22,7 @@
             <div class='col-xs-10'>
                 <table class='table table-bordered table-hover'>
                     @foreach ($achievements as $achievement)
-                        @include('Achievement.row')
+                       @include('Achievement.row')
                     @endforeach
                 </table>
             <div class='col-xs-1'></div>

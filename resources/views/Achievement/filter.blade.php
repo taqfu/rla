@@ -48,6 +48,17 @@
               @endif
             />
         </label>
+        <label for='canceled' class='filter canceled'>Cancelled
+            <span class='filter-tooltip' data-toggle='tooltip'
+              title='The proof for this achievement was canceled. Submit another one! Anyone can vote.'>
+                (?)
+            </span>
+            <input id='canceled' type='checkbox' name='canceled' class='filter checkbox-inline'
+              @if($filters['status'][4]=="on")
+                  checked
+              @endif
+            />
+        </label>
         <label for='all-filters' class='filter'>All
             <input id='all-filters' type='checkbox' class='checkbox-inline'
             @if ($filters['status'][0]=="on" && $filters['status'][1]=="on" && 
