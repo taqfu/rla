@@ -72,18 +72,22 @@ Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', func
     $main = Achievement::where('id', $achievement_id)->first();
     if (Auth::guest()){
         $following=0;
+        $user_proof = null;
+        $user_claim = null;
     } else if (Auth::user()){
         $following=count(Follow::where('user_id', Auth::user()->id)
           ->where('achievement_id', $achievement_id)
           ->get())>0;
+        $user_claim = Claim::where('user_id', Auth::user()->id)
+          ->where('achievement_id', $achievement_id)->first();
+        $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
+          ->where('achievement_id', $achievement_id)->first();
     }
     return View('Achievement.discussion', [
         'main'=>$main,
         "following"=>$following,
-        "user_proof"=>Proof::where('user_id', Auth::user()->id)->where('status', '1')
-          ->where('achievement_id', $achievement_id)->first(),
-        "user_claim"=>Claim::where('user_id', Auth::user()->id)
-          ->where('achievement_id', $achievement_id)->first(),
+        "user_claim"=>$user_claim,
+        "user_proof"=>$user_proof,
     ]);
 }]);
 
