@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use App\Achievement;
+use App\Claim;
 use App\Follow;
 use App\Message;
 use App\Proof;
@@ -79,6 +80,10 @@ Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', func
     return View('Achievement.discussion', [
         'main'=>$main,
         "following"=>$following,
+        "user_proof"=>Proof::where('user_id', Auth::user()->id)->where('status', '1')
+          ->where('achievement_id', $achievement_id)->first(),
+        "user_claim"=>Claim::where('user_id', Auth::user()->id)
+          ->where('achievement_id', $achievement_id)->first(),
     ]);
 }]);
 
@@ -109,6 +114,7 @@ Route::put('/settings/timezone', ['as'=>'settings.timezone', 'uses'=>'UserContro
 
 Route::resource('AchievementVote', 'AchievementVoteController');
 Route::resource('achievement', 'AchievementController');
+Route::resource('claim', 'ClaimController');
 Route::resource('comment', 'CommentController');
 Route::resource('follow', 'FollowController');
 Route::resource('message', 'MessageController');

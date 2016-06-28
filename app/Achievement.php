@@ -11,6 +11,18 @@ class Achievement extends Model
             return false;
         }
     }
+    public static function can_user_claim($id){
+        if (Auth::guest()){
+            return false;
+        }
+        $have_they_already_submitted_proof = 
+          count(Proof::where('achievement_id', $id)->where('user_id', Auth::user()->id)->
+          where('status', '1')->where('status', '2')->get())>0;
+        $have_they_already_claimed = 
+          count(Claim::where('achievement_id', $id)->where('user_id', Auth::user()->id)->whereNull('canceled_at')->get())>0;
+        return (!$have_they_already_submitted_proof && !$have_they_already_claimed);
+
+    }
     public static function can_user_submit_proof($id){
         if (Auth::guest()){
             return false;

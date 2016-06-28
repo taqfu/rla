@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Achievement;
+use App\Claim;
 use App\Follow;
 use App\Proof;
 use App\Timeline;
@@ -145,6 +146,10 @@ class AchievementController extends Controller
                 "proofs"=>$proofs,
                 "votes"=>$votes,
                 "following"=>$following,
+                "user_proof"=>Proof::where('user_id', Auth::user()->id)->where('status', '1')
+                  ->where('achievement_id', $id)->first(),
+                "user_claim"=>Claim::where('user_id', Auth::user()->id)
+                  ->where('achievement_id', $id)->first(),
             ]);
         }
     }
@@ -211,6 +216,10 @@ class AchievementController extends Controller
                 "votes"=>$votes,
                 "following"=>$following,
                 "sort"=>$request->input('sort'),
+                "user_proof"=>Proof::where('user_id', Auth::user()->id)->where('status', '1')
+                  ->where('achievement_id', $id)->first(),
+                "user_claim"=>Claim::where('user_id', Auth::user()->id)
+                  ->where('achievement_id', $id)->first(),
             ]);
         }
     }

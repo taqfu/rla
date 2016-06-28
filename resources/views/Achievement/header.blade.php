@@ -4,10 +4,33 @@
 ?>
 <div id='achievement-header' class='clearfix'>
     @if (Auth::user())
-        @if ((Auth::user() && Achievement::can_user_submit_proof($main->id))
-                && ((Auth::user()->id==$main->user_id && $main->status==0)
-                || (Auth::user()->id!=$main->user_id && $main->status!=2) || $main->status==3) )
+        @if ($user_proof!=NULL)
+        <div class='margin-left lead'>
+            You first completed this achievement 
+            {{date(Config::get('rla.date_format'), strtotime($user_proof->created_at))}}.   
+        </div>
+        @elseif (Achievement::can_user_submit_proof($main->id) 
+          && ($main->status!=2))
             @include ('Proof.create', ['achievement_id'=>$main->id])
+            <!--{{var_dump(Achievement::can_user_claim($main->id))}}-->
+            @if (Achievement::can_user_claim($main->id))           
+            <form method="POST" action="{{route('claim.store')}}" role='form' class='margin-left'>
+            {{csrf_field()}}
+            <input type='hidden' name='achievementID' value='{{$main->id}}' />
+            No Proof? <button type='submit' class='btn-link'>Claim.</button>
+            </form>
+            @endif
+        @endif
+        @if ($user_claim!=null)
+        <form method="POST" action="{{route('claim.destroy', ['id'=>$user_claim->id])}}" 
+          role='form' class='margin-left lead'>
+            {{csrf_field()}}
+            {{method_field('DELETE')}}
+            You claimed to have completed this achievement on 
+            {{date(Config::get('rla.date_format'), strtotime($user_claim->created_at))}}. 
+            <button type='submit' class='btn-link'>Withdraw Claim</button>
+        </form>
+
         @endif
     @endif
     <div class='margin-left' title="
