@@ -69,7 +69,4 @@
                 @endif
         </strong>
     </div>
-    @if (Auth::user())
-        @include ('Follow.create')
-    @endif
 </div>
