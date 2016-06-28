@@ -62,7 +62,12 @@ if (Auth::user()){
       @endif
       "
       class='achievement achievement-caption text-center col-xs-11 align-middle'>
-        <a  class='
+        @if(Achievement::can_user_vote_on_proof($achievement->id))
+        <span class='vote-available'>
+            Vote Available!
+        </span>
+        @endif
+        <a  class='achievement-link
         @if(Auth::user())
             @if ($has_user_completed_achievement)
                 complete
@@ -89,11 +94,8 @@ if (Auth::user()){
             @endif
             </div>
         </a>
-
-        @if(Achievement::can_user_vote_on_proof($achievement->id))
-        <span class='vote-available'>
-        <a href="{{route('achievement.show', ['id'=> $achievement->id])}}">Vote Available!</a>
-        </span>
+        @if (substr($sort, 0, 4)=="date")
+            {{date(Config::get('rla.date_format'), strtotime($achievement->created_at))}}
         @endif
     </td>
 </tr>

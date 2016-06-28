@@ -45,10 +45,10 @@ td.achievement-score button{
   display : flex;
   align-items : center;
 }
-tr.approved-achievement a{
+tr.approved-achievement a.achievement-link{
     color:black;
 }
-tr.denied-achievement a, tr.denied-achievement a{
+tr.denied-achievement a.achievement-link{
     color:red;
 }
 .fail{
@@ -61,10 +61,10 @@ label.filter,  #follow-menu label{
 label.filter input{
     margin-left:4px;
 }
-tr.followed-achievement td{
+tr.followed-achievement td a.achievement-link{
     text-decoration:underline;
 }
-tr.inactive-achievement a { 
+tr.inactive-achievement a.achievement-link{ 
     color:grey;
     font-style:italic;
 }
@@ -107,11 +107,14 @@ color:green;
 tr.pending-achievement{
     background-color:lightgrey;
 } 
-tr.pending-achievement a{
+tr.pending-achievement a.link{
     color:black;
 }
 .unread-user-link{
     color:white;
 }
 .user-menu li.username{
+}
+span.vote-available{
+    color:grey;
 }
