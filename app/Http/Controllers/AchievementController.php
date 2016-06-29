@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Achievement;
 use App\Claim;
 use App\Follow;
+use App\Goal;
 use App\Proof;
 use App\Timeline;
 use App\Vote;
@@ -128,9 +129,12 @@ class AchievementController extends Controller
             $following =0;
             $votes = null;
             $user_claim = null;
+            $user_goal = null;
             $user_proof = null;
         } else if (Auth::user()){
             $user_claim = Claim::where('user_id', Auth::user()->id)
+              ->where('achievement_id', $id)->first();
+            $user_goal = Goal::where('user_id', Auth::user()->id)
               ->where('achievement_id', $id)->first();
             $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
               ->where('achievement_id', $id)->first();
@@ -150,6 +154,7 @@ class AchievementController extends Controller
                 "votes"=>$votes,
                 "following"=>$following,
                 "user_proof"=>$user_proof,
+                "user_goal"=>$user_goal,
                 "user_claim"=>$user_claim, 
             ]);
         }
@@ -197,12 +202,15 @@ class AchievementController extends Controller
         if (Auth::guest()){
             $following =0;
             $user_claim = null;
+            $user_goal = null;
             $user_proof = null;
             $votes = null;
         } else if (Auth::user()){
             $following=count(Follow::where('user_id', Auth::user()->id)
               ->where('achievement_id', $id)
               ->get())>0;
+            $user_goal = Goal::where('user_id', Auth::user()->id)
+                  ->where('achievement_id', $id)->first();
             $user_claim = Claim::where('user_id', Auth::user()->id)
                   ->where('achievement_id', $id)->first();
             $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
@@ -219,6 +227,7 @@ class AchievementController extends Controller
                 "votes"=>$votes,
                 "following"=>$following,
                 "sort"=>$request->input('sort'),
+                "user_goal"=>$user_goal,
                 "user_proof"=>$user_proof,
                 "user_claim"=>$user_claim, 
             ]);
@@ -268,6 +277,7 @@ class AchievementController extends Controller
         if (Auth::guest()){
             $following =0;
             $user_claim = null;
+            $user_goal = null;
             $user_proof = null;
             $votes = null;
         } else if (Auth::user()){
@@ -275,6 +285,8 @@ class AchievementController extends Controller
               ->where('achievement_id', $id)
               ->get())>0;
             $user_claim = Claim::where('user_id', Auth::user()->id)
+                  ->where('achievement_id', $id)->first();
+            $user_goal = Goal::where('user_id', Auth::user()->id)
                   ->where('achievement_id', $id)->first();
             $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
                   ->where('achievement_id', $id)->first();
@@ -290,6 +302,7 @@ class AchievementController extends Controller
                 "votes"=>$votes,
                 "following"=>$following,
                 "sort"=>$request->input('sort'),
+                "user_goal"=>$user_goal,
                 "user_proof"=>$user_proof,
                 "user_claim"=>$user_claim, 
             ]);

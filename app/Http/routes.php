@@ -3,6 +3,7 @@ use Illuminate\Http\Request;
 use App\Achievement;
 use App\Claim;
 use App\Follow;
+use App\Goal;
 use App\Message;
 use App\Proof;
 use App\Timeline;
@@ -73,14 +74,17 @@ Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', func
     $main = Achievement::where('id', $achievement_id)->first();
     if (Auth::guest()){
         $following=0;
-        $user_proof = null;
         $user_claim = null;
+        $user_goal = null;
+        $user_proof = null;
     } else if (Auth::user()){
         $following=count(Follow::where('user_id', Auth::user()->id)
           ->where('achievement_id', $achievement_id)
           ->get())>0;
         $user_claim = Claim::where('user_id', Auth::user()->id)
           ->where('achievement_id', $achievement_id)->first();
+        $user_goal = Goal::where('user_id', Auth::user()->id)
+              ->where('achievement_id', $id)->first();
         $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
           ->where('achievement_id', $achievement_id)->first();
     }
@@ -88,6 +92,7 @@ Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', func
         'main'=>$main,
         "following"=>$following,
         "user_claim"=>$user_claim,
+        "user_goal"=>$user_goal,
         "user_proof"=>$user_proof,
     ]);
 }]);
@@ -149,6 +154,7 @@ Route::resource('achievement', 'AchievementController');
 Route::resource('claim', 'ClaimController');
 Route::resource('comment', 'CommentController');
 Route::resource('follow', 'FollowController');
+RoutE::resource('goal', 'GoalController');
 Route::resource('message', 'MessageController');
 Route::resource('proof', 'ProofController');
 Route::resource('timeline', 'TimelineController');

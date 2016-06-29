@@ -1,4 +1,4 @@
-<form method="POST" action="{{route('follow.update', ['id'=>$main->id])}}" class='text-right'>
+<form method="POST" action="{{route('follow.update', ['id'=>$main->id])}}" role='form' class='inline pull-left' >
     @foreach ($errors->all() as $error)
     <div class='text-danger'>
         {{$error}}

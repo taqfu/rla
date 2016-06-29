@@ -19,6 +19,26 @@
 <meta property="og:description" content="Do It! Prove It! achievement profile for &quot;{{$main->name}}&quot; - Created by {{$main->user->username}} "/>
 @endsection
 @section('content')
+@if (Auth::user())
+    <div class='containter-flexible'>
+    @include ('Follow.create')
+    </div>
+    <div class='inline' style='background-color:black;'>
+    <form method="POST" action="{{route('goal.store')}}" role='form' class='inline' />
+        {{csrf_field()}}
+        <input type='hidden' name='achievementID' value='{{$main->id}}' />
+        <button type='submit' class='
+          @if ($user_goal==null)
+          btn-success
+          @else
+          btn-danger
+          @endif
+          '>
+            + Bucket List
+        </button>
+    </form>
+    </div>
+@endif
 <h1 class='text-center'>
     {{$main->name }}
 </h1>

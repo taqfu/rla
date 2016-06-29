@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name='description' content='Do It! Prove It! is a real life achievements site dedicated to tracking and sharing your accomplishments. Show the world your resume of awesome.'>
+    <meta name='description' content='Do It! Prove It! is a real life achievements site dedicated to tracking and sharing your accomplishments. Welcome to your resume of awesome!'>
     <meta name='keywords' content='real life achievements, bucket list, real world achievements, achievement unlocked'>
 
     <title>Do It! Prove It!@yield('title')</title>
@@ -68,6 +68,11 @@
                     <li>
                         <a href="{{route('achievement.index', Config::get('rla.default_filter'))}}">
                             Achievements
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('goal.index')}}">
+                            Bucket List
                         </a>
                     </li>
                 </ul>

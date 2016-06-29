@@ -1,9 +1,6 @@
 <?php
     use App\Comment;
 ?>
-@if (Auth::user())
-    @include ('Follow.create')
-@endif
 <ul class='nav nav-tabs'>
     <li class='
       @if ($active_item=='info')

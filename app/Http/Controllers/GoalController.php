@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Goal;
+
+use Auth;
 class GoalController extends Controller
 {
     /**
@@ -15,8 +18,15 @@ class GoalController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::guest()){
+            return View('Goal.fail');
+        } else if (Auth::user()){
+            return View('Goal.index', [
+                'goals'=>Goal::where('user_id', Auth::user()->id)->get(),
+            ]);
+        }
     }
+        
 
     /**
      * Show the form for creating a new resource.
