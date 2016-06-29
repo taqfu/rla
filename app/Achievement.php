@@ -9,11 +9,13 @@ class Achievement extends Model
     public function approved_proofs(){
         return $this->hasMany("\App\Proof")->where('status', 1);
     }
+
     public static function can_user_comment($id){
         if (Auth::guest()){
             return false;
         }
     }
+
     public static function can_user_claim($id){
         if (Auth::guest()){
             return false;
@@ -26,6 +28,7 @@ class Achievement extends Model
         return (!$have_they_already_submitted_proof && !$have_they_already_claimed);
 
     }
+
     public static function can_user_submit_proof($id){
         if (Auth::guest()){
             return false;
@@ -42,12 +45,14 @@ class Achievement extends Model
         }
         return true;
     }
+
     public static function can_user_vote_achievement_up_or_down($id){
         if (Auth::guest()){
             return false;
         }
         return  count(AchievementVote::where('user_id', Auth::user()->id)->where('achievement_id', $id)->get())==0;
     }
+
     public static function can_user_vote_on_proof($id){
         if (Auth::guest()){
             return false;
@@ -71,12 +76,15 @@ class Achievement extends Model
         }
         return false;
     }
+
     public function comments(){
         return $this->hasMany('\App\Comment');
     }
+
     public function denied_proofs(){
         return $this->hasMany("\App\Proof")->where('status', 0);
     }
+
     public static function fetch_followers($id){
         $followers = array();
         $follows  = Follow :: where ('achievement_id', $id)->get();
@@ -85,6 +93,7 @@ class Achievement extends Model
         }
         return $followers;
     }
+
     public static function fetch_owners($id){
         $owners = array();
         $proofs = Proof :: where ('achievement_id', $id)->where('status', 1)->get();
@@ -93,6 +102,7 @@ class Achievement extends Model
         }
         return $owners;
     }
+
     public static function sort($achievements, $sort){
         switch($sort){
             case "date asc":
@@ -119,6 +129,7 @@ class Achievement extends Model
         }
 
     }
+
     public static function has_user_completed_achievement($id){
         if (Auth::guest()){
             return false;
@@ -132,11 +143,22 @@ class Achievement extends Model
         }
         return false;
     }
+    public static function passing_approval($id){
+        $achievement = Achievement::find($id);
+        if ($achievement->status!=2){
+            return null;
+        }
+        $pending_proof = Proof::where('achievement_id', $id)->where('status', 2)->orderBy('created_at', 'desc')->first();
+        if ($pending_proof==null){
+            return null;
+        } 
+        return Proof::passing_approval($pending_proof->id);
+    }
     public function proofs(){
         return $this->hasMany("\App\Proof");
     }
+
     public function user(){
         return $this->belongsTo("\App\User", 'user_id');
     }
-    //
 }

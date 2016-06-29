@@ -1,3 +1,6 @@
+/*
+Bold - pending achievements for pass and fail. If other things are bold, change.
+*/
 html{
     height:100%;
 }
@@ -106,10 +109,8 @@ color:green;
 }
 tr.pending-achievement{
     background-color:lightgrey;
+    font-weight:bold;
 } 
-tr.pending-achievement a.link{
-    color:black;
-}
 .unread-user-link{
     color:white;
 }

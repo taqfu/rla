@@ -6,7 +6,11 @@ if (Auth::user()){
     $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id);
     $is_user_following_achievement =
       count(Follow::where('achievement_id', $achievement->id)->where('user_id', Auth::user()->id)->get())>0;
+    $can_user_vote_achievement_up_or_down = 
+        Achievement::can_user_vote_achievement_up_or_down($achievement->id); 
+
 }
+    $is_achievement_passing_approval = Achievement::passing_approval($achievement->id);
 ?>
 <tr class="
   @if ($achievement->status==1)
@@ -31,7 +35,6 @@ if (Auth::user()){
   ">
     <td class='achievement achievement-score text-center col-xs-1'>
     @if (Auth::user())
-    <?php $can_user_vote_achievement_up_or_down = Achievement::can_user_vote_achievement_up_or_down($achievement->id); ?>
         @if ($can_user_vote_achievement_up_or_down)
         <form method="POST" action="{{route('AchievementVote.store')}}" role='form' class='inline' >
                 {{csrf_field()}}
@@ -82,6 +85,11 @@ if (Auth::user()){
             approved
         @elseif ($achievement->status==2)
             pending
+            @if ($is_achievement_passing_approval===true)
+            pass
+            @elseif ($is_achievement_passing_approval===false)
+            fail
+            @endif
         @elseif ($achievement->status==3)
             inactive
         @endif
