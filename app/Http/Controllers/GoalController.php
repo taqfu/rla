@@ -46,7 +46,19 @@ class GoalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Auth::guest()){
+            return back()->withErrors('Please log in before doing this.');
+        }
+        $this->validate($request, [
+            'achievementID' => 'required|integer',
+        ]);
+
+        $goal = new Goal;
+        $goal->achievement_id = $request->achievementID;
+        $goal->user_id = Auth::user()->id;
+        $goal->save();
+        
+        return back();        
     }
 
     /**
@@ -91,6 +103,7 @@ class GoalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Goal::find($id)->delete();
+        return back();    
     }
 }

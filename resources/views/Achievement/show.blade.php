@@ -24,8 +24,17 @@
     @include ('Follow.create')
     </div>
     <div class='inline' style='background-color:black;'>
-    <form method="POST" action="{{route('goal.store')}}" role='form' class='inline' />
+    <form method="POST" action="
+      @if ($user_goal==null)
+      {{route('goal.store')}}
+      @else 
+      {{route('goal.destroy', ['id'=>$user_goal->id])}}
+      @endif
+      " role='form' class='inline' />
         {{csrf_field()}}
+        @if ($user_goal!=null)
+        {{method_field('delete')}}
+        @endif
         <input type='hidden' name='achievementID' value='{{$main->id}}' />
         <button type='submit' class='
           @if ($user_goal==null)
@@ -34,7 +43,12 @@
           btn-danger
           @endif
           '>
-            + Bucket List
+        @if ($user_goal==null)
+        +
+        @else
+        -
+        @endif
+         Bucket List
         </button>
     </form>
     </div>
