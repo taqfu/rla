@@ -13,18 +13,18 @@
         <a href="{{route('achievement.show', ['id'=>$id])}}">Info</a>
     </li>
     <li class='
-      @if ($active_item=='claims')
-      active
-      @endif
-      '>
-        <a href="{{route('achievement.showClaims', ['id'=>$id])}}">Claims</a>
-    </li>
-    <li class='
       @if ($active_item=='proofs')
       active
       @endif
       '>
         <a href="{{route('achievement.showProofs', ['id'=>$id])}}">Proofs</a> 
+    </li>
+    <li class='
+      @if ($active_item=='claims')
+      active
+      @endif
+      '>
+        <a href="{{route('achievement.showClaims', ['id'=>$id])}}">Claims</a>
     </li>
     <li class='
       @if ($active_item=='discussion')

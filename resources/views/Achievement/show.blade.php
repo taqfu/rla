@@ -16,7 +16,7 @@
 
 @section('head')
 <meta property="og:title" content="{{$main->name}}" />
-<meta property="og:description" content="Do It! Prove It! achievement profile for &quot;$main->name&quot; - Created by {{$main->user->username}} "/>
+<meta property="og:description" content="Do It! Prove It! achievement profile for &quot;{{$main->name}}&quot; - Created by {{$main->user->username}} "/>
 @endsection
 @section('content')
 <h1 class='text-center'>
