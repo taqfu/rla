@@ -146,6 +146,13 @@ class Achievement extends Model
         }
         return false;
     }
+    public static function is_this_on_their_bucket_list($id){
+        if (Auth::guest()){
+            return false;
+        }
+        return count(Goal::where('achievement_id', $id)
+          ->where('user_id', Auth::user()->id)->get())>0;
+    }
     public static function passing_approval($id){
         $achievement = Achievement::find($id);
         if ($achievement->status!=2){

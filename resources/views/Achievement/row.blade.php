@@ -7,8 +7,8 @@ if (Auth::user()){
     $is_user_following_achievement =
       count(Follow::where('achievement_id', $achievement->id)->where('user_id', Auth::user()->id)->get())>0;
     $can_user_vote_achievement_up_or_down = 
-        Achievement::can_user_vote_achievement_up_or_down($achievement->id); 
-
+      Achievement::can_user_vote_achievement_up_or_down($achievement->id); 
+    $is_this_on_their_bucket_list = Achievement::is_this_on_their_bucket_list($achievement->id);
 }
     $is_achievement_passing_approval = Achievement::passing_approval($achievement->id);
 ?>
@@ -30,6 +30,9 @@ if (Auth::user()){
       @endif
       @if ($is_user_following_achievement)
           followed-achievement
+      @endif
+      @if ($is_this_on_their_bucket_list)
+          goal-achievement
       @endif
   @endif
   ">

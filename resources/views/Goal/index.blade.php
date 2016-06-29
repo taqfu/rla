@@ -11,11 +11,25 @@
      <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
+@if (count($goals)>0)
+<ul>
+@endif
 @forelse($goals as $goal)
-{{$goal}}
+    <div class='margin-left'>
+        @include ('Goal.destroy', ['goal'=>$goal, "extra"=>false]) 
+        <a href="{{route('achievement.show', ['id'=>$goal->achievement_id])}}">
+            {{$goal->achievement->name}}
+        </a>
+        (<a href="{{route('user.show', ['id'=>$goal->user_id])}}">
+            {{$goal->user->username}}
+        </a>)
+    </div>
 @empty
 <div class='margin-left lead'>
     You do not have any items in your bucket list. Add some today!
 </div>
 @endforelse
+@if (count($goals)>0)
+</ul>
+@endif
 @endsection

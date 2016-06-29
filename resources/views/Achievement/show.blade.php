@@ -23,7 +23,6 @@
     <div class='containter-flexible'>
     @include ('Follow.create')
     </div>
-    <div class='inline' style='background-color:black;'>
     <form method="POST" action="
       @if ($user_goal==null)
       {{route('goal.store')}}
@@ -51,7 +50,6 @@
          Bucket List
         </button>
     </form>
-    </div>
 @endif
 <h1 class='text-center'>
     {{$main->name }}

@@ -5,6 +5,15 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>06/29/16</h4>
+<ul>
+    <li>
+        Created a bucket list. Now you can add achievements you'd like to accomplish.
+    </li>
+    <li>
+        Added list of people who have claimed to have completed an achievement to the achievement profile.
+    </li>
+</ul>
 <h4>06/28/16</h4>
 <ul>
     <li>You can now claim to have completed achievements without proof. </li>

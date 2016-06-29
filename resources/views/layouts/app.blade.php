@@ -1,5 +1,6 @@
 <?php 
     use App\Achievement;
+    use App\Goal;
     use App\User; 
     if ($_SERVER['SERVER_NAME']=='taqfu.com'){
         $root_url = "http://taqfu.com/dev-env/rla/public";
@@ -73,6 +74,9 @@
                     <li>
                         <a href="{{route('goal.index')}}">
                             Bucket List
+                            @if (Auth::user())
+                            ({{count(Goal::where('user_id', Auth::user()->id)->get())}})
+                            @endif
                         </a>
                     </li>
                 </ul>

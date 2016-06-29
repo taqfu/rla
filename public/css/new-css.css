@@ -51,6 +51,9 @@ td.achievement-score button{
 tr.approved-achievement a.achievement-link{
     color:black;
 }
+.bucket-list{
+    font-weight:bold;
+}
 tr.denied-achievement a.achievement-link{
     color:red;
 }
@@ -66,6 +69,9 @@ label.filter input{
 }
 tr.followed-achievement td a.achievement-link{
     text-decoration:underline;
+}
+tr.goal-achievement{
+    font-weight:bold;
 }
 tr.inactive-achievement a.achievement-link{ 
     color:grey;
@@ -109,7 +115,6 @@ color:green;
 }
 tr.pending-achievement{
     background-color:lightgrey;
-    font-weight:bold;
 } 
 .unread-user-link{
     color:white;
