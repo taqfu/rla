@@ -132,6 +132,12 @@ class Achievement extends Model
         }
 
     }
+    public static function has_user_claimed_achievement($id){
+        if (Auth::guest()){
+            return false;
+        }
+        return count(Claim::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get())>0;
+    }
 
     public static function has_user_completed_achievement($id){
         if (Auth::guest()){

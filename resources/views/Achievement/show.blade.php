@@ -20,36 +20,15 @@
 @endsection
 @section('content')
 @if (Auth::user())
-    <div class='containter-flexible'>
     @include ('Follow.create')
-    </div>
-    <form method="POST" action="
-      @if ($user_goal==null)
-      {{route('goal.store')}}
-      @else 
-      {{route('goal.destroy', ['id'=>$user_goal->id])}}
-      @endif
-      " role='form' class='inline' />
-        {{csrf_field()}}
-        @if ($user_goal!=null)
-        {{method_field('delete')}}
-        @endif
-        <input type='hidden' name='achievementID' value='{{$main->id}}' />
-        <button type='submit' class='
-          @if ($user_goal==null)
-          btn-success
-          @else
-          btn-danger
-          @endif
-          '>
+    @if (!Achievement::has_user_completed_achievement($main->id)
+      && !Achievement::has_user_claimed_achievement($main->id))
         @if ($user_goal==null)
-        +
+        @include('Goal.create', ['id'=>$main->id])
         @else
-        -
+        @include ('Goal.destroy', ['goal'=>$user_goal, 'extra'=>true])
         @endif
-         Bucket List
-        </button>
-    </form>
+    @endif
 @endif
 <h1 class='text-center'>
     {{$main->name }}
