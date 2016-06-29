@@ -102,6 +102,26 @@ Route::get('/', ['as'=>'home', function (){
 }]);
 
 Route::get('/user/{id}', ['as'=>'user.show', 'uses'=>'UserController@showProfile']);
+Route::get('/user/{id}/achievements/completed', ['as'=>'user.achievements.completed', function($id){
+    $proofs = Proof::join('achievements', 'achievement_id', '=', 'achievements.id')->where('proofs.user_id', $id)->where('proofs.status', 1)->orderBy('achievements.name', 'asc')->get();
+    return View('User.achievements.completed', [
+        "proofs"=>$proofs,
+        "profile"=>User::where('id', $id)->first(), 
+    ]);    
+}]);
+Route::get('/user/{id}/achievements/created', ['as'=>'user.achievements.created', function($id){
+    return View('User.achievements.created', [
+        "achievements"=>Achievement::where('user_id', $id)->orderBy('name', 'asc')->get(),
+        "profile"=>User::where('id', $id)->first(), 
+    ]);    
+}]);
+Route::get('/user/{id}/achievements/subscriptions', ['as'=>'user.achievements.subscriptions', function($id){
+    $follows = Follow::join ('achievements', 'achievement_id', '=', 'achievements.id')->where('follows.user_id', $id)->orderBy('achievements.name','asc')->get();
+    return View('User.achievements.subscriptions', [
+        "profile"=>User::where('id', $id)->first(), 
+        "follows"=>$follows,
+    ]);    
+}]);
 Route::get('/user/{id}/comments', ['as'=>'user.comments', 'uses'=>'UserController@showComments']);
 Route::get('/user/{id}/message', ['as'=>'new_message', function($id){
     return View('Message.create', [

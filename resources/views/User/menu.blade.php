@@ -7,6 +7,27 @@
         <a href="{{route('user.show', ['id'=>$profile->id])}}">{{$profile->username}}</a>
     </li>
     <li class="
+      @if ($active=='completed')
+      active
+      @endif
+      ">
+        <a href="{{route('user.achievements.completed', ['id'=>$profile->id])}}">Completed</a>
+    </li>
+    <li class="
+      @if ($active=='created')
+      active
+      @endif
+      ">
+        <a href="{{route('user.achievements.created', ['id'=>$profile->id])}}">Created</a>
+    </li>
+    <li class="
+      @if ($active=='subscriptions')
+      active
+      @endif
+      ">
+        <a href="{{route('user.achievements.subscriptions', ['id'=>$profile->id])}}">Subscriptions</a>
+    </li>
+    <li class="
       @if ($active=='comments')
       active
       @endif
