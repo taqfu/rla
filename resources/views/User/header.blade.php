@@ -1,6 +1,7 @@
 <?php
 $point_caption = $profile->score!=1 ? "points" : "point";
 ?>
+<h1 class='text-center margin-bottom'>{{$profile->username}}</h1>
 <div class='clearfix'>
         <div class='col-xs-4'>
             <h4>

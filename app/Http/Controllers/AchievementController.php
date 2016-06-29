@@ -126,6 +126,7 @@ class AchievementController extends Controller
     {
         if (Auth::guest()){
             $following =0;
+            $votes = null;
             $user_claim = null;
             $user_proof = null;
         } else if (Auth::user()){
@@ -136,14 +137,10 @@ class AchievementController extends Controller
             $following=count(Follow::where('user_id', Auth::user()->id)
               ->where('achievement_id', $id)
               ->get())>0;
-        }
-        $proofs = Proof::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
-        if (Auth::user()){
             $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
-        } else if (Auth::guest()){
-            $votes = null;
         }
         $achievement =Achievement::where('id', $id)->first(); 
+        $proofs = Proof::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
         if ($achievement==NULL){
             return View::make('Achievement.fail');
         } else if ($achievement!=NULL){
@@ -152,6 +149,76 @@ class AchievementController extends Controller
                 "proofs"=>$proofs,
                 "votes"=>$votes,
                 "following"=>$following,
+                "user_proof"=>$user_proof,
+                "user_claim"=>$user_claim, 
+            ]);
+        }
+    }
+    public function showClaims(Request $request, $id){
+        $claims = Claim::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
+        switch ($request->input('sort')){
+            case "created_at asc":
+                $column="created_at";
+                $direction="asc";
+                break;
+            case "created_at desc":
+                $column="created_at";
+                $direction="desc";
+                break;
+            case "id asc":
+                $column="id";
+                $direction="asc";
+                break;
+            case "id desc":
+                $column="id";
+                $direction="desc";
+                break;
+            case "url asc":
+                $column="url";
+                $direction="asc";
+                break;
+            case "url desc":
+                $column="url";
+                $direction="desc";
+                break;
+            case "status asc":
+                $column="status";
+                $direction="asc";
+                break;
+            case "status desc":
+                $column="status";
+                $direction="desc";
+                break;
+            default:
+                $column="created_at";
+                $direction="desc";
+                break;
+        }
+        if (Auth::guest()){
+            $following =0;
+            $user_claim = null;
+            $user_proof = null;
+            $votes = null;
+        } else if (Auth::user()){
+            $following=count(Follow::where('user_id', Auth::user()->id)
+              ->where('achievement_id', $id)
+              ->get())>0;
+            $user_claim = Claim::where('user_id', Auth::user()->id)
+                  ->where('achievement_id', $id)->first();
+            $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
+                  ->where('achievement_id', $id)->first();
+            $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
+        }
+        $achievement =Achievement::where('id', $id)->first(); 
+        if ($achievement==NULL){
+            return View::make('Achievement.fail');
+        } else if ($achievement!=NULL){
+            return View::make('Achievement.claims', [
+                "main"=>$achievement,
+                "claims"=>$claims,
+                "votes"=>$votes,
+                "following"=>$following,
+                "sort"=>$request->input('sort'),
                 "user_proof"=>$user_proof,
                 "user_claim"=>$user_claim, 
             ]);

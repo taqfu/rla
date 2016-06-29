@@ -76,6 +76,9 @@ class Achievement extends Model
         }
         return false;
     }
+    public function claims(){
+        return $this->hasMany('\App\Claim');
+    }
 
     public function comments(){
         return $this->hasMany('\App\Comment');

@@ -4,6 +4,7 @@
  - Inbox
 @endsection
 @section('content')
+@include ('User.header')
 @include ('User.menu', ['active'=>'inbox'])
 @forelse ($messages as $message)
     @include ('Message.show', ['type'=>'in', 'message'=>$message])

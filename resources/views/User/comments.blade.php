@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-    @include ('User.menu', ['active'=>'comments'])
+@include ('User.header')
+@include ('User.menu', ['active'=>'comments'])
 <div id='user-comments'>
     @forelse($comments as $comment)
     <div class='well'>

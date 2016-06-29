@@ -18,6 +18,7 @@ use App\User;
 |
 */
 Route::auth();
+Route::get('/achievement/{id}/claims', ['as'=>'achievement.showClaims', 'uses'=>'AchievementController@showClaims']);
 Route::get('/achievement/{id}/proofs', ['as'=>'achievement.showProofs', 'uses'=>'AchievementController@showProofs']);
 Route::get('/guidelines', ['as'=>'guidelines', function(){
     return View('guidelines');
@@ -106,6 +107,13 @@ Route::get('/user/{id}/achievements/completed', ['as'=>'user.achievements.comple
     $proofs = Proof::join('achievements', 'achievement_id', '=', 'achievements.id')->where('proofs.user_id', $id)->where('proofs.status', 1)->orderBy('achievements.name', 'asc')->get();
     return View('User.achievements.completed', [
         "proofs"=>$proofs,
+        "profile"=>User::where('id', $id)->first(), 
+    ]);    
+}]);
+Route::get('/user/{id}/achievements/claimed', ['as'=>'user.achievements.claimed', function($id){
+    $claims = Claim::join('achievements', 'achievement_id', '=', 'achievements.id')->where('claims.user_id', $id)->whereNull('claims.canceled_at')->orderBy('achievements.name', 'asc')->get();
+    return View('User.achievements.claimed', [
+        "claims"=>$claims,
         "profile"=>User::where('id', $id)->first(), 
     ]);    
 }]);

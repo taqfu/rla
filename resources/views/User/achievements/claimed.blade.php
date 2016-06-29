@@ -15,20 +15,20 @@ use App\User;
 
 @section('content')
 @include ('User.header')
-@include ('User.menu', ['active'=>'completed'])
-<h3>Completed Achievements</h3>
+@include ('User.menu', ['active'=>'claimed'])
+<h3>Claimed Achievements</h3>
 <ul class='list-group'>
-    @forelse ($proofs as $proof)
+    @forelse ($claims as $claim)
         <?php
         if (Auth::guest()){
-        $date = date(Config::get('date_format'), strtotime($proof->created_at));
+        $date = date(Config::get('date_format'), strtotime($claim->created_at));
       } else if (Auth::user()){
-        $date = date(Config::get('date_format'), User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
+        $date = date(Config::get('date_format'), User::local_time(Auth::user()->timezone, strtotime($claim->created_at)));
       }
       ?>
     <li class='list-group-item'>
-        <a  class='achievement-link' href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}">{{$proof->achievement->name}}</a>
-        (<a href="{{route('proof.show', ['id'=>$proof->id])}}">Proof</a>)  - <a href="{{route('user.show', ['id'=>$proof->achievement->user->id])}}">{{$proof->achievement->user->username}}</a>
+        <a  class='achievement-link' href="{{route('achievement.show', ['id'=>$claim->achievement->id])}}">{{$claim->achievement->name}}</a>
+        - <a href="{{route('user.show', ['id'=>$claim->achievement->user->id])}}">{{$claim->achievement->user->username}}</a>
     </li>
     @empty
     <li class='list-group-item'>

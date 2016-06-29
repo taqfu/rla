@@ -15,8 +15,8 @@ use App\User;
 @endsection
 
 @section('content')
-@include ('User.menu', ['active'=>'created'])
 @include ('User.header')
+@include ('User.menu', ['active'=>'created'])
 <h3>
     Created Achievements
 </h3>

@@ -3,7 +3,9 @@
 @section('title')
  - Settings
 @endsection
+
 @section('content')
+@include ('User.header')
 @include ('User.menu', ['active'=>'settings'])
 <div id='settings' class='margin-left'>
     <h4>Password</h4>

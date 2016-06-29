@@ -14,6 +14,5 @@ use App\User;
 @endsection
 
 @section('content')
-@include ('User.menu', ['active'=>'profile'])
 @include ('User.header')
 @endsection

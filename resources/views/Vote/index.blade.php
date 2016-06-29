@@ -6,6 +6,7 @@ use App\User;
  - Vote History
 @endsection
 @section('content')
+@include ('User.header')
 @include ('User.menu', ['active'=>'votes'])
 @if (count($votes)>0)
 	<table id='user-votes' class='table'>

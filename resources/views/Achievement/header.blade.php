@@ -83,7 +83,9 @@
     </div>
     <div class='margin-left'>
         <strong>
-            {{count($main->proofs)}} proofs submitted. 
+            {{count($main->proofs)}} proof<?php if (count($main->proofs)!=1){echo "s";}?>. 
+
+            {{count($main->claims)}} claim<?php if (count($main->claims)!=1){echo "s";}?>.
                 @if (count($main->approved_proofs)>0)
                 <i>
                     ({{round(((count($main->approved_proofs) -

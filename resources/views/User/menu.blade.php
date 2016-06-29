@@ -1,17 +1,17 @@
 <ul id='user-profile-menu' class='nav nav-tabs'>
     <li class="
-      @if ($active=='profile')
-      active
-      @endif
-      ">
-        <a href="{{route('user.show', ['id'=>$profile->id])}}">{{$profile->username}}</a>
-    </li>
-    <li class="
       @if ($active=='completed')
       active
       @endif
       ">
         <a href="{{route('user.achievements.completed', ['id'=>$profile->id])}}">Completed</a>
+    </li>
+    <li class="
+      @if ($active=='claimed')
+      active
+      @endif
+      ">
+        <a href="{{route('user.achievements.claimed', ['id'=>$profile->id])}}">Claimed</a>
     </li>
     <li class="
       @if ($active=='created')

@@ -18,13 +18,16 @@ use View;
 class UserController extends Controller
 {
     public function showProfile($id){
-        if ((int)$id<1){
+        $profile = User::where('id', $id)->first();
+        if ((int)$id<1 || $profile==null){
           return View('User.fail');
     
         }
     
-        return View::make('User.show', [
-            "profile"=>User::where('id', $id)->first(), 
+        $proofs = Proof::join('achievements', 'achievement_id', '=', 'achievements.id')->where('proofs.user_id', $id)->where('proofs.status', 1)->orderBy('achievements.name', 'asc')->get();
+        return View::make('User.achievements.completed', [
+            "proofs"=>$proofs,
+            "profile"=>$profile, 
         ]);
     }
     public function showComments($id){

@@ -4,6 +4,7 @@
  - Outbox
 @endsection
 @section('content')
+@include ('User.header')
 @include ('User.menu', ['active'=>'outbox'])
 
 @forelse ($messages as $message)
