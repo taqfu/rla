@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Achievement;
+use App\AchievementVote;
 use App\Claim;
 use App\Follow;
 use App\Goal;
@@ -100,8 +101,16 @@ class AchievementController extends Controller
         $achievement->name = $request->name;
         $achievement->user_id = Auth::user()->id;
         $achievement->status = 3;
+        $achievement->score = 1; 
         $achievement->save();
 
+        $achievement_vote = new AchievementVote;
+        $achievement_vote->user_id = Auth::user()->id;
+        $achievement_vote->achievement_id = $achievement->id;
+        $achievement_vote->vote_up = true;
+        $achievement_vote->save();
+
+        
         $follow = new Follow;
         $follow->user_id = Auth::user()->id;
         $follow->achievement_id = $achievement->id;
