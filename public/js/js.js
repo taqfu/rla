@@ -3,6 +3,11 @@ $(document.body).ready(function () {
     var searchAndCreateAchievementTimer;
     var doneTypingInterval=500;
     var searchAndCreateInputTextCaption = "Create or search here.";
+    $(document).on('submit', 'form.create-proof', function(event){
+        if ($('#create-proof-url').val().substring(0, 7)!="http://"){
+            $('#create-proof-url').val("http://" + $("#create-proof-url").val());
+        }
+    });
     $(document).on("change", "#follow-menu input", function (event) {
         $("#follow-menu form").submit();
     });

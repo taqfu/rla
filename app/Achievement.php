@@ -97,6 +97,9 @@ class Achievement extends Model
         return $followers;
     }
 
+    public static function fetch_num_of_users_who_completed($id){
+        return count(Proof :: distinct()->where('achievement_id', $id)->where('status', 1)->groupBy('useR_id')->get());
+    }
     public static function fetch_owners($id){
         $owners = array();
         $proofs = Proof :: where ('achievement_id', $id)->where('status', 1)->get();

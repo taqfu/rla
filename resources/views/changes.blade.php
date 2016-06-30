@@ -5,6 +5,15 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>06/30/16</h4>
+<ul>
+    <li>
+        Users can now create multiple proofs for completing an achievement multiple times.
+    </li>
+    <li>
+        Users no longer need to include "http://" when submitting a URL proof. 
+    </li>
+</ul>
 <h4>06/29/16</h4>
 <ul>
     <li>

@@ -84,7 +84,7 @@ Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', func
         $user_claim = Claim::where('user_id', Auth::user()->id)
           ->where('achievement_id', $achievement_id)->first();
         $user_goal = Goal::where('user_id', Auth::user()->id)
-              ->where('achievement_id', $id)->first();
+              ->where('achievement_id', $achievement_id)->first();
         $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
           ->where('achievement_id', $achievement_id)->first();
     }

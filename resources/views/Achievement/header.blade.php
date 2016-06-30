@@ -9,11 +9,13 @@
             You first completed this achievement 
             {{date(Config::get('rla.date_format'), strtotime($user_proof->created_at))}}.   
         </div>
-        @elseif (Achievement::can_user_submit_proof($main->id) 
+        @endif
+        @if (Achievement::can_user_submit_proof($main->id) 
           && ($main->status!=2))
             @include ('Proof.create', ['achievement_id'=>$main->id])
             <!--{{var_dump(Achievement::can_user_claim($main->id))}}-->
-            @if (Achievement::can_user_claim($main->id))           
+            @if (Achievement::can_user_claim($main->id) 
+              && !Achievement::has_user_completed_achievement($main->id))           
             <form method="POST" action="{{route('claim.store')}}" role='form' class='margin-left'>
             {{csrf_field()}}
             <input type='hidden' name='achievementID' value='{{$main->id}}' />
@@ -88,10 +90,11 @@
             {{count($main->claims)}} claim<?php if (count($main->claims)!=1){echo "s";}?>.
                 @if (count($main->approved_proofs)>0)
                 <i>
-                    ({{round(((count($main->approved_proofs) -
-                      count($main->denied_proofs))/count($main->approved_proofs)), 2)*100}}% Approval)
+                    ({{round(count($main->approved_proofs)/((count($main->approved_proofs) +
+                      count($main->denied_proofs))), 2)*100}}% Approval)
                 </i>
                 @endif
         </strong>
+        {{Achievement::fetch_num_of_users_who_completed($main->id)}} people have completed this achievement.
     </div>
 </div>
