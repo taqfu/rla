@@ -21,13 +21,10 @@
 @section('content')
 @if (Auth::user())
     @include ('Follow.create')
-    @if (!Achievement::has_user_completed_achievement($main->id)
-      && !Achievement::has_user_claimed_achievement($main->id))
-        @if ($user_goal==null)
-        @include('Goal.create', ['id'=>$main->id])
-        @else
-        @include ('Goal.destroy', ['goal'=>$user_goal, 'extra'=>true])
-        @endif
+    @if ($user_goal==null)
+    @include('Goal.create', ['id'=>$main->id])
+    @else
+    @include ('Goal.destroy', ['goal'=>$user_goal, 'extra'=>true])
     @endif
 @endif
 <h1 class='text-center'>

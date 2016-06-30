@@ -79,6 +79,7 @@ class AchievementController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:achievements|max:100',
         ]);
+/*
         $last_achievement = Achievement::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
         if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < Config::get('rla.min_time_to_post')){
             $num_of_seconds = Config::get('rla.min_time_to_post') - (time()-strtotime($last_achievement->created_at));
@@ -123,6 +124,7 @@ class AchievementController extends Controller
         $timeline->save();
 
         return redirect()->route('achievement.show', [$achievement->id]);
+*/
     }
 
 
