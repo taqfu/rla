@@ -16,22 +16,11 @@
             <!--{{var_dump(Achievement::can_user_claim($main->id))}}-->
             @if (Achievement::can_user_claim($main->id) 
               && !Achievement::has_user_completed_achievement($main->id))           
-            <form method="POST" action="{{route('claim.store')}}" role='form' class='margin-left'>
-            {{csrf_field()}}
-            <input type='hidden' name='achievementID' value='{{$main->id}}' />
-            No Proof? <button type='submit' class='btn-link'>Claim.</button>
-            </form>
+                @include ('Claim.create')
             @endif
         @endif
         @if ($user_claim!=null)
-        <form method="POST" action="{{route('claim.destroy', ['id'=>$user_claim->id])}}" 
-          role='form' class='margin-left lead'>
-            {{csrf_field()}}
-            {{method_field('DELETE')}}
-            You claimed to have completed this achievement on 
-            {{date(Config::get('rla.date_format'), strtotime($user_claim->created_at))}}. 
-            <button type='submit' class='btn-link'>Withdraw Claim</button>
-        </form>
+            @include ('Claim.destroy')
 
         @endif
     @endif
