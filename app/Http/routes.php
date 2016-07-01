@@ -19,6 +19,9 @@ use App\User;
 |
 */
 Route::auth();
+Route::get('/about', ['as'=>'about', function(){
+    return View('guidelines');
+}]);
 Route::get('/achievement/{id}/claims', ['as'=>'achievement.showClaims', 'uses'=>'AchievementController@showClaims']);
 Route::get('/achievement/{id}/proofs', ['as'=>'achievement.showProofs', 'uses'=>'AchievementController@showProofs']);
 Route::get('/guidelines', ['as'=>'guidelines', function(){
