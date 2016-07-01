@@ -19,6 +19,19 @@ use App\User;
 |
 */
 Route::auth();
+/*
+Route::get('/update-achievements', function(){
+    foreach (Achievement::get() as $achievement){
+        if ($achievement->url==null){
+            $achievement->url = preg_replace("/\s+/", "-", trim(strtolower(preg_replace("/\p{P}/", " ", $achievement->name))));
+            $achievement->save();
+        }
+    }
+    return View('Achievement.update', [
+        "achievements"=>Achievement::get(),
+    ]);
+});
+*/
 Route::get('/about', ['as'=>'about', function(){
     return View('guidelines');
 }]);
