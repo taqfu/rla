@@ -97,11 +97,19 @@ class AchievementController extends Controller
             $error_msg = $error_msg . " before trying again.";
             return back()->withErrors($error_msg)->withInput();
         }
+        $achievement_url = preg_replace("/\s+/", "-", trim(strtolower(preg_replace("/\p{P}/", " ", $request->name))));
+
         $achievement = new Achievement;
         $achievement->name = $request->name;
         $achievement->user_id = Auth::user()->id;
         $achievement->status = 3;
         $achievement->score = 1; 
+        $num_of_records = count(DB::select("select * from achievements where substring(url, 1, length(?))=?", [$achievement_url, $achievement_url]));
+        if ($num_of_records!=0){
+            $num_of_records++;
+            $achievement_url = $achievement_url . "-$num_of_records";
+        }
+        $achievement->url = $achievement_url;
         $achievement->save();
 
         $achievement_vote = new AchievementVote;
@@ -121,7 +129,6 @@ class AchievementController extends Controller
         $timeline->event = "new achievement";
         $timeline->achievement_id = $achievement->id;
         $timeline->save();
-
         return redirect()->route('achievement.show', [$achievement->id]);
     }
 
@@ -134,6 +141,7 @@ class AchievementController extends Controller
      */
     public function show($id)
     {
+//        $id = Achievement::where("url", $url)->first();
         if (Auth::guest()){
             $following =0;
             $votes = null;
