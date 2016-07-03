@@ -16,8 +16,8 @@
 @endif
 @forelse($goals as $goal)
     <div class='margin-left'>
-        @include ('Goal.destroy', ['goal'=>$goal, "extra"=>false]) 
-        <a href="{{route('achievement.show', ['id'=>$goal->achievement_id])}}">
+        @include ('Goal.destroy', ['goal'=>$goal, "extra"=>false])
+        <a href="{{route('achievement.show', ['url'=>$goal->achievement->url])}}">
             {{$goal->achievement->name}}
         </a>
         (<a href="{{route('user.show', ['id'=>$goal->user_id])}}">

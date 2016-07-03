@@ -34,7 +34,7 @@ class AchievementController extends Controller
                 $status[]=$key;
             }
         }
-        
+
         $achievements = Achievement::whereIn('status', $status)->get();
         $achievements = Achievement::sort($achievements, $request->Input('sort'));
         Proof::check();
@@ -56,14 +56,14 @@ class AchievementController extends Controller
     }
     public function query(Request $request){
         return View::make('Achievement.query', [
-            "achievements"=>Achievement::where('name', 'LIKE', '%'.$request->searchQuery . '%')->orderBy('score', 'desc')->take(10)->get(),            
-            "achievementDoesNotExist"=>count(Achievement::where('name', $request->searchQuery)->get())==0,            
-            "searchQuery"=>$request->searchQuery,        
+            "achievements"=>Achievement::where('name', 'LIKE', '%'.$request->searchQuery . '%')->orderBy('score', 'desc')->take(10)->get(),
+            "achievementDoesNotExist"=>count(Achievement::where('name', $request->searchQuery)->get())==0,
+            "searchQuery"=>$request->searchQuery,
         ]);
 
 
 
-    } 
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -103,7 +103,7 @@ class AchievementController extends Controller
         $achievement->name = $request->name;
         $achievement->user_id = Auth::user()->id;
         $achievement->status = 3;
-        $achievement->score = 1; 
+        $achievement->score = 1;
         $num_of_records = count(DB::select("select * from achievements where substring(url, 1, length(?))=?", [$achievement_url, $achievement_url]));
         if ($num_of_records!=0){
             $num_of_records++;
@@ -118,7 +118,7 @@ class AchievementController extends Controller
         $achievement_vote->vote_up = true;
         $achievement_vote->save();
 
-        
+
         $follow = new Follow;
         $follow->user_id = Auth::user()->id;
         $follow->achievement_id = $achievement->id;
@@ -129,7 +129,7 @@ class AchievementController extends Controller
         $timeline->event = "new achievement";
         $timeline->achievement_id = $achievement->id;
         $timeline->save();
-        return redirect()->route('achievement.show', [$achievement->id]);
+        return redirect()->route('achievement.show', ['url'=>$achievement->url]);
     }
 
 
@@ -160,7 +160,7 @@ class AchievementController extends Controller
               ->get())>0;
             $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
         }
-        $achievement =Achievement::where('id', $id)->first(); 
+        $achievement =Achievement::where('id', $id)->first();
         $proofs = Proof::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
         if ($achievement==NULL){
             return View::make('Achievement.fail');
@@ -172,7 +172,7 @@ class AchievementController extends Controller
                 "following"=>$following,
                 "user_proof"=>$user_proof,
                 "user_goal"=>$user_goal,
-                "user_claim"=>$user_claim, 
+                "user_claim"=>$user_claim,
             ]);
         }
     }
@@ -234,7 +234,7 @@ class AchievementController extends Controller
                   ->where('achievement_id', $id)->first();
             $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
         }
-        $achievement =Achievement::where('id', $id)->first(); 
+        $achievement =Achievement::where('id', $id)->first();
         if ($achievement==NULL){
             return View::make('Achievement.fail');
         } else if ($achievement!=NULL){
@@ -246,7 +246,7 @@ class AchievementController extends Controller
                 "sort"=>$request->input('sort'),
                 "user_goal"=>$user_goal,
                 "user_proof"=>$user_proof,
-                "user_claim"=>$user_claim, 
+                "user_claim"=>$user_claim,
             ]);
         }
     }
@@ -309,7 +309,7 @@ class AchievementController extends Controller
                   ->where('achievement_id', $id)->first();
             $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
         }
-        $achievement =Achievement::where('id', $id)->first(); 
+        $achievement =Achievement::where('id', $id)->first();
         if ($achievement==NULL){
             return View::make('Achievement.fail');
         } else if ($achievement!=NULL){
@@ -321,11 +321,11 @@ class AchievementController extends Controller
                 "sort"=>$request->input('sort'),
                 "user_goal"=>$user_goal,
                 "user_proof"=>$user_proof,
-                "user_claim"=>$user_claim, 
+                "user_claim"=>$user_claim,
             ]);
         }
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.

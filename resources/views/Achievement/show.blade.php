@@ -30,7 +30,7 @@
 <h1 class='text-center'>
     {{$main->name }}
 </h1>
-@include ('Achievement.menu', ['id'=>$main->id, 'active_item'=>'info'])
+@include ('Achievement.menu', ['id'=>$main->id, 'url'=>$main->url, 'active_item'=>'info'])
 @include ('Achievement.header')
 
 
@@ -39,7 +39,7 @@
     if (Auth::guest()){
         $timestamp = date(Config::get('rla.timestamp_format') . ' e', strtotime($proof->created_at));
     } else if (Auth::user()){
-        $timestamp = date(Config::get('rla.timestamp_format'), 
+        $timestamp = date(Config::get('rla.timestamp_format'),
           User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
     }
     ?>
@@ -49,7 +49,7 @@
         <div class='proof-timestamp text-center panel-heading'>{{interval($proof->created_at, 'now')}} ago</div>
         <div class='text-center'><a href="{{route('user.show', ['id'=>$proof->user->id])}}">{{$proof->user->username}}</a>
             submitted <a href="{{route('proof.show', ['id'=>$proof->id])}}">proof</a> of completion.
-            (<a target='_blank' href="{{$proof->url}}">{{$proof->url}}</a>) 
+            (<a target='_blank' href="{{$proof->url}}">{{$proof->url}}</a>)
         </div>
         <div class='text-center'>
             @if ($proof->status==0)
@@ -104,7 +104,7 @@
             @endif
 
             @if (count($proof->comments)>0)
-                <input type='button' id='show-comments{{$proof->id}}' class='show-comments btn-link' 
+                <input type='button' id='show-comments{{$proof->id}}' class='show-comments btn-link'
                   value='[ Show Comments ({{count($proof->comments)}}) ]' />
             @endif
             @if (Proof::can_user_comment($proof->id))

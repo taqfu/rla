@@ -7,14 +7,14 @@
       active
       @endif
       '>
-        <a href="{{route('achievement.show', ['id'=>$id])}}">Info</a>
+        <a href="{{route('achievement.show', ['url'=>$url])}}">Info</a>
     </li>
     <li class='
       @if ($active_item=='proofs')
       active
       @endif
       '>
-        <a href="{{route('achievement.showProofs', ['id'=>$id])}}">Proofs</a> 
+        <a href="{{route('achievement.showProofs', ['id'=>$id])}}">Proofs</a>
     </li>
     <li class='
       @if ($active_item=='claims')
@@ -30,5 +30,5 @@
       '>
           <a href="{{route('discussion', ['id'=>$id])}}">Discussion ({{count(Comment::where('achievement_id', $id)->get())}})</a>
     </li>
-        
+
 </ul>

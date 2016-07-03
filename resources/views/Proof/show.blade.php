@@ -57,7 +57,7 @@
         @else
          <a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->username}}</a>.
         @endif
-         (<a href="{{route('achievement.show', ['id'=>$proof->achievement_id])}}">Achievement Profile</a>)
+         (<a href="{{route('achievement.show', ['url'=>$proof->achievement->url])}}">Achievement Profile</a>)
     </div>
     <div id='proof-status' class='margin-left'>
     @if ($proof->status==0)

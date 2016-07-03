@@ -23,7 +23,7 @@ use App\User;
 <ul class='list-group'>
     @forelse($achievements as $achievement)
     <li class='list-group-item'>
-        <a  class='achievement-link' href="{{route('achievement.show', ['id'=>$achievement->id])}}">{{$achievement->name}}</a>
+        <a  class='achievement-link' href="{{route('achievement.show', ['url'=>$achievement->url])}}">{{$achievement->name}}</a>
         @if ($achievement->status==0)
             <span class='fail'>(Denied)</span>
         @elseif ($achievement->status==1)

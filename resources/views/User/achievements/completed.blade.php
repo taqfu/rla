@@ -27,7 +27,7 @@ use App\User;
       }
       ?>
     <li class='list-group-item'>
-        <a  class='achievement-link' href="{{route('achievement.show', ['id'=>$proof->achievement->id])}}">{{$proof->achievement->name}}</a>
+        <a  class='achievement-link' href="{{route('achievement.show', ['url'=>$proof->achievement->url])}}">{{$proof->achievement->name}}</a>
         (<a href="{{route('proof.show', ['id'=>$proof->id])}}">Proof</a>)  - <a href="{{route('user.show', ['id'=>$proof->achievement->user->id])}}">{{$proof->achievement->user->username}}</a>
     </li>
     @empty

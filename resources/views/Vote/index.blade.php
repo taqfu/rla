@@ -41,7 +41,7 @@ use App\User;
 	    </td><td>
 	        <a href="{{route('user.show', ['id'=>$vote->proof->user_id])}}">{{$vote->proof->user->username}}</a>
 	    </td><td>
-	        <a href="{{route('achievement.show', ['id'=>$vote->proof->achievement->id])}}">{{$vote->proof->achievement->name}}</a>
+	        <a href="{{route('achievement.show', ['url'=>$vote->proof->achievement->url])}}">{{$vote->proof->achievement->name}}</a>
 	    </td><td>
 	        <a href="{{route('user.show', ['id'=>$vote->proof->achievement->user_id])}}">{{$vote->proof->achievement->user->username}}</a>
 	    </td></tr>

@@ -3,7 +3,7 @@
 <h1 class='text-center'>
     {{$main->name }}
 </h1>
-@include ('Achievement.menu', ['id'=>$main->id, 'active_item'=>'discussion'])
+@include ('Achievement.menu', ['id'=>$main->id, 'url'=>$main->url, 'active_item'=>'discussion'])
 @include ('Achievement.header')
 @if (Auth::user())
     @include ('Comment.create', ['table'=>'achievement', 'table_id'=>$main->id, 'show'=>true])

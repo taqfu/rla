@@ -22,7 +22,7 @@
             "{{$comment->achievement->name}}" Discussion Page
         </a>
         @elseif ($comment->proof_id>0)
-        <a href="{{route('achievement.show', ['id'=>$comment->proof->achievement_id])}}#{{$comment->proof_id}}">
+        <a href="{{route('achievement.show', ['url'=>$comment->proof->achievement->url])}}#{{$comment->proof_id}}">
             "{{$comment->proof->achievement->name}}" Profile Page
         </a>
         @elseif ($comment->vote_id>0)

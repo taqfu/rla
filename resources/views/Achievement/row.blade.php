@@ -6,8 +6,8 @@ if (Auth::user()){
     $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id);
     $is_user_following_achievement =
       count(Follow::where('achievement_id', $achievement->id)->where('user_id', Auth::user()->id)->get())>0;
-    $can_user_vote_achievement_up_or_down = 
-      Achievement::can_user_vote_achievement_up_or_down($achievement->id); 
+    $can_user_vote_achievement_up_or_down =
+      Achievement::can_user_vote_achievement_up_or_down($achievement->id);
     $is_this_on_their_bucket_list = Achievement::is_this_on_their_bucket_list($achievement->id);
 }
     $is_achievement_passing_approval = Achievement::passing_approval($achievement->id);
@@ -23,7 +23,7 @@ if (Auth::user()){
       inactive-achievement
   @elseif ($achievement->status==4)
       canceled-achievement
-  @endif  
+  @endif
   @if (Auth::user())
       @if ($has_user_completed_achievement)
           completed-achievement
@@ -97,7 +97,7 @@ if (Auth::user()){
             inactive
         @endif
         '
-        href="{{route('achievement.show', ['id'=> $achievement->id])}}">
+        href="{{route('achievement.show', ['url'=> $achievement->url])}}">
             <div>
                 {{ $achievement->name }}
             @if (Auth::user() && $has_user_completed_achievement)

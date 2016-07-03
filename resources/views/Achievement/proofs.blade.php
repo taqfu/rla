@@ -24,17 +24,17 @@
 <h1 class='text-center'>
     {{$main->name }}
 </h1>
-@include ('Achievement.menu', ['id'=>$main->id, 'active_item'=>'proofs'])
+@include ('Achievement.menu', ['id'=>$main->id, 'url'=>$main->url, 'active_item'=>'proofs'])
 @include ('Achievement.header')
 <h4 class=''>
     {{count ($proofs)}} proofs
 </h4>
-<table class='table table-bordered table-hover'> 
+<table class='table table-bordered table-hover'>
     <tr><th>
         @if ($sort=="created_at asc")
         <a href="{{route('achievement.showProofs', ['id'=>$main->id, 'sort'=>'created_at desc'])}}"><em>
             When &uarr;
-        
+
         </em></a>
         @elseif ($sort=="created_at desc")
         <a href="{{route('achievement.showProofs', ['id'=>$main->id, 'sort'=>'created_at asc'])}}"><em>
@@ -58,7 +58,7 @@
         @if ($sort=="id asc")
         <a href="{{route('achievement.showProofs', ['id'=>$main->id, 'sort'=>'id desc'])}}"><em>
             Proof &darr;
-        
+
         </em></a>
         @elseif ($sort=="id desc")
         <a href="{{route('achievement.showProofs', ['id'=>$main->id, 'sort'=>'id asc'])}}"><em>
@@ -78,7 +78,7 @@
         @if ($sort=="url asc")
         <a href="{{route('achievement.showProofs', ['id'=>$main->id, 'sort'=>'url desc'])}}"><em>
             URL &darr;
-        
+
         </em></a>
         @elseif ($sort=="url desc")
         <a href="{{route('achievement.showProofs', ['id'=>$main->id, 'sort'=>'url asc'])}}"><em>
@@ -95,7 +95,7 @@
         @if ($sort=="status asc")
         <a href="{{route('achievement.showProofs', ['id'=>$main->id, 'sort'=>'status desc'])}}"><em>
             Status &darr;
-        
+
         </em></a>
         @elseif ($sort=="status desc")
         <a href="{{route('achievement.showProofs', ['id'=>$main->id, 'sort'=>'status asc'])}}"><em>
@@ -113,7 +113,7 @@
     if (Auth::guest()){
         $timestamp = date(Config::get('rla.timestamp_format') . ' e', strtotime($proof->created_at));
     } else if (Auth::user()){
-        $timestamp = date(Config::get('rla.timestamp_format'), 
+        $timestamp = date(Config::get('rla.timestamp_format'),
           User::local_time(Auth::user()->timezone, strtotime($proof->created_at)));
     }
     ?>
@@ -140,8 +140,8 @@
         Canceled
         @else
             {{$proof->status}}
-        @endif    
+        @endif
     </tr>
-    
+
 @endforeach
 @endsection

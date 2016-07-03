@@ -4,7 +4,7 @@
   use App\User;
 ?>
 @extends('layouts.app')
-@section('title') 
+@section('title')
  - Your Achievements
 @endsection
 @section('content')
@@ -14,8 +14,8 @@
     <table class='center-margin'>
     @foreach ($achievements as $achievement)
         @if (Auth::user())
-        <?php 
-        $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id); 
+        <?php
+        $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id);
         $is_user_following_achievement = count(Follow::where('achievement_id', $achievement->id)->where('user_id', Auth::user()->id)->get())>0;
         ?>
         @endif
@@ -91,12 +91,12 @@
                     inactive
                 @endif
                 '
-                href="{{route('achievement.show', ['id'=> $achievement->id])}}">
+                href="{{route('achievement.show', ['url'=> $achievement->url])}}">
                     <div>{{ $achievement->name }}</div></a>
-    
+
                 @if(Achievement::can_user_vote_on_proof($achievement->id))
                 <span class='vote_available'>
-                <a href="{{route('achievement.show', ['id'=> $achievement->id])}}">Vote Available!</a>
+                <a href="{{route('achievement.show', ['url'=> $achievement->url])}}">Vote Available!</a>
                 </span>
                 @endif
         </td></tr>
