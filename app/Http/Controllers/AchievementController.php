@@ -139,9 +139,10 @@ class AchievementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($url)
     {
-//        $id = Achievement::where("url", $url)->first();
+        $achievement = Achievement::where("url", $url)->first();
+        $id = $achievement->id;
         if (Auth::guest()){
             $following =0;
             $votes = null;

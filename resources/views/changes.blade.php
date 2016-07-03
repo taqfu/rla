@@ -5,6 +5,12 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>07-03-16</h4>
+<ul>
+    <li>
+        Achievement profile URLs are now referenced by name and not by ID number.
+    </li>
+</ul>
 <h4>06/30/16</h4>
 <ul>
     <li>
