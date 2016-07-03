@@ -1,7 +1,7 @@
 
 @extends ('layouts.app')
 @section('title')
- - Real Life Achievements 
+ - A Community for Sharing and Tracking Accomplishments
 @endsection
 @section ('content')
 <div id='public-page'>
