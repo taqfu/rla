@@ -51,16 +51,16 @@ class VoteController extends Controller
     public function store(Request $request)
     {
         if (Auth::guest()){
-            return back()->withErrors('Please log in before doing this.');
+            return view::make('Vote.fail');
         }
         $this->validate($request, [
             'proofID' => 'required|integer',
             'achievementID' =>'required|integer',
-            'vote_for' => 'required|boolean|unique:votes,vote_for,NULL,id,user_id,'.Auth::user()->id.',proof_id,'.$request->proofID.',achievement_id,'.$request->achievementID,
+            'voteFor' => 'required|boolean|unique:votes,vote_for,NULL,id,user_id,'.Auth::user()->id.',proof_id,'.$request->proofID.',achievement_id,'.$request->achievementID,
         ]);
         $before = Proof::passing_approval($request->proofID);
         $vote = new Vote;
-        $vote->vote_for = $request->vote_for=="1";
+        $vote->vote_for = $request->voteFor=="1";
         $vote->proof_id = $request->proofID;
         $vote->achievement_id = $request->achievementID;
         $vote->user_id = Auth::user()->id;
@@ -78,7 +78,7 @@ class VoteController extends Controller
                 $timeline->save();
             }
         }
-        return back();
+        return View::make('Vote.show', ['voted_for'=>(boolean)$request->voteFor]);
     }
 
     /**

@@ -72,6 +72,14 @@ $(document.body).ready(function () {
         $("#show-new-comment" + id_num).removeClass('hidden');
         $("#new_comment"+id_num).addClass('hidden');
     });
+    $(document).on('click', '.proof-yes-vote', function(event) {
+        var proofID = event.target.id.substr(14, event.target.id.length-14);
+        submitVote(Number(proofID), 1);
+    });
+    $(document).on('click', '.proof-no-vote', function(event) {
+        var proofID = event.target.id.substr(13, event.target.id.length-13);
+        submitVote(Number(proofID), 0);
+    });
     $(document).on("click", ".show-comments", function (event) {
         var id_num = event.target.id.substr(13, event.target.id.length-13);
         console.log("SHOW " + id_num);
@@ -100,5 +108,19 @@ function doneTyping(){
         .done(function (result){
             $("#achievement-results").html(result);
         }); 
-
+}
+function submitVote(proofID, voteFor){
+    var siteRoot =  window.location.hostname=="taqfu.com" ? "/dev-env/rla/public" : "";
+    var achievementID = Number($("#proof-vote-achievement-id"+proofID).val());
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },  
+        method: "POST",
+        url: siteRoot + "/vote",
+        data:{proofID:proofID, achievementID:achievementID, voteFor:voteFor}
+    })  
+        .done(function (result){
+            $("#vote-on-proof"+proofID).html(result);
+        }); 
 }

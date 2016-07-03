@@ -10,6 +10,9 @@
     <li>
         Achievement profile URLs are now referenced by name and not by ID number.
     </li>
+    <li>
+        Voting no longer requires the page to reload.
+    </li>
 </ul>
 <h4>06/30/16</h4>
 <ul>
