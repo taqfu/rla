@@ -5,6 +5,12 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>07/04/16</h4>
+<ul>
+    <li>
+        When claiming to have completed an achievement, it no longer updates timeline. (Changes to timeline coming.)
+    </li>
+</ul>
 <h4>07/03/16</h4>
 <ul>
     <li>

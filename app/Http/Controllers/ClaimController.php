@@ -59,13 +59,6 @@ class ClaimController extends Controller
         $user->claim_score += $claim->points;
         $user->save();
 
-        foreach ($followers as $follower){
-            $timeline = new Timeline;
-            $timeline->claim_id = $claim->id;
-            $timeline->user_id = $follower;
-            $timeline->event = "claim achievement";
-            $timeline->save();
-        }
         return back();
     }
 
