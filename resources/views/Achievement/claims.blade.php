@@ -23,7 +23,7 @@
 <h1 class='text-center'>
     {{$main->name }}
 </h1>
-@include ('Achievement.menu', ['id'=>$main->id, 'url'=>$main->url, active_item'=>'claims'])
+@include ('Achievement.menu', ['id'=>$main->id, 'url'=>$main->url, 'active_item'=>'claims'])
 @include ('Achievement.header')
 <h4 class='margin-left'>
     {{count ($claims)}} claims
