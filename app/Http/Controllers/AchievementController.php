@@ -34,9 +34,20 @@ class AchievementController extends Controller
                 $status[]=$key;
             }
         }
-
-        $achievements = Achievement::whereIn('status', $status)->get();
-        $achievements = Achievement::sort($achievements, $request->Input('sort'));
+        if ($request->sort!=null){
+           if (substr($request->sort, 3)=="asc"){
+               $sort_by = substr($request->sort, 0, strlen($request->sort)-4);
+               $order = "asc"; 
+            } else if (substr($request->sort, 4)=="desc"){
+               $sort_by = substr($request->sort, 0, strlen($request->sort)-5);
+               $order = "asc"; 
+            } 
+        } else {
+            $sort_by = "score";
+            $order = "desc";
+        }
+        $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)->get();
+//        $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)->simplePaginate(25);
         Proof::check();
         return View::make('Achievement.index', [
           "achievements"=>$achievements,

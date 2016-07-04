@@ -13,6 +13,10 @@
     <li>
         You will not receive points for completing an achievement for a second time.
     </li>
+    <li>
+        User will now receive a message when they are unable to vote on an achievement because they have not completed it yet.
+    </li>
+
 </ul>
 <h4>07/03/16</h4>
 <ul>

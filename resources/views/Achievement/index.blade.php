@@ -19,12 +19,13 @@
     <div class='container-flexible'>
         <div class='row'>
             <div class='col-xs-1'></div>
-            <div class='col-xs-10'>
+            <div class='col-xs-10 text-center'>
                 <table class='table table-bordered table-hover'>
                     @foreach ($achievements as $achievement)
                        @include('Achievement.row')
                     @endforeach
                 </table>
+            </div>
             <div class='col-xs-1'></div>
     </div>
 </div>
