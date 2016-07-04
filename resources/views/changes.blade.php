@@ -10,6 +10,9 @@
     <li>
         When claiming to have completed an achievement, it no longer updates timeline. (Changes to timeline coming.)
     </li>
+    <li>
+        You will not receive points for completing an achievement for a second time.
+    </li>
 </ul>
 <h4>07/03/16</h4>
 <ul>
