@@ -8,5 +8,12 @@
         @include ('Vote.create')
     @elseif ($vote!=null && !$create_only)
         @include ('Vote.show', ['voted_for'=>$vote->vote_for])
+    @else 
+        @if ($proof->status==2)
+        <div><strong>
+            Because you have not completed this achievement, you are unable to vote.
+        </strong></div>
+        @endif
     @endif
+    
 @endif
