@@ -95,7 +95,6 @@
         <select name='timezone'>
         <?php
         $tzlist = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
-        var_dump($tzlist);
         
             foreach($tzlist as $tz){
                 echo "<option ";

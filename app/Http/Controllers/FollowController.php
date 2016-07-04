@@ -82,7 +82,6 @@ class FollowController extends Controller
             //ERROR - following too many
             return back()->withErrors("You have too many follows.");
         }
-        var_dump((boolean)$request->following);
 
         if ((boolean)$request->following){
             if ($num_of_follows>0){
@@ -103,7 +102,7 @@ class FollowController extends Controller
             } else {
                 // ERROR - unfollowing when it's not following.
                 return back()->withErrors("You can't unfollow. You've already unfollowed.");
-                
+
             }
         }
         return back();
