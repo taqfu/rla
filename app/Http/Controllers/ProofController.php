@@ -159,11 +159,14 @@ class ProofController extends Controller
         $proof = Proof::find($id);
         $proof->status = 4;
         $proof->save();
-        $timeline = new Timeline;
-        $timeline->user_id = Auth::user()->id;
-        $timeline->proof_id = $id;
-        $timeline->event = "cancel proof";
-        $timeline->save();
+        $followers = Achievement::fetch_followers($proof->achievement_id);
+        foreach ($followers as $follower){
+            $timeline = new Timeline;
+            $timeline->user_id = Auth::user()->id;
+            $timeline->proof_id = $follower;
+            $timeline->event = "cancel proof";
+            $timeline->save();
+        }
         $achievement = Achievement::find($proof->achievement_id);
         if ($achievement->status==2){
             $achievement->status=4;
