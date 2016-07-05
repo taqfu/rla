@@ -28,6 +28,7 @@ class AchievementController extends Controller
     public function index(Request $request)
     {
         $status = [];
+        $filter_captions =["denied", "approved", "pending", "inactive", "canceled"];
         $filters = ["status"=>[$request->denied, $request->approved,  $request->pending,  $request->inactive, $request->canceled]];
         foreach ($filters["status"] as $key=>$val){
             if ($val=="on"){
@@ -35,10 +36,10 @@ class AchievementController extends Controller
             }
         }
         if ($request->sort!=null){
-           if (substr($request->sort, 3)=="asc"){
+           if (substr($request->sort, -3)=="asc"){
                $sort_by = substr($request->sort, 0, strlen($request->sort)-4);
                $order = "asc"; 
-            } else if (substr($request->sort, 4)=="desc"){
+            } else if (substr($request->sort, -4)=="desc"){
                $sort_by = substr($request->sort, 0, strlen($request->sort)-5);
                $order = "asc"; 
             } 
@@ -46,8 +47,16 @@ class AchievementController extends Controller
             $sort_by = "score";
             $order = "desc";
         }
-        $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)->get();
-//        $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)->simplePaginate(25);
+        if ($sort_by=="date"){
+            $sort_by="created_at";
+        }
+        $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)->simplePaginate(25);
+        $achievements->appends('sort', $request->input('sort'));
+        foreach ($filters['status'] as $key=>$val){
+            if ($val!=null){
+                $achievements->appends($filter_captions[$key], $val);
+            }
+        }
         Proof::check();
         return View::make('Achievement.index', [
           "achievements"=>$achievements,

@@ -5,6 +5,12 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>07/05/16</h4>
+<ul>
+    <li>
+        Achievements on the listings page have been paginated.
+    </li>
+</ul>
 <h4>07/04/16</h4>
 <ul>
     <li>
