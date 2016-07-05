@@ -102,6 +102,8 @@ if (Auth::user()){
                 {{ $achievement->name }}
             @if (Auth::user() && $has_user_completed_achievement)
                 &#10004;
+            @elseif (Auth::user() && Achievement::has_user_claimed_achievement($achievement->id))
+                &#10003;
             @endif
             </div>
         </a>

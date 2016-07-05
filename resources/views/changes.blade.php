@@ -10,6 +10,9 @@
     <li>
         Achievements on the listings page have been paginated.
     </li>
+    <li>
+        Claimed achievements now have a light checkmark next to them.
+    </li>
 </ul>
 <h4>07/04/16</h4>
 <ul>

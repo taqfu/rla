@@ -41,7 +41,7 @@ class AchievementController extends Controller
                $order = "asc"; 
             } else if (substr($request->sort, -4)=="desc"){
                $sort_by = substr($request->sort, 0, strlen($request->sort)-5);
-               $order = "asc"; 
+               $order = "desc"; 
             } 
         } else {
             $sort_by = "score";
@@ -49,6 +49,8 @@ class AchievementController extends Controller
         }
         if ($sort_by=="date"){
             $sort_by="created_at";
+        } else if ($sort_by=="points"){
+            $sort_by="score";
         }
         $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)->simplePaginate(25);
         $achievements->appends('sort', $request->input('sort'));
