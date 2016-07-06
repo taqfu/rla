@@ -3,6 +3,7 @@
         Filter By
     </h4>
     <div class='container-flexible form-group'>
+        Status:
         <label for='approved' class='approved filter '>Approved
             <span class='filter-tooltip' data-toggle='tooltip'
               title='This achievement has been approved and multiple people can submit proof for it at the same time. Voting is only open to those that have already completed the achievement.'>
@@ -69,14 +70,24 @@
         </label>
     </div>
     <div class='hidden'>
-        Show Only:
+        Completion:
+        <label for='incomplete' class='filter incomplete'>
+            Incomplete
+            <span class='filter-tooltip' data-toggle='tooltip' title="You have not completed this achievement.">(?)</span>
+            <input id='incomplete' type='checkbox' name='incomplete' class='filter checkbox-inline'>
+        </label>
         <label for='complete' class='filter complete'>
-            Completed  By You
+            Completed
             <span class='filter-tooltip' data-toggle='tooltip' title="You've submitted proof for this achievement and it has been approved!">(?)</span>
             <input id='complete' type='checkbox' name='complete' class='filter checkbox-inline'>
         </label>
+        <label for='claimed' class='filter claimed'>
+            Claimed
+            <span class='filter-tooltip' data-toggle='tooltip' title='You have no proof but you claim to have completed the achievement.'>(?)</span>
+            <input id='claimed' type='checkbox' name='claimed' class='filter checkbox-inline'>
+        </label>
         <label for='followed' class='filter followed'>
-            Followed By You
+            Followed
             <span class='filter-tooltip' data-toggle='tooltip' title="You're following this achievement. All updates will go to your homepage.">(?)</span>
             <input id='followed' type='checkbox' name='followed' class='filter checkbox-inline' />
         </label>
