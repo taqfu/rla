@@ -69,6 +69,7 @@
             />
         </label>
     </div>
+    @if (Auth::user())
     <div class='hidden'>
         Completion:
         <label for='incomplete' class='filter incomplete'>
@@ -92,5 +93,6 @@
             <input id='followed' type='checkbox' name='followed' class='filter checkbox-inline' />
         </label>
     </div>
+    @endif
     @include ("Achievement.sort")
 </form>

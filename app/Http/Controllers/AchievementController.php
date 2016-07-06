@@ -16,6 +16,7 @@ use App\Vote;
 use Auth;
 use Config;
 use DB;
+use Paginator;
 use View;
 
 class AchievementController extends Controller
@@ -29,12 +30,19 @@ class AchievementController extends Controller
     {
         $status = [];
         $filter_captions =["denied", "approved", "pending", "inactive", "canceled"];
-        $filters = ["status"=>[$request->denied, $request->approved,  $request->pending,  $request->inactive, $request->canceled]];
+        $filters = [
+          "status"=>[$request->denied, $request->approved,  $request->pending,  
+            $request->inactive, $request->canceled], 
+            "incomplete"=>$request->incomplete=="on", 
+            "complete"=>$request->complete=="on", 
+            "claimed"=>$request->claimed=="on",
+            "followed"=>$request->followed=="on"];
         foreach ($filters["status"] as $key=>$val){
             if ($val=="on"){
                 $status[]=$key;
             }
         }
+
         if ($request->sort!=null){
            if (substr($request->sort, -3)=="asc"){
                $sort_by = substr($request->sort, 0, strlen($request->sort)-4);
@@ -53,6 +61,19 @@ class AchievementController extends Controller
             $sort_by="score";
         }
         $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)->simplePaginate(25);
+/*
+        if ($filters["complete"]){
+            $filteredAchievements = $achievements->filter(function($achievement){
+                if (Achievement::has_user_completed_achievement($achievement->id)){
+                    return $achievement;
+                }
+            });
+        }
+        $perPage = 10; // Item per page (change if needed) 
+        $currentPage = ($request->input('page') == 0 ? 1 : $request->input('page')) -1; 
+        $pagedData = $filteredAchievements ->slice($currentPage * $perPage, $perPage)->all(); 
+        $achievements = new Paginator($pagedData, count($filteredAchievements), $perPage);
+*/
         $achievements->appends('sort', $request->input('sort'));
         foreach ($filters['status'] as $key=>$val){
             if ($val!=null){
