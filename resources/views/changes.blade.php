@@ -5,6 +5,12 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>07/06/16</h4>
+<ul>
+    <li>
+        Addressed a bug that shut down access to the achievement listing for about six hours. If you ever notice an issue like this, please contact me <a href="mailto:admin@doitproveit.com">here</a>.
+    </li>
+</ul>
 <h4>07/05/16</h4>
 <ul>
     <li>

@@ -44,9 +44,10 @@ class Proof extends Model
 
     }
     public static function changeStatus($id, $status){
+        echo "START";
         $proof = Proof::find($id);
         $achievement = Achievement::find($proof->achievement_id);
-        if ($status && !has_user_completed_achievement($proof->achievement_id)){
+        if ($status && !Achievement::has_user_completed_achievement($proof->achievement_id)){
             if ($proof->user_id!=$achievement->user_id){
                 $user = User::find($achievement->user_id); 
                 $user->score++;

@@ -60,6 +60,7 @@ class AchievementController extends Controller
             }
         }
         Proof::check();
+        var_dump($sort_by, $status, $order);
         return View::make('Achievement.index', [
           "achievements"=>$achievements,
           "sort"=>$request->input('sort'),
