@@ -4,8 +4,7 @@ use App\Follow;
 use App\User;
 if (Auth::user()){
     $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id);
-    $is_user_following_achievement =
-      count(Follow::where('achievement_id', $achievement->id)->where('user_id', Auth::user()->id)->get())>0;
+    $is_user_following_achievement = Achievement::has_user_followed_achievement($achievement->id);
     $can_user_vote_achievement_up_or_down =
       Achievement::can_user_vote_achievement_up_or_down($achievement->id);
     $is_this_on_their_bucket_list = Achievement::is_this_on_their_bucket_list($achievement->id);

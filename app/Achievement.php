@@ -155,6 +155,9 @@ class Achievement extends Model
         }
         return false;
     }
+    public static function has_user_followed_achievement($id){
+        return count(Follow::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get())>0;
+    }
     public static function is_this_on_their_bucket_list($id){
         if (Auth::guest()){
             return false;

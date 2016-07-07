@@ -75,22 +75,38 @@
         <label for='incomplete' class='filter incomplete'>
             Incomplete
             <span class='filter-tooltip' data-toggle='tooltip' title="You have not completed this achievement.">(?)</span>
-            <input id='incomplete' type='checkbox' name='incomplete' class='filter checkbox-inline'>
+            <input id='incomplete' type='checkbox' name='incomplete' class='filter checkbox-inline'
+            @if ($filters['incomplete'])
+            checked
+            @endif
+            />
         </label>
         <label for='complete' class='filter complete'>
             Completed
             <span class='filter-tooltip' data-toggle='tooltip' title="You've submitted proof for this achievement and it has been approved!">(?)</span>
-            <input id='complete' type='checkbox' name='complete' class='filter checkbox-inline'>
+            <input id='complete' type='checkbox' name='complete' class='filter checkbox-inline'
+            @if ($filters['complete'])
+            checked
+            @endif
+            />
         </label>
         <label for='claimed' class='filter claimed'>
             Claimed
             <span class='filter-tooltip' data-toggle='tooltip' title='You have no proof but you claim to have completed the achievement.'>(?)</span>
-            <input id='claimed' type='checkbox' name='claimed' class='filter checkbox-inline'>
+            <input id='claimed' type='checkbox' name='claimed' class='filter checkbox-inline'
+            @if ($filters['claimed'])
+            checked
+            @endif
+            />
         </label>
         <label for='followed' class='filter followed'>
             Followed
             <span class='filter-tooltip' data-toggle='tooltip' title="You're following this achievement. All updates will go to your homepage.">(?)</span>
-            <input id='followed' type='checkbox' name='followed' class='filter checkbox-inline' />
+            <input id='followed' type='checkbox' name='followed' class='filter checkbox-inline' 
+            @if ($filters['followed'])
+            checked
+            @endif
+            />
         </label>
     </div>
     @endif

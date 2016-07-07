@@ -16,7 +16,7 @@ use App\Vote;
 use Auth;
 use Config;
 use DB;
-use Paginator;
+use Illuminate\Pagination\Paginator;
 use View;
 
 class AchievementController extends Controller
@@ -62,17 +62,30 @@ class AchievementController extends Controller
         }
         $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)->simplePaginate(25);
 /*
-        if ($filters["complete"]){
-            $filteredAchievements = $achievements->filter(function($achievement){
-                if (Achievement::has_user_completed_achievement($achievement->id)){
-                    return $achievement;
+        $perPage = 10; // Item per page (change if needed) 
+        $currentPage = ($request->input('page') == 0
+          ? 1
+          : $request->input('page')) -1; 
+        if ($filters["complete"] || $filters["incomplete"] ||$filters["claimed"] || $filters["followed"]){
+            $filteredAchievements = $achievements->filter(function($achievement) use ($filters){
+            
+                if (($filters["complete"] 
+                    && Achievement::has_user_completed_achievement($achievement->id))
+                  || ($filters["incomplete"] 
+                    && !Achievement::has_user_completed_achievement($achievement->id))
+                  || ($filters["claimed"] 
+                    && Achievement::has_user_claimed_achievement($achievement->id)) 
+                  || ($filters["followed"] 
+                    && Achievement::has_user_followed_achievement($achievement->id))){
+                            return $achievement;
                 }
             });
+            $pagedData = $filteredAchievements ->slice($currentPage * $perPage, $perPage)->all(); 
+            $achievements = new Paginator($pagedData, $perPage, $currentPage);
+        } else {
+            $pagedData = $achievements->slice($currentPage * $perPage, $perPage)->all(); 
+            $achievements = new Paginator($pagedData, $perPage, $currentPage);
         }
-        $perPage = 10; // Item per page (change if needed) 
-        $currentPage = ($request->input('page') == 0 ? 1 : $request->input('page')) -1; 
-        $pagedData = $filteredAchievements ->slice($currentPage * $perPage, $perPage)->all(); 
-        $achievements = new Paginator($pagedData, count($filteredAchievements), $perPage);
 */
         $achievements->appends('sort', $request->input('sort'));
         foreach ($filters['status'] as $key=>$val){
