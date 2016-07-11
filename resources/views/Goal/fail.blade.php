@@ -12,7 +12,7 @@
      <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
-<div class='margin-left lead'>
+<div class='text-center lead'>
     You're not logged in, but this is where you would place all the things you want to accomplish.
     <a href="{{ url('/login') }}">Login</a> or <a href="{{ url('/register') }}">register</a> now to start your own bucket list!
 </div>

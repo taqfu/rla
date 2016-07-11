@@ -115,7 +115,7 @@ Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', func
 
 Route::get('/', ['as'=>'home', function (){
     if (Auth::guest()){
-        return View('public');
+        return redirect(route('achievement.index',['approved'=>'on', 'pending'=>'on']));
     } else if (Auth::user()){
         return View('Timeline.index', [
             "timeline_items"=>Timeline::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),

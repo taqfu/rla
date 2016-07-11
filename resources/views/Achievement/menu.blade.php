@@ -14,14 +14,15 @@
       active
       @endif
       '>
-        <a href="{{route('achievement.showProofs', ['id'=>$id])}}">Proofs</a>
+        <a href="{{route('achievement.showProofs', ['id'=>$id])}}">Proofs ({{count($main->proofs)}})</a>
+        
     </li>
     <li class='
       @if ($active_item=='claims')
       active
       @endif
       '>
-        <a href="{{route('achievement.showClaims', ['id'=>$id])}}">Claims</a>
+        <a href="{{route('achievement.showClaims', ['id'=>$id])}}">Claims ({{count($main->claims)}})</a>
     </li>
     <li class='
       @if ($active_item=='discussion')

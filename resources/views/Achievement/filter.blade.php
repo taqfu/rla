@@ -1,9 +1,15 @@
-<form  method="GET" action="{{route('achievement.index')}}" id='achievement-filters' class='text-center form-inline' role='form' >
+<form  method="GET" action="{{route('achievement.index')}}" id='achievement-filters' class='text-center form-inline
+   @if (count($achievements)==0)
+   page-header
+   @endif
+' role='form' >
     <h4>
         Filter By
     </h4>
     <div class='container-flexible form-group'>
+        <!--
         Status:
+        -->
         <label for='approved' class='approved filter '>Approved
             <span class='filter-tooltip' data-toggle='tooltip'
               title='This achievement has been approved and multiple people can submit proof for it at the same time. Voting is only open to those that have already completed the achievement.'>

@@ -25,10 +25,11 @@
 </h1>
 @include ('Achievement.menu', ['id'=>$main->id, 'url'=>$main->url, 'active_item'=>'claims'])
 @include ('Achievement.header')
+
+@if (count($claims)>0)
 <h4 class='margin-left'>
     {{count ($claims)}} claims
 </h4>
-@if (count($claims)>0)
 <ul>
 @endif
 @forelse ($claims as $claim)
@@ -45,7 +46,7 @@
             - {{interval($claim->created_at, 'now')}} ago
     </li>
 @empty
-<div class='margin-left lead'>
+<div class='margin-left margin-top lead'>
     No one has claimed to have completed this achievement yet.
 </div>
 

@@ -13,19 +13,29 @@
 @section('content')
 @if (Auth::user())
     @include ('Achievement.create')
+@else
+<div class='container text-center lead'><strong>
+    <a href="{{url('/login')}}">Log in</a> or <a href="{{url('/register')}}">register</a> to create achievements.
+</strong></div>
 @endif
-<div id='achievement-listing'>
+<div id='achievement-listing '>
     @include ('Achievement.filter', ['type'=>'index'])
     <div class='container-flexible'>
         <div class='row'>
             <div class='col-xs-1'></div>
             <div class='col-xs-10 text-center'>
+                @if (count($achievements)>0)
                 <table class='table table-bordered table-hover'>
                     @foreach ($achievements as $achievement)
                        @include('Achievement.row')
                     @endforeach
                 </table>
                 {!! $achievements->render() !!}
+                @else
+                <div class='lead'>
+                    All achievements have been filtered.
+                </div>
+                @endif
             </div>
             <div class='col-xs-1'></div>
     </div>

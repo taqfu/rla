@@ -23,6 +23,10 @@
             @include ('Claim.destroy')
 
         @endif
+    @else
+    <div class='container margin-top-2 text-center lead'><strong>
+        <a href="{{url('/login')}}">Log in</a> or <a href="{{url('/register')}}">register</a> to complete this achievement.
+    </strong></div>
     @endif
     <div class='margin-left' title="
       @if (Auth::guest())
