@@ -12,13 +12,13 @@
 @endsection
 @section('head')
 <meta property="og:description" content="
-  @if (substr($proof->user->name, -1, 1)=='s')
-    {{$proof->user->name}}'
+  @if (substr($proof->user->username, -1, 1)=='s')
+    {{$proof->user->username}}'
   @else
-    {{$proof->user->name}}'s
+    {{$proof->user->username}}'s
   @endif
     proof for completing '{{$proof->achievement->name}}' -
-
+Status:
   @if ($proof->status==0)
     Denied!
   @elseif ($proof->status==1)

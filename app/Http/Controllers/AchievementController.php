@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Achievement;
+use App\AchievementTimeline;
 use App\AchievementVote;
 use App\Claim;
 use App\Follow;
@@ -28,6 +29,7 @@ class AchievementController extends Controller
      */
     public function index(Request $request)
     {
+        Proof::check();
         $status = [];
         $filter_captions =["denied", "approved", "pending", "inactive", "canceled"];
         $filters = [
@@ -67,7 +69,6 @@ class AchievementController extends Controller
                 $achievements->appends($filter_captions[$key], $val);
             }
         }
-        Proof::check();
         return View::make('Achievement.index', [
           "achievements"=>$achievements,
           "sort"=>$request->input('sort'),
@@ -192,14 +193,12 @@ class AchievementController extends Controller
             $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
         }
         $achievement =Achievement::where('id', $id)->first();
-        $proofs = Proof::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
         if ($achievement==NULL){
             return View::make('Achievement.fail');
         } else if ($achievement!=NULL){
             return View::make('Achievement.show', [
                 "main"=>$achievement,
-                "proofs"=>$proofs,
-                "votes"=>$votes,
+                "timelines"=>AchievementTimeline::where('achievement_id', $id)->orderBy('created_at', 'desc')->get(),
                 "following"=>$following,
                 "user_proof"=>$user_proof,
                 "user_goal"=>$user_goal,

@@ -1,5 +1,13 @@
 <?php
 function format_interval($interval){
+        if ($interval->y>0){
+            $caption = $interval->y>1 ? " years" : " year";
+            return $interval->y . $caption;
+        }
+        if ($interval->m>0){
+            $caption = $interval->m>1 ? " months" : " month";
+            return $interval->m . $caption;
+        }
         if ($interval->d>0){
             $caption = $interval->d>1 ? " days" : " day";
             return $interval->d . $caption;

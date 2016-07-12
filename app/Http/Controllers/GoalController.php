@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\AchievementTimeline;
 use App\Goal;
 
 use Auth;
@@ -57,6 +58,11 @@ class GoalController extends Controller
         $goal->achievement_id = $request->achievementID;
         $goal->user_id = Auth::user()->id;
         $goal->save();
+        
+        $achievement_timeline = new AchievementTimeline;
+        $achievement_timeline->achievement_id = $goal->achievement_id;
+        $achievement_timeline->goal_id = $goal->id;
+        $achievement_timeline->save();
         
         return back();        
     }

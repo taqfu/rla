@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Achievement;
+use App\AchievementTimeline;
 use App\Follow;
 use App\Proof;
 use App\Timeline;
@@ -98,6 +99,11 @@ class ProofController extends Controller
             $timeline->proof_id = $proof->id;
             $timeline->save();
         }
+
+        $achievement_timeline = new AchievementTimeline;
+        $achievement_timeline->achievement_id = $proof->achievement_id;
+        $achievement_timeline->proof_id = $proof->id;
+        $achievement_timeline->save();
         return back();
     }
 

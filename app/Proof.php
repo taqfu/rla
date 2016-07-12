@@ -16,13 +16,7 @@ class Proof extends Model
         if (Auth::guest()){
             return false;
         }
-        $proof = Proof::where('id', $id)->first();
-        $achievement = Achievement::where('id', $proof->achievement->id)->first();
-        $num_of_approved_proofs = count(Proof::where('user_id', Auth::user()->id)->where('status', 1)->get());
-        if ($proof->user_id == Auth::user()->id || $achievement->user_id==$proof->user_id || $num_of_approved_proofs>0){
-            return true;
-        }
-        return false;
+        return true;
     }
     public static function can_user_vote($id){
         if (Auth::guest()){

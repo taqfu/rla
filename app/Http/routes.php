@@ -167,6 +167,7 @@ Route::put('/settings/timezone', ['as'=>'settings.timezone', 'uses'=>'UserContro
 
 Route::resource('AchievementVote', 'AchievementVoteController');
 Route::resource('achievement', 'AchievementController');
+Route::resource('AchievementTimeline', 'AchievementTimelineController');
 Route::resource('claim', 'ClaimController');
 Route::resource('comment', 'CommentController');
 Route::resource('follow', 'FollowController');

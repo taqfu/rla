@@ -77,10 +77,8 @@
         @endif 
     </div>
     <div class='margin-left'>
+        {{Achievement::fetch_num_of_users_who_completed($main->id)}} people have completed this achievement.
         <strong>
-            {{count($main->proofs)}} proof<?php if (count($main->proofs)!=1){echo "s";}?>. 
-
-            {{count($main->claims)}} claim<?php if (count($main->claims)!=1){echo "s";}?>.
                 @if (count($main->approved_proofs)>0)
                 <i>
                     ({{round(count($main->approved_proofs)/((count($main->approved_proofs) +
@@ -88,6 +86,5 @@
                 </i>
                 @endif
         </strong>
-        {{Achievement::fetch_num_of_users_who_completed($main->id)}} people have completed this achievement.
     </div>
 </div>
