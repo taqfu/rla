@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\AchievementTimeline;
 use App\Goal;
-
+use App\Timeline;
 use Auth;
 class GoalController extends Controller
 {
@@ -27,7 +26,7 @@ class GoalController extends Controller
             ]);
         }
     }
-        
+
 
     /**
      * Show the form for creating a new resource.
@@ -58,13 +57,14 @@ class GoalController extends Controller
         $goal->achievement_id = $request->achievementID;
         $goal->user_id = Auth::user()->id;
         $goal->save();
-        
-        $achievement_timeline = new AchievementTimeline;
-        $achievement_timeline->achievement_id = $goal->achievement_id;
-        $achievement_timeline->goal_id = $goal->id;
-        $achievement_timeline->save();
-        
-        return back();        
+
+        $timeline = new Timeline;
+        $timeline->achievement_id = $goal->achievement_id;
+        $timeline->goal_id = $goal->id;
+        $timeline->event = "new goal";
+        $timeline->save();
+
+        return back();
     }
 
     /**
@@ -110,6 +110,6 @@ class GoalController extends Controller
     public function destroy($id)
     {
         Goal::find($id)->delete();
-        return back();    
+        return back();
     }
 }

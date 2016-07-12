@@ -67,16 +67,12 @@ class VoteController extends Controller
         $vote->save();
         $after = Proof::passing_approval($request->proofID);
         if ($before != $after){
-            $proof = Proof::where('id', $request->proofID)->first();
-            $followers_of_achievement = Achievement::fetch_followers($proof->id);
-            foreach ($followers_of_achievement as $follower){
-                $timeline = new Timeline;
-                $timeline->user_id = $follower;
-                $caption = $after ? "approved" : "denied";
-                $timeline->event = "swing vote - " . $caption;
-                $timeline->vote_id = $vote->id;
-                $timeline->save();
-            }
+            $timeline = new Timeline;
+            $timeline->user_id = $vote->user_id;
+            $caption = $after ? "approved" : "denied";
+            $timeline->event = "swing vote - " . $caption;
+            $timeline->vote_id = $vote->id;
+            $timeline->save();
         }
         return View::make('Vote.show', ['voted_for'=>(boolean)$request->voteFor]);
     }

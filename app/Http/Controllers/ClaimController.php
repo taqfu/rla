@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Achievement;
-use App\AchievementTimeline;
 use App\Claim;
 use App\Timeline;
 use App\User;
@@ -51,19 +50,20 @@ class ClaimController extends Controller
         $user = User::find(Auth::user()->id);
         $followers = Achievement::fetch_followers($request->achievementID);
 
-        $claim = new Claim; 
+        $claim = new Claim;
         $claim->user_id = Auth::user()->id;
         $claim->achievement_id = $request->achievementID;
-        $claim->points = $achievement->score; 
+        $claim->points = $achievement->score;
         $claim->save();
 
         $user->claim_score += $claim->points;
         $user->save();
 
-        $achievement_timeline = new AchievementTimeline;
-        $achievement_timeline->achievement_id = $claim->achievement_id;
-        $achievement_timeline->claim_id = $claim->id;
-        $achievement_timeline->save();
+        $timeline = new Timeline;
+        $timeline->achievement_id = $claim->achievement_id;
+        $timeline->claim_id = $claim->id;
+        $timeline->event = "new claim";
+        $timeline->save();
 
         return back();
     }
@@ -113,5 +113,5 @@ class ClaimController extends Controller
         Claim::find($id)->delete();
         return  back();
     }
-        
+
 }

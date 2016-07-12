@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Achievement;
-use App\AchievementTimeline;
 use App\Follow;
 use App\Proof;
 use App\Timeline;
@@ -57,7 +56,7 @@ class ProofController extends Controller
             $timestamp = date('m/d/y h:i:s');
             return back()->withErrors("'ERROR: You cannot submit a proof for this achievement. $timestamp User ID:" . Auth::user()->id)->withInput();
         }
-        
+
         $achievement = Achievement::find($request->achievementID);
         if ($achievement->status==0 || $achievement->status>2){
             $achievement->status=2;
@@ -91,19 +90,12 @@ class ProofController extends Controller
             $timeline->achievement_id = $achievement->id;
             $timeline->save();
         }
-        $followers_of_achievement = Achievement::fetch_followers($request->achievementID);
-        foreach ($followers_of_achievement as $follower){
-            $timeline = new Timeline;
-            $timeline->user_id = $follower;
-            $timeline->event = "new proof";
-            $timeline->proof_id = $proof->id;
-            $timeline->save();
-        }
 
-        $achievement_timeline = new AchievementTimeline;
-        $achievement_timeline->achievement_id = $proof->achievement_id;
-        $achievement_timeline->proof_id = $proof->id;
-        $achievement_timeline->save();
+        $timeline = new Timeline;
+        $timeline->user_id = $proof->user_id;
+        $timeline->proof_id = $proof->id;
+        $timeline->event = "new proof";
+        $timeline->save();
         return back();
     }
 
@@ -161,18 +153,17 @@ class ProofController extends Controller
      */
     public function destroy($id)
     {
-        
+
         $proof = Proof::find($id);
         $proof->status = 4;
         $proof->save();
-        $followers = Achievement::fetch_followers($proof->achievement_id);
-        foreach ($followers as $follower){
-            $timeline = new Timeline;
-            $timeline->user_id = Auth::user()->id;
-            $timeline->proof_id = $follower;
-            $timeline->event = "cancel proof";
-            $timeline->save();
-        }
+
+        $timeline = new Timeline;
+        $timeline->user_id = Auth::user()->id;
+        $timeline->proof_id = $id;
+        $timeline->event = "cancel proof";
+        $timeline->save();
+
         $achievement = Achievement::find($proof->achievement_id);
         if ($achievement->status==2){
             $achievement->status=4;

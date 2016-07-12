@@ -66,39 +66,26 @@ class CommentController extends Controller
             $comment->vote_id = $request->tableID;
         }
         $comment->save();
-        if ($request->table=='achievement'){
-            $followers_of_achievement = Achievement::fetch_followers($request->tableID);
-            foreach ($followers_of_achievement as $follower){
-                $timeline = new Timeline;
-                $timeline->user_id = $follower;
-                $timeline->event = "new comment";
-                $timeline->comment_id = $comment->id;
-                $timeline->save();
-            }
-        }else if ($request->table=='proof'){
-            $proof = Proof::where('id', $request->tableID)->first();
-            $timeline = new Timeline;
-            $timeline->user_id = $proof->user_id;
-            $timeline->event = "new comment";
-            $timeline->comment_id = $comment->id;
-            $timeline->save();
 
-        } else if ($request->table=='vote'){
-            $vote = Vote::where('id', $request->tableID)->first();
-            $proof = Proof::where('id', $vote->proof_id)->first();
-            $timeline = new Timeline;
-            $timeline->user_id = $vote->user_id;
-            $timeline->event = "new comment";
-            $timeline->comment_id = $comment->id;
-            $timeline->save();
-            if ($vote->user_id!=$proof->user_id){
-            $timeline = new Timeline;
-            $timeline->user_id = $proof->user_id;
-            $timeline->event = "new proof vote comment";
-            $timeline->comment_id = $comment->id;
-            $timeline->save();
-            }
+        $timeline = new Timeline;
+        $timeline->user_id = $comment->user_id;
+        $timeline->comment_id = $comment->id;
+        $timeline->event = "new comment";
+
+        switch ($request->table){
+          case "achievement":
+            $timeline->achievement_id = $request->tableID);
+            break;
+          case "proof":
+            $timeline->proof_id = $request->tableID);
+            break;
+          case "vote":
+            $timeline->vote_id = $request->tableID;
+            break;
         }
+
+        $timeline->save();
+
         return back();
     }
 

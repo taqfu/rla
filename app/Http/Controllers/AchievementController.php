@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Achievement;
-use App\AchievementTimeline;
 use App\AchievementVote;
 use App\Claim;
 use App\Follow;
@@ -33,10 +32,10 @@ class AchievementController extends Controller
         $status = [];
         $filter_captions =["denied", "approved", "pending", "inactive", "canceled"];
         $filters = [
-          "status"=>[$request->denied, $request->approved,  $request->pending,  
-            $request->inactive, $request->canceled], 
-            "incomplete"=>$request->incomplete=="on", 
-            "complete"=>$request->complete=="on", 
+          "status"=>[$request->denied, $request->approved,  $request->pending,
+            $request->inactive, $request->canceled],
+            "incomplete"=>$request->incomplete=="on",
+            "complete"=>$request->complete=="on",
             "claimed"=>$request->claimed=="on",
             "followed"=>$request->followed=="on"];
         foreach ($filters["status"] as $key=>$val){
@@ -48,11 +47,11 @@ class AchievementController extends Controller
         if ($request->sort!=null){
            if (substr($request->sort, -3)=="asc"){
                $sort_by = substr($request->sort, 0, strlen($request->sort)-4);
-               $order = "asc"; 
+               $order = "asc";
             } else if (substr($request->sort, -4)=="desc"){
                $sort_by = substr($request->sort, 0, strlen($request->sort)-5);
-               $order = "desc"; 
-            } 
+               $order = "desc";
+            }
         } else {
             $sort_by = "score";
             $order = "desc";
@@ -198,7 +197,7 @@ class AchievementController extends Controller
         } else if ($achievement!=NULL){
             return View::make('Achievement.show', [
                 "main"=>$achievement,
-                "timelines"=>AchievementTimeline::where('achievement_id', $id)->orderBy('created_at', 'desc')->get(),
+                "timelines"=>Timeline::where('achievement_id', $id)->orderBy('created_at', 'desc')->get(),
                 "following"=>$following,
                 "user_proof"=>$user_proof,
                 "user_goal"=>$user_goal,
