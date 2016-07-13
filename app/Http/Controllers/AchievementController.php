@@ -192,12 +192,19 @@ class AchievementController extends Controller
             $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
         }
         $achievement =Achievement::where('id', $id)->first();
+        $timeline = Timeline::where(function($query) use ($id){
+              $query->where('achievement_id', $id)->where('event', 'new claim');
+          })->orWhere(function($query) use ($id){
+              $query->where('achievement_id', $id)->where('event', 'new proof');
+          })->orWhere(function($query) use ($id){
+              $query->where('achievement_id', $id)->where('event', 'new goal');
+          })->orderBy('created_at', 'desc')->get();
         if ($achievement==NULL){
             return View::make('Achievement.fail');
         } else if ($achievement!=NULL){
             return View::make('Achievement.show', [
                 "main"=>$achievement,
-                "timelines"=>Timeline::where('achievement_id', $id)->orderBy('created_at', 'desc')->get(),
+                "timelines"=>$timeline,
                 "following"=>$following,
                 "user_proof"=>$user_proof,
                 "user_goal"=>$user_goal,

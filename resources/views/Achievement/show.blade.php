@@ -16,7 +16,9 @@
 @endsection
 @section('content')
 @if (Auth::user())
+<!--
     @include ('Follow.create')
+-->
     @if ($user_goal==null)
     @include('Goal.create', ['id'=>$main->id])
     @else
@@ -33,10 +35,10 @@
 @foreach ($timelines as $timeline)
     @if ($timeline->proof_id>0)
         @include('Achievement.profile.proof', ['proof'=>$timeline->proof])
-    @elseif ($timeline->goal_id>0)
-        @include ('Achievement.profile.goal', ['goal'=>$timeline->goal])
     @elseif ($timeline->claim_id>0)
         @include ('Achievement.profile.claim', ['claim'=>$timeline->claim])
+    @elseif ($timeline->goal_id>0)
+        @include ('Achievement.profile.goal', ['goal'=>$timeline->goal])
     @endif
 @endforeach
 @endsection

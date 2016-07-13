@@ -15,6 +15,9 @@ class Timeline extends Model
     public function comment(){
         return $this->belongsTo('\App\Comment');
     }   
+    public function goal(){
+        return $this->belongsTo('App\Goal');
+    }
     public function proof(){
         return $this->belongsTo('\App\Proof');
     }

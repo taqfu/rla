@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Achievement;
 use App\Comment;
+use App\Goal;
 use App\Proof;
 use App\Timeline;
 use App\Vote;
@@ -64,6 +65,10 @@ class CommentController extends Controller
             $comment->proof_id = $request->tableID;
         } else if ($request->table=='vote'){
             $comment->vote_id = $request->tableID;
+        } else if ($request->table=='claim'){
+            $comment->claim_id = $request->tableID;
+        } else if ($request->table == 'goal'){
+            $comment->goal_id = $request->tableID;
         }
         $comment->save();
 
@@ -71,22 +76,31 @@ class CommentController extends Controller
         $timeline->user_id = $comment->user_id;
         $timeline->comment_id = $comment->id;
         $timeline->event = "new comment";
-
+        var_dump($request->table, $request->tableID);
         switch ($request->table){
           case "achievement":
-            $timeline->achievement_id = $request->tableID);
+            $timeline->achievement_id = $request->tableID;
+            break;
+          case "claim":
+            $timeline->claim_id = $request->tableID;
+            $timeline->achievement_id = Claim::find($request->tableID)->achievement_id;
+            break;
+          case "goal":
+            $timeline->goal_id = $request->tableID;
+            $timeline->achievement_id = Goal::find($request->tableID)->achievement_id;
             break;
           case "proof":
-            $timeline->proof_id = $request->tableID);
+            $timeline->proof_id = $request->tableID;
+            $timeline->achievement_id = Proof::find($request->tableID)->achievement_id;
             break;
           case "vote":
             $timeline->vote_id = $request->tableID;
+            $timeline->achievement_id = Vote::find($request->tableID)->achievement_id;
             break;
         }
-
         $timeline->save();
 
-        return back();
+//        return back();
     }
 
     /**

@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\AchievementTimeline;
 use App\Claim;
 use App\Goal;
 use App\Proof;
+use App\Timeline;
 
 
 class AchievementTimelineController extends Controller
@@ -22,32 +22,38 @@ class AchievementTimelineController extends Controller
     public function index()
     {
         $claims = Claim::get();
-        $goals = Goal::get();
-        $proofs = Proof::get();
-        foreach ($claims as $claim){
-            $achievement_timeline = new AchievementTimeline;
-            $achievement_timeline->achievement_id = $claim->achievement_id;
-            $achievement_timeline->created_at = $claim->created_at;
-            $achievement_timeline->updated_at = $claim->updated_at;
-            $achievement_timeline->claim_id = $claim->id;
-            $achievement_timeline->save();
-        }
-        foreach ($goals as $goal){
-            $achievement_timeline = new AchievementTimeline;
-            $achievement_timeline->achievement_id = $goal->achievement_id;
-            $achievement_timeline->created_at = $goal->created_at;
-            $achievement_timeline->updated_at = $goal->updated_at;
-            $achievement_timeline->goal_id = $goal->id;
-            $achievement_timeline->save();
-        }
-        foreach ($proofs as $proof){
-            $achievement_timeline = new AchievementTimeline;
-            $achievement_timeline->achievement_id = $proof->achievement_id;
-            $achievement_timeline->created_at = $proof->created_at;
-            $achievement_timeline->updated_at = $proof->updated_at;
-            $achievement_timeline->proof_id = $proof->id;
-            $achievement_timeline->save();
-        }
+         $goals = Goal::get();
+         $proofs = Proof::get();
+         foreach ($claims as $claim){
+             $timeline = new Timeline;
+             $timeline->user_id = $claim->user_id;
+             $timeline->event = "new claim";
+             $timeline->achievement_id = $claim->achievement_id;
+             $timeline->created_at = $claim->created_at;
+             $timeline->updated_at = $claim->updated_at;
+             $timeline->claim_id = $claim->id;
+             $timeline->save();
+         }
+         foreach ($goals as $goal){
+             $timeline = new Timeline;
+             $timeline->event = "new goal";
+             $timeline->user_id = $goal->user_id;
+             $timeline->achievement_id = $goal->achievement_id;
+             $timeline->created_at = $goal->created_at;
+             $timeline->updated_at = $goal->updated_at;
+             $timeline->goal_id = $goal->id;
+             $timeline->save();
+         }
+         foreach ($proofs as $proof){
+             $timeline = new Timeline;
+             $timeline->event = "new proof";
+             $timeline->user_id = $proof->user_id;
+             $timeline->achievement_id = $proof->achievement_id;
+             $timeline->created_at = $proof->created_at;
+             $timeline->updated_at = $proof->updated_at;
+             $timeline->proof_id = $proof->id;
+             $timeline->save();
+         }
     }
 
     /**

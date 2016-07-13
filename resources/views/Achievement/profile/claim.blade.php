@@ -14,8 +14,7 @@ if (Auth::guest()){
     <div title='{{$timestamp}}' class='achievement-claim panel-body'>
         <div class='claim-timestamp text-center panel-heading'>{{interval($claim->created_at, 'now')}} ago</div>
         <div class='text-center'><a href="{{route('user.show', ['id'=>$claim->user->id])}}">{{$claim->user->username}}</a>
-            submitted <a href="{{route('claim.show', ['id'=>$claim->id])}}">claim</a> of completion.
-            (<a target='_blank' href="{{$claim->url}}">{{$claim->url}}</a>)
+            claimed to have completed the achievement.
         </div>
         <div class='text-center'>
         </div>
@@ -29,9 +28,8 @@ if (Auth::guest()){
                 <input type='button' id='show-comments{{$claim->id}}' class='show-comments btn-link'
                   value='[ Show Comments ({{count($claim->comments)}}) ]' />
             @endif
-            @if (Proof::can_user_comment($claim->id))
+            @if (Claim::can_user_comment($claim->id))
                 @include ('Comment.create', ['table'=>'claim', 'table_id'=>$claim->id, 'show'=>false])
-
             @endif
         </div>
         @if (count($claim->comments)>0)
