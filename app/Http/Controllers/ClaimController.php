@@ -110,7 +110,9 @@ class ClaimController extends Controller
      */
     public function destroy($id)
     {
-        Claim::find($id)->delete();
+        $claim = Claim::find($id);
+        $claim->canceled_at = date("Y-m-d H:i:s");
+        $claim->save();
         return  back();
     }
 

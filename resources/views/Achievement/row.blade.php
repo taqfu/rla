@@ -4,6 +4,7 @@ use App\Follow;
 use App\User;
 if (Auth::user()){
     $has_user_completed_achievement = Achievement::has_user_completed_achievement($achievement->id);
+    $has_user_claimed_achievement=Achievement::has_user_claimed_achievement($achievement->id);
     $is_user_following_achievement = Achievement::has_user_followed_achievement($achievement->id);
     $can_user_vote_achievement_up_or_down =
       Achievement::can_user_vote_achievement_up_or_down($achievement->id);
@@ -66,7 +67,7 @@ if (Auth::user()){
       {{ date(Config::get('rla.timestamp_format'), User::local_time(Auth::user()->timezone, strtotime($achievement->created_at)))}}
       @endif
       "
-      class='achievement achievement-caption text-center col-xs-11 align-middle'>
+      class='achievement achievement-caption text-center col-xs-10 align-middle'>
         @if(Achievement::can_user_vote_on_proof($achievement->id))
         <span class='vote-available'>
             Vote Available!
@@ -99,10 +100,8 @@ if (Auth::user()){
         href="{{route('achievement.show', ['url'=> $achievement->url])}}">
             <div>
                 {{ $achievement->name }}
-            @if (Auth::user() && $has_user_completed_achievement)
+            @if (Auth::user() && ($has_user_completed_achievement || $has_user_claimed_achievement))
                 &#10004;
-            @elseif (Auth::user() && Achievement::has_user_claimed_achievement($achievement->id))
-                &#10003;
             @endif
             </div>
         </a>
@@ -110,4 +109,48 @@ if (Auth::user()){
             {{date(Config::get('rla.date_format'), strtotime($achievement->created_at))}}
         @endif
     </td>
+    @if (Auth::user())
+    <td class='col-xs-1 text-center'>
+        <form method="POST" action="{{route('follow.update', ['id'=>$achievement->id])}}" role='form' class='inline' >
+                {{csrf_field()}}
+                {{method_field('PUT')}}
+                @if ($is_user_following_achievement)
+                <input type='hidden' name='following' value="0" />
+                <button type='submit' class='btn-danger'>S</button>
+                @else
+                <input type='hidden' name='following' value="1" />
+                <button type='submit' class='btn-success'>S</button>
+                @endif
+            </div>
+        </form>
+        @if ($is_this_on_their_bucket_list)
+        <form method="POST" 
+          action="{{route('goal.destroy', ['id'=>Achievement::fetch_goal($achievement->id)])}}" role='form' class='inline' />
+            {{csrf_field()}}
+            {{method_field('delete')}}
+            <button type='submit' class='btn-danger'>B</button>
+        </form>
+        @else 
+        <form method="POST" action="{{route('goal.store')}}" role='form' class='inline' />
+            {{csrf_field()}}
+            <input type='hidden' name='achievementID' value='{{$achievement->id}}' />
+            <button type='submit' class='btn-success'>B</button>
+        </form>
+        @endif
+        @if ($has_user_claimed_achievement)
+        <form method="POST" action="{{route('claim.destroy', 
+          ['id'=>Achievement::fetch_claim($achievement->id)])}}" role='form' class='inline'>
+            {{csrf_field()}}
+            {{method_field('DELETE')}}
+            <button type='submit' class='btn-danger'>C</button>
+        </form>
+        @else
+        <form method="POST" action="{{route('claim.store')}}" role='form' class='inline'>
+            {{csrf_field()}}
+            <input type='hidden' name='achievementID' value='{{$achievement->id}}' />
+            <button type='submit' class='btn-success'>C</button>
+        </form>
+        @endif
+    </td>       
+    @endif
 </tr>

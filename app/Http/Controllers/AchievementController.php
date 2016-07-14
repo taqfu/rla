@@ -180,9 +180,9 @@ class AchievementController extends Controller
             $user_goal = null;
             $user_proof = null;
         } else if (Auth::user()){
-            $user_claim = Claim::where('user_id', Auth::user()->id)
+            $user_claim = Claim::where('user_id', Auth::user()->id)->whereNull('canceled_at')
               ->where('achievement_id', $id)->first();
-            $user_goal = Goal::where('user_id', Auth::user()->id)
+            $user_goal = Goal::where('user_id', Auth::user()->id)->whereNull('canceled_at')
               ->where('achievement_id', $id)->first();
             $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
               ->where('achievement_id', $id)->first();

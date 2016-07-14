@@ -88,6 +88,13 @@ class Achievement extends Model
         return $this->hasMany("\App\Proof")->where('status', 0);
     }
 
+    public static function fetch_claim($id){
+        if (!Achievement::has_user_claimed_achievement($id) || Auth::guest()){
+            //ERROR this should not be happening.
+            return null;
+        }
+        return Claim::where('achievement_id', $id)->whereNull('canceled_at')->where('user_id', Auth::user()->id)->first()->id;
+    }
     public static function fetch_followers($id){
         $followers = array();
         $follows  = Follow :: where ('achievement_id', $id)->get();
@@ -95,6 +102,13 @@ class Achievement extends Model
             $followers [] = $follow->user_id;
         }
         return $followers;
+    }
+    public static function fetch_goal($id){
+        if (!Achievement::is_this_on_their_bucket_list($id) || Auth::guest()){
+            //ERROR this should not be happening.
+            return null;
+        }
+        return Goal::where('achievement_id', $id)->whereNull('canceled_at')->where('user_id', Auth::user()->id)->first()->id;
     }
 
     public static function fetch_num_of_users_who_completed($id){
@@ -139,7 +153,7 @@ class Achievement extends Model
         if (Auth::guest()){
             return false;
         }
-        return count(Claim::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get())>0;
+        return count(Claim::where('achievement_id', $id)->whereNull('canceled_at')->where('user_id', Auth::user()->id)->get())>0;
     }
 
     public static function has_user_completed_achievement($id){
@@ -162,7 +176,7 @@ class Achievement extends Model
         if (Auth::guest()){
             return false;
         }
-        return count(Goal::where('achievement_id', $id)
+        return count(Goal::where('achievement_id', $id)->whereNull('canceled_at')
           ->where('user_id', Auth::user()->id)->get())>0;
     }
     public static function passing_approval($id){

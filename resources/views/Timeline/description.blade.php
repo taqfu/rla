@@ -20,6 +20,7 @@ use App\User;
         @if ($timeline_item->proof->achievement->user_id!=Auth::user()->id)
             an achievement.
         @else
+            your achievement.
         @endif
         </p>
         <p>
@@ -140,6 +141,27 @@ use App\User;
             {{$timeline_item->claim->achievement->name}}
         </a>)
     </div>
+@elseif ($timeline_item->event=="new goal")
+    <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
+    <div>
+        You added a new achievement to your bucket list.
+    </div>
+    <div>
+        (<a href="{{route('achievement.show', ['url'=>$timeline_item->achievement->url])}}">
+        {{$timeline_item->achievement->name}}
+        </a>)    
+    </div>
+
+@elseif ($timeline_item->event=="new claim")
+    <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
+    <div>
+        You claimed to have completed an achievement.
+    </div>
+    <div>
+        (<a href="{{route('achievement.show', ['url'=>$timeline_item->achievement->url])}}">
+        {{$timeline_item->achievement->name}}
+        </a>)    
+    </div>    
 @else
     {{$timeline_item->event}}
 @endif

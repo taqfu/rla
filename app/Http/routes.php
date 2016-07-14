@@ -144,6 +144,13 @@ Route::get('/user/{id}/achievements/created', ['as'=>'user.achievements.created'
         "profile"=>User::where('id', $id)->first(), 
     ]);    
 }]);
+Route::get('/user/{id}/achievements/goals', ['as'=>'user.achievements.goals', function($id){
+    $goals = Goal::join ('achievements', 'achievement_id', '=', 'achievements.id')->where('goals.user_id', $id)->orderBy('achievements.name','asc')->get();
+    return View('User.achievements.goals', [
+        "profile"=>User::where('id', $id)->first(), 
+        "goals"=>$goals,
+    ]);    
+}]);
 Route::get('/user/{id}/achievements/subscriptions', ['as'=>'user.achievements.subscriptions', function($id){
     $follows = Follow::join ('achievements', 'achievement_id', '=', 'achievements.id')->where('follows.user_id', $id)->orderBy('achievements.name','asc')->get();
     return View('User.achievements.subscriptions', [

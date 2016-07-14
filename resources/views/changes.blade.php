@@ -5,10 +5,19 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>07/14/16</h4>
+<ul>
+    <li>
+        There's now a menu on each achievement listing row to subscribe to achievements, add them to your bucket list or submit a claim of completion. 
+    </li>
+</ul>
 <h4>07/13/16</h4>
 <ul>
     <li>
         Timeline is now more efficiently structured and is part of the achievement profile as well as homepage. Subscriptions have been disabled until they can be integrated into this new system.
+    </li>
+    <li>
+        Users can now see other user's bucket lists in their profiles.
     </li>
 </ul>
 <h4>07/06/16</h4>

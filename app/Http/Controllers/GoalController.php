@@ -60,6 +60,7 @@ class GoalController extends Controller
 
         $timeline = new Timeline;
         $timeline->achievement_id = $goal->achievement_id;
+        $timeline->user_id = $goal->user_id;
         $timeline->goal_id = $goal->id;
         $timeline->event = "new goal";
         $timeline->save();
@@ -109,7 +110,9 @@ class GoalController extends Controller
      */
     public function destroy($id)
     {
-        Goal::find($id)->delete();
+        $goal = Goal::find($id);
+        $goal->canceled_at = date("Y-m-d H:i:s");
+        $goal->save();
         return back();
     }
 }

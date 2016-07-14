@@ -21,6 +21,13 @@
         <a href="{{route('user.achievements.created', ['id'=>$profile->id])}}">Created</a>
     </li>
     <li class="
+      @if ($active=='goals')
+      active
+      @endif
+      ">
+        <a href="{{route('user.achievements.goals', ['id'=>$profile->id])}}">Bucket List</a>
+    </li>
+    <li class="
       @if ($active=='subscriptions')
       active
       @endif

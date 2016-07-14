@@ -14,7 +14,10 @@ if (Auth::guest()){
     <div title='{{$timestamp}}' class='achievement-claim panel-body'>
         <div class='claim-timestamp text-center panel-heading'>{{interval($claim->created_at, 'now')}} ago</div>
         <div class='text-center'><a href="{{route('user.show', ['id'=>$claim->user->id])}}">{{$claim->user->username}}</a>
-            claimed to have completed the achievement.
+            claimed to have completed this achievement.
+            @if ($claim->canceled_at!=0)
+            <div class='fail'>Canceled {{interval($claim->canceled_at, 'now')}} ago</div>
+            @endif
         </div>
         <div class='text-center'>
         </div>
