@@ -20,7 +20,7 @@
         <a href="{{route('achievement.show', ['url'=>$goal->achievement->url])}}">
             {{$goal->achievement->name}}
         </a>
-        (<a href="{{route('user.show', ['id'=>$goal->user_id])}}">
+        (<a href="{{route('user.show', ['username'=>$goal->user->username])}}">
             {{$goal->user->username}}
         </a>)
     </div>

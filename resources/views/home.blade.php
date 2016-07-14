@@ -25,7 +25,7 @@ $old_time =0;
             @if ($timeline_item->proof->user_id==Auth::user()->id)
                 You
             @else
-                <a href="{{route('user.show', ['id'=>$timeline_item->proof->user_id])}}">{{$timeline_item->proof->user->username}}</a>
+                <a href="{{route('user.show', ['username'=>$timeline_item->proof->user->username])}}">{{$timeline_item->proof->user->username}}</a>
             @endif
               submitted a <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">new proof</a> for
             @if ($timeline_item->proof->achievement->user_id!=Auth::user()->id)
@@ -121,7 +121,7 @@ $old_time =0;
         <div class='notification' title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
         <div class='notification margin-left'>
         @if (substr($timeline_item->event, -26) == "owned achievement complete")
-            <a href="{{route('user.show', ['id'=>$timeline_item->proof->user_id])}}">{{$timeline_item->proof->user->username}}</a> completed the achievement you created.
+            <a href="{{route('user.show', ['username'=>$timeline_item->proof->user->username])}}">{{$timeline_item->proof->user->username}}</a> completed the achievement you created.
 
                 You gained a point! You now have {{substr($timeline_item->event, 11, (strlen($timeline_item->event)-26)-12)}} points.
             <p>

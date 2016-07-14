@@ -28,7 +28,7 @@ use App\User;
       ?>
     <li class='list-group-item'>
         <a  class='achievement-link' href="{{route('achievement.show', ['url'=>$claim->achievement->url])}}">{{$claim->achievement->name}}</a>
-        - <a href="{{route('user.show', ['id'=>$claim->achievement->user->id])}}">{{$claim->achievement->user->username}}</a>
+        - <a href="{{route('user.show', ['username'=>$claim->achievement->user->username])}}">{{$claim->achievement->user->username}}</a>
     </li>
     @empty
     <li class='list-group-item'>

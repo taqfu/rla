@@ -6,9 +6,9 @@
 @section('content')
 <div class='text-center'>
     <p>
-           Hey, so it's me, <a href="{{route('user.show', ['id'=>1])}}">taqfu</a>. Let me know if there are any issues or if you think something could be better. Message me 
+           Hey, so it's me, <a href="{{route('user.show', ['username'=>'taqfu'])}}">taqfu</a>. Let me know if there are any issues or if you think something could be better. Message me 
         @if (Auth::user())
-           <a href="{{route('new_message', ['id'=>1])}}">here</a>  or 
+           <a href="{{route('new_message', ['id'=>1])}}">here</a>  or
         @endif
         <a href="mailto:taqfu@doitproveit.com">here.</a>
     </p>
@@ -18,5 +18,3 @@
 </div>
 
 @endsection
-
-

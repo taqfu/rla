@@ -42,7 +42,7 @@
     }
     ?>
     <li>
-            <a href="{{route('user.show', ['id'=>$claim->user_id])}}">{{$claim->user->username}}</a>
+            <a href="{{route('user.show', ['username'=>$claim->user->username])}}">{{$claim->user->username}}</a>
             - {{interval($claim->created_at, 'now')}} ago
     </li>
 @empty

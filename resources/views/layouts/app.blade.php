@@ -1,7 +1,7 @@
-<?php 
+<?php
     use App\Achievement;
     use App\Goal;
-    use App\User; 
+    use App\User;
     if ($_SERVER['SERVER_NAME']=='taqfu.com'){
         $root_url = "http://taqfu.com/dev-env/rla/public";
     } else if ($_SERVER['SERVER_NAME']=='doitproveit.com' || $_SERVER['SERVER_NAME']=='www.doitproveit.com'){
@@ -58,7 +58,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span>
                 </button>
                 <a class='navbar-brand' href="{{ url('/') }}" >
                     Do It! Prove It!
@@ -89,8 +89,8 @@
                         <a href="{{ url('/register') }}">Register</a>
                     </li>
                     @else
-                    <li class='username'>                                      
-                        <a href="{{ route('user.show', ['id'=>Auth::user()->id])}}">{{ Auth::user()->username }}({{Auth::user()->score}})</a>
+                    <li class='username'>
+                        <a href="{{ route('user.show', ['username'=>Auth::user()->username])}}">{{ Auth::user()->username }}({{Auth::user()->score}})</a>
                     </li>
                     <li>
                         @if (User::does_user_have_unread_msgs())
@@ -110,7 +110,7 @@
                 </ul>
             </div>
         </div>
-        
+
     </nav>
     <div id='content'>
     @yield('content')
@@ -119,17 +119,17 @@
         <footer>
             <div class='container-fluid'>
                 <div class='row'>
-                    <div class='col-xs-6'>  
+                    <div class='col-xs-6'>
                         {{count(Achievement::get())}} Achievements
                     </div>
                     <div class='col-xs-6 text-right'>
                         {{count(User::get())}} Users
                     </div>
-                </div>  
+                </div>
             </div>
             <div class='container-fluid'>
                 <div class='row'>
-                    
+
                     <div class='col-xs-4 text-right'>
 	                    <a href="{{route('guidelines')}}">Guidelines</a>
                     </div>

@@ -6,16 +6,16 @@
     @if (Auth::user())
         @if ($user_proof!=NULL)
         <div class='margin-left lead'>
-            You first completed this achievement 
-            {{date(Config::get('rla.date_format'), strtotime($user_proof->created_at))}}.   
+            You first completed this achievement
+            {{date(Config::get('rla.date_format'), strtotime($user_proof->created_at))}}.
         </div>
         @endif
-        @if (Achievement::can_user_submit_proof($main->id) 
+        @if (Achievement::can_user_submit_proof($main->id)
           && ($main->status!=2))
             @include ('Proof.create', ['achievement_id'=>$main->id])
             <!--{{var_dump(Achievement::can_user_claim($main->id))}}-->
-            @if (Achievement::can_user_claim($main->id) 
-              && !Achievement::has_user_completed_achievement($main->id))           
+            @if (Achievement::can_user_claim($main->id)
+              && !Achievement::has_user_completed_achievement($main->id))
                 @include ('Claim.create')
             @endif
         @endif
@@ -35,8 +35,8 @@
       {{ date(Config::get('rla.timestamp_format'), User::local_time(Auth::user()->timezone, strtotime($main->created_at)))}}
       @endif
       "><strong>
-        Created by <a href="{{route('user.show', ['id'=>$main->user_id])}}">{{$main->user->username}}</a>
-        {{interval($main->created_at, 'now')}} ago 
+        Created by <a href="{{route('user.show', ['username'=>$main->user->username])}}">{{$main->user->username}}</a>
+        {{interval($main->created_at, 'now')}} ago
     </strong></div>
     <div class='margin-left'>
         @if ($main->status==0)
@@ -51,7 +51,7 @@
             Approved
         </strong></span>
         <i>
-             - only those that have already completed the achievement can vote 
+             - only those that have already completed the achievement can vote
         </i>
         @elseif ($main->status==2)
         <strong>
@@ -74,7 +74,7 @@
         <i>
              - proof was canceled. submit your proof today!
         </i>
-        @endif 
+        @endif
     </div>
     <div class='margin-left'>
         {{Achievement::fetch_num_of_users_who_completed($main->id)}} people have completed this achievement.

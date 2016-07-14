@@ -3,7 +3,7 @@
 ?>
 <div class='panel panel-default'>
     <div class='panel-header'>
-        <a href="{{route('user.show', ['id'=>$comment->user->id])}}">{{$comment->user->username}}</a>
+        <a href="{{route('user.show', ['username'=>$comment->user->username])}}">{{$comment->user->username}}</a>
         -
         @if (Auth::guest())
         {{date('D ' . Config::get('rla.timestamp_format') . ' e', strtotime($comment->created_at))}}

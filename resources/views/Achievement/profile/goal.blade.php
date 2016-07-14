@@ -13,10 +13,10 @@ if (Auth::guest()){
     <div class='panel panel-default'>
     <div title='{{$timestamp}}' class='achievement-goal panel-body'>
         <div class='goal-timestamp text-center panel-heading'>{{interval($goal->created_at, 'now')}} ago</div>
-        <div class='text-center'><a href="{{route('user.show', ['id'=>$goal->user->id])}}">
+        <div class='text-center'><a href="{{route('user.show', ['username'=>$goal->user->username])}}">
             {{$goal->user->username}}</a> added this to their bucket list.
-           
-         
+
+
         </div>
         <div>
             &nbsp;

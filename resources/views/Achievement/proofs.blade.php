@@ -124,7 +124,7 @@
         <a href="{{route('proof.show', ['id'=>$proof->id])}}">Proof #{{$proof->id}}</a>
     </td>
     <td>
-        <a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->username}}</a>
+        <a href="{{route('user.show', ['username'=>$proof->user->username])}}">{{$proof->user->username}}</a>
     </td>
     <td>
         <A target='_blank' href="{{$proof->url}}">{{$proof->url}}</a>

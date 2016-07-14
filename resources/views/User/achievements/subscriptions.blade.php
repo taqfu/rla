@@ -33,7 +33,7 @@ use App\User;
         @elseif ($follow->achievement->status==3)
             <span >(Unproven)</span>
         @endif
-          - <a href="{{route('user.show', ['id'=>$follow->achievement->user_id])}}">{{$follow->achievement->user->username}}</a>
+          - <a href="{{route('user.show', ['username'=>$follow->achievement->user->username])}}">{{$follow->achievement->user->username}}</a>
     </li>
     @empty
     <li class='list-group-item'>

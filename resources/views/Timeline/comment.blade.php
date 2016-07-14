@@ -3,7 +3,7 @@
 @if ($timeline_item->comment->user_id==Auth::user()->id)
 You
 @else
-<a href="{{route('user.show', ['id'=>$timeline_item->comment->user_id])}}">{{$timeline_item->comment->user->username}}</a>
+<a href="{{route('user.show', ['username'=>$timeline_item->comment->user->username])}}">{{$timeline_item->comment->user->username}}</a>
 @endif
  posted the following comment:
 </div>
@@ -28,9 +28,9 @@ You
         your
     @else
         @if (substr($timeline_item->comment->user->username, -1, 1)=="s")
-            <a href="{{route('user.show', ['id'=>$timeline_item->comment->vote->user_id])}}">{{$timeline_item->comment->vote->user->username}}'</a>
+            <a href="{{route('user.show', ['username'=>$timeline_item->comment->vote->user->username])}}">{{$timeline_item->comment->vote->user->username}}'</a>
         @else
-            <a href="{{route('user.show', ['id'=>$timeline_item->comment->vote->user_id])}}">{{$timeline_item->comment->vote->user->username}}'s</a>
+            <a href="{{route('user.show', ['username'=>$timeline_item->comment->vote->user->username])}}">{{$timeline_item->comment->vote->user->username}}'s</a>
         @endif
     @endif
     vote for

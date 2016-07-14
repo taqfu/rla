@@ -16,7 +16,7 @@
     <div class='panel panel-default'>
     <div title='{{$timestamp}}' class='achievement-proof panel-body'>
         <div class='proof-timestamp text-center panel-heading'>{{interval($proof->created_at, 'now')}} ago</div>
-        <div class='text-center'><a href="{{route('user.show', ['id'=>$proof->user->id])}}">{{$proof->user->username}}</a>
+        <div class='text-center'><a href="{{route('user.show', ['username'=>$proof->user->username])}}">{{$proof->user->username}}</a>
             submitted <a href="{{route('proof.show', ['id'=>$proof->id])}}">proof</a> of completion.
             (<a target='_blank' href="{{$proof->url}}">{{$proof->url}}</a>)
         </div>

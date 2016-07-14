@@ -10,10 +10,10 @@
 <form method="POST" action="{{route('message.store')}}" class='message'>
     {{csrf_field()}}
     <p>
-        To:<a href="{{route('user.show', ['id'=>$profile->id])}}" id='message-receiver'>{{$profile->username}}</a>
+        To:<a href="{{route('user.show', ['username'=>$profile->username])}}" id='message-receiver'>{{$profile->username}}</a>
     </p>
     <input type='hidden' name='receiver' value='{{$profile->id}}' />
     <textarea name='message' class='message' maxlength='21844'>{{old('message')}}</textarea>
-    <input type='submit' value='Message' class='message'/> 
+    <input type='submit' value='Message' class='message'/>
 </form>
 @endsection

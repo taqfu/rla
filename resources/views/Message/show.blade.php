@@ -13,7 +13,7 @@
         <div class='panel-heading'>
             @if ($type=='in')
             From:
-            <a href="{{route('user.show', ['id'=>$message->sender->id])}}"
+            <a href="{{route('user.show', ['username'=>$message->sender->username])}}"
               @if (!$message->read)
               class='unread-user-link'
               @endif
@@ -22,7 +22,7 @@
             </a>
             @elseif ($type=='out')
             To:
-            <a href="{{route('user.show', ['id'=>$message->receiver->id])}}">
+            <a href="{{route('user.show', ['username'=>$message->receiver->username])}}">
                 {{$message->receiver->username}}
             </a>
             @endif

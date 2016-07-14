@@ -55,7 +55,7 @@ Status:
         @if (Auth::user() && Auth::user()->id==$proof->user_id)
          you.
         @else
-         <a href="{{route('user.show', ['id'=>$proof->user_id])}}">{{$proof->user->username}}</a>.
+         <a href="{{route('user.show', ['username'=>$proof->user->username])}}">{{$proof->user->username}}</a>.
         @endif
          (<a href="{{route('achievement.show', ['url'=>$proof->achievement->url])}}">Achievement Profile</a>)
     </div>
@@ -105,7 +105,7 @@ Status:
       {{ date(Config::get('rla.time_format'), User::local_time(Auth::user()->timezone, strtotime($vote->created_at))) }}
       @endif
     </i> -
-    <a href="{{route('user.show', ['id'=>$vote->user->id])}}">{{$vote->user->username}}</a> voted
+    <a href="{{route('user.show', ['username'=>$vote->user->username])}}">{{$vote->user->username}}</a> voted
     @if ($vote->vote_for)
         for this proof.
     @else
