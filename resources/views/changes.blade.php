@@ -10,6 +10,9 @@
     <li>
         There's now a menu on each achievement listing row to subscribe to achievements, add them to your bucket list or submit a claim of completion. 
     </li>
+    <li>
+        User profiles now referenced by username and not by id number.
+    </li>
 </ul>
 <h4>07/13/16</h4>
 <ul>
