@@ -43,16 +43,8 @@ Route::get('/inbox', ['as'=>'inbox', 'uses'=>'MessageController@showInbox']);
 Route::get('/outbox', ['as'=>'outbox', 'uses'=>'MessageController@showOutbox']);
 
 
-Route::post('/query', ['as'=>'query', 'uses'=>'AchievementController@query']);
 Route::get('/settings', ['as'=>'settings',
 'uses'=>'UserController@showSettings']);
-Route::put('/settings/email', ['as'=>'settings.email',
-  'uses'=>'UserController@updateEmail']);
-Route::put('/settings/password', ['as'=>'settings.password',
-  'uses'=>'UserController@updatePassword']);
-Route::put('/settings/timezone', ['as'=>'settings.timezone',
-  'uses'=>'UserController@updateTimeZone']);
-
 
 Route::get('/user/{username}', ['as'=>'user.show',
   'uses'=>'UserController@showProfile']);
@@ -77,6 +69,15 @@ Route::get('/user/{id}/message', ['as'=>'new_message',
   'uses'=>'MessageController@create']);
 
 
+Route::post('/query', ['as'=>'query', 'uses'=>'AchievementController@query']);
+
+
+Route::put('/settings/email', ['as'=>'settings.email',
+  'uses'=>'UserController@updateEmail']);
+Route::put('/settings/password', ['as'=>'settings.password',
+  'uses'=>'UserController@updatePassword']);
+Route::put('/settings/timezone', ['as'=>'settings.timezone',
+  'uses'=>'UserController@updateTimeZone']);
 
 
 Route::resource('AchievementVote', 'AchievementVoteController');

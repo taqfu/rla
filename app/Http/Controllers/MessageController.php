@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Message;
+use App\User;
 
 use Auth;
 use Config;
