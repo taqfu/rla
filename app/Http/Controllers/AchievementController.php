@@ -143,6 +143,9 @@ class AchievementController extends Controller
     public function show($url)
     {
         $achievement = Achievement::where("url", $url)->first();
+        if ($achievement==null){
+            return View::make('Achievement.fail');
+        }
         $id = $achievement->id;
         if (Auth::guest()){
             $following =0;
@@ -170,18 +173,14 @@ class AchievementController extends Controller
           })->orWhere(function($query) use ($id){
               $query->where('achievement_id', $id)->where('event', 'new goal');
           })->orderBy('created_at', 'desc')->get();
-        if ($achievement==NULL){
-            return View::make('Achievement.fail');
-        } else if ($achievement!=NULL){
-            return View::make('Achievement.show', [
-                "main"=>$achievement,
-                "timelines"=>$timeline,
-                "following"=>$following,
-                "user_proof"=>$user_proof,
-                "user_goal"=>$user_goal,
-                "user_claim"=>$user_claim,
-            ]);
-        }
+        return View::make('Achievement.show', [
+            "main"=>$achievement,
+            "timelines"=>$timeline,
+            "following"=>$following,
+            "user_proof"=>$user_proof,
+            "user_goal"=>$user_goal,
+            "user_claim"=>$user_claim,
+        ]);
     }
     public function showClaims(Request $request, $url){
         $id = Achievement::where('url', $url)->first()->id;
