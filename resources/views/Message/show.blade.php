@@ -38,7 +38,7 @@
         </div>
     @if ($type=='in')
         <div class='panel-footer'>
-        <a href="{{route('new_message', ['id'=>$message->sender->id])}}">Reply</a>
+        <a href="{{route('new_message', ['username'=>$message->sender->username])}}">Reply</a>
         <form method="POST" action="{{route('message.update',['id'=>$message->id])}}" class='inline'>
         {{ csrf_field() }}
         {{ method_field('PUT') }}

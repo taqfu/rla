@@ -2,10 +2,10 @@
 
 @section('content')
 <div class='margin-left'>
-    Unfortunately, this achievement has been deleted. Hopefully, this wasn't censorship! (We really don't want to engage in that kind of behavior.) Please 
+    Unfortunately, this achievement has been deleted. Hopefully, this wasn't censorship! (We really don't want to engage in that kind of behavior.) Please
 
     @if (Auth::user())
-    <a href="{{route('new_message', ['id'=>1])}}">message me</a>
+    <a href="{{route('new_message', ['username'=>'taqfu'])}}">message me</a>
     @else if (Auth::guest())
     <a href="mailto:taqfu@doitproveit.com">message me</a>
     @endif

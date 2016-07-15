@@ -4,42 +4,42 @@
       active
       @endif
       ">
-        <a href="{{route('user.achievements.completed', ['id'=>$profile->id])}}">Completed</a>
+        <a href="{{route('user.achievements.completed', ['username'=>$profile->username])}}">Completed</a>
     </li>
     <li class="
       @if ($active=='claimed')
       active
       @endif
       ">
-        <a href="{{route('user.achievements.claimed', ['id'=>$profile->id])}}">Claimed</a>
+        <a href="{{route('user.achievements.claimed', ['username'=>$profile->username])}}">Claimed</a>
     </li>
     <li class="
       @if ($active=='created')
       active
       @endif
       ">
-        <a href="{{route('user.achievements.created', ['id'=>$profile->id])}}">Created</a>
+        <a href="{{route('user.achievements.created', ['username'=>$profile->username])}}">Created</a>
     </li>
     <li class="
       @if ($active=='goals')
       active
       @endif
       ">
-        <a href="{{route('user.achievements.goals', ['id'=>$profile->id])}}">Bucket List</a>
+        <a href="{{route('user.achievements.goals', ['username'=>$profile->username])}}">Bucket List</a>
     </li>
     <li class="
       @if ($active=='subscriptions')
       active
       @endif
       ">
-        <a href="{{route('user.achievements.subscriptions', ['id'=>$profile->id])}}">Subscriptions</a>
+        <a href="{{route('user.achievements.subscriptions', ['username'=>$profile->username])}}">Subscriptions</a>
     </li>
     <li class="
       @if ($active=='comments')
       active
       @endif
       ">
-        <a href="{{route('user.comments', ['id'=>$profile->id])}}">Comments</a>
+        <a href="{{route('user.comments', ['username'=>$profile->username])}}">Comments</a>
     </li>
 @if(Auth::user() && $profile->id == Auth::user()->id)
     <li class="

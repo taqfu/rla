@@ -7,10 +7,10 @@ $point_caption = $profile->score!=1 ? "points" : "point";
             <h4>
                 <strong>
                     Proof Score: {{$profile->score}} Claim Score: {{$profile->claim_score}}</h4>
-                </strong> 
+                </strong>
             @if (Auth::user() && Auth::user()->id != $profile->id)
             <div>
-                <a  href="{{route('new_message', ['id'=>$profile->id])}}">Send Message</a>
+                <a  href="{{route('new_message', ['username'=>$profile->username])}}">Send Message</a>
             </div>
             @endif
         </div>

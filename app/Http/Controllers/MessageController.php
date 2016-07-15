@@ -30,10 +30,10 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($username)
     {
         return View('Message.create', [
-            'profile'=> User::find($id),
+            'profile'=> User::where('username', $username)->first(),
         ]);
     }
 

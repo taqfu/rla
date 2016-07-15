@@ -52,25 +52,25 @@ Route::get('/settings', ['as'=>'settings',
 Route::get('/user/{username}', ['as'=>'user.show',
   'uses'=>'UserController@showProfile']);
 
-Route::get('/user/{id}/achievements/claimed',
+Route::get('/user/{username}/achievements/claimed',
   ['as'=>'user.achievements.claimed',
   'uses'=>'UserController@showAchievementsClaimed']);
-Route::get('/user/{id}/achievements/completed',
+Route::get('/user/{username}/achievements/completed',
   ['as'=>'user.achievements.completed',
   'uses'=>'UserController@showAchievementsCompleted']);
-Route::get('/user/{id}/achievements/created',
+Route::get('/user/{username}/achievements/created',
   ['as'=>'user.achievements.created',
   'uses'=>'UserController@showAchievementsCreated']);
-Route::get('/user/{id}/achievements/goals',
+Route::get('/user/{username}/achievements/goals',
   ['as'=>'user.achievements.goals',
   'uses'=>'UserController@showAchievementsGoals']);
-Route::get('/user/{id}/achievements/subscriptions',
+Route::get('/user/{username}/achievements/subscriptions',
   ['as'=>'user.achievements.subscriptions',
   'uses'=>'UserController@showAchievementsSubscriptions']);
 
-Route::get('/user/{id}/comments', ['as'=>'user.comments',
+Route::get('/user/{username}/comments', ['as'=>'user.comments',
   'uses'=>'UserController@showComments']);
-Route::get('/user/{id}/message', ['as'=>'new_message',
+Route::get('/user/{username}/message', ['as'=>'new_message',
   'uses'=>'MessageController@create']);
 
 

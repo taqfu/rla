@@ -19,51 +19,57 @@ use View;
 
 class UserController extends Controller
 {
-    public function showAchievementsClaimed($id){
+    public function showAchievementsClaimed($username){
+        $user = User::where('username', $username)->first();
         return View('User.achievements.claimed', [
             "claims"=>Claim::join('achievements', 'achievement_id', '=',
-              'achievements.id')->where('claims.user_id', $id)
+              'achievements.id')->where('claims.user_id', $user->id)
               ->whereNull('claims.canceled_at')
               ->orderBy('achievements.name', 'asc')->get(),
-            "profile"=>User::where('id', $id)->first(),
+            "profile"=>$user,
         ]);
     }
-    public function showAchievementsCompleted($id){
+    public function showAchievementsCompleted($username){
+        $user = User::where('username', $username)->first();
         return View('User.achievements.completed', [
             "proofs"=>Proof::join('achievements', 'achievement_id',
               '=', 'achievements.id')
-              ->where('proofs.user_id', $id)->where('proofs.status', 1)
+              ->where('proofs.user_id', $user->id)->where('proofs.status', 1)
               ->orderBy('achievements.name', 'asc')->get(),
-            "profile"=>User::find($id),
+            "profile"=>$user,
         ]);
     }
-    public function showAchievementsCreated($id){
+    public function showAchievementsCreated($username){
+        $user = User::where('username', $username)->first();
         return View('User.achievements.created', [
-            "achievements"=>Achievement::where('user_id', $id)
+            "achievements"=>Achievement::where('user_id', $user->id)
               ->orderBy('name', 'asc')->get(),
-            "profile"=>User::where('id', $id)->first(),
+            "profile"=>$user,
         ]);
     }
-    public function showAchievementsGoals($id){
+    public function showAchievementsGoals($username){
+        $user = User::where('username', $username)->first();
         return View('User.achievements.goals', [
             "goals"=>Goal::join ('achievements', 'achievement_id', '=',
-              'achievements.id')->where('goals.user_id', $id)
+              'achievements.id')->where('goals.user_id', $user->id)
               ->orderBy('achievements.name','asc')->get(),
-            "profile"=>User::where('id', $id)->first(),
+            "profile"=>$user,
         ]);
     }
-    public function showAchievementsSubscriptions($id){
+    public function showAchievementsSubscriptions($username){
+        $user = User::where('username', $username)->first();
         return View('User.achievements.subscriptions', [
             "follows"=>Follow::join ('achievements', 'achievement_id', '=',
-              'achievements.id')->where('follows.user_id', $id)
+              'achievements.id')->where('follows.user_id', $user->id)
               ->orderBy('achievements.name','asc')->get(),
-            "profile"=>User::find($id),
+            "profile"=>$user,
         ]);
     }
     public function showComments($id){
+        $user = User::where('username', $username)->first();
         return View('User.comments', [
-          "profile"=>User::where('id', $id)->first(),
-          "comments"=>Comment::where('user_id', $id)->orderBy('created_at', 'desc')->get(),
+          "profile"=>$user,
+          "comments"=>Comment::where('user_id', $user->id)->orderBy('created_at', 'desc')->get(),
         ]);
     }
     public function showProfile($username){
