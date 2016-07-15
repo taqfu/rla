@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Auth;
+use Config;
 class Achievement extends Model
 {
     public function approved_proofs(){
@@ -29,6 +30,39 @@ class Achievement extends Model
 
     }
 
+    public static function new_db_entry($name, $url){
+        $achievement = new Achievement;
+        $achievement->name = $name;
+        $achievement->user_id = Auth::user()->id;
+        $achievement->url = $url;
+        $achievement->save();
+        return $achievement->id;
+    }
+    public static function did_they_just_create_an_achievement(){
+        $last_achievement = Achievement::where('user_id', Auth::user()->id)
+          ->orderBy('created_at', 'desc')->first();
+        if($last_achievement!=null 
+          && time()-strtotime($last_achievement->created_at) 
+          < Config::get('rla.min_time_to_post')){
+            $num_of_seconds = Config::get('rla.min_time_to_post') 
+              - (time()-strtotime($last_achievement->created_at));
+            $num_of_minutes = floor($num_of_seconds/60);
+            $num_of_seconds = $num_of_seconds % 60;
+            $error_msg = "You are doing this too often. Please wait ";
+            if ($num_of_minutes>0){
+                $error_msg = $error_msg . $num_of_minutes . " minutes";
+            }
+            if ($num_of_minutes>0 && $num_of_seconds>0){
+                $error_msg = $error_msg . " and ";
+            }
+            if ($num_of_seconds>0){
+                $error_msg = $error_msg . $num_of_seconds . " seconds";
+            }
+            $error_msg = $error_msg . " before trying again.";
+            return $error_msg;
+        }
+        return false;
+    }
     public static function can_user_submit_proof($id){
         if (Auth::guest()){
             return false;

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-//begin with query
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -108,57 +107,30 @@ class AchievementController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:achievements|max:100',
         ]);
-        $last_achievement = Achievement::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
-        if($last_achievement!=null && time()-strtotime($last_achievement->created_at) < Config::get('rla.min_time_to_post')){
-            $num_of_seconds = Config::get('rla.min_time_to_post') - (time()-strtotime($last_achievement->created_at));
-            $num_of_minutes = floor($num_of_seconds/60);
-            $num_of_seconds = $num_of_seconds % 60;
-            $error_msg = "You are doing this too often. Please wait ";
-            if ($num_of_minutes>0){
-                $error_msg = $error_msg . $num_of_minutes . " minutes";
-            }
-            if ($num_of_minutes>0 && $num_of_seconds>0){
-                $error_msg = $error_msg . " and ";
-            }
-            if ($num_of_seconds>0){
-                $error_msg = $error_msg . $num_of_seconds . " seconds";
-            }
-            $error_msg = $error_msg . " before trying again.";
-            return back()->withErrors($error_msg)->withInput();
+        $error=Achievement::did_they_just_create_an_achievement();
+        if ($error!=false){
+            return back()->withErrors($error)->withInput();
         }
-        $achievement_url = preg_replace("/\s+/", "-", trim(strtolower(preg_replace("/\p{P}/", " ", $request->name))));
 
-        $achievement = new Achievement;
-        $achievement->name = $request->name;
-        $achievement->user_id = Auth::user()->id;
-        $achievement->status = 3;
-        $achievement->score = 1;
-        $num_of_records = count(DB::select("select * from achievements where substring(url, 1, length(?))=?", [$achievement_url, $achievement_url]));
+        $achievement_url = preg_replace("/\s+/", "-", 
+          trim(strtolower(preg_replace("/\p{P}/", " ", $request->name))));
+        $num_of_records = 
+          count(DB::select("select * from achievements where substring(url, 1, length(?))=?", 
+          [$achievement_url, $achievement_url]));
         if ($num_of_records!=0){
-            $num_of_records++;
-            $achievement_url = $achievement_url . "-$num_of_records";
+            $achievement_url = $achievement_url . "-".++$num_of_records;
         }
-        $achievement->url = $achievement_url;
-        $achievement->save();
-
-        $achievement_vote = new AchievementVote;
-        $achievement_vote->user_id = Auth::user()->id;
-        $achievement_vote->achievement_id = $achievement->id;
-        $achievement_vote->vote_up = true;
-        $achievement_vote->save();
-
-
-        $follow = new Follow;
-        $follow->user_id = Auth::user()->id;
-        $follow->achievement_id = $achievement->id;
-        $follow->save();
+        $new_achievement_id = Achievement::new_db_entry($request->name, $achievement_url);
+        AchievementVote::new_db_entry($new_achievement_id);
+        Follow::new_db_entry($new_achievement_id);
 
         $timeline = new Timeline;
         $timeline->user_id = Auth::user()->id;
         $timeline->event = "new achievement";
-        $timeline->achievement_id = $achievement->id;
+        $timeline->achievement_id = $new_achievement_id;
         $timeline->save();
-        return redirect()->route('achievement.show', ['url'=>$achievement->url]);
+
+        return redirect()->route('achievement.show', ['url'=>$achievement_url]);
     }
 
 
