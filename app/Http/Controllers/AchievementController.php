@@ -286,6 +286,33 @@ class AchievementController extends Controller
             ]);
         }
     }
+    public function showDiscussion($id){
+        $main = Achievement::where('id', $id)->first();
+        if (Auth::guest()){
+            $following=0;
+            $user_claim = null;
+            $user_goal = null;
+            $user_proof = null;
+        } else if (Auth::user()){
+            $following=count(Follow::where('user_id', Auth::user()->id)
+              ->where('achievement_id', $id)
+              ->get())>0;
+            $user_claim = Claim::where('user_id', Auth::user()->id)
+              ->where('achievement_id', $id)->first();
+            $user_goal = Goal::where('user_id', Auth::user()->id)
+                  ->where('achievement_id', $id)->first();
+            $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
+              ->where('achievement_id', $id)->first();
+        }
+        return View('Achievement.discussion', [
+            'main'=>$main,
+            "following"=>$following,
+            "user_claim"=>$user_claim,
+            "user_goal"=>$user_goal,
+            "user_proof"=>$user_proof,
+        ]);
+
+    }
     public function showProofs(Request $request, $id)
     {
         switch ($request->input('sort')){

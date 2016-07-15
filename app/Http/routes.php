@@ -12,153 +12,71 @@ use App\User;
 
 Route::auth();
 
-Route::get('/achievement/{id}/claims', ['as'=>'achievement.showClaims', 'uses'=>'AchievementController@showClaims']);
-
-Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', function($achievement_id){
-    $main = Achievement::where('id', $achievement_id)->first();
+Route::get('/', ['as'=>'home', function (){
     if (Auth::guest()){
-        $following=0;
-        $user_claim = null;
-        $user_goal = null;
-        $user_proof = null;
+        return redirect(route('achievement.index',['approved'=>'on',
+          'pending'=>'on']));
     } else if (Auth::user()){
-        $following=count(Follow::where('user_id', Auth::user()->id)
-          ->where('achievement_id', $achievement_id)
-          ->get())>0;
-        $user_claim = Claim::where('user_id', Auth::user()->id)
-          ->where('achievement_id', $achievement_id)->first();
-        $user_goal = Goal::where('user_id', Auth::user()->id)
-              ->where('achievement_id', $achievement_id)->first();
-        $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
-          ->where('achievement_id', $achievement_id)->first();
+        return View('Timeline.index', [
+            "timeline_items"=>Timeline::where('user_id', Auth::user()->id)
+              ->orderBy('created_at', 'desc')->get(),
+        ]);
     }
-    return View('Achievement.discussion', [
-        'main'=>$main,
-        "following"=>$following,
-        "user_claim"=>$user_claim,
-        "user_goal"=>$user_goal,
-        "user_proof"=>$user_proof,
-    ]);
 }]);
 
-Route::get('/achievement/{id}/proofs', ['as'=>'achievement.showProofs', 'uses'=>'AchievementController@showProofs']);
-
+Route::get('/achievement/{id}/claims', ['as'=>'achievement.showClaims',
+  'uses'=>'AchievementController@showClaims']);
+Route::get('/achievement/{id}/discussion', ['as'=>'discussion',
+  'uses'=>'AchievementController@showDiscussion']);
+Route::get('/achievement/{id}/proofs', ['as'=>'achievement.showProofs',
+  'uses'=>'AchievementController@showProofs']);
 Route::get('/changes', ['as'=>'changes', function(){
     return View('changes');
 }]);
-
 Route::get('/feedback', ['as'=>'feedback', function(){
     return View('feedback');
 }]);
-
 Route::get('/guidelines', ['as'=>'guidelines', function(){
     return View('guidelines');
 }]);
+Route::get('/inbox', ['as'=>'inbox', 'uses'=>'MessageController@showInbox']);
+Route::get('/outbox', ['as'=>'outbox', 'uses'=>'MessageController@showOutbox']);
 
-Route::get('/inbox', ['as'=>'inbox', function(){
-    if (Auth::guest()){
-        return View('Message.fail');
-    } else if (Auth::user()){
-        return View('Message.inbox', [
-            'profile'=>User::where('id', Auth::user()->id)->first(),
-            'messages'=>Message::where('to_user_id', Auth::user()->id)
-              ->orderBy('created_at', 'desc')->get(),
-        ]);
-    }
-}]);
-
-Route::get('/inventory', ['as'=>'inventory', function(Request $request){
-    if (Auth::guest()){
-        return View('fail');
-    } else{
-        $achievements = Achievement::fetch_appropriate_sort_source($request->input('sort'));
-        return View('Achievement.inventory', [
-            "achievements"=>$achievements,
-            "sort"=>$request->input('sort'),
-        ]);
-    }
-}]);
-
-Route::get('/outbox', ['as'=>'outbox', function(){
-    if (Auth::guest()){
-        return View('Message.fail');
-    } else {
-        return View('Message.outbox', [
-            'profile'=>User::where('id', Auth::user()->id)->first(),
-            'messages'=>Message::where('from_user_id', Auth::user()->id)
-              ->orderBy('created_at', 'desc')->get(),
-        ]);
-    }
-}]);
-
-Route::get('/settings', ['as'=>'settings', function(){
-    if (Auth::guest()){
-        return View('Message.fail');
-    } else {
-        return View('User.settings', [
-            'profile'=>User::where('id', Auth::user()->id)->first(),
-        ]);
-    }
-}]);
-
-
-Route::get('/', ['as'=>'home', function (){
-    if (Auth::guest()){
-        return redirect(route('achievement.index',['approved'=>'on', 'pending'=>'on']));
-    } else if (Auth::user()){
-        return View('Timeline.index', [
-            "timeline_items"=>Timeline::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
-        ]);
-    }
-}]);
-
-Route::get('/user/{username}', ['as'=>'user.show', 'uses'=>'UserController@showProfile']);
-Route::get('/user/{id}/achievements/completed', ['as'=>'user.achievements.completed', function($id){
-    $proofs = Proof::join('achievements', 'achievement_id', '=', 'achievements.id')->where('proofs.user_id', $id)->where('proofs.status', 1)->orderBy('achievements.name', 'asc')->get();
-    return View('User.achievements.completed', [
-        "proofs"=>$proofs,
-        "profile"=>User::where('id', $id)->first(),
-    ]);
-}]);
-Route::get('/user/{id}/achievements/claimed', ['as'=>'user.achievements.claimed', function($id){
-    $claims = Claim::join('achievements', 'achievement_id', '=', 'achievements.id')->where('claims.user_id', $id)->whereNull('claims.canceled_at')->orderBy('achievements.name', 'asc')->get();
-    return View('User.achievements.claimed', [
-        "claims"=>$claims,
-        "profile"=>User::where('id', $id)->first(),
-    ]);
-}]);
-Route::get('/user/{id}/achievements/created', ['as'=>'user.achievements.created', function($id){
-    return View('User.achievements.created', [
-        "achievements"=>Achievement::where('user_id', $id)->orderBy('name', 'asc')->get(),
-        "profile"=>User::where('id', $id)->first(),
-    ]);
-}]);
-Route::get('/user/{id}/achievements/goals', ['as'=>'user.achievements.goals', function($id){
-    $goals = Goal::join ('achievements', 'achievement_id', '=', 'achievements.id')->where('goals.user_id', $id)->orderBy('achievements.name','asc')->get();
-    return View('User.achievements.goals', [
-        "profile"=>User::where('id', $id)->first(),
-        "goals"=>$goals,
-    ]);
-}]);
-Route::get('/user/{id}/achievements/subscriptions', ['as'=>'user.achievements.subscriptions', function($id){
-    $follows = Follow::join ('achievements', 'achievement_id', '=', 'achievements.id')->where('follows.user_id', $id)->orderBy('achievements.name','asc')->get();
-    return View('User.achievements.subscriptions', [
-        "profile"=>User::where('id', $id)->first(),
-        "follows"=>$follows,
-    ]);
-}]);
-Route::get('/user/{id}/comments', ['as'=>'user.comments', 'uses'=>'UserController@showComments']);
-Route::get('/user/{id}/message', ['as'=>'new_message', function($id){
-    return View('Message.create', [
-        'profile'=> User::where('id', $id)->first(),
-    ]);
-
-}]);
 
 Route::post('/query', ['as'=>'query', 'uses'=>'AchievementController@query']);
-Route::put('/settings/email', ['as'=>'settings.email', 'uses'=>'UserController@updateEmail']);
-Route::put('/settings/password', ['as'=>'settings.password', 'uses'=>'UserController@updatePassword']);
-Route::put('/settings/timezone', ['as'=>'settings.timezone', 'uses'=>'UserController@updateTimeZone']);
+Route::get('/settings', ['as'=>'settings',
+'uses'=>'UserController@showSettings']);
+Route::put('/settings/email', ['as'=>'settings.email',
+  'uses'=>'UserController@updateEmail']);
+Route::put('/settings/password', ['as'=>'settings.password',
+  'uses'=>'UserController@updatePassword']);
+Route::put('/settings/timezone', ['as'=>'settings.timezone',
+  'uses'=>'UserController@updateTimeZone']);
+
+
+Route::get('/user/{username}', ['as'=>'user.show',
+  'uses'=>'UserController@showProfile']);
+Route::get('/user/{id}/achievements/claimed',
+  ['as'=>'user.achievements.claimed',
+  'uses'=>'UserController@showAchievementsClaimed']);
+Route::get('/user/{id}/achievements/completed',
+  ['as'=>'user.achievements.completed',
+  'uses'=>'UserController@showAchievementsCompleted']);
+Route::get('/user/{id}/achievements/created',
+  ['as'=>'user.achievements.created',
+  'uses'=>'UserController@showAchievementsCreated']);
+Route::get('/user/{id}/achievements/goals',
+  ['as'=>'user.achievements.goals',
+  'uses'=>'UserController@showAchievementsGoals']);
+Route::get('/user/{id}/achievements/subscriptions',
+  ['as'=>'user.achievements.subscriptions',
+  'uses'=>'UserController@showAchievementsSubscriptions']);
+Route::get('/user/{id}/comments', ['as'=>'user.comments',
+  'uses'=>'UserController@showComments']);
+Route::get('/user/{id}/message', ['as'=>'new_message',
+  'uses'=>'MessageController@create']);
+
+
 
 
 Route::resource('AchievementVote', 'AchievementVoteController');

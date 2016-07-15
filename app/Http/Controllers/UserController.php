@@ -17,25 +17,75 @@ use View;
 
 class UserController extends Controller
 {
-    public function showProfile($username){
-        $profile = User::where('username', $username)->first();
-        
-        if ($profile==null){
-          return View('User.fail');
-        }
-        $id = $profile->id;
-    
-        $proofs = Proof::join('achievements', 'achievement_id', '=', 'achievements.id')->where('proofs.user_id', $id)->where('proofs.status', 1)->orderBy('achievements.name', 'asc')->get();
-        return View::make('User.achievements.completed', [
-            "proofs"=>$proofs,
-            "profile"=>$profile, 
+    public function showAchievementsClaimed($id){
+        return View('User.achievements.claimed', [
+            "claims"=>Claim::join('achievements', 'achievement_id', '=',
+              'achievements.id')->where('claims.user_id', $id)
+              ->whereNull('claims.canceled_at')
+              ->orderBy('achievements.name', 'asc')->get(),
+            "profile"=>User::where('id', $id)->first(),
+        ]);
+    }
+    public function showAchievementsCompleted($id){
+        return View('User.achievements.completed', [
+            "proofs"=>Proof::join('achievements', 'achievement_id',
+              '=', 'achievements.id')
+              ->where('proofs.user_id', $id)->where('proofs.status', 1)
+              ->orderBy('achievements.name', 'asc')->get(),
+            "profile"=>User::find($id),
+        ]);
+    }
+    public function showAchievementsCreated($id){
+        return View('User.achievements.created', [
+            "achievements"=>Achievement::where('user_id', $id)
+              ->orderBy('name', 'asc')->get(),
+            "profile"=>User::where('id', $id)->first(),
+        ]);
+    }
+    public function showAchievementsGoals($id){
+        return View('User.achievements.goals', [
+            "goals"=>Goal::join ('achievements', 'achievement_id', '=',
+              'achievements.id')->where('goals.user_id', $id)
+              ->orderBy('achievements.name','asc')->get(),
+            "profile"=>User::where('id', $id)->first(),
+        ]);
+    }
+    public function showAchievementsSubscriptions($id){
+        return View('User.achievements.subscriptions', [
+            "follows"=>Follow::join ('achievements', 'achievement_id', '=',
+              'achievements.id')->where('follows.user_id', $id)
+              ->orderBy('achievements.name','asc')->get(),
+            "profile"=>User::find($id),
         ]);
     }
     public function showComments($id){
         return View('User.comments', [
-          "profile"=>User::where('id', $id)->first(), 
+          "profile"=>User::where('id', $id)->first(),
           "comments"=>Comment::where('user_id', $id)->orderBy('created_at', 'desc')->get(),
         ]);
+    }
+    public function showProfile($username){
+        $profile = User::where('username', $username)->first();
+
+        if ($profile==null){
+          return View('User.fail');
+        }
+        $id = $profile->id;
+
+        $proofs = Proof::join('achievements', 'achievement_id', '=', 'achievements.id')->where('proofs.user_id', $id)->where('proofs.status', 1)->orderBy('achievements.name', 'asc')->get();
+        return View::make('User.achievements.completed', [
+            "proofs"=>$proofs,
+            "profile"=>$profile,
+        ]);
+    }
+    public function showSettings(){
+        if (Auth::guest()){
+            return View('Message.fail');
+        } else {
+            return View('User.settings', [
+                'profile'=>User::find(Auth::user()->id),
+            ]);
+        }
     }
     public function updateEmail(Request $request){
         $this->validate($request, [
@@ -55,7 +105,7 @@ class UserController extends Controller
         if(Hash::check($request->old, Auth::user()->password)){
             $user = Auth::user();
             $user->password = Hash::make($request->new);
-            $user->save(); 
+            $user->save();
             return back()->withErrors(['success'=>'Password changed!']);
         } else {
             return back()->withErrors(['old'=>'Old password invalid.']);

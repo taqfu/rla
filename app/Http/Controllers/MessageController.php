@@ -29,9 +29,11 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        return View('Message.create', [
+            'profile'=> User::find($id),
+        ]);
     }
 
     /**
@@ -51,7 +53,7 @@ class MessageController extends Controller
         ]);
         $last_message = Message::where('from_user_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
         if(($last_message!=null && time()-strtotime($last_message->created_at) < Config::get('rla.min_time_to_msg'))){
-            $num_of_seconds = Config::get('rla.min_time_to_msg') - (time()-strtotime($last_message->created_at)); 
+            $num_of_seconds = Config::get('rla.min_time_to_msg') - (time()-strtotime($last_message->created_at));
             return back()->withErrors("You are doing this too often. Please wait $num_of_seconds seconds.")->withInput();
         }
         $message = new Message;
@@ -79,6 +81,29 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     public function showInbox(){
+         if (Auth::guest()){
+             return View('Message.fail');
+         } else if (Auth::user()){
+             return View('Message.inbox', [
+                 'profile'=>User::find(Auth::user()->id),
+                 'messages'=>Message::where('to_user_id', Auth::user()->id)
+                   ->orderBy('created_at', 'desc')->get(),
+             ]);
+         }
+    }
+    public function showOutbox(){
+        if (Auth::guest()){
+            return View('Message.fail');
+        } else {
+            return View('Message.outbox', [
+                'profile'=>User::find(Auth::user()->id),
+                'messages'=>Message::where('from_user_id', Auth::user()->id)
+                  ->orderBy('created_at', 'desc')->get(),
+            ]);
+        }
+    }
     public function edit($id)
     {
         //
