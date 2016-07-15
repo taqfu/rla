@@ -8,84 +8,12 @@ use App\Message;
 use App\Proof;
 use App\Timeline;
 use App\User;
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+
+
 Route::auth();
-/*
-Route::get('/update-achievements', function(){
-    foreach (Achievement::get() as $achievement){
-        if ($achievement->url==null){
-            $achievement->url = preg_replace("/\s+/", "-", trim(strtolower(preg_replace("/\p{P}/", " ", $achievement->name))));
-            $achievement->save();
-        }
-    }
-    return View('Achievement.update', [
-        "achievements"=>Achievement::get(),
-    ]);
-});
-*/
-Route::get('/about', ['as'=>'about', function(){
-    return View('guidelines');
-}]);
+
 Route::get('/achievement/{id}/claims', ['as'=>'achievement.showClaims', 'uses'=>'AchievementController@showClaims']);
-Route::get('/achievement/{id}/proofs', ['as'=>'achievement.showProofs', 'uses'=>'AchievementController@showProofs']);
-Route::get('/guidelines', ['as'=>'guidelines', function(){
-    return View('guidelines');
-}]);
-Route::get('/changes', ['as'=>'changes', function(){
-    return View('changes');
-}]);
-Route::get('/feedback', ['as'=>'feedback', function(){
-    return View('feedback');
-}]);
-Route::get('/inbox', ['as'=>'inbox', function(){
-    if (Auth::guest()){
-        return View('Message.fail');
-    } else if (Auth::user()){
-        return View('Message.inbox', [
-            'profile'=>User::where('id', Auth::user()->id)->first(),
-            'messages'=>Message::where('to_user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
-        ]);
-    }
-}]);
-Route::get('/inventory', ['as'=>'inventory', function(Request $request){
-    if (Auth::user()){
-        $achievements = Achievement::fetch_appropriate_sort_source($request->input('sort'));
-        return View('Achievement.inventory', [
-            "achievements"=>$achievements,
-            "sort"=>$request->input('sort'),
-        ]);
-    } else {
-        return View('fail');
-    }
-}]);
-Route::get('/outbox', ['as'=>'outbox', function(){
-    if (Auth::guest()){
-        return View('Message.fail');
-    } else if (Auth::user()){
-        return View('Message.outbox', [
-            'profile'=>User::where('id', Auth::user()->id)->first(),
-            'messages'=>Message::where('from_user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get(),
-        ]);
-    }
-}]);
-Route::get('/settings', ['as'=>'settings', function(){
-    if (Auth::guest()){
-        return View('Message.fail');
-    } else if (Auth::user()){
-        return View('User.settings', [
-            'profile'=>User::where('id', Auth::user()->id)->first(),
-        ]);
-    }
-}]);
+
 Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', function($achievement_id){
     $main = Achievement::where('id', $achievement_id)->first();
     if (Auth::guest()){
@@ -112,6 +40,67 @@ Route::get('/achievement/{achievement_id}/discussion', ['as'=>'discussion', func
         "user_proof"=>$user_proof,
     ]);
 }]);
+
+Route::get('/achievement/{id}/proofs', ['as'=>'achievement.showProofs', 'uses'=>'AchievementController@showProofs']);
+
+Route::get('/changes', ['as'=>'changes', function(){
+    return View('changes');
+}]);
+
+Route::get('/feedback', ['as'=>'feedback', function(){
+    return View('feedback');
+}]);
+
+Route::get('/guidelines', ['as'=>'guidelines', function(){
+    return View('guidelines');
+}]);
+
+Route::get('/inbox', ['as'=>'inbox', function(){
+    if (Auth::guest()){
+        return View('Message.fail');
+    } else if (Auth::user()){
+        return View('Message.inbox', [
+            'profile'=>User::where('id', Auth::user()->id)->first(),
+            'messages'=>Message::where('to_user_id', Auth::user()->id)
+              ->orderBy('created_at', 'desc')->get(),
+        ]);
+    }
+}]);
+
+Route::get('/inventory', ['as'=>'inventory', function(Request $request){
+    if (Auth::guest()){
+        return View('fail');
+    } else{
+        $achievements = Achievement::fetch_appropriate_sort_source($request->input('sort'));
+        return View('Achievement.inventory', [
+            "achievements"=>$achievements,
+            "sort"=>$request->input('sort'),
+        ]);
+    }
+}]);
+
+Route::get('/outbox', ['as'=>'outbox', function(){
+    if (Auth::guest()){
+        return View('Message.fail');
+    } else {
+        return View('Message.outbox', [
+            'profile'=>User::where('id', Auth::user()->id)->first(),
+            'messages'=>Message::where('from_user_id', Auth::user()->id)
+              ->orderBy('created_at', 'desc')->get(),
+        ]);
+    }
+}]);
+
+Route::get('/settings', ['as'=>'settings', function(){
+    if (Auth::guest()){
+        return View('Message.fail');
+    } else {
+        return View('User.settings', [
+            'profile'=>User::where('id', Auth::user()->id)->first(),
+        ]);
+    }
+}]);
+
 
 Route::get('/', ['as'=>'home', function (){
     if (Auth::guest()){
