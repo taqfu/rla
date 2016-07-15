@@ -12,7 +12,7 @@ You
 </div>
 <div >
 @if ($timeline_item->comment->achievement_id>0)
- on <a href="{{route('discussion', ['id'=>$timeline_item->comment->achievement_id])}}">your achievement discussion page</a>
+ on <a href="{{route('achievement.discussion', ['url'=>$timeline_item->comment->achievement->url])}}">your achievement discussion page</a>
  for <a href="{{route('achievement.show', ['url'=>$timeline_item->comment->achievement->url])}}">"{{$timeline_item->comment->achievement->name}}"</a>.
 @elseif ($timeline_item->comment->proof_id>0)
     @if ($timeline_item->event=="new comment")

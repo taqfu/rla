@@ -212,7 +212,8 @@ class AchievementController extends Controller
             ]);
         }
     }
-    public function showClaims(Request $request, $id){
+    public function showClaims(Request $request, $url){
+        $id = where('url', $url)->first()->id;
         $claims = Claim::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
         switch ($request->input('sort')){
             case "created_at asc":
@@ -286,7 +287,8 @@ class AchievementController extends Controller
             ]);
         }
     }
-    public function showDiscussion($id){
+    public function showDiscussion($url){
+        $id = where('url', $url)->first()->id;
         $main = Achievement::where('id', $id)->first();
         if (Auth::guest()){
             $following=0;
@@ -313,8 +315,8 @@ class AchievementController extends Controller
         ]);
 
     }
-    public function showProofs(Request $request, $id)
-    {
+    public function showProofs(Request $request, $url){
+        $id = where('url', $url)->first()->id;
         switch ($request->input('sort')){
             case "created_at asc":
                 $column="created_at";

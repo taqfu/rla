@@ -18,7 +18,7 @@
         <div>
         <span  title='{{$timestamp}}'>{{interval($comment->created_at, "now")}} ago</span> -
         @if ($comment->achievement_id>0)
-        <a href="{{route('discussion', ['id'=>$comment->achievement_id])}}">
+        <a href="{{route('achievement.discussion', ['url'=>$comment->achievement->url])}}">
             "{{$comment->achievement->name}}" Discussion Page
         </a>
         @elseif ($comment->proof_id>0)

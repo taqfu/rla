@@ -14,22 +14,22 @@
       active
       @endif
       '>
-        <a href="{{route('achievement.showProofs', ['id'=>$id])}}">Proofs ({{count($main->proofs)}})</a>
-        
+        <a href="{{route('achievement.showProofs', ['url'=>$url])}}">Proofs ({{count($main->proofs)}})</a>
+
     </li>
     <li class='
       @if ($active_item=='claims')
       active
       @endif
       '>
-        <a href="{{route('achievement.showClaims', ['id'=>$id])}}">Claims ({{count($main->claims)}})</a>
+        <a href="{{route('achievement.showClaims', ['url'=>$url])}}">Claims ({{count($main->claims)}})</a>
     </li>
     <li class='
       @if ($active_item=='discussion')
       active
       @endif
       '>
-          <a href="{{route('discussion', ['id'=>$id])}}">Discussion ({{count(Comment::where('achievement_id', $id)->get())}})</a>
+          <a href="{{route('achievement.discussion', ['url'=>$url])}}">Discussion ({{count($main->comments)}})</a>
     </li>
 
 </ul>

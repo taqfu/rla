@@ -24,30 +24,34 @@ Route::get('/', ['as'=>'home', function (){
     }
 }]);
 
-Route::get('/achievement/{id}/claims', ['as'=>'achievement.showClaims',
+Route::get('/achievement/{url}/claims', ['as'=>'achievement.showClaims',
   'uses'=>'AchievementController@showClaims']);
-Route::get('/achievement/{id}/discussion', ['as'=>'discussion',
+Route::get('/achievement/{url}/discussion', ['as'=>'achievement.discussion',
   'uses'=>'AchievementController@showDiscussion']);
-Route::get('/achievement/{id}/proofs', ['as'=>'achievement.showProofs',
+Route::get('/achievement/{url}/proofs', ['as'=>'achievement.showProofs',
   'uses'=>'AchievementController@showProofs']);
+
 Route::get('/changes', ['as'=>'changes', function(){
     return View('changes');
 }]);
+
 Route::get('/feedback', ['as'=>'feedback', function(){
     return View('feedback');
 }]);
+
 Route::get('/guidelines', ['as'=>'guidelines', function(){
     return View('guidelines');
 }]);
+
 Route::get('/inbox', ['as'=>'inbox', 'uses'=>'MessageController@showInbox']);
 Route::get('/outbox', ['as'=>'outbox', 'uses'=>'MessageController@showOutbox']);
-
 
 Route::get('/settings', ['as'=>'settings',
 'uses'=>'UserController@showSettings']);
 
 Route::get('/user/{username}', ['as'=>'user.show',
   'uses'=>'UserController@showProfile']);
+
 Route::get('/user/{id}/achievements/claimed',
   ['as'=>'user.achievements.claimed',
   'uses'=>'UserController@showAchievementsClaimed']);
@@ -63,6 +67,7 @@ Route::get('/user/{id}/achievements/goals',
 Route::get('/user/{id}/achievements/subscriptions',
   ['as'=>'user.achievements.subscriptions',
   'uses'=>'UserController@showAchievementsSubscriptions']);
+
 Route::get('/user/{id}/comments', ['as'=>'user.comments',
   'uses'=>'UserController@showComments']);
 Route::get('/user/{id}/message', ['as'=>'new_message',
