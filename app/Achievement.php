@@ -95,6 +95,47 @@ class Achievement extends Model
         }
         return Claim::where('achievement_id', $id)->whereNull('canceled_at')->where('user_id', Auth::user()->id)->first()->id;
     }
+    public static function fetch_sort($sort){
+        switch ($sort){
+            case "created_at asc":
+                $column="created_at";
+                $direction="asc";
+                break;
+            case "created_at desc":
+                $column="created_at";
+                $direction="desc";
+                break;
+            case "id asc":
+                $column="id";
+                $direction="asc";
+                break;
+            case "id desc":
+                $column="id";
+                $direction="desc";
+                break;
+            case "url asc":
+                $column="url";
+                $direction="asc";
+                break;
+            case "url desc":
+                $column="url";
+                $direction="desc";
+                break;
+            case "status asc":
+                $column="status";
+                $direction="asc";
+                break;
+            case "status desc":
+                $column="status";
+                $direction="desc";
+                break;
+            default:
+                $column="created_at";
+                $direction="desc";
+                break;
+        }
+        return ['column'=>$column, 'direction'=>$direction];
+    }
     public static function fetch_followers($id){
         $followers = array();
         $follows  = Follow :: where ('achievement_id', $id)->get();

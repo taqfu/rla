@@ -65,7 +65,7 @@ class UserController extends Controller
             "profile"=>$user,
         ]);
     }
-    public function showComments($id){
+    public function showComments($username){
         $user = User::where('username', $username)->first();
         return View('User.comments', [
           "profile"=>$user,

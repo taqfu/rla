@@ -1,6 +1,7 @@
 <?php
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
+//begin with query
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -29,43 +30,41 @@ class AchievementController extends Controller
     public function index(Request $request)
     {
         Proof::check();
-        $status = [];
-        $filter_captions =["denied", "approved", "pending", "inactive", "canceled"];
+        $status_arr_captions =["denied", "approved", "pending", "inactive", "canceled"];
         $filters = [
           "status"=>[$request->denied, $request->approved,  $request->pending,
             $request->inactive, $request->canceled],
-            "incomplete"=>$request->incomplete=="on",
-            "complete"=>$request->complete=="on",
-            "claimed"=>$request->claimed=="on",
-            "followed"=>$request->followed=="on"];
+          "incomplete"=>$request->incomplete=="on",
+          "complete"=>$request->complete=="on",
+          "claimed"=>$request->claimed=="on",
+          "followed"=>$request->followed=="on"];
         foreach ($filters["status"] as $key=>$val){
             if ($val=="on"){
                 $status[]=$key;
             }
         }
-
-        if ($request->sort!=null){
-           if (substr($request->sort, -3)=="asc"){
-               $sort_by = substr($request->sort, 0, strlen($request->sort)-4);
-               $order = "asc";
-            } else if (substr($request->sort, -4)=="desc"){
-               $sort_by = substr($request->sort, 0, strlen($request->sort)-5);
-               $order = "desc";
-            }
-        } else {
-            $sort_by = "score";
-            $order = "desc";
+        $sort_by = "score";
+        $order = "desc";
+        if ($request->sort!=null && substr($request->sort, -3)=="asc"){
+            $sort_by = substr($request->sort, 0, strlen($request->sort)-4);
+            $order = "asc";
+         } else if ($request->sort!=null && substr($request->sort, -4)=="desc"){
+            $sort_by = substr($request->sort, 0, strlen($request->sort)-5);
+        } 
+        switch($sort_by){
+            case "date": 
+                $sort_by="created_at";
+                break;
+            case "points":
+                $sort_by="score";
+                break;
         }
-        if ($sort_by=="date"){
-            $sort_by="created_at";
-        } else if ($sort_by=="points"){
-            $sort_by="score";
-        }
-        $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)->simplePaginate(25);
+        $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)
+          ->simplePaginate(25);
         $achievements->appends('sort', $request->input('sort'));
         foreach ($filters['status'] as $key=>$val){
             if ($val!=null){
-                $achievements->appends($filter_captions[$key], $val);
+                $achievements->appends($status_arr_captions[$key], $val);
             }
         }
         return View::make('Achievement.index', [
@@ -213,7 +212,7 @@ class AchievementController extends Controller
         }
     }
     public function showClaims(Request $request, $url){
-        $id = where('url', $url)->first()->id;
+        $id = Achievement::where('url', $url)->first()->id;
         $claims = Claim::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
         switch ($request->input('sort')){
             case "created_at asc":
@@ -288,7 +287,7 @@ class AchievementController extends Controller
         }
     }
     public function showDiscussion($url){
-        $id = where('url', $url)->first()->id;
+        $id = Achievement::where('url', $url)->first()->id;
         $main = Achievement::where('id', $id)->first();
         if (Auth::guest()){
             $following=0;
@@ -316,7 +315,7 @@ class AchievementController extends Controller
 
     }
     public function showProofs(Request $request, $url){
-        $id = where('url', $url)->first()->id;
+        $id = Achievement::where('url', $url)->first()->id;
         switch ($request->input('sort')){
             case "created_at asc":
                 $column="created_at";
