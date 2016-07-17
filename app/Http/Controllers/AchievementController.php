@@ -30,7 +30,6 @@ class AchievementController extends Controller
     public function index(Request $request)
     {
         Proof::check();
-        var_dump($request->sort);
         $status = [];
         $status_arr_captions =["denied", "approved", "pending", "inactive", "canceled"];
         $filters = [
@@ -183,107 +182,38 @@ class AchievementController extends Controller
         ]);
     }
     public function showDiscussion($url){
-        $id = Achievement::where('url', $url)->first()->id;
-        $main = Achievement::where('id', $id)->first();
-        if (Auth::guest()){
-            $following=0;
-            $user_claim = null;
-            $user_goal = null;
-            $user_proof = null;
-        } else if (Auth::user()){
-            $following=count(Follow::where('user_id', Auth::user()->id)
-              ->where('achievement_id', $id)
-              ->get())>0;
-            $user_claim = Claim::where('user_id', Auth::user()->id)
-              ->where('achievement_id', $id)->first();
-            $user_goal = Goal::where('user_id', Auth::user()->id)
-                  ->where('achievement_id', $id)->first();
-            $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
-              ->where('achievement_id', $id)->first();
+        $achievement = Achievement::where('url', $url)->first();
+        if ($achievement==NULL){
+            return View::make('Achievement.fail');
         }
+        $user_data = User::fetch_achievement_data($achievement->id);
         return View('Achievement.discussion', [
-            'main'=>$main,
-            "following"=>$following,
-            "user_claim"=>$user_claim,
-            "user_goal"=>$user_goal,
-            "user_proof"=>$user_proof,
+            'main'=>$achievement,
+            "following"=>$user_data['subscribed'],
+            "user_claim"=>$user_data['claim'],
+            "user_goal"=>$user_data['goal'],
+            "user_proof"=>$user_data['proof'],
         ]);
 
     }
     public function showProofs(Request $request, $url){
-        $id = Achievement::where('url', $url)->first()->id;
-        switch ($request->input('sort')){
-            case "created_at asc":
-                $column="created_at";
-                $direction="asc";
-                break;
-            case "created_at desc":
-                $column="created_at";
-                $direction="desc";
-                break;
-            case "id asc":
-                $column="id";
-                $direction="asc";
-                break;
-            case "id desc":
-                $column="id";
-                $direction="desc";
-                break;
-            case "url asc":
-                $column="url";
-                $direction="asc";
-                break;
-            case "url desc":
-                $column="url";
-                $direction="desc";
-                break;
-            case "status asc":
-                $column="status";
-                $direction="asc";
-                break;
-            case "status desc":
-                $column="status";
-                $direction="desc";
-                break;
-            default:
-                $column="created_at";
-                $direction="desc";
-                break;
-        }
-        $proofs = Proof::where('achievement_id', $id)->orderBy($column, $direction)->get();
-        if (Auth::guest()){
-            $following =0;
-            $user_claim = null;
-            $user_goal = null;
-            $user_proof = null;
-            $votes = null;
-        } else if (Auth::user()){
-            $following=count(Follow::where('user_id', Auth::user()->id)
-              ->where('achievement_id', $id)
-              ->get())>0;
-            $user_claim = Claim::where('user_id', Auth::user()->id)
-                  ->where('achievement_id', $id)->first();
-            $user_goal = Goal::where('user_id', Auth::user()->id)
-                  ->where('achievement_id', $id)->first();
-            $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
-                  ->where('achievement_id', $id)->first();
-            $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
-        }
-        $achievement =Achievement::where('id', $id)->first();
+        $achievement = Achievement::where('url', $url)->first();
         if ($achievement==NULL){
             return View::make('Achievement.fail');
-        } else if ($achievement!=NULL){
-            return View::make('Achievement.proofs', [
-                "main"=>$achievement,
-                "proofs"=>$proofs,
-                "votes"=>$votes,
-                "following"=>$following,
-                "sort"=>$request->input('sort'),
-                "user_goal"=>$user_goal,
-                "user_proof"=>$user_proof,
-                "user_claim"=>$user_claim,
-            ]);
         }
+        $sort = Proof::fetch_sort($request->input('sort'));
+        $proofs = Proof::where('achievement_id', $achievement->id)
+          ->orderBy($sort['column'], $sort['direction'])->get();
+        $user_data = User::fetch_achievement_data($achievement->id);
+        return View::make('Achievement.proofs', [
+            "main"=>$achievement,
+            "proofs"=>$proofs,
+            "sort"=>$request->input('sort'),
+            "following"=>$user_data['subscribed'],
+            "user_claim"=>$user_data['claim'],
+            "user_goal"=>$user_data['goal'],
+            "user_proof"=>$user_data['proof'],
+        ]);
     }
 
 

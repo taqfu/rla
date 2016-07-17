@@ -96,6 +96,40 @@ class Proof extends Model
     public function comments(){
         return $this->hasMany('\App\Comment');
     }
+    public static function fetch_sort($sort){
+        switch ($sort){
+            case "created_at asc":
+                $column="created_at";
+                $direction="asc";
+                break;
+            case "created_at desc":
+                $column="created_at";
+                $direction="desc";
+                break;
+            case "id asc":
+                $column="id";
+                $direction="asc";
+                break;
+            case "id desc":
+                $column="id";
+                $direction="desc";
+                break;
+            case "status asc":
+                $column="status";
+                $direction="asc";
+                break;
+            case "status desc":
+                $column="status";
+                $direction="desc";
+                break;
+            default:
+                $column="created_at";
+                $direction="desc";
+                break;
+        }
+        return ['column'=>$column, 'direction'=>$direction];
+
+    }
     public static function max_time_to_vote($id){
         $proof = Proof::where ("id", $id)->first();
         $begin = new DateTime($proof->created_at);
