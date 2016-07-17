@@ -11,6 +11,7 @@ use App\Follow;
 use App\Goal;
 use App\Proof;
 use App\Timeline;
+use App\User;
 use App\Vote;
 
 use Auth;
@@ -142,122 +143,44 @@ class AchievementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($url)
-    {
+    public function show($url){
         $achievement = Achievement::where("url", $url)->first();
         if ($achievement==null){
             return View::make('Achievement.fail');
         }
-        $id = $achievement->id;
-        if (Auth::guest()){
-            $following =0;
-            $votes = null;
-            $user_claim = null;
-            $user_goal = null;
-            $user_proof = null;
-        } else if (Auth::user()){
-            $user_claim = Claim::where('user_id', Auth::user()->id)->whereNull('canceled_at')
-              ->where('achievement_id', $id)->first();
-            $user_goal = Goal::where('user_id', Auth::user()->id)->whereNull('canceled_at')
-              ->where('achievement_id', $id)->first();
-            $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
-              ->where('achievement_id', $id)->first();
-            $following=count(Follow::where('user_id', Auth::user()->id)
-              ->where('achievement_id', $id)
-              ->get())>0;
-            $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
-        }
-        $achievement =Achievement::where('id', $id)->first();
-        $timeline = Timeline::where(function($query) use ($id){
-              $query->where('achievement_id', $id)->where('event', 'new claim');
-          })->orWhere(function($query) use ($id){
-              $query->where('achievement_id', $id)->where('event', 'new proof');
-          })->orWhere(function($query) use ($id){
-              $query->where('achievement_id', $id)->where('event', 'new goal');
-          })->orderBy('created_at', 'desc')->get();
+        $user_data = User::fetch_achievement_data($achievement->id);
+        $achievement_id = $achievement->id; // use function for timelines doesn't work with obj ref
         return View::make('Achievement.show', [
             "main"=>$achievement,
-            "timelines"=>$timeline,
-            "following"=>$following,
-            "user_proof"=>$user_proof,
-            "user_goal"=>$user_goal,
-            "user_claim"=>$user_claim,
+            "timelines"=>Timeline::where(function($query) use ($achievement_id){
+                  $query->where('achievement_id', $achievement_id)->where('event', 'new claim');
+              })->orWhere(function($query) use ($achievement_id){
+                  $query->where('achievement_id', $achievement_id)->where('event', 'new proof');
+              })->orWhere(function($query) use ($achievement_id){
+                  $query->where('achievement_id', $achievement_id)->where('event', 'new goal');
+              })->orderBy('created_at', 'desc')->get(),
+            "following"=>$user_data['subscribed'],
+            "user_claim"=>$user_data['claim'],
+            "user_goal"=>$user_data['goal'],
+            "user_proof"=>$user_data['proof'],
         ]);
     }
     public function showClaims(Request $request, $url){
-        $id = Achievement::where('url', $url)->first()->id;
-        $claims = Claim::where('achievement_id', $id)->orderBy('created_at', 'desc')->get();
-        switch ($request->input('sort')){
-            case "created_at asc":
-                $column="created_at";
-                $direction="asc";
-                break;
-            case "created_at desc":
-                $column="created_at";
-                $direction="desc";
-                break;
-            case "id asc":
-                $column="id";
-                $direction="asc";
-                break;
-            case "id desc":
-                $column="id";
-                $direction="desc";
-                break;
-            case "url asc":
-                $column="url";
-                $direction="asc";
-                break;
-            case "url desc":
-                $column="url";
-                $direction="desc";
-                break;
-            case "status asc":
-                $column="status";
-                $direction="asc";
-                break;
-            case "status desc":
-                $column="status";
-                $direction="desc";
-                break;
-            default:
-                $column="created_at";
-                $direction="desc";
-                break;
-        }
-        if (Auth::guest()){
-            $following =0;
-            $user_claim = null;
-            $user_goal = null;
-            $user_proof = null;
-            $votes = null;
-        } else if (Auth::user()){
-            $following=count(Follow::where('user_id', Auth::user()->id)
-              ->where('achievement_id', $id)
-              ->get())>0;
-            $user_goal = Goal::where('user_id', Auth::user()->id)
-                  ->where('achievement_id', $id)->first();
-            $user_claim = Claim::where('user_id', Auth::user()->id)
-                  ->where('achievement_id', $id)->first();
-            $user_proof = Proof::where('user_id', Auth::user()->id)->where('status', '1')
-                  ->where('achievement_id', $id)->first();
-            $votes = Vote::where('achievement_id', $id)->where('user_id', Auth::user()->id)->get();
-        }
-        $achievement =Achievement::where('id', $id)->first();
+        $achievement =Achievement::where('url', $url)->first();
         if ($achievement==NULL){
             return View::make('Achievement.fail');
-        } else if ($achievement!=NULL){
-            return View::make('Achievement.claims', [
-                "main"=>$achievement,
-                "claims"=>$claims,
-                "votes"=>$votes,
-                "following"=>$following,
-                "sort"=>$request->input('sort'),
-                "user_goal"=>$user_goal,
-                "user_proof"=>$user_proof,
-                "user_claim"=>$user_claim,
-            ]);
         }
+        $claims = Claim::where('achievement_id', $achievement->id)->orderBy('created_at', 'desc')
+          ->get();
+        $user_data = User::fetch_achievement_data($achievement->id);
+        return View::make('Achievement.claims', [
+            "main"=>$achievement,
+            "claims"=>$claims,
+            "following"=>$user_data['subscribed'],
+            "user_claim"=>$user_data['claim'],
+            "user_goal"=>$user_data['goal'],
+            "user_proof"=>$user_data['proof'],
+        ]);
     }
     public function showDiscussion($url){
         $id = Achievement::where('url', $url)->first()->id;
