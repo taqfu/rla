@@ -3,6 +3,7 @@
    page-header
    @endif
 ' role='form' >
+    <input type='hidden' name='sort' value='{{$sort}}' />
     <h4>
         Filter By
     </h4>

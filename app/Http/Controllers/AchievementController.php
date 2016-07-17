@@ -29,6 +29,8 @@ class AchievementController extends Controller
     public function index(Request $request)
     {
         Proof::check();
+        var_dump($request->sort);
+        $status = [];
         $status_arr_captions =["denied", "approved", "pending", "inactive", "canceled"];
         $filters = [
           "status"=>[$request->denied, $request->approved,  $request->pending,

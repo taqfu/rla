@@ -33,7 +33,12 @@
                 {!! $achievements->render() !!}
                 @else
                 <div class='lead'>
-                    All achievements have been filtered.
+                    <div>
+                        No achievements listed. 
+                    </div>
+                    <div><i>
+                        (All achievements have been filtered out.)
+                    </i></div>
                 </div>
                 @endif
             </div>
