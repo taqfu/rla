@@ -70,7 +70,8 @@
         <label for='all-filters' class='filter'>All
             <input id='all-filters' type='checkbox' class='checkbox-inline'
             @if ($filters['status'][0]=="on" && $filters['status'][1]=="on" && 
-              $filters['status'][2]=="on" && $filters['status'][3]=="on")
+              $filters['status'][2]=="on" && $filters['status'][3]=="on" 
+              && $filters['status'][4]=="on")
             checked
             @endif
             />
