@@ -73,13 +73,13 @@
   <loc>http://doitproveit.com/password/reset</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/15/proofs</loc>
+  <loc>http://doitproveit.com/achievement/sign-up-for-this-site/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/15/claims</loc>
+  <loc>http://doitproveit.com/achievement/sign-up-for-this-site/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/15/discussion</loc>
+  <loc>http://doitproveit.com/achievement/sign-up-for-this-site/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/VictorKruger</loc>
@@ -104,6 +104,9 @@
 </url>
 <url>
   <loc>http://doitproveit.com/proof/75</loc>
+</url>
+<url>
+  <loc>http://doitproveit.com/achievement/15/proofs</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/xosmel</loc>
@@ -146,6 +149,9 @@
 </url>
 <url>
   <loc>http://doitproveit.com/proof/68</loc>
+</url>
+<url>
+  <loc>http://doitproveit.com/achievement/15</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/Garrynomad</loc>
@@ -331,19 +337,22 @@
   <loc>http://doitproveit.com/user/68</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/17/proofs</loc>
+  <loc>http://doitproveit.com/achievement/learn-english/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/17/claims</loc>
+  <loc>http://doitproveit.com/achievement/learn-english/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/17/discussion</loc>
+  <loc>http://doitproveit.com/achievement/learn-english/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/mann138</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/73</loc>
+</url>
+<url>
+  <loc>http://doitproveit.com/achievement/17</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/67</loc>
@@ -358,13 +367,13 @@
   <loc>http://doitproveit.com/proof/38</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/4/proofs</loc>
+  <loc>http://doitproveit.com/achievement/working-out-for-five-months/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/4/claims</loc>
+  <loc>http://doitproveit.com/achievement/working-out-for-five-months/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/4/discussion</loc>
+  <loc>http://doitproveit.com/achievement/working-out-for-five-months/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/mnk9000</loc>
@@ -373,13 +382,13 @@
   <loc>http://doitproveit.com/proof/4</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/6/proofs</loc>
+  <loc>http://doitproveit.com/achievement/own-100+-games-on-steam/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/6/claims</loc>
+  <loc>http://doitproveit.com/achievement/own-100+-games-on-steam/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/6/discussion</loc>
+  <loc>http://doitproveit.com/achievement/own-100+-games-on-steam/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/62</loc>
@@ -403,13 +412,13 @@
   <loc>http://doitproveit.com/proof/10</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/21/proofs</loc>
+  <loc>http://doitproveit.com/achievement/play-a-game-for-over-2000-hours/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/21/claims</loc>
+  <loc>http://doitproveit.com/achievement/play-a-game-for-over-2000-hours/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/21/discussion</loc>
+  <loc>http://doitproveit.com/achievement/play-a-game-for-over-2000-hours/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/76</loc>
@@ -421,13 +430,13 @@
   <loc>http://doitproveit.com/proof/21</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/2/proofs</loc>
+  <loc>http://doitproveit.com/achievement/get-100-achievements-on-a-game/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/2/claims</loc>
+  <loc>http://doitproveit.com/achievement/get-100-achievements-on-a-game/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/2/discussion</loc>
+  <loc>http://doitproveit.com/achievement/get-100-achievements-on-a-game/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/57</loc>
@@ -439,13 +448,13 @@
   <loc>http://doitproveit.com/proof/2</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/7/proofs</loc>
+  <loc>http://doitproveit.com/achievement/own-200+-games-on-steam/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/7/claims</loc>
+  <loc>http://doitproveit.com/achievement/own-200+-games-on-steam/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/7/discussion</loc>
+  <loc>http://doitproveit.com/achievement/own-200+-games-on-steam/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/63</loc>
@@ -463,13 +472,13 @@
   <loc>http://doitproveit.com/proof/11</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/1/proofs</loc>
+  <loc>http://doitproveit.com/achievement/create-my-own-web-app/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/1/claims</loc>
+  <loc>http://doitproveit.com/achievement/create-my-own-web-app/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/1/discussion</loc>
+  <loc>http://doitproveit.com/achievement/create-my-own-web-app/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/82</loc>
@@ -499,13 +508,13 @@
   <loc>http://doitproveit.com/user/testuser</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/65/proofs</loc>
+  <loc>http://doitproveit.com/achievement/complete-master-s-degree/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/65/claims</loc>
+  <loc>http://doitproveit.com/achievement/complete-master-s-degree/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/65/discussion</loc>
+  <loc>http://doitproveit.com/achievement/complete-master-s-degree/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/gaidheal</loc>
@@ -514,13 +523,13 @@
   <loc>http://doitproveit.com/proof/85</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/14/proofs</loc>
+  <loc>http://doitproveit.com/achievement/gain-100-followers-in-twitter/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/14/claims</loc>
+  <loc>http://doitproveit.com/achievement/gain-100-followers-in-twitter/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/14/discussion</loc>
+  <loc>http://doitproveit.com/achievement/gain-100-followers-in-twitter/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/66</loc>
@@ -535,37 +544,37 @@
   <loc>http://doitproveit.com/proof/17</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/46/proofs</loc>
+  <loc>http://doitproveit.com/achievement/integrate-bootstrap-into-your-website/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/46/claims</loc>
+  <loc>http://doitproveit.com/achievement/integrate-bootstrap-into-your-website/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/46/discussion</loc>
+  <loc>http://doitproveit.com/achievement/integrate-bootstrap-into-your-website/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/46</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/49/proofs</loc>
+  <loc>http://doitproveit.com/achievement/lose-at-least-5-pounds/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/49/claims</loc>
+  <loc>http://doitproveit.com/achievement/lose-at-least-5-pounds/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/49/discussion</loc>
+  <loc>http://doitproveit.com/achievement/lose-at-least-5-pounds/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/79</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/3/proofs</loc>
+  <loc>http://doitproveit.com/achievement/own-300+-games-on-steam/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/3/claims</loc>
+  <loc>http://doitproveit.com/achievement/own-300+-games-on-steam/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/3/discussion</loc>
+  <loc>http://doitproveit.com/achievement/own-300+-games-on-steam/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/64</loc>
@@ -580,13 +589,13 @@
   <loc>http://doitproveit.com/proof/3</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/8/proofs</loc>
+  <loc>http://doitproveit.com/achievement/become-a-mermaid/proofs</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/8/claims</loc>
+  <loc>http://doitproveit.com/achievement/become-a-mermaid/claims</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/8/discussion</loc>
+  <loc>http://doitproveit.com/achievement/become-a-mermaid/discussion</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/Soxie101</loc>
@@ -595,52 +604,52 @@
   <loc>http://doitproveit.com/proof/12</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/15/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/sign-up-for-this-site/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/15/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/sign-up-for-this-site/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/15/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/sign-up-for-this-site/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/15/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/sign-up-for-this-site/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/29/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/VictorKruger/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/29/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/VictorKruger/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/29/achievements/created</loc>
+  <loc>http://doitproveit.com/user/VictorKruger/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/29/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/VictorKruger/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/29/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/VictorKruger/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/29/comments</loc>
+  <loc>http://doitproveit.com/user/VictorKruger/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/1/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/taqfu/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/1/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/taqfu/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/1/achievements/created</loc>
+  <loc>http://doitproveit.com/user/taqfu/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/1/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/taqfu/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/1/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/taqfu/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/1/comments</loc>
+  <loc>http://doitproveit.com/user/taqfu/comments</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/proof/14</loc>
@@ -655,559 +664,559 @@
   <loc>http://doitproveit.com/proof/15</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/137/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/HelenMCurry/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/137/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/HelenMCurry/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/137/achievements/created</loc>
+  <loc>http://doitproveit.com/user/HelenMCurry/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/137/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/HelenMCurry/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/137/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/HelenMCurry/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/137/comments</loc>
+  <loc>http://doitproveit.com/user/HelenMCurry/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/134/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/abrig/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/134/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/abrig/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/134/achievements/created</loc>
+  <loc>http://doitproveit.com/user/abrig/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/134/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/abrig/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/134/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/abrig/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/134/comments</loc>
+  <loc>http://doitproveit.com/user/abrig/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/132/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/xosmel/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/132/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/xosmel/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/132/achievements/created</loc>
+  <loc>http://doitproveit.com/user/xosmel/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/132/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/xosmel/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/132/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/xosmel/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/132/comments</loc>
+  <loc>http://doitproveit.com/user/xosmel/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/130/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/Goldiie/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/130/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/Goldiie/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/130/achievements/created</loc>
+  <loc>http://doitproveit.com/user/Goldiie/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/130/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/Goldiie/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/130/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/Goldiie/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/130/comments</loc>
+  <loc>http://doitproveit.com/user/Goldiie/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/129/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/dkrieger/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/129/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/dkrieger/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/129/achievements/created</loc>
+  <loc>http://doitproveit.com/user/dkrieger/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/129/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/dkrieger/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/129/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/dkrieger/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/129/comments</loc>
+  <loc>http://doitproveit.com/user/dkrieger/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/128/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/Elissis/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/128/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/Elissis/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/128/achievements/created</loc>
+  <loc>http://doitproveit.com/user/Elissis/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/128/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/Elissis/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/128/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/Elissis/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/128/comments</loc>
+  <loc>http://doitproveit.com/user/Elissis/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/125/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/salamenceftw/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/125/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/salamenceftw/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/125/achievements/created</loc>
+  <loc>http://doitproveit.com/user/salamenceftw/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/125/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/salamenceftw/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/125/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/salamenceftw/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/125/comments</loc>
+  <loc>http://doitproveit.com/user/salamenceftw/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/124/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/Garrynomad/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/124/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/Garrynomad/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/124/achievements/created</loc>
+  <loc>http://doitproveit.com/user/Garrynomad/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/124/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/Garrynomad/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/124/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/Garrynomad/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/124/comments</loc>
+  <loc>http://doitproveit.com/user/Garrynomad/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/123/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/onitek/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/123/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/onitek/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/123/achievements/created</loc>
+  <loc>http://doitproveit.com/user/onitek/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/123/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/onitek/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/123/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/onitek/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/123/comments</loc>
+  <loc>http://doitproveit.com/user/onitek/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/122/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/dreat/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/122/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/dreat/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/122/achievements/created</loc>
+  <loc>http://doitproveit.com/user/dreat/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/122/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/dreat/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/122/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/dreat/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/122/comments</loc>
+  <loc>http://doitproveit.com/user/dreat/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/120/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/Utikeev/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/120/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/Utikeev/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/120/achievements/created</loc>
+  <loc>http://doitproveit.com/user/Utikeev/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/120/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/Utikeev/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/120/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/Utikeev/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/120/comments</loc>
+  <loc>http://doitproveit.com/user/Utikeev/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/23/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/T3chnopsycho/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/23/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/T3chnopsycho/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/23/achievements/created</loc>
+  <loc>http://doitproveit.com/user/T3chnopsycho/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/23/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/T3chnopsycho/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/23/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/T3chnopsycho/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/23/comments</loc>
+  <loc>http://doitproveit.com/user/T3chnopsycho/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/118/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/Soaphieee/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/118/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/Soaphieee/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/118/achievements/created</loc>
+  <loc>http://doitproveit.com/user/Soaphieee/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/118/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/Soaphieee/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/118/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/Soaphieee/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/118/comments</loc>
+  <loc>http://doitproveit.com/user/Soaphieee/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/116/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/NosyAdventurer/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/116/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/NosyAdventurer/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/116/achievements/created</loc>
+  <loc>http://doitproveit.com/user/NosyAdventurer/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/116/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/NosyAdventurer/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/116/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/NosyAdventurer/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/116/comments</loc>
+  <loc>http://doitproveit.com/user/NosyAdventurer/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/109/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/kendally/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/109/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/kendally/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/109/achievements/created</loc>
+  <loc>http://doitproveit.com/user/kendally/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/109/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/kendally/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/109/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/kendally/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/109/comments</loc>
+  <loc>http://doitproveit.com/user/kendally/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/108/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/pdxchiro/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/108/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/pdxchiro/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/108/achievements/created</loc>
+  <loc>http://doitproveit.com/user/pdxchiro/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/108/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/pdxchiro/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/108/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/pdxchiro/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/108/comments</loc>
+  <loc>http://doitproveit.com/user/pdxchiro/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/105/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/partialrecall/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/105/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/partialrecall/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/105/achievements/created</loc>
+  <loc>http://doitproveit.com/user/partialrecall/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/105/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/partialrecall/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/105/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/partialrecall/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/105/comments</loc>
+  <loc>http://doitproveit.com/user/partialrecall/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/103/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/mihomis/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/103/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/mihomis/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/103/achievements/created</loc>
+  <loc>http://doitproveit.com/user/mihomis/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/103/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/mihomis/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/103/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/mihomis/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/103/comments</loc>
+  <loc>http://doitproveit.com/user/mihomis/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/95/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/aerynk/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/95/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/aerynk/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/95/achievements/created</loc>
+  <loc>http://doitproveit.com/user/aerynk/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/95/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/aerynk/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/95/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/aerynk/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/95/comments</loc>
+  <loc>http://doitproveit.com/user/aerynk/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/93/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/silentmatt/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/93/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/silentmatt/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/93/achievements/created</loc>
+  <loc>http://doitproveit.com/user/silentmatt/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/93/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/silentmatt/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/93/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/silentmatt/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/93/comments</loc>
+  <loc>http://doitproveit.com/user/silentmatt/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/90/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/oliviabaker/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/90/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/oliviabaker/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/90/achievements/created</loc>
+  <loc>http://doitproveit.com/user/oliviabaker/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/90/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/oliviabaker/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/90/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/oliviabaker/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/90/comments</loc>
+  <loc>http://doitproveit.com/user/oliviabaker/comments</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/Lulu</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/87/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/luzifer/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/87/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/luzifer/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/87/achievements/created</loc>
+  <loc>http://doitproveit.com/user/luzifer/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/87/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/luzifer/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/87/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/luzifer/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/87/comments</loc>
+  <loc>http://doitproveit.com/user/luzifer/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/84/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/erikgahner/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/84/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/erikgahner/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/84/achievements/created</loc>
+  <loc>http://doitproveit.com/user/erikgahner/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/84/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/erikgahner/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/84/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/erikgahner/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/84/comments</loc>
+  <loc>http://doitproveit.com/user/erikgahner/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/82/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/kushboy/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/82/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/kushboy/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/82/achievements/created</loc>
+  <loc>http://doitproveit.com/user/kushboy/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/82/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/kushboy/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/82/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/kushboy/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/82/comments</loc>
+  <loc>http://doitproveit.com/user/kushboy/comments</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/Crasher</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/81/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/qap/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/81/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/qap/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/81/achievements/created</loc>
+  <loc>http://doitproveit.com/user/qap/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/81/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/qap/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/81/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/qap/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/81/comments</loc>
+  <loc>http://doitproveit.com/user/qap/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/78/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/natalie/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/78/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/natalie/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/78/achievements/created</loc>
+  <loc>http://doitproveit.com/user/natalie/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/78/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/natalie/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/78/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/natalie/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/78/comments</loc>
+  <loc>http://doitproveit.com/user/natalie/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/68/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/kaonashi/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/68/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/kaonashi/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/68/achievements/created</loc>
+  <loc>http://doitproveit.com/user/kaonashi/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/68/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/kaonashi/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/68/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/kaonashi/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/68/comments</loc>
+  <loc>http://doitproveit.com/user/kaonashi/comments</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/nalafish</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/17/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/learn-english/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/17/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/learn-english/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/17/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/learn-english/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/17/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/learn-english/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/38/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/mann138/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/38/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/mann138/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/38/achievements/created</loc>
+  <loc>http://doitproveit.com/user/mann138/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/38/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/mann138/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/38/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/mann138/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/38/comments</loc>
+  <loc>http://doitproveit.com/user/mann138/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/4/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/working-out-for-five-months/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/4/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/working-out-for-five-months/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/4/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/working-out-for-five-months/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/4/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/working-out-for-five-months/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/10/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/mnk9000/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/10/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/mnk9000/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/10/achievements/created</loc>
+  <loc>http://doitproveit.com/user/mnk9000/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/10/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/mnk9000/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/10/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/mnk9000/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/10/comments</loc>
+  <loc>http://doitproveit.com/user/mnk9000/comments</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/grace</loc>
@@ -1219,181 +1228,181 @@
   <loc>http://doitproveit.com/user/nick</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/6/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/own-100+-games-on-steam/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/6/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/own-100+-games-on-steam/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/6/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/own-100+-games-on-steam/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/6/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/own-100+-games-on-steam/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/65/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/Dragonslayer182/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/65/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/Dragonslayer182/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/65/achievements/created</loc>
+  <loc>http://doitproveit.com/user/Dragonslayer182/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/65/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/Dragonslayer182/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/65/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/Dragonslayer182/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/65/comments</loc>
+  <loc>http://doitproveit.com/user/Dragonslayer182/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/21/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/play-a-game-for-over-2000-hours/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/21/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/play-a-game-for-over-2000-hours/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/21/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/play-a-game-for-over-2000-hours/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/21/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/play-a-game-for-over-2000-hours/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/2/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/get-100-achievements-on-a-game/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/2/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/get-100-achievements-on-a-game/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/2/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/get-100-achievements-on-a-game/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/2/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/get-100-achievements-on-a-game/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/7/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/own-200+-games-on-steam/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/7/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/own-200+-games-on-steam/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/7/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/own-200+-games-on-steam/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/7/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/own-200+-games-on-steam/proofs?sort=status+asc</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/renv</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/1/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/create-my-own-web-app/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/1/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/create-my-own-web-app/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/1/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/create-my-own-web-app/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/1/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/create-my-own-web-app/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/7/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/guest/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/7/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/guest/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/7/achievements/created</loc>
+  <loc>http://doitproveit.com/user/guest/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/7/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/guest/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/7/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/guest/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/7/comments</loc>
+  <loc>http://doitproveit.com/user/guest/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/2/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/taqfu2/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/2/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/taqfu2/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/2/achievements/created</loc>
+  <loc>http://doitproveit.com/user/taqfu2/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/2/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/taqfu2/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/2/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/taqfu2/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/2/comments</loc>
+  <loc>http://doitproveit.com/user/taqfu2/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/59/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/testuser/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/59/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/testuser/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/59/achievements/created</loc>
+  <loc>http://doitproveit.com/user/testuser/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/59/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/testuser/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/59/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/testuser/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/59/comments</loc>
+  <loc>http://doitproveit.com/user/testuser/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/65/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/complete-master-s-degree/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/65/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/complete-master-s-degree/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/65/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/complete-master-s-degree/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/65/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/complete-master-s-degree/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/138/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/gaidheal/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/138/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/gaidheal/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/138/achievements/created</loc>
+  <loc>http://doitproveit.com/user/gaidheal/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/138/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/gaidheal/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/138/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/gaidheal/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/138/comments</loc>
+  <loc>http://doitproveit.com/user/gaidheal/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/14/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/gain-100-followers-in-twitter/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/14/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/gain-100-followers-in-twitter/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/14/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/gain-100-followers-in-twitter/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/14/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/gain-100-followers-in-twitter/proofs?sort=status+asc</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/user/Sinnaj63</loc>
@@ -1408,82 +1417,82 @@
   <loc>http://doitproveit.com/user/rexx92</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/46/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/integrate-bootstrap-into-your-website/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/46/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/integrate-bootstrap-into-your-website/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/46/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/integrate-bootstrap-into-your-website/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/46/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/integrate-bootstrap-into-your-website/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/49/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/lose-at-least-5-pounds/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/49/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/lose-at-least-5-pounds/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/49/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/lose-at-least-5-pounds/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/49/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/lose-at-least-5-pounds/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/3/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/own-300+-games-on-steam/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/3/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/own-300+-games-on-steam/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/3/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/own-300+-games-on-steam/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/3/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/own-300+-games-on-steam/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/8/proofs?sort=created_at+desc</loc>
+  <loc>http://doitproveit.com/achievement/become-a-mermaid/proofs?sort=created_at+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/8/proofs?sort=id+asc</loc>
+  <loc>http://doitproveit.com/achievement/become-a-mermaid/proofs?sort=id+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/8/proofs?sort=url+asc</loc>
+  <loc>http://doitproveit.com/achievement/become-a-mermaid/proofs?sort=url+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/8/proofs?sort=status+asc</loc>
+  <loc>http://doitproveit.com/achievement/become-a-mermaid/proofs?sort=status+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/24/achievements/completed</loc>
+  <loc>http://doitproveit.com/user/Soxie101/achievements/completed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/24/achievements/claimed</loc>
+  <loc>http://doitproveit.com/user/Soxie101/achievements/claimed</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/24/achievements/created</loc>
+  <loc>http://doitproveit.com/user/Soxie101/achievements/created</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/24/achievements/goals</loc>
+  <loc>http://doitproveit.com/user/Soxie101/achievements/goals</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/24/achievements/subscriptions</loc>
+  <loc>http://doitproveit.com/user/Soxie101/achievements/subscriptions</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/user/24/comments</loc>
+  <loc>http://doitproveit.com/user/Soxie101/comments</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/15/proofs?sort=created_at+asc</loc>
+  <loc>http://doitproveit.com/achievement/sign-up-for-this-site/proofs?sort=created_at+asc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/15/proofs?sort=id+desc</loc>
+  <loc>http://doitproveit.com/achievement/sign-up-for-this-site/proofs?sort=id+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/15/proofs?sort=url+desc</loc>
+  <loc>http://doitproveit.com/achievement/sign-up-for-this-site/proofs?sort=url+desc</loc>
 </url>
 <url>
-  <loc>http://doitproveit.com/achievement/15/proofs?sort=status+desc</loc>
+  <loc>http://doitproveit.com/achievement/sign-up-for-this-site/proofs?sort=status+desc</loc>
 </url>
 <url>
   <loc>http://doitproveit.com/achievement/create-a-video-game-prototype</loc>
@@ -1496,14 +1505,5 @@
 </url>
 <url>
   <loc>http://doitproveit.com/achievement/lose-your-virginity</loc>
-</url>
-<url>
-  <loc>http://doitproveit.com/user/grish</loc>
-</url>
-<url>
-  <loc>http://doitproveit.com/achievement/try-out-high-school</loc>
-</url>
-<url>
-  <loc>http://doitproveit.com/user/tvonncav</loc>
 </url>
 </urlset>
