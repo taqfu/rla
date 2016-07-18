@@ -33,15 +33,20 @@ class AchievementController extends Controller
         $status = [];
         $status_arr_captions =["denied", "approved", "pending", "inactive", "canceled"];
         $filters = [
-          "status"=>[$request->denied, $request->approved,  $request->pending,
-            $request->inactive, $request->canceled],
+          "status"=>['denied'=>$request->denied=="on", 'approved'=>$request->approved=="on", 
+            'pending'=> $request->pending=="on", 'inactive'=>$request->inactive=="on", 
+            'canceled'=>$request->canceled=="on"],
           "incomplete"=>$request->incomplete=="on",
           "complete"=>$request->complete=="on",
           "claimed"=>$request->claimed=="on",
           "followed"=>$request->followed=="on"];
+
+        $request->session()->put('filters', $filters);
+        $request->session()->put('sort', $request->sort);
+
         foreach ($filters["status"] as $key=>$val){
-            if ($val=="on"){
-                $status[]=$key;
+            if ($val){
+                $status[]=array_search($key, $status_arr_captions);
             }
         }
         $sort_by = "score";
@@ -64,8 +69,8 @@ class AchievementController extends Controller
           ->simplePaginate(25);
         $achievements->appends('sort', $request->input('sort'));
         foreach ($filters['status'] as $key=>$val){
-            if ($val!=null){
-                $achievements->appends($status_arr_captions[$key], $val);
+            if ($val){
+                $achievements->appends($key, 'on');
             }
         }
         return View::make('Achievement.index', [

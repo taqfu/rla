@@ -265,6 +265,21 @@ class Achievement extends Model
         } 
         return Proof::passing_approval($pending_proof->id);
     }
+    public static function process_filters($filters){
+        $string = "";
+        foreach($filters['status'] as $name=>$val){
+            if ($val){
+                $string = $string . "&$name=on";
+            }
+        }
+        foreach($filters as $name=>$val){
+            if ($name!='status' && $val===true){
+                $string = $string . "&$name=on";
+            }
+        }
+        return $string;
+    }
+    
     public function proofs(){
         return $this->hasMany("\App\Proof");
     }

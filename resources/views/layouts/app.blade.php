@@ -2,6 +2,14 @@
     use App\Achievement;
     use App\Goal;
     use App\User;
+    $filters = (session('filters')==null) 
+      ? Config::get('rla.default_filter')
+      : Achievement::process_filters(session('filters'));
+
+    if (session('sort')!=null){
+        $sort_arr = explode (" ", session('sort'));
+        $filters = $filters . "&sort=" . $sort_arr[0] . "+" . $sort_arr[1];
+    }
     if ($_SERVER['SERVER_NAME']=='taqfu.com'){
         $root_url = "http://taqfu.com/dev-env/rla/public";
     } else if ($_SERVER['SERVER_NAME']=='doitproveit.com' || $_SERVER['SERVER_NAME']=='www.doitproveit.com'){
@@ -67,7 +75,7 @@
             <div class='collapse navbar-collapse' id='myNavbar'>
                 <ul class='nav navbar-nav text-right'>
                     <li>
-                        <a href="{{route('achievement.index', Config::get('rla.default_filter'))}}">
+                        <a href="{{route('achievement.index', $filters)}}">
                             Achievements
                         </a>
                     </li>

@@ -17,7 +17,7 @@
                 (?)
             </span>
             <input id='approved' type='checkbox'  name='approved' class='filter checkbox-inline' 
-              @if($filters['status'][1]=="on")
+              @if($filters['status']['approved'])
                   checked
               @endif
             />
@@ -29,7 +29,7 @@
                 (?)
             </span>
             <input id='denied' type='checkbox' name='denied' class='filter checkbox-inline' 
-              @if($filters['status'][0]=="on")
+              @if($filters['status']['denied'])
                   checked
               @endif
             />
@@ -40,7 +40,7 @@
                 (?)
             </span>
             <input id='pending' type='checkbox' name='pending' class='filter checkbox-inline'
-              @if($filters['status'][2]=="on")
+              @if($filters['status']['pending'])
                   checked
               @endif
             />
@@ -51,7 +51,7 @@
                 (?)
             </span>
             <input id='inactive' type='checkbox' name='inactive' class='filter checkbox-inline'
-              @if($filters['status'][3]=="on")
+              @if($filters['status']['inactive'])
                   checked
               @endif
             />
@@ -62,16 +62,16 @@
                 (?)
             </span>
             <input id='canceled' type='checkbox' name='canceled' class='filter checkbox-inline'
-              @if($filters['status'][4]=="on")
+              @if($filters['status']['canceled'])
                   checked
               @endif
             />
         </label>
         <label for='all-filters' class='filter'>All
             <input id='all-filters' type='checkbox' class='checkbox-inline'
-            @if ($filters['status'][0]=="on" && $filters['status'][1]=="on" && 
-              $filters['status'][2]=="on" && $filters['status'][3]=="on" 
-              && $filters['status'][4]=="on")
+            @if ($filters['status']['approved'] && $filters['status']['denied'] && 
+              $filters['status']['pending'] && $filters['status']['inactive'] 
+              && $filters['status']['canceled'])
             checked
             @endif
             />
