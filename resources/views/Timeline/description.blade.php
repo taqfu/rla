@@ -18,9 +18,13 @@ use App\User;
         @endif
           submitted a <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">new proof</a> for
         @if ($timeline_item->proof->achievement->user_id!=Auth::user()->id)
-            an achievement.
+            an 
         @else
-            your achievement.
+            your
+        @endif
+        achievement
+        @if ($timeline_item->proof->status==4)
+            then  cancelled it.
         @endif
         </p>
         <p>
@@ -144,7 +148,20 @@ use App\User;
 @elseif ($timeline_item->event=="new goal")
     <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
     <div>
-        You added a new achievement to your bucket list.
+        @if ($timeline_item->user_id == Auth::user()->id)
+        You
+        @else
+        <a href="{{route('user.show', ['username'=>$timeline_item->goal->user->username])}}">
+            {{$timeline_item->goal->user->username}}
+        </a>
+        @endif
+        added a new achievement to 
+        @if ($timeline_item->user_id==Auth::user()->id)
+        your
+        @else
+        their
+        @endif
+        bucket list.
     </div>
     <div>
         (<a href="{{route('achievement.show', ['url'=>$timeline_item->achievement->url])}}">

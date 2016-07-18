@@ -16,9 +16,7 @@
 @endsection
 @section('content')
 @if (Auth::user())
-<!--
     @include ('Follow.create')
--->
     @if ($user_goal==null)
     @include('Goal.create', ['id'=>$main->id])
     @else

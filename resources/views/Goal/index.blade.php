@@ -17,6 +17,7 @@
 @forelse($goals as $goal)
     <div class='margin-left'>
         @include ('Goal.destroy', ['goal'=>$goal, "extra"=>false])
+        {{$goal->rank}})
         <a href="{{route('achievement.show', ['url'=>$goal->achievement->url])}}">
             {{$goal->achievement->name}}
         </a>

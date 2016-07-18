@@ -14,13 +14,10 @@ Route::auth();
 
 Route::get('/', ['as'=>'home', function (){
     if (Auth::guest()){
-        return redirect(route('achievement.index',['approved'=>'on',
+       return redirect(route('achievement.index',['approved'=>'on',
           'pending'=>'on']));
     } else if (Auth::user()){
-        return View('Timeline.index', [
-            "timeline_items"=>Timeline::where('user_id', Auth::user()->id)
-              ->orderBy('created_at', 'desc')->get(),
-        ]);
+       return redirect(route('timeline.index')); 
     }
 }]);
 

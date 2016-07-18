@@ -18,6 +18,11 @@ class GoalController extends Controller
      */
     public function index()
     {
+        $rank=1;
+        foreach(Goal::where('user_id', 1)->get() as $goal){
+            $goal->rank=$rank++;
+            $goal->save();
+        }
         if (Auth::guest()){
             return View('Goal.fail');
         } else if (Auth::user()){

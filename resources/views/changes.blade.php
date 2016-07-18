@@ -10,6 +10,9 @@
     <li>
         Achievement listing is now more persistent with filtering and sorting. So if you change the listings filter and sort, then go to a profile and come back, it will still be the same sort and filter.
     </li>
+    <li>
+        Subscriptions are now visible on the timeline homepage.
+    </li>
 </ul>
 <h4>07/14/16</h4>
 <ul>

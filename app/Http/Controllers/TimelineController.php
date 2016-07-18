@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\Follow;
 use App\Timeline;
+use Auth;
 
 use View;
 
@@ -19,7 +20,15 @@ class TimelineController extends Controller
      */
     public function index()
     {
-        //
+        $subscribed_achievements=[];
+        foreach (Follow::where('user_id', Auth::user()->id)->get() as $follow){
+            $subscribed_achievements[]=$follow->achievement_id;
+        }
+        return View('Timeline.index', [
+            "timeline_items"=>Timeline::orWhere('user_id', Auth::user()->id)
+              ->orWhereIn('achievement_id', $subscribed_achievements)
+              ->orderBy('created_at', 'desc')->get(),
+        ]);
     }
 
     /**
