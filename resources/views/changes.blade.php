@@ -5,6 +5,12 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
+<h4>07/18/16</h4>
+<ul>
+    <li>
+        Achievement listing is now more persistent with filtering and sorting. So if you change the listings filter and sort, then go to a profile and come back, it will still be the same sort and filter.
+    </li>
+</ul>
 <h4>07/14/16</h4>
 <ul>
     <li>
