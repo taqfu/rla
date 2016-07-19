@@ -3,6 +3,26 @@ $(document.body).ready(function () {
     var searchAndCreateAchievementTimer;
     var doneTypingInterval=100;
     var searchAndCreateInputTextCaption = "Create or search here.";
+    var oldRank;
+    var newRank;
+
+    $(document).on('dragstart', '.bucket-list-item', function(event){
+        oldRank = event.target.id.substr(16);
+        this.style.opacity='.5';
+        
+    });
+    $(document).on('dragleave', '.bucket-list-item', function(event){
+    });
+    $(document).on('dragend', '.bucket-list-item', function(event){
+        moveRank(oldRank, newRank);
+        oldRank=null;
+        newRank=null;
+    });
+    $(document).on('dragenter', 'div.bucket-list-item', function(event){
+        if (event.target.id.length>0){ // to prevent blank classes
+            newRank = event.target.id.substr(16);
+        }
+    });
     $(document).on('submit', 'form.create-proof', function(event){
         if ($('#create-proof-url').val().substring(0, 7)!="http://"){
             $('#create-proof-url').val("http://" + $("#create-proof-url").val());
@@ -107,6 +127,21 @@ function doneTyping(){
     })  
         .done(function (result){
             $("#achievement-results").html(result);
+        }); 
+}
+function moveRank(oldRank, newRank){
+    console.log(oldRank, newRank);
+    var siteRoot =  window.location.hostname=="taqfu.com" ? "/dev-env/rla/public" : "";
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },  
+        method: "POST",
+        url: siteRoot + "/goal/rank/" + oldRank + "/to/" + newRank,
+        data:{oldRank:oldRank, newRank:newRank}
+    })  
+        .done(function (result){
+            $("#bucket-list").html(result);
         }); 
 }
 function submitVote(proofID, voteFor){

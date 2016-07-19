@@ -54,6 +54,12 @@ tr.approved-achievement a.achievement-link{
 .bucket-list{
     font-weight:bold;
 }
+.bucket-list-item{
+    cursor:move;
+}
+.bucket-list-item.over{
+    border:black 1px solid;
+}
 tr.completed-achievement a.achievement-link{
     font-weight:bold;
 }

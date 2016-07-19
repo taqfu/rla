@@ -93,6 +93,7 @@ class ProofController extends Controller
 
         $timeline = new Timeline;
         $timeline->user_id = $proof->user_id;
+        $timeline->achievement_id=$proof->achievement_id;
         $timeline->proof_id = $proof->id;
         $timeline->event = "new proof";
         $timeline->save();

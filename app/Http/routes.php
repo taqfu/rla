@@ -36,6 +36,9 @@ Route::get('/feedback', ['as'=>'feedback', function(){
     return View('feedback');
 }]);
 
+Route::post('/goal/rank/{old_rank}/to/{new_rank}', 
+  ['as'=>'changeRank', 'uses'=>'GoalController@changeRank']);
+
 Route::get('/guidelines', ['as'=>'guidelines', function(){
     return View('guidelines');
 }]);

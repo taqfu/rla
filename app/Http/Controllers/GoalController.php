@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Goal;
 use App\Timeline;
 use Auth;
+use View;
 class GoalController extends Controller
 {
     /**
@@ -18,16 +19,19 @@ class GoalController extends Controller
      */
     public function index()
     {
-        $rank=1;
-        foreach(Goal::where('user_id', 1)->get() as $goal){
-            $goal->rank=$rank++;
-            $goal->save();
+        $rerank=0;
+        if ($rerank){
+            $rank=1;
+            foreach(Goal::where('user_id', 1)->get() as $goal){
+                $goal->rank=$rank++;
+                $goal->save();
+            }
         }
         if (Auth::guest()){
             return View('Goal.fail');
         } else if (Auth::user()){
             return View('Goal.index', [
-                'goals'=>Goal::where('user_id', Auth::user()->id)->get(),
+                'goals'=>Goal::where('user_id', Auth::user()->id)->orderBy('rank', 'asc')->get(),
             ]);
         }
     }
@@ -120,4 +124,23 @@ class GoalController extends Controller
         $goal->save();
         return back();
     }
+
+    public function changeRank($old_rank, $new_rank){
+        $start = $old_rank > $new_rank 
+          ? $new_rank
+          : $old_rank;
+        $end = $old_rank == $start 
+          ? $new_rank 
+          : $old_rank;
+        $goal = Goal::where('rank', $old_rank)->first();
+        $goal->rank = $new_rank;
+        $goal->save();
+        foreach (Goal::where('id', '!=', $goal->id)->where('rank', '>=', $start)
+          ->where('rank', '<=', $end)->orderBy('rank','asc')->get() as $goal){
+            $goal->rank--;
+            $goal->save();
+        }
+       
+    }
+
 }
