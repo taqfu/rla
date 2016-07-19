@@ -10,6 +10,9 @@
     <li>
         Fixed a bug where new proofs weren't being properly displayed.
     </li>
+    <li>
+        Bucket list can now be sorted.
+    </li>
 </ul>
 <h4>07/18/16</h4>
 <ul>

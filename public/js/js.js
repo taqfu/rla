@@ -12,13 +12,16 @@ $(document.body).ready(function () {
         
     });
     $(document).on('dragleave', '.bucket-list-item', function(event){
+        this.style.border="lightgrey 1px solid";
     });
     $(document).on('dragend', '.bucket-list-item', function(event){
+        this.style.opacity='1';
         moveRank(oldRank, newRank);
         oldRank=null;
         newRank=null;
     });
     $(document).on('dragenter', 'div.bucket-list-item', function(event){
+        this.style.border="black 1px solid";
         if (event.target.id.length>0){ // to prevent blank classes
             newRank = event.target.id.substr(16);
         }

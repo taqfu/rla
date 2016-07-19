@@ -83,7 +83,7 @@
                         <a href="{{route('goal.index')}}">
                             Bucket List
                             @if (Auth::user())
-                            ({{count(Goal::where('user_id', Auth::user()->id)->get())}})
+                            ({{count(Goal::where('user_id', Auth::user()->id)->whereNull('canceled_at')->get())}})
                             @endif
                         </a>
                     </li>

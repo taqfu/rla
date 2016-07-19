@@ -163,6 +163,11 @@ use App\User;
         @endif
         bucket list.
     </div>
+    @if ($timeline_item->goal->canceled_at!=0)
+    <div>    
+        Canceled {{interval($timeline_item->goal->canceled_at, "now")}} ago
+    </div>
+    @endif
     <div>
         (<a href="{{route('achievement.show', ['url'=>$timeline_item->achievement->url])}}">
         {{$timeline_item->achievement->name}}
@@ -172,13 +177,26 @@ use App\User;
 @elseif ($timeline_item->event=="new claim")
     <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
     <div>
-        You claimed to have completed an achievement.
+    @if (Auth::user()->id==$timeline_item->user_id)
+    You
+    @else
+    <a href="{{route('user.show', ['username'=>$timeline_item->claim->user->username])}}">
+        {{$timeline_item->claim->user->username}}
+    </a>
+    @endif
+     claimed to have completed an achievement.
     </div>
+    @if ($timeline_item->claim->canceled_at!=0)
+    <div>    
+        Canceled {{interval($timeline_item->claim->canceled_at, "now")}} ago
+    </div>
+    @endif
     <div>
         (<a href="{{route('achievement.show', ['url'=>$timeline_item->achievement->url])}}">
         {{$timeline_item->achievement->name}}
         </a>)
     </div>
+     
 @else
     {{$timeline_item->event}}
 @endif

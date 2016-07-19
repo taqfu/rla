@@ -3,7 +3,7 @@
 <div id='bucket-list-item{{$goal->rank}}' class='bucket-list-item panel panel-default' 
   draggable='true'>
     @include ('Goal.destroy', ['goal'=>$goal, "extra"=>false])
-    {{$goal->rank}}
+    {{$goal->rank}}) 
     <a href="{{route('achievement.show', ['url'=>$goal->achievement->url])}}">
         {{$goal->achievement->name}}
     </a>

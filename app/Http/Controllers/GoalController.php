@@ -21,17 +21,14 @@ class GoalController extends Controller
     {
         $rerank=0;
         if ($rerank){
-            $rank=1;
-            foreach(Goal::where('user_id', 1)->get() as $goal){
-                $goal->rank=$rank++;
-                $goal->save();
-            }
+            $this::reorderRank(true);    
         }
         if (Auth::guest()){
             return View('Goal.fail');
         } else if (Auth::user()){
             return View('Goal.index', [
-                'goals'=>Goal::where('user_id', Auth::user()->id)->orderBy('rank', 'asc')->get(),
+                'goals'=>Goal::whereNull('canceled_at')->where('user_id', Auth::user()->id)
+                  ->orderBy('rank', 'asc')->get(),
             ]);
         }
     }
@@ -61,10 +58,12 @@ class GoalController extends Controller
         $this->validate($request, [
             'achievementID' => 'required|integer',
         ]);
-
+        
         $goal = new Goal;
         $goal->achievement_id = $request->achievementID;
         $goal->user_id = Auth::user()->id;
+        $goal->rank = count(Goal::whereNull('canceled_at')->where('user_id', Auth::user()->id)
+          ->get()) + 1;
         $goal->save();
 
         $timeline = new Timeline;
@@ -122,6 +121,7 @@ class GoalController extends Controller
         $goal = Goal::find($id);
         $goal->canceled_at = date("Y-m-d H:i:s");
         $goal->save();
+        $this::reorderRank(false);
         return back();
     }
 
@@ -135,12 +135,34 @@ class GoalController extends Controller
         $goal = Goal::where('rank', $old_rank)->first();
         $goal->rank = $new_rank;
         $goal->save();
-        foreach (Goal::where('id', '!=', $goal->id)->where('rank', '>=', $start)
-          ->where('rank', '<=', $end)->orderBy('rank','asc')->get() as $goal){
-            $goal->rank--;
+        
+        foreach (Goal::whereNull('canceled_at')->where('id', '!=', $goal->id)
+          ->where('rank', '>=', $start)->where('rank', '<=', $end)->orderBy('rank','asc')->get()
+           as $goal){
+            $old_rank < $new_rank ? $goal->rank-- : $goal->rank++;
             $goal->save();
+        }
+        if (Auth::guest()){
+            echo "Somehow, your account was logged out. Log in and try again please.";
+        } else if (Auth::user()){
+            return View('Goal.index-bare', [
+                'goals'=>Goal::whereNull('canceled_at')->where('user_id', Auth::user()->id)
+                  ->orderBy('rank', 'asc')->get(),
+            ]);
         }
        
     }
+    public function reorderRank($byDate){
+            $rank=1;
+            $goals = $byDate 
+              ? Goal::where('user_id', Auth::user()->id)->whereNull('canceled_at')->get() 
+              : Goal::where('user_id', Auth::user()->id)->whereNull('canceled_at')->orderBy('rank', 'asc')->get();
+            foreach($goals as $goal){
+                $goal->rank=$rank++;
+                $goal->save();
+            }
 
+    }
 }
+
+

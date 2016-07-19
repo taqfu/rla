@@ -33,9 +33,9 @@
 @foreach ($timelines as $timeline)
     @if ($timeline->proof_id>0)
         @include('Achievement.profile.proof', ['proof'=>$timeline->proof])
-    @elseif ($timeline->claim_id>0 && $timeline->claim->canceled_at!=0)
+    @elseif ($timeline->claim_id>0 && $timeline->claim->canceled_at==0)
         @include ('Achievement.profile.claim', ['claim'=>$timeline->claim])
-    @elseif ($timeline->goal_id>0 && $timeline->goal->canceled_at!=0)
+    @elseif ($timeline->goal_id>0 && $timeline->goal->canceled_at==0)
         @include ('Achievement.profile.goal', ['goal'=>$timeline->goal])
     @endif
 @endforeach
