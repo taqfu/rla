@@ -10,6 +10,9 @@
     <li>
         New achievements show up in the timeline.
     </li>
+    <li>
+        Implemented buttons for social sharing. (<a href="{{route('feedback')}}">Let me know</a> if you have any suggestions on this.)
+    </li>
 </ul>
 <h4>07/19/16</h4>
 <ul>
