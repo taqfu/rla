@@ -20,6 +20,9 @@ class TimelineController extends Controller
      */
     public function index()
     {
+        if (Auth::guest()){
+            return View('Timeline.fail');
+        }
         $subscribed_achievements=[];
         foreach (Follow::where('user_id', Auth::user()->id)->get() as $follow){
             $subscribed_achievements[]=$follow->achievement_id;
@@ -27,6 +30,7 @@ class TimelineController extends Controller
         return View('Timeline.index', [
             "timeline_items"=>Timeline::orWhere('user_id', Auth::user()->id)
               ->orWhereIn('achievement_id', $subscribed_achievements)
+              ->orWhere('event', 'new achievement')
               ->orderBy('created_at', 'desc')->get(),
         ]);
     }

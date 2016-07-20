@@ -77,7 +77,14 @@ use App\User;
     <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
     <div >
         <p>
-        You created a new achievement.
+        @if (Auth::user()->id == $timeline_item->user_id)
+        You
+        @else
+        <a href="{{route('user.show', ['username'=>$timeline_item->achievement->user->username])}}">
+            {{$timeline_item->achievement->user->username}}
+        </a>
+        @endif
+         created a new achievement.
         </p>
         @if($timeline_item->event=="new achievement no proof")
             <p>(Unfortunately, you provided no proof, so its inactive.)</p>
