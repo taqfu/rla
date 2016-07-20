@@ -6,12 +6,7 @@
         @include ('Timeline.description')
     </div>
     <div>
-    @include ('Timeline.footer')
+    @include ('share', ['url'=>route('timeline.show', ['id'=>$timeline_item->id])])
     </div>
 </div>
-@if (Auth::user())
-<div class='margin-left'>
-    <a href="{{route('home')}}">Back To Timeline</a>
-</div>
-@endif
 @endsection

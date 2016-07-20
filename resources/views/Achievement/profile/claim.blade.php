@@ -19,10 +19,8 @@ if (Auth::guest()){
             <div class='fail'>Canceled {{interval($claim->canceled_at, 'now')}} ago</div>
             @endif
         </div>
-        <div class='text-center'>
-        </div>
         <div>
-            &nbsp;
+            <a href="{{route('timeline.show', ['id'=>$timeline->id])}}">Permalink</a>
             @if ( Claim::can_user_comment($claim->id))
             <button id='show-new-comment{{$claim->id}}' class='show-new-comment btn-link'>[ Comment ]</button>
             @endif

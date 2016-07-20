@@ -87,4 +87,5 @@
                 @endif
         </strong>
     </div>
+    @include('share', ['url'=>route('achievement.show', ['url'=>$main->url])])
 </div>

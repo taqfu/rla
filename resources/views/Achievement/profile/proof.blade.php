@@ -67,7 +67,7 @@
             @endif
         </div>
         <div>
-            &nbsp;
+            <a href="{{route('timeline.show', ['id'=>$timeline->id])}}">Permalink</a>
             @if ( Proof::can_user_comment($proof->id))
             <button id='show-new-comment{{$proof->id}}' class='show-new-comment btn-link'>[ Comment ]</button>
             @endif

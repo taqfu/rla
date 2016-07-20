@@ -19,7 +19,7 @@ if (Auth::guest()){
 
         </div>
         <div>
-            &nbsp;
+            <a href="{{route('timeline.show', ['id'=>$timeline->id])}}">Permalink</a>
             @if (Goal::can_user_comment($goal->id))
             <button id='show-new-comment{{$goal->id}}' class='show-new-comment btn-link'>[ Comment ]</button>
             @endif

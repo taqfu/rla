@@ -11,6 +11,9 @@ $old_time = 0;
     <div class='panel-body text-center'>
         @include ('Timeline.description')
     </div>
+    <div>
+        <a href="{{route('timeline.show', ['id'=>$timeline_item->id])}}">Permalink</a>
+    </div>
 </div>
 @empty
 <div class='text-center'>

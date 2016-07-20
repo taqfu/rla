@@ -4,11 +4,29 @@
 ?>
 @extends('layouts.app')
 @section('title')
- -  @if (strlen($proof->achievement->name)>61)
+ -  
+    @if (substr($proof->user->username, -1, 1)=='s')
+    {{$proof->user->username}}'
+    @else
+    {{$proof->user->username}}'s
+    @endif
+    proof for
+    @if (strlen($proof->achievement->name)>61)
     {{substr($proof->achievement->name, 0, 61)}}...
     @else
     {{$proof->achievement->name}}
     @endif
+    (
+    @if ($proof->status==0)
+    Denied
+    @elseif ($proof->status==1)
+    Approved
+    @elseif ($proof->status==2)
+    Pending Approval
+    @elseif ($proof->status==4)
+    Canceled
+    @endif
+    )
 @endsection
 @section('head')
 <meta property="og:description" content="
@@ -38,6 +56,9 @@ Status:
 <div class='panel panel-default text-center'>
     <div class='panel-body'>
         <a target='_blank' href="{{$proof->url}}">{{$proof->url}}</a>
+    </div>
+    <div class='panel-footer'>
+        @include('share', ['url'=>route('proof.show', ['id'=>$proof->id])])
     </div>
 </div>
 <h4 class='margin-left text-muted'>
