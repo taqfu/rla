@@ -6,6 +6,7 @@
 $old_date = 0; 
 $old_time = 0; 
 ?>
+@include ('Timeline.filter')
 @forelse ($timeline_items as $timeline_item)
 <div class='panel panel-default'>
     <div class='panel-body text-center'>

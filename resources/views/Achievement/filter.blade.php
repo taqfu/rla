@@ -1,4 +1,3 @@
-<?php var_dump(count($achievements)); ?>
 <form  method="GET" action="{{route('achievement.index')}}" id='achievement-filters' class='text-center form-inline
    @if (count($achievements)==0)
    page-header
@@ -77,7 +76,7 @@
         </label>
     </div>
     @if (Auth::user())
-    <div class=''>
+    <div class='hidden'>
         Completion:
         <label for='incomplete' class='filter incomplete'>
             Incomplete

@@ -83,6 +83,8 @@ Route::put('/settings/password', ['as'=>'settings.password',
   'uses'=>'UserController@updatePassword']);
 Route::put('/settings/timezone', ['as'=>'settings.timezone',
   'uses'=>'UserController@updateTimeZone']);
+Route::put('/timeline/filters', ['as'=>'timeline.filters', 
+  'uses'=>'TimelineController@updateFilter']);
 
 
 Route::resource('AchievementVote', 'AchievementVoteController');

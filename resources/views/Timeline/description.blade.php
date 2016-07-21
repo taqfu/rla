@@ -135,23 +135,6 @@ use App\User;
             (<a href="{{route('achievement.show', ['url'=>$timeline_item->proof->achievement->url])}}">{{$timeline_item->proof->achievement->name}}</a>)
         </p>
     </div>
-@elseif ($timeline_item->event=="claim achievement")
-    <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
-    <div>
-        @if ($timeline_item->claim->user_id==Auth::user()->id)
-            You claimed to have completed an achievement and added {{$timeline_item->claim->points}} points to your claim score.
-        @else
-            <a href="{{route('user.show', ['username'=>$timeline_item->claim->user->username])}}">
-                {{$timeline_item->claim->user->username}}
-            </a>
-             claimed to have completed this achievement.
-        @endif
-    </div>
-    <div>
-        (<a href="{{route('achievement.show', ['url'=>$timeline_item->claim->achievement->url])}}">
-            {{$timeline_item->claim->achievement->name}}
-        </a>)
-    </div>
 @elseif ($timeline_item->event=="new goal")
     <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
     <div>

@@ -15,6 +15,27 @@ class Timeline extends Model
     public function comment(){
         return $this->belongsTo('\App\Comment');
     }   
+    public static function filter_timeline($timeline){
+        $filtered_timeline = $timeline->filter(function($timeline_item){
+            foreach (session('timeline_filters') as $filter_name=>$filter_is_active){
+                $event_name="";
+                $name_arr = explode("_", $filter_name);
+                foreach ($name_arr as $name_element){
+                    if (strlen($event_name)>0){
+                        $event_name = $event_name . " ";
+                    }
+                    $event_name = $event_name . $name_element;
+                }
+                if($filter_is_active){
+                    if (substr($timeline_item->event, 0, strlen($event_name))==$event_name){
+                        return $timeline_item;
+                    }
+                }
+            }
+        });
+        return $filtered_timeline;
+    }
+
     public function goal(){
         return $this->belongsTo('App\Goal');
     }
