@@ -10,6 +10,9 @@
     <li>
         Timeline can now be filtered to show only certain types of events. 
     </li>
+    <li>
+        Timeline can now be viewed by guests. This will show all timeline events. (Not currently accesible without knowing the URL beforehand.)
+    </li>
 </ul>
 <h4>07/20/16</h4>
 <ul>

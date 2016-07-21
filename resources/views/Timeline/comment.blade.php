@@ -1,6 +1,6 @@
 <div title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
 <div >
-@if ($timeline_item->comment->user_id==Auth::user()->id)
+@if (Auth::user() && $timeline_item->comment->user_id==Auth::user()->id)
 You
 @else
 <a href="{{route('user.show', ['username'=>$timeline_item->comment->user->username])}}">{{$timeline_item->comment->user->username}}</a>
@@ -24,7 +24,7 @@ You
     @endif
 @elseif ($timeline_item->comment->vote_id>0)
     on
-    @if ($timeline_item->comment->vote->user_id==Auth::user()->id)
+    @if (Auth::user() && $timeline_item->comment->vote->user_id==Auth::user()->id)
         your
     @else
         @if (substr($timeline_item->comment->user->username, -1, 1)=="s")
@@ -34,7 +34,7 @@ You
         @endif
     @endif
     vote for
-    @if ($timeline_item->comment->vote->proof->user_id==Auth::user()->id)
+    @if (Auth::user() && $timeline_item->comment->vote->proof->user_id==Auth::user()->id)
       <a href="{{route('proof.show', ['id'=>$timeline_item->comment->vote->proof_id])}}">your proof</a>
     @else
         @if (substr($timeline_item->comment->vote->proof->user->username, -1, 1)=="s")

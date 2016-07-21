@@ -35,7 +35,9 @@ class TimelineController extends Controller
             $request->session()->put('timeline_filters', $timeline_filters);
         }
         if (Auth::guest()){
-            return View('Timeline.fail');
+            return View('Timeline.index', [
+                'timeline_items'=>Timeline::orderBy('created_at', 'desc')->get(),
+            ]);
         }
         
         $subscribed_achievements=[];
@@ -44,7 +46,6 @@ class TimelineController extends Controller
         }
         $timeline_items = Timeline::orWhere('user_id', Auth::user()->id)
           ->orWhereIn('achievement_id', $subscribed_achievements)
-        //  ->orWhere('event', 'new achievement')
           ->orderBy('created_at', 'desc')->get();
         $timeline_items = Timeline::filter_timeline($timeline_items);
         return View('Timeline.index', [

@@ -11,13 +11,13 @@ use App\User;
     <div title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
     <div >
         <p>
-        @if ($timeline_item->proof->user_id==Auth::user()->id)
+        @if (Auth::user() && $timeline_item->proof->user_id==Auth::user()->id)
             You
         @else
             <a href="{{route('user.show', ['username'=>$timeline_item->proof->user->username])}}">{{$timeline_item->proof->user->username}}</a>
         @endif
           submitted a <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">new proof</a> for
-        @if ($timeline_item->proof->achievement->user_id!=Auth::user()->id)
+        @if (Auth::user() && $timeline_item->proof->achievement->user_id!=Auth::user()->id)
             an 
         @else
             your
@@ -54,7 +54,7 @@ use App\User;
 @elseif (substr($timeline_item->event, 0, 19 )=="change proof status" )
     <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
     <div >
-        @if ($timeline_item->proof->user_id==Auth::user()->id)
+        @if (Auth::user() && $timeline_item->proof->user_id==Auth::user()->id)
         <a href="{{route('proof.show', ['id'=>$timeline_item->proof_id])}}">Your proof</a>
         @else
             @if (substr($timeline_item->proof->user->username, -1, 1)=="s")
@@ -77,7 +77,7 @@ use App\User;
     <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
     <div >
         <p>
-        @if (Auth::user()->id == $timeline_item->user_id)
+        @if (Auth::user() && Auth::user()->id == $timeline_item->user_id)
         You
         @else
         <a href="{{route('user.show', ['username'=>$timeline_item->achievement->user->username])}}">
@@ -110,19 +110,53 @@ use App\User;
     <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
     <div >
     @if (substr($timeline_item->event, -26) == "owned achievement complete")
-        <a href="{{route('user.show', ['username'=>$timeline_item->proof->user->username])}}">{{$timeline_item->proof->user->username}}</a> completed the achievement you created.
+        <a href="{{route('user.show', ['username'=>$timeline_item->proof->user->username])}}">{{$timeline_item->proof->user->username}}</a> completed the achievement 
+        @if (Auth::user() && Auth::user()->id==$timeline_item->user_id)
+            you 
+        @else
+        <a href="{{route('user.show', ['username'=>$timeline_item->achievement->user->username])}}">
+            {{$timeline_item->achievement->user->username}}
+        </a>
+        @endif
+        created and 
+        @if (Auth::user() && Auth::user()->id==$timeline_item->user_id)
+            you 
+        @else
+        <a href="{{route('user.show', ['username'=>$timeline_item->achievement->user->username])}}">
+            {{$timeline_item->achievement->user->username}}
+        </a>
+        @endif
 
-            You gained a point! You now have {{substr($timeline_item->event, 11, (strlen($timeline_item->event)-26)-12)}} points.
+            gained a point! ({{substr($timeline_item->event, 11, (strlen($timeline_item->event)-26)-12)}} points)
         <p>
             (<a href="{{route('achievement.show', ['url'=>$timeline_item->proof->achievement->url])}}">
                 {{$timeline_item->proof->achievement->name}}
             </a>)
         </p>
     @elseif (substr($timeline_item->event, -14)=="proof complete")
-        Your proof was approved!
+        @if (Auth::user() && Auth::user()->id==$timeline_item->user_id)
+            Your 
+        @else
+        <a href="{{route('user.show', ['username'=>$timeline_item->achievement->user->username])}}">
+            @if (substr($timeline_item->achievement->user->username, -1, 1)=="s")
+                {{$timeline_item->achievement->user->username}}'
+            @else
+                {{$timeline_item->achievement->user->username}}'s
+            @endif
+        </a>
+        @endif
+        
+         proof was approved!
         For completing
         <a href="{{route('achievement.show', ['url'=>$timeline_item->proof->achievement->url])}}">"{{$timeline_item->proof->achievement->name}}"</a>,
-        you received  {{substr($timeline_item->event, 10, (strlen($timeline_item->event)-(14+10)))}} points.
+        @if (Auth::user() && Auth::user()->id==$timeline_item->user_id)
+            you 
+        @else
+        <a href="{{route('user.show', ['username'=>$timeline_item->achievement->user->username])}}">
+            {{$timeline_item->proof->user->username}}
+        </a>
+        @endif
+        received  {{substr($timeline_item->event, 10, (strlen($timeline_item->event)-(14+10)))}} points.
     @endif
     </div>
 @elseif ($timeline_item->event == "cancel proof")
@@ -138,7 +172,7 @@ use App\User;
 @elseif ($timeline_item->event=="new goal")
     <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
     <div>
-        @if ($timeline_item->user_id == Auth::user()->id)
+        @if (Auth::user() && $timeline_item->user_id == Auth::user()->id)
         You
         @else
         <a href="{{route('user.show', ['username'=>$timeline_item->goal->user->username])}}">
@@ -146,7 +180,7 @@ use App\User;
         </a>
         @endif
         added a new achievement to 
-        @if ($timeline_item->user_id==Auth::user()->id)
+        @if (Auth::user() && $timeline_item->user_id==Auth::user()->id)
         your
         @else
         their
@@ -167,7 +201,7 @@ use App\User;
 @elseif ($timeline_item->event=="new claim")
     <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
     <div>
-    @if (Auth::user()->id==$timeline_item->user_id)
+    @if (Auth::user() && Auth::user()->id==$timeline_item->user_id)
     You
     @else
     <a href="{{route('user.show', ['username'=>$timeline_item->claim->user->username])}}">

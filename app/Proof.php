@@ -48,6 +48,7 @@ class Proof extends Model
                 $user->save();
                 $timeline = new Timeline;
                 $timeline->user_id = $achievement->user_id;
+                $timeline->achievement_id = $achievement->id;
                 $timeline->event = "new points " . $achievement->user->score . " owned achievement complete";
                 $timeline->proof_id = $id;
                 $timeline->save();
@@ -57,6 +58,7 @@ class Proof extends Model
             $user->save();
             $timeline = new Timeline;
             $timeline->user_id = $proof->user_id;
+            $timeline->achievement_id = $achievement->id;
             $timeline->event = "new points $achievement->score proof complete";
             $timeline->proof_id = $id;
             $timeline->save();
@@ -66,6 +68,7 @@ class Proof extends Model
         $proof->save();
 
         $timeline = new Timeline;
+        $timeline->achievement_id = $proof->achievement_id;
         $timeline->user_id = $proof->user_id;
         $timeline->event = "change proof status " . $proof->status . " to " . (int)$status;
         $timeline->proof_id = $proof->id;

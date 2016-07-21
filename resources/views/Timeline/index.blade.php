@@ -6,7 +6,9 @@
 $old_date = 0; 
 $old_time = 0; 
 ?>
+@if (Auth::user())
 @include ('Timeline.filter')
+@endif
 @forelse ($timeline_items as $timeline_item)
 <div class='panel panel-default'>
     <div class='panel-body text-center'>
