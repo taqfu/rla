@@ -75,7 +75,7 @@
             <div class='collapse navbar-collapse' id='myNavbar'>
                 <ul class='nav navbar-nav text-right'>
                     <li>
-                        <a href="{{route('achievement.index', $filters)}}">
+                        <a href="{{route('achievement.index')}}">
                             Achievements
                         </a>
                     </li>

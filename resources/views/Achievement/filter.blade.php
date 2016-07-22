@@ -1,9 +1,11 @@
-<form  method="GET" action="{{route('achievement.index')}}" id='achievement-filters' class='text-center form-inline
-   @if (count($achievements)==0)
-   page-header
-   @endif
-' role='form' >
-    <input type='hidden' name='sort' value='{{$sort}}' />
+<form  method="POST" action="{{route('achievement.filters')}}" id='achievement-filters' 
+  class='text-center form-inline
+  @if (count($achievements)==0)
+  page-header
+  @endif
+  ' role='form' >
+    {{csrf_field()}}
+    {{method_field('put')}}
     <h4>
         Filter By
     </h4>
@@ -15,7 +17,7 @@
                 (?)
             </span>
             <input id='approved' type='checkbox'  name='approved' class='filter checkbox-inline' 
-              @if($filters['status']['approved'])
+              @if(session('achievement_filters')['status']['approved'])
                   checked
               @endif
             />
@@ -27,7 +29,7 @@
                 (?)
             </span>
             <input id='denied' type='checkbox' name='denied' class='filter checkbox-inline' 
-              @if($filters['status']['denied'])
+              @if(session('achievement_filters')['status']['denied'])
                   checked
               @endif
             />
@@ -38,7 +40,7 @@
                 (?)
             </span>
             <input id='pending' type='checkbox' name='pending' class='filter checkbox-inline'
-              @if($filters['status']['pending'])
+              @if(session('achievement_filters')['status']['pending'])
                   checked
               @endif
             />
@@ -49,7 +51,7 @@
                 (?)
             </span>
             <input id='inactive' type='checkbox' name='inactive' class='filter checkbox-inline'
-              @if($filters['status']['inactive'])
+              @if(session('achievement_filters')['status']['inactive'])
                   checked
               @endif
             />
@@ -60,29 +62,32 @@
                 (?)
             </span>
             <input id='canceled' type='checkbox' name='canceled' class='filter checkbox-inline'
-              @if($filters['status']['canceled'])
+              @if(session('achievement_filters')['status']['canceled'])
                   checked
               @endif
             />
         </label>
         <label for='all-filters' class='filter'>All
             <input id='all-filters' type='checkbox' class='checkbox-inline'
-            @if ($filters['status']['approved'] && $filters['status']['denied'] && 
-              $filters['status']['pending'] && $filters['status']['inactive'] 
-              && $filters['status']['canceled'])
+            @if (session('achievement_filters')['status']['approved'] && session('achievement_filters')['status']['denied'] && 
+              session('achievement_filters')['status']['pending'] && session('achievement_filters')['status']['inactive'] 
+              && session('achievement_filters')['status']['canceled'])
             checked
             @endif
             />
         </label>
+        <button type='submit' class='btn btn-default'>
+            Filter
+        </button>
     </div>
     @if (Auth::user())
-    <div class='hidden'>
+    <div class=''>
         Completion:
         <label for='incomplete' class='filter incomplete'>
             Incomplete
             <span class='filter-tooltip' data-toggle='tooltip' title="You have not completed this achievement.">(?)</span>
             <input id='incomplete' type='checkbox' name='incomplete' class='filter checkbox-inline'
-            @if ($filters['incomplete'])
+            @if (session('achievement_filters')['incomplete'])
             checked
             @endif
             />
@@ -91,7 +96,7 @@
             Completed
             <span class='filter-tooltip' data-toggle='tooltip' title="You've submitted proof for this achievement and it has been approved!">(?)</span>
             <input id='complete' type='checkbox' name='complete' class='filter checkbox-inline'
-            @if ($filters['complete'])
+            @if (session('achievement_filters')['complete'])
             checked
             @endif
             />
@@ -100,7 +105,7 @@
             Claimed
             <span class='filter-tooltip' data-toggle='tooltip' title='You have no proof but you claim to have completed the achievement.'>(?)</span>
             <input id='claimed' type='checkbox' name='claimed' class='filter checkbox-inline'
-            @if ($filters['claimed'])
+            @if (session('achievement_filters')['claimed'])
             checked
             @endif
             />
@@ -109,12 +114,11 @@
             Followed
             <span class='filter-tooltip' data-toggle='tooltip' title="You're following this achievement. All updates will go to your homepage.">(?)</span>
             <input id='followed' type='checkbox' name='followed' class='filter checkbox-inline' 
-            @if ($filters['followed'])
+            @if (session('achievement_filters')['followed'])
             checked
             @endif
             />
         </label>
     </div>
     @endif
-    @include ("Achievement.sort")
 </form>

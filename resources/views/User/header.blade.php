@@ -6,7 +6,7 @@ $point_caption = $profile->score!=1 ? "points" : "point";
         <div class='col-xs-4'>
             <h4>
                 <strong>
-                    Proof Score: {{$profile->score}} Claim Score: {{$profile->claim_score}}</h4>
+                    Score: {{$profile->score}}
                 </strong>
             @if (Auth::user() && Auth::user()->id != $profile->id)
             <div>

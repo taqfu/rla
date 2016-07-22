@@ -1,10 +1,10 @@
 <?php
 $route_name = 'achievement.index';
-if (substr($sort, -4)=="desc"){
+if (substr(session('achievement_sort'), -4)=="desc"){
     $inverse_order= "asc";
     $inverse_arrow = "&darr;";
     $arrow="&uarr;";
-} else if(substr($sort, -4)==" asc") {
+} else if(substr(session('achievement_sort'), -4)==" asc") {
     $inverse_order= "desc";
     $inverse_arrow = "&uarr;";
     $arrow="&darr;";
@@ -14,12 +14,12 @@ if (substr($sort, -4)=="desc"){
     $arrow="&uarr;";
 }
 ?>
-<div class='margin-bottom'>
+<form method="GET" action="{{route('achievement.index')}}" class='margin-bottom text-center'>
     <h4>
         Sort By
     </h4>
     <div class='container-flexible'>
-        @if (substr($sort, 0, 6)=="points")
+        @if (substr(session('achievement_sort'), 0, 6)=="points")
         <button name='sort' type='submit' value="points {{$inverse_order}}" class='btn-link'>
             <strong>
             By Points {{$inverse_arrow}} 
@@ -31,7 +31,7 @@ if (substr($sort, -4)=="desc"){
         <button name='sort' type='submit' value='date asc' class='btn-link'>
             By Date
         </button>
-        @elseif (substr($sort, 0, 4)=="name")
+        @elseif (substr(session('achievement_sort'), 0, 4)=="name")
         <button name='sort' type='submit' value="points asc" class='btn-link'>
             By Points
         </button>
@@ -43,7 +43,7 @@ if (substr($sort, -4)=="desc"){
         <button name='sort' type='submit' value="date asc" class='btn-link'>
             By Date 
         </button>
-        @elseif (substr($sort, 0, 4)=="date")
+        @elseif (substr(session('achievement_sort'), 0, 4)=="date")
         <button name='sort' type='submit' value="points asc" class='btn-link'>
             By Points
         </button>
@@ -69,4 +69,4 @@ if (substr($sort, -4)=="desc"){
         </button>
         @endif
     </div>
-</div>
+</form>

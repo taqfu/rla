@@ -77,6 +77,8 @@ Route::get('/user/{username}/message', ['as'=>'new_message',
 Route::post('/query', ['as'=>'query', 'uses'=>'AchievementController@query']);
 
 
+Route::put('/achievement/filters', ['as'=>'achievement.filters', 
+  'uses'=>'AchievementController@updateFilter']);
 Route::put('/settings/email', ['as'=>'settings.email',
   'uses'=>'UserController@updateEmail']);
 Route::put('/settings/password', ['as'=>'settings.password',

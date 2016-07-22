@@ -65,9 +65,6 @@ $(document.body).ready(function () {
             }
         }
     });
-    $(document).on("change", ".filter", function (event) {
-        $("#achievement-filters").submit(); 
-    });
     $(document).on('change', "#all-filters", function(event){
         console.log($("#all-filters").prop('checked'));
         $("input.filter").prop('checked', $("#all-filters").prop('checked')); 

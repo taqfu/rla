@@ -105,7 +105,7 @@ if (Auth::user()){
             @endif
             </div>
         </a>
-        @if (substr($sort, 0, 4)=="date")
+        @if (substr(session('achievement_sort'), 0, 4)=="date")
             {{date(Config::get('rla.date_format'), strtotime($achievement->created_at))}}
         @endif
     </td>

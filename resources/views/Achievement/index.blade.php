@@ -20,11 +20,12 @@
 @endif
 <div id='achievement-listing '>
     @include ('Achievement.filter', ['type'=>'index'])
+    @include ("Achievement.sort")
     <div class='container-flexible'>
         <div class='row'>
             <div class='col-xs-1'></div>
             <div class='col-xs-10 text-center'>
-                @if (count($achievements)>0)
+                @if ($achievements->count())
                 <table class='table table-bordered table-hover'>
                     @foreach ($achievements as $achievement)
                        @include('Achievement.row')

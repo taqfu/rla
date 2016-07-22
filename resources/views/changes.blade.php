@@ -8,6 +8,13 @@
 <h4>07/21/16</h4>
 <ul>
     <li>
+        Claim score has been removed. There is now just one score: proof score. (Let me know if you want it back.)
+
+    </li>
+</ul>
+<h4>07/21/16</h4>
+<ul>
+    <li>
         Timeline can now be filtered to show only certain types of events. 
     </li>
     <li>

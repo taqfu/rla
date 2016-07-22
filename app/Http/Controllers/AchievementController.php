@@ -32,30 +32,36 @@ class AchievementController extends Controller
         Proof::check();
         $status = [];
         $status_arr_captions =["denied", "approved", "pending", "inactive", "canceled"];
-        $filters = [
-          "status"=>['denied'=>$request->denied=="on", 'approved'=>$request->approved=="on", 
-            'pending'=> $request->pending=="on", 'inactive'=>$request->inactive=="on", 
-            'canceled'=>$request->canceled=="on"],
-          "incomplete"=>$request->incomplete=="on",
-          "complete"=>$request->complete=="on",
-          "claimed"=>$request->claimed=="on",
-          "followed"=>$request->followed=="on"];
-
-        $request->session()->put('filters', $filters);
-        $request->session()->put('sort', $request->sort);
-
-        foreach ($filters["status"] as $key=>$val){
+        if (session('achievement_filters')==null){
+            $achievement_filters = [
+              "status"=>[
+                'denied'=>false, 
+                'approved'=>true, 
+                'pending'=>true,
+                'inactive'=>false,
+                'canceled'=>false,
+              ],
+              "incomplete"=>true,
+              "complete"=>false,
+              "claimed"=>false,
+              "followed"=>false,
+            ];
+            $request->session()->put('achievement_filters', $achievement_filters);
+        }
+        foreach (session('achievement_filters')["status"] as $key=>$val){
             if ($val){
                 $status[]=array_search($key, $status_arr_captions);
             }
         }
+        $request->session()->put('achievement_sort', $request->sort);
         $sort_by = "score";
         $order = "desc";
-        if ($request->sort!=null && substr($request->sort, -3)=="asc"){
-            $sort_by = substr($request->sort, 0, strlen($request->sort)-4);
+        if (session('achievement_sort')!=null && substr(session('achievement_sort'), -3)=="asc"){
+            $sort_by = substr(session('achievement_sort'), 0, strlen(session('achievement_sort'))-4);
             $order = "asc";
-         } else if ($request->sort!=null && substr($request->sort, -4)=="desc"){
-            $sort_by = substr($request->sort, 0, strlen($request->sort)-5);
+        } else if (session('achievement_sort')!=null 
+          && substr(session('achievement_sort'), -4)=="desc"){
+            $sort_by = substr(session('achievement_sort'), 0, strlen(session('achievement_sort'))-5);
         } 
         switch($sort_by){
             case "date": 
@@ -66,23 +72,22 @@ class AchievementController extends Controller
                 break;
         }
         $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)
-//        ->get();
-          ->simplePaginate(25);
-/*
+        ->get();
+//          ->simplePaginate(25);
          $perPage = 10; // Item per page (change if needed) 
          $currentPage = ($request->input('page') == 0
            ? 1
            : $request->input('page')) -1; 
-         if ($filters["complete"] || $filters["incomplete"] ||$filters["claimed"] || $filters["followed"]){
-             $filteredAchievements = $achievements->filter(function($achievement) use ($filters){
+         if (session('achievement_filters')["complete"] || session('achievement_filters')["incomplete"] ||session('achievement_filters')["claimed"] || session('achievement_filters')["followed"]){
+             $filteredAchievements = $achievements->filter(function($achievement){
              
-                 if (($filters["complete"] 
+                 if ((session('achievement_filters')["complete"] 
                      && Achievement::has_user_completed_achievement($achievement->id))
-                   || ($filters["incomplete"] 
+                   || (session('achievement_filters')["incomplete"] 
                      && !Achievement::has_user_completed_achievement($achievement->id))
-                   || ($filters["claimed"] 
+                   || (session('achievement_filters')["claimed"] 
                      && Achievement::has_user_claimed_achievement($achievement->id)) 
-                   || ($filters["followed"] 
+                   || (session('achievement_filters')["followed"] 
                      && Achievement::has_user_followed_achievement($achievement->id))){
                              return $achievement;
                  }
@@ -93,17 +98,8 @@ class AchievementController extends Controller
              $pagedData = $achievements->slice($currentPage * $perPage, $perPage)->all(); 
              $achievements = new Paginator($pagedData, $perPage, $currentPage);
          }
-*/
-        $achievements->appends('sort', $request->input('sort'));
-        foreach ($filters['status'] as $key=>$val){
-            if ($val){
-                $achievements->appends($key, 'on');
-            }
-        }
         return View::make('Achievement.index', [
           "achievements"=>$achievements,
-          "sort"=>$request->input('sort'),
-          "filters"=>$filters,
         ]);
     }
 
@@ -281,5 +277,22 @@ class AchievementController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function updateFilter(Request $request){
+        $achievement_filters = [
+          "status"=>[
+            'denied'=>$request->denied=="on", 
+            'approved'=>$request->approved=="on", 
+            'pending'=> $request->pending=="on", 
+            'inactive'=>$request->inactive=="on", 
+            'canceled'=>$request->canceled=="on"
+          ],
+          "incomplete"=>$request->incomplete=="on",
+          "complete"=>$request->complete=="on",
+          "claimed"=>$request->claimed=="on",
+          "followed"=>$request->followed=="on"
+        ];
+        $request->session()->put('achievement_filters', $achievement_filters);
+        return redirect(route('achievement.index'));
     }
 }
