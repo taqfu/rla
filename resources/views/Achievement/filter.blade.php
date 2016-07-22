@@ -13,7 +13,7 @@
               title='This achievement has been approved and multiple people can submit proof for it at the same time. Voting is only open to those that have already completed the achievement.'>
                 (?)
             </span>
-            <input id='approved' type='checkbox'  name='approved' class='filter checkbox-inline' 
+            <input id='approved' type='checkbox'  name='approved' class='status-filter checkbox-inline' 
               @if(session('achievement_filters')['status']['approved'])
                   checked
               @endif
@@ -25,7 +25,7 @@
               title='This achievement has been denied approval. One person may submit approval at a time and anyone can vote for its approval.'>
                 (?)
             </span>
-            <input id='denied' type='checkbox' name='denied' class='filter checkbox-inline' 
+            <input id='denied' type='checkbox' name='denied' class='status-filter checkbox-inline' 
               @if(session('achievement_filters')['status']['denied'])
                   checked
               @endif
@@ -36,7 +36,7 @@
               title='This achievement is pending approval. Anyone may vote to determine whether it passes approval.'>
                 (?)
             </span>
-            <input id='pending' type='checkbox' name='pending' class='filter checkbox-inline'
+            <input id='pending' type='checkbox' name='pending' class='status-filter checkbox-inline'
               @if(session('achievement_filters')['status']['pending'])
                   checked
               @endif
@@ -47,7 +47,7 @@
               title='This achievement has no proofs submitted to it. Submit a proof for approval.'>
                 (?)
             </span>
-            <input id='inactive' type='checkbox' name='inactive' class='filter checkbox-inline'
+            <input id='inactive' type='checkbox' name='inactive' class='status-filter checkbox-inline'
               @if(session('achievement_filters')['status']['inactive'])
                   checked
               @endif
@@ -58,7 +58,7 @@
               title='The proof for this achievement was canceled. Submit another one! Anyone can vote.'>
                 (?)
             </span>
-            <input id='canceled' type='checkbox' name='canceled' class='filter checkbox-inline'
+            <input id='canceled' type='checkbox' name='canceled' class='status-filter checkbox-inline'
               @if(session('achievement_filters')['status']['canceled'])
                   checked
               @endif

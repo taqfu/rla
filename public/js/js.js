@@ -6,14 +6,6 @@ $(document.body).ready(function () {
     var oldRank;
     var newRank;
 
-    $(document).on('dragstart', '.bucket-list-item', function(event){
-        oldRank = event.target.id.substr(16);
-        this.style.opacity='.5';
-        
-    });
-    $(document).on('dragleave', '.bucket-list-item', function(event){
-        this.style.border="lightgrey 1px solid";
-    });
     $(document).on('dragend', '.bucket-list-item', function(event){
         this.style.opacity='1';
         moveRank(oldRank, newRank);
@@ -25,6 +17,13 @@ $(document.body).ready(function () {
         if (event.target.id.length>0){ // to prevent blank classes
             newRank = event.target.id.substr(16);
         }
+    });
+    $(document).on('dragleave', '.bucket-list-item', function(event){
+        this.style.border="lightgrey 1px solid";
+    });
+    $(document).on('dragstart', '.bucket-list-item', function(event){
+        oldRank = event.target.id.substr(16);
+        this.style.opacity='.5';
     });
     $(document).on('submit', 'form.create-proof', function(event){
         if ($('#create-proof-url').val().substring(0, 7)!="http://"){
@@ -65,8 +64,15 @@ $(document.body).ready(function () {
             }
         }
     });
+    $(document).on('change', ".status-filter", function(event){
+        var numOfCheckedStatusFilters = $(".status-filter:checked").length;  
+        if (numOfCheckedStatusFilters == 4 && $("#all-filters").prop('checked')){
+            $("#all-filters").prop('checked', false); 
+        } else if (numOfCheckedStatusFilters==5  && !$("#all-filters").prop('checked')){
+            $("#all-filters").prop('checked', true); 
+        }
+    });
     $(document).on('change', "#all-filters", function(event){
-        console.log($("#all-filters").prop('checked'));
         $("input.filter").prop('checked', $("#all-filters").prop('checked')); 
     });
     $(document).on('focusin', "#create-proof-url", function(event){

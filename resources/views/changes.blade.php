@@ -9,7 +9,9 @@
 <ul>
     <li>
         Claim score has been removed. There is now just one score: proof score. (Let me know if you want it back.)
-
+    </li>
+    <li>
+        Achievement filters are now more like timeline filters. Addressed a bug where status of all filter checkboxes does not affect the All checkbox filter.
     </li>
 </ul>
 <h4>07/21/16</h4>
