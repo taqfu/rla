@@ -19,8 +19,8 @@
 </strong></div>
 @endif
 <div id='achievement-listing '>
-    @include ('Achievement.filter', ['type'=>'index'])
     @include ("Achievement.sort")
+    @include ('Achievement.filter', ['type'=>'index'])
     <div class='container-flexible'>
         <div class='row'>
             <div class='col-xs-1'></div>

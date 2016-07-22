@@ -6,9 +6,6 @@
   ' role='form' >
     {{csrf_field()}}
     {{method_field('put')}}
-    <h4>
-        Filter By
-    </h4>
     <div class='container-flexible form-group'>
         Status:
         <label for='approved' class='approved filter '>Approved
@@ -81,7 +78,7 @@
         </button>
     </div>
     @if (Auth::user())
-    <div class=''>
+    <div class='hidden'>
         Completion:
         <label for='incomplete' class='filter incomplete'>
             Incomplete

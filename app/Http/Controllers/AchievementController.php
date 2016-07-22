@@ -72,8 +72,9 @@ class AchievementController extends Controller
                 break;
         }
         $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)
-        ->get();
-//          ->simplePaginate(25);
+//        ->get();
+          ->simplePaginate(25);
+/*
          $perPage = 10; // Item per page (change if needed) 
          $currentPage = ($request->input('page') == 0
            ? 1
@@ -98,6 +99,7 @@ class AchievementController extends Controller
              $pagedData = $achievements->slice($currentPage * $perPage, $perPage)->all(); 
              $achievements = new Paginator($pagedData, $perPage, $currentPage);
          }
+*/
         return View::make('Achievement.index', [
           "achievements"=>$achievements,
         ]);
