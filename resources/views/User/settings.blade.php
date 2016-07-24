@@ -8,6 +8,13 @@
 @include ('User.header')
 @include ('User.menu', ['active'=>'settings'])
 <div id='settings' class='margin-left'>
+        <div class='lead'><strong>
+        @if ($errors->get('email'))
+            @foreach ($errors->get('email') as $error)
+            <div class='text-danger'>{{$error}}</div>
+            @endforeach
+        @endif
+        </strong></div>
     <h4>Password</h4>
         @if ($errors->get('old') || $errors->get('new') || $errors->get('confirm') || $errors->get('success'))
             @foreach ($errors->get('confirm') as $error)
@@ -66,13 +73,6 @@
         @endif
     </p>
     <form method="POST" action="{{route('settings.email')}}" class='margin-left'>
-        <div>
-        @if ($errors->get('email'))
-            @foreach ($errors->get('email') as $error)
-            <div>{{$error}}</div>
-            @endforeach
-        @endif
-        </div>
         {{csrf_field()}}
         {{ method_field('PUT') }}
         <input type='email' name='email' />
@@ -86,7 +86,7 @@
         <div>
         @if ($errors->get('timezone'))
             @foreach ($errors->get('timezone') as $error)
-            <div>{{ $error }}</div>
+            <div class='text-danger'>{{ $error }}</div>
             @endforeach
         @endif
         </div>
@@ -107,5 +107,22 @@
         </select>
         <input type='submit' value='Change Time Zone' />
     </form>
+
+    <h4>Invite Your Friends</h4>
+    <form method="POST" action="{{route('invite.store')}}" class='margin-left'>
+        @if(count($errors->all())>0)
+            @foreach ($errors->all() as $error)
+                {{$error}}
+            @endforeach
+        @endif
+        {{csrf_field()}}
+        <div>
+            What's their e-mail?
+        </div>
+            <input type='text' name='email' />
+        <button type='submit' />
+            Invite
+        </button>
+      
 </div>
 @endsection

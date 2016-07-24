@@ -7,7 +7,13 @@ $point_caption = $profile->score!=1 ? "points" : "point";
             <h4>
                 <strong>
                     Score: {{$profile->score}}
+                    Community Score: {{$profile->community_score}}
                 </strong>
+                <span class='community-score-tooltip' data-toggle='tooltip'
+                  title='Community score determines rates how good of a community member you are. 
+                  Invite your friends in Settings to raise your community score!'>
+                    (?)
+                </span>
             @if (Auth::user() && Auth::user()->id != $profile->id)
             <div>
                 <a  href="{{route('new_message', ['username'=>$profile->username])}}">Send Message</a>

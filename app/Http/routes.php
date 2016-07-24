@@ -44,6 +44,7 @@ Route::get('/guidelines', ['as'=>'guidelines', function(){
 }]);
 
 Route::get('/inbox', ['as'=>'inbox', 'uses'=>'MessageController@showInbox']);
+Route::get('/unsubscribe/{email}', ['as'=>'invite.unsubscribe', 'uses'=>'InviteController@unsubscribe']);
 Route::get('/outbox', ['as'=>'outbox', 'uses'=>'MessageController@showOutbox']);
 
 Route::get('/settings', ['as'=>'settings',
@@ -95,7 +96,8 @@ Route::resource('AchievementTimeline', 'AchievementTimelineController');
 Route::resource('claim', 'ClaimController');
 Route::resource('comment', 'CommentController');
 Route::resource('follow', 'FollowController');
-RoutE::resource('goal', 'GoalController');
+Route::resource('goal', 'GoalController');
+Route::resource('invite', 'InviteController');
 Route::resource('message', 'MessageController');
 Route::resource('proof', 'ProofController');
 Route::resource('timeline', 'TimelineController');

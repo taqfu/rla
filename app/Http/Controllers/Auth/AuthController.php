@@ -64,6 +64,12 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        $invite = Invite::where('email', $data['email'])->where('added', false)->first();
+        if (count($invite)>0){
+            $user = User::find($invite->user_id);
+            $user->community_score = $user->community_score + 9;
+            $user->save();
+        }
         return User::create([
             'username' => $data['username'],
           //  'email' => $data['email'],
