@@ -20,12 +20,17 @@
         </div>
         <div class='form-group'>
             <label for="email">E-Mail Address (optional)</label>
+            @if (isset($registered_email))
+
+            @else
             <div>
-                <input type="email" name="email" value="{{ old('email') }}" id="email" class='form-control'>
+                <input type="email" name="email" value="{{ old('email') }}" id="email" 
+                  class='form-control'>
                 @if ($errors->has('email'))
                 <div class='text-danger'>{{ $errors->first('email') }}</div>
                 @endif
             </div>
+            @endif
         </div>
         <div class='form-group'>
             <label for="password">Password</label>

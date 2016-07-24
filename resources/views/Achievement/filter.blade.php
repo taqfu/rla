@@ -78,7 +78,7 @@
         </button>
     </div>
     @if (Auth::user())
-    <div class='hidden'>
+    <div class=''>
         Completion:
         <label for='incomplete' class='filter incomplete'>
             Incomplete

@@ -72,34 +72,31 @@ class AchievementController extends Controller
                 break;
         }
         $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)
-//        ->get();
-          ->simplePaginate(25);
-/*
+        ->get();
+         // ->simplePaginate(25);
          $perPage = 10; // Item per page (change if needed) 
          $currentPage = ($request->input('page') == 0
            ? 1
            : $request->input('page')) -1; 
          if (session('achievement_filters')["complete"] || session('achievement_filters')["incomplete"] ||session('achievement_filters')["claimed"] || session('achievement_filters')["followed"]){
-             $filteredAchievements = $achievements->filter(function($achievement){
-             
-                 if ((session('achievement_filters')["complete"] 
-                     && Achievement::has_user_completed_achievement($achievement->id))
-                   || (session('achievement_filters')["incomplete"] 
-                     && !Achievement::has_user_completed_achievement($achievement->id))
-                   || (session('achievement_filters')["claimed"] 
-                     && Achievement::has_user_claimed_achievement($achievement->id)) 
-                   || (session('achievement_filters')["followed"] 
-                     && Achievement::has_user_followed_achievement($achievement->id))){
-                             return $achievement;
-                 }
-             });
-             $pagedData = $filteredAchievements ->slice($currentPage * $perPage, $perPage)->all(); 
-             $achievements = new Paginator($pagedData, $perPage, $currentPage);
+            $filteredAchievements = $achievements->filter(function($achievement){
+            
+                if ((session('achievement_filters')["complete"] 
+                    && Achievement::has_user_completed_achievement($achievement->id))
+                  || (session('achievement_filters')["incomplete"] 
+                    && !Achievement::has_user_completed_achievement($achievement->id))
+                  || (session('achievement_filters')["claimed"] 
+                    && Achievement::has_user_claimed_achievement($achievement->id)) 
+                  || (session('achievement_filters')["followed"] 
+                    && Achievement::has_user_followed_achievement($achievement->id))){
+                            return $achievement;
+                }
+            });
+            $achievements = 
+              new Paginator($filteredAchievements, $perPage, $currentPage);
          } else {
-             $pagedData = $achievements->slice($currentPage * $perPage, $perPage)->all(); 
-             $achievements = new Paginator($pagedData, $perPage, $currentPage);
+             $achievements = new Paginator($$achievements, $perPage, $currentPage);
          }
-*/
         return View::make('Achievement.index', [
           "achievements"=>$achievements,
         ]);
