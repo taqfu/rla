@@ -8,7 +8,7 @@
     </p>
     
     <h3>
-        <a href={{route('invite.show', ['email'=>$email])}}">Click here to join <strong>Do It! Prove It!</strong></a>
+        <a href="{{route('invite.show', ['email'=>$email])}}">Click here to join <strong>Do It! Prove It!</strong></a>
     </h3>
 </div>
 <div style='text-align:center;'>

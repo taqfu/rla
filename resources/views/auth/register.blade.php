@@ -21,8 +21,9 @@
         <div class='form-group'>
             <label for="email">E-Mail Address (optional)</label>
             <div>
+            {{var_dump($registered_email)}}
             @if (isset($registered_email))
-                <input type='hidden' name='email' value='{{$registered_email}}' id='email' />
+                <input type='hidden' name='email' value="{{$registered_email}}" id='email' />
                 <span class='text-primary'><strong><i>{{$registered_email}}</i></strong></span>
             @else
                 <input type="email" name="email" value="{{ old('email') }}" id="email" 
