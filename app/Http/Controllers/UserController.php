@@ -31,11 +31,10 @@ class UserController extends Controller
     }
     public function showAchievementsCompleted($username){
         $user = User::where('username', $username)->first();
+        $proofs = Proof::join('achievements', 'achievement_id', '=', 'achievements.id')->where('proofs.user_id', $user->id)->where('proofs.status', 1)->orderBy('achievements.name')->get();
+        $proofs = $proofs->unique('achievement_id');
         return View('User.achievements.completed', [
-            "proofs"=>Proof::join('achievements', 'achievement_id',
-              '=', 'achievements.id')
-              ->where('proofs.user_id', $user->id)->where('proofs.status', 1)
-              ->orderBy('achievements.name', 'asc')->get(),
+            "proofs"=>$proofs,
             "profile"=>$user,
         ]);
     }
@@ -51,7 +50,7 @@ class UserController extends Controller
         $user = User::where('username', $username)->first();
         return View('User.achievements.goals', [
             "goals"=>Goal::join ('achievements', 'achievement_id', '=',
-              'achievements.id')->where('goals.user_id', $user->id)
+              'achievements.id')->where('goals.user_id', $user->id)->whereNull('canceled_at')
               ->orderBy('achievements.name','asc')->get(),
             "profile"=>$user,
         ]);
@@ -73,18 +72,7 @@ class UserController extends Controller
         ]);
     }
     public function showProfile($username){
-        $profile = User::where('username', $username)->first();
-
-        if ($profile==null){
-          return View('User.fail');
-        }
-        $id = $profile->id;
-
-        $proofs = Proof::join('achievements', 'achievement_id', '=', 'achievements.id')->where('proofs.user_id', $id)->where('proofs.status', 1)->orderBy('achievements.name', 'asc')->get();
-        return View::make('User.achievements.completed', [
-            "proofs"=>$proofs,
-            "profile"=>$profile,
-        ]);
+        return redirect(route('user.achievements.completed', ['username'=>$username]));
     }
     public function showSettings(){
         if (Auth::guest()){

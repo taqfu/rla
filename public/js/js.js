@@ -73,7 +73,7 @@ $(document.body).ready(function () {
         }
     });
     $(document).on('change', "#all-filters", function(event){
-        $("input.filter").prop('checked', $("#all-filters").prop('checked')); 
+        $("input.status-filter").prop('checked', $("#all-filters").prop('checked')); 
     });
     $(document).on('focusin', "#create-proof-url", function(event){
         if ($("#create-proof-url").val()=="Paste URL here."){

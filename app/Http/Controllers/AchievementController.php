@@ -29,22 +29,23 @@ class AchievementController extends Controller
      */
     public function index(Request $request)
     {
+       
         Proof::check();
         $status = [];
         $status_arr_captions =["denied", "approved", "pending", "inactive", "canceled"];
         if (session('achievement_filters')==null){
             $achievement_filters = [
               "status"=>[
-                'denied'=>false, 
+                'denied'=>true, 
                 'approved'=>true, 
                 'pending'=>true,
-                'inactive'=>false,
-                'canceled'=>false,
+                'inactive'=>true,
+                'canceled'=>true,
               ],
               "incomplete"=>true,
-              "complete"=>false,
-              "claimed"=>false,
-              "followed"=>false,
+              "complete"=>true,
+              "claimed"=>true,
+              "followed"=>true,
             ];
             $request->session()->put('achievement_filters', $achievement_filters);
         }
@@ -73,12 +74,11 @@ class AchievementController extends Controller
         }
         $achievements = Achievement::whereIn('status', $status)->orderBy($sort_by, $order)
         ->get();
-         // ->simplePaginate(25);
-         $perPage = 10; // Item per page (change if needed) 
+         $perPage = 100; // Item per page (change if needed) 
          $currentPage = ($request->input('page') == 0
            ? 1
            : $request->input('page')) -1; 
-         if (session('achievement_filters')["complete"] || session('achievement_filters')["incomplete"] ||session('achievement_filters')["claimed"] || session('achievement_filters')["followed"]){
+         if (Auth::user() && session('achievement_filters')["complete"] || session('achievement_filters')["incomplete"] ||session('achievement_filters')["claimed"] || session('achievement_filters')["followed"]){
             $filteredAchievements = $achievements->filter(function($achievement){
             
                 if ((session('achievement_filters')["complete"] 
@@ -95,7 +95,7 @@ class AchievementController extends Controller
             $achievements = 
               new Paginator($filteredAchievements, $perPage, $currentPage);
          } else {
-             $achievements = new Paginator($$achievements, $perPage, $currentPage);
+             $achievements = new Paginator($achievements, $perPage, $currentPage);
          }
         return View::make('Achievement.index', [
           "achievements"=>$achievements,
