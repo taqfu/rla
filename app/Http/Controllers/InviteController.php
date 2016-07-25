@@ -47,7 +47,7 @@ class InviteController extends Controller
             return back()->withErrors('Please log in before doing this.');
         }
         $this->validate($request, [
-            'email' => 'required|email|unique:invites',
+            'email' => 'required|email|unique:invites,email',
         ],['unique'=>'An invite has already been sent to this email address.']);
         $email = $request->email;
         Mail::send('emails.invite', ['email'=>$request->email, 
