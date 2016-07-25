@@ -110,6 +110,9 @@
                         </a>
                     </li>
                     <li>
+                        <a href={{route('settings')}}>Settings </a>
+                    </li>
+                    <li>
                         <a href="{{ url('/logout') }}">
                             Logout
                         </a>

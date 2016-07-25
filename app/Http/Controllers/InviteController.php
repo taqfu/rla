@@ -76,6 +76,9 @@ class InviteController extends Controller
      */
     public function show($email)
     {
+        if (Auth::user() && Auth::user()->email!=$email){
+            Auth::logout();
+        } 
         return View('auth.register', ['registered_email'=>$email]); 
     }
 

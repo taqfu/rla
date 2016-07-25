@@ -5,7 +5,14 @@
     <i>This is where you'll be able to see the changes I've made.</i> 
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
-<h4>07/21/16</h4>
+<h4>07/24/16</h4>
+<ul>
+    <li>
+        Users can now invite their friends! (Available in Settings)
+    </li>
+</ul>
+
+<h4>07/22/16</h4>
 <ul>
     <li>
         Claim score has been removed. There is now just one score: proof score. (Let me know if you want it back.)
