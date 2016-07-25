@@ -100,37 +100,9 @@ class Proof extends Model
         return $this->hasMany('\App\Comment');
     }
     public static function fetch_sort($sort){
-        switch ($sort){
-            case "created_at asc":
-                $column="created_at";
-                $direction="asc";
-                break;
-            case "created_at desc":
-                $column="created_at";
-                $direction="desc";
-                break;
-            case "id asc":
-                $column="id";
-                $direction="asc";
-                break;
-            case "id desc":
-                $column="id";
-                $direction="desc";
-                break;
-            case "status asc":
-                $column="status";
-                $direction="asc";
-                break;
-            case "status desc":
-                $column="status";
-                $direction="desc";
-                break;
-            default:
-                $column="created_at";
-                $direction="desc";
-                break;
-        }
-        return ['column'=>$column, 'direction'=>$direction];
+        
+        $sort_arr = $sort!=null ? explode(" ", $sort) : ['created_at', 'desc'];
+        return ['column'=>$sort_arr[0], 'direction'=>$sort_arr[1]];
 
     }
     public static function max_time_to_vote($id){

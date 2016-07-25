@@ -72,7 +72,21 @@
         @endif
     </th>
     <th>
-        User
+        @if ($sort=="user asc")
+        <a href="{{route('achievement.showProofs', ['url'=>$main->url, 'sort'=>'user desc'])}}"><em>
+            User &darr;
+
+        </em></a>
+        @elseif ($sort=="user desc")
+        <a href="{{route('achievement.showProofs', ['url'=>$main->url, 'sort'=>'user asc'])}}"><em>
+            User &uarr;
+        </em></a>
+
+        @else
+        <a href="{{route('achievement.showProofs', ['url'=>$main->url, 'sort'=>'user asc'])}}">
+            User
+        </a>
+        @endif
     </th>
     <th>
         @if ($sort=="url asc")

@@ -229,8 +229,14 @@ class AchievementController extends Controller
             return View::make('Achievement.fail');
         }
         $sort = Proof::fetch_sort($request->input('sort'));
-        $proofs = Proof::where('achievement_id', $achievement->id)
-          ->orderBy($sort['column'], $sort['direction'])->get();
+        if ($sort['column']=='user'){
+            $proofs = Proof::join('users', 'user_id', '=', 'users.id')
+              ->where('proofs.achievement_id', $achievement->id)
+              ->orderBy('users.username', $sort['direction'])->get();
+        } else {
+            $proofs = Proof::where('achievement_id', $achievement->id)
+              ->orderBy($sort['column'], $sort['direction'])->get();
+        }
         $user_data = User::fetch_achievement_data($achievement->id);
         return View::make('Achievement.proofs', [
             "main"=>$achievement,
