@@ -6,6 +6,12 @@
     Head <a href="{{route('feedback')}}">here</a> to give feedback.
 </p>
 
+<h4>07/25/16</h4>
+<ul>
+    <li>
+        Users can now add Stories. Tell us a little bit about your accomplishments!
+    </li>
+</ul>
 <h4>07/24/16</h4>
 <ul>
     <li>

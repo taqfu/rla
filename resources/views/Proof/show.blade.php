@@ -1,6 +1,7 @@
 <?php
     use \App\Proof;
     use App\User;
+    $story = Proof::fetch_story($proof->id);
 ?>
 @extends('layouts.app')
 @section('title')
@@ -57,8 +58,28 @@ Status:
     <div class='panel-body'>
         <a target='_blank' href="{{$proof->url}}">{{$proof->url}}</a>
     </div>
-    <div class='panel-footer'>
+    <div class='panel-footer text-left'>
+        @if ($story!=null)
+            @include ('Story.show', ['story'=>$story])
+        @endif
+        @if (Auth::user() && Auth::user()->id == $proof->user_id)
+  
+            @if($story==null)
+                <button id='show-new-proof-story{{$proof->id}}' class='btn-link show-new-story'>
+                    Add Story
+                </button>
+                @include ('Story.create', ['hidden'=>true, 'table_name'=>'proof', 
+                  'id_num'=>$proof->id])
+            @else
+                <button id='show-edit-story{{$story->id}}' class='btn-link show-edit-story'>
+                    Edit Story
+                </button>
+                @include ('Story.edit', ['hidden'=>true, 'story'=>$story])
+            @endif
+        @endif
+        <div class='text-center'>
         @include('share', ['url'=>route('proof.show', ['id'=>$proof->id])])
+        </div>
     </div>
 </div>
 <h4 class='margin-left text-muted'>

@@ -93,10 +93,21 @@ $(document.body).ready(function () {
         $("#hide_comments" + id_num).hide();
         $("#comments"+id_num).hide();
     });
+    $(document).on('click', '.hide-edit-story', function(event){
+        var idNum = event.target.id.substr(15, event.target.id.length-13);
+        $("#edit-story" + idNum).addClass('hidden');
+        $("#show-edit-story" +idNum).removeClass('hidden');
+    });
     $(document).on("click", ".hide_new_comment", function (event) {
         var id_num = event.target.id.substr(16, event.target.id.length-16);
         $("#show-new-comment" + id_num).removeClass('hidden');
         $("#new_comment"+id_num).addClass('hidden');
+    });
+    $(document).on('click', '.hide-new-story', function(event){
+        console.log("ASDFAS");
+        $(".new-story").addClass('hidden');
+        $(".show-new-story.hidden").removeClass('hidden');
+        
     });
     $(document).on('click', '.proof-yes-vote', function(event) {
         var proofID = event.target.id.substr(14, event.target.id.length-14);
@@ -108,16 +119,26 @@ $(document.body).ready(function () {
     });
     $(document).on("click", ".show-comments", function (event) {
         var id_num = event.target.id.substr(13, event.target.id.length-13);
-        console.log("SHOW " + id_num);
         $("#show-comments" + id_num).hide();
         $("#hide_comments" + id_num).show();
         $("#comments"+id_num).show();
         $("#comments" + id_num).removeClass('hidden');
     });
+    $(document).on('click', '.show-edit-story', function (event) {
+        var idNum = event.target.id.substr(15, event.target.id.length-15);
+        $("#show-edit-story" + idNum).addClass('hidden');
+        $("#edit-story" + idNum).removeClass('hidden');
+    });
     $(document).on("click", ".show-new-comment", function (event) {
         var id_num = event.target.id.substr(16, event.target.id.length-16);
         $("#show-new-comment" + id_num).addClass('hidden');
         $("#new_comment"+id_num).removeClass('hidden');
+    });
+    $(document).on('click', '.show-new-story', function(event){
+        var idArr = event.target.id.split('-');
+        $("#" + event.target.id).addClass('hidden');
+        $("#new-story-" + idArr[2] + idArr[3].substring(5, idArr[3].length)).removeClass('hidden');
+        $("#new-story-" + idArr[2] + idArr[3].substring(5, idArr[3].length)).show();
     });
 });
 

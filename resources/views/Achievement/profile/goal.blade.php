@@ -2,6 +2,7 @@
 <?php
 use \App\Goal;
 use \App\User;
+$story = Goal::fetch_story($goal->id);
 if (Auth::guest()){
     $timestamp = date(Config::get('rla.timestamp_format') . ' e', strtotime($goal->created_at));
 } else if (Auth::user()){
@@ -18,15 +19,33 @@ if (Auth::guest()){
 
 
         </div>
+        @if ($story!=null)
+            @include ('Story.show', ['story'=>$story])
+        @endif
         <div>
             <a href="{{route('timeline.show', ['id'=>$timeline->id])}}">Permalink</a>
             @if (Goal::can_user_comment($goal->id))
-            <button id='show-new-comment{{$goal->id}}' class='show-new-comment btn-link'>[ Comment ]</button>
+            <button id='show-new-comment{{$goal->id}}' class='show-new-comment btn-link'>Comment</button>
             @endif
 
             @if (count($goal->comments)>0)
                 <input type='button' id='show-comments{{$goal->id}}' class='show-comments btn-link'
-                  value='[ Show Comments ({{count($goal->comments)}}) ]' />
+                  value='Show Comments ({{count($goal->comments)}})' />
+            @endif
+            
+            @if (Auth::user() && Auth::user()->id == $goal->user_id)
+                @if($story==null)
+                    <button id='show-new-goal-story{{$goal->id}}' class='btn-link show-new-story'>
+                        Add Story
+                    </button>
+                    @include ('Story.create', ['hidden'=>true, 'table_name'=>'goal', 
+                      'id_num'=>$goal->id])
+                @else
+                    <button id='show-edit-story{{$story->id}}' class='btn-link show-edit-story'>
+                        Edit Story
+                    </button>
+                    @include ('Story.edit', ['hidden'=>true, 'story'=>$story])
+                @endif
             @endif
             @if (Goal::can_user_comment($goal->id))
                 @include ('Comment.create', ['table'=>'goal', 'table_id'=>$goal->id, 'show'=>false])

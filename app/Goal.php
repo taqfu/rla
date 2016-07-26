@@ -18,6 +18,14 @@ class Goal extends Model
     public function comments(){
         return $this->hasMany('App\Comment');
     }
+
+    public static function fetch_story($id){
+        if (Auth::guest()){
+            return null;
+        }
+        return Story::where('goal_id', $id)->where('user_id', Auth::user()->id)->first();
+    }
+
     public function user(){
         return $this->belongsTo('App\User');
     }

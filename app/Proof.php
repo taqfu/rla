@@ -105,6 +105,13 @@ class Proof extends Model
         return ['column'=>$sort_arr[0], 'direction'=>$sort_arr[1]];
 
     }
+    public static function fetch_story($id){
+        if (Auth::guest()){
+            return null;
+        }
+        return Story::where('proof_id', $id)->where('user_id', Auth::user()->id)->first();
+        
+    }
     public static function max_time_to_vote($id){
         $proof = Proof::where ("id", $id)->first();
         $begin = new DateTime($proof->created_at);

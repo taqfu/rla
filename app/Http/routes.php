@@ -100,5 +100,6 @@ Route::resource('goal', 'GoalController');
 Route::resource('invite', 'InviteController');
 Route::resource('message', 'MessageController');
 Route::resource('proof', 'ProofController');
+Route::resource('story', 'StoryController');
 Route::resource('timeline', 'TimelineController');
 Route::resource('vote', 'VoteController');

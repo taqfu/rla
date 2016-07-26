@@ -221,6 +221,35 @@ use App\User;
         </a>)
     </div>
      
+@elseif ($timeline_item->event=="new story")
+    <div  title='{{$timestamp}}'>{{interval($timeline_item->created_at, "now")}} ago</div>
+    <div>
+        @if ($timeline_item->user_id == Auth::user()->id)
+            You
+        @else
+            <a href="{{route('user.show', ['username'=>$timeline_item->user->username])}}">
+                {{$timeline_item->user->username}}
+            </a>
+        @endif
+        posted a story for 
+        @if ($timeline_item->user_id == Auth::user()->id)
+            your
+        @else
+            their
+        @endif
+        @if ($timeline->item->proof_id>0)
+            proof
+        @elseif ($timeline->item->claim_id>0)
+            claim
+        @elseif ($timeline->item->goal_id>0)
+            goal
+        @endif
+        for an achievement.
+    </div>
+    <div>
+        ({{$timeline_item->achievement->name}})
+    </div>
+    @include ('Story.show', ['story'=>$timeline_item->story])
 @else
     {{$timeline_item->event}}
 @endif
