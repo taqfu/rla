@@ -78,6 +78,14 @@
             />
             New Comment
         </label>
+        <label class='filter'>
+            <input type='checkbox' name='newStory' class='checkbox-inline'
+            @if (session('timeline_filters')['new_story'])
+            checked
+            @endif
+            />
+            New Story
+        </label>
     </div>
     <button type='submit'>Filter</button>
 </form>

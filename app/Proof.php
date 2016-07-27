@@ -106,10 +106,7 @@ class Proof extends Model
 
     }
     public static function fetch_story($id){
-        if (Auth::guest()){
-            return null;
-        }
-        return Story::where('proof_id', $id)->where('user_id', Auth::user()->id)->first();
+        return Story::where('proof_id', $id)->first();
         
     }
     public static function max_time_to_vote($id){

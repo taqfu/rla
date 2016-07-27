@@ -42,6 +42,9 @@ class Timeline extends Model
     public function proof(){
         return $this->belongsTo('\App\Proof');
     }
+    public function story(){
+        return $this->belongsTo('\App\Story');
+    }
     public function user(){
         return $this->belongsTo('\App\User');
     }

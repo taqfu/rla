@@ -237,17 +237,19 @@ use App\User;
         @else
             their
         @endif
-        @if ($timeline->item->proof_id>0)
+        @if ($timeline_item->proof_id>0)
             proof
-        @elseif ($timeline->item->claim_id>0)
+        @elseif ($timeline_item->claim_id>0)
             claim
-        @elseif ($timeline->item->goal_id>0)
+        @elseif ($timeline_item->goal_id>0)
             goal
         @endif
         for an achievement.
     </div>
     <div>
-        ({{$timeline_item->achievement->name}})
+        <a href="{{route('achievement.show', ['url'=>$timeline_item->achievement->url])}}">
+            ({{$timeline_item->achievement->name}})
+        </a>
     </div>
     @include ('Story.show', ['story'=>$timeline_item->story])
 @else

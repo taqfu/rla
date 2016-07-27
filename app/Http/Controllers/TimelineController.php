@@ -31,6 +31,7 @@ class TimelineController extends Controller
               'new_goal'=>true,
               'new_claim'=>true,
               'new_comment'=>true,
+              'new_story'=>true,
             ];
             $request->session()->put('timeline_filters', $timeline_filters);
         }

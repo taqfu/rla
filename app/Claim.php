@@ -21,10 +21,7 @@ class Claim extends Model
     }
 
     public static function fetch_story($id){
-        if (Auth::guest()){
-            return null;
-        }
-        return Story::where('claim_id', $id)->where('user_id', Auth::user()->id)->first();
+        return Story::where('claim_id', $id)->first();
         
     }
     public function user(){
