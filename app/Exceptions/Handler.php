@@ -38,6 +38,7 @@ class Handler extends ExceptionHandler
     {
             // emails.exception is the template of your email
             // it will have access to the $error that we are passing below
+/*
             if (Auth::guest()){
                 $user = "--GUEST--";
             } else if (Auth::user()){
@@ -48,6 +49,7 @@ class Handler extends ExceptionHandler
               "prev"=>URL::previous() ], function ($m) {
                 $m->to('taqfu0@gmail.com', 'Do It! Prove It! Bug Reporting')->subject('Error');
             });
+*/
         parent::report($e);
     }
 
