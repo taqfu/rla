@@ -108,6 +108,7 @@
         <input type='submit' value='Change Time Zone' />
     </form>
 
+<!--
     <h4>Invite Your Friends</h4>
     <form method="POST" action="{{route('invite.store')}}" class='margin-left'>
         @if(count($errors->all())>0)
@@ -123,6 +124,6 @@
         <button type='submit' />
             Invite
         </button>
-      
+    -->  
 </div>
 @endsection

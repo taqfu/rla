@@ -10,11 +10,14 @@
         $sort_arr = explode (" ", session('sort'));
         $filters = $filters . "&sort=" . $sort_arr[0] . "+" . $sort_arr[1];
     }
+/*
     if ($_SERVER['SERVER_NAME']=='taqfu.com'){
         $root_url = "http://taqfu.com/dev-env/rla/public";
     } else if ($_SERVER['SERVER_NAME']=='doitproveit.com' || $_SERVER['SERVER_NAME']=='www.doitproveit.com'){
         $root_url = "http://doitproveit.com";
     }
+*/
+    $root_url =  env("APP_URL");
 ?>
 <!DOCTYPE html>
 <html lang="en">
