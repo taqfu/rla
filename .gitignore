@@ -6,3 +6,4 @@ Homestead.json
 .env
 *.swp
 .ht*
+.remote-sync.json
