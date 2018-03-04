@@ -38,18 +38,18 @@ class Handler extends ExceptionHandler
     {
             // emails.exception is the template of your email
             // it will have access to the $error that we are passing below
-/*
+
             if (Auth::guest()){
                 $user = "--GUEST--";
             } else if (Auth::user()){
                 $user = Auth::user()->username;
-            } 
-            Mail::send('emails.exception', ['all_requests'=>Request::all(), 'error' => $e, 
-              'user'=>$user, "ip"=>Request::ip(), "url"=>Request::url(), 
+            }
+            Mail::send('emails.exception', ['all_requests'=>Request::all(), 'error' => $e,
+              'user'=>$user, "ip"=>Request::ip(), "url"=>Request::url(),
               "prev"=>URL::previous() ], function ($m) {
-                $m->to('taqfu0@gmail.com', 'Do It! Prove It! Bug Reporting')->subject('Error');
+                $m->to('taqfu0@gmail.com')->from('admin@doitproveit.com', 'Do It! Prove It!')->subject('Bug Report E-mail');
             });
-*/
+
         parent::report($e);
     }
 
